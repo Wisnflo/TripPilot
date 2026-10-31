@@ -19,7 +19,9 @@ TripPilot 是一个面向多约束旅行任务的 Agent：理解自然语言需�
 - **有界的 Agent 执行**：规划、修复和模型回退共享预算；进程组监督提供任务总时限，主动取消会清理子进程与待执行任务。
 - **可审计的评测与用量**：逐请求记录尝试、延迟、模型标识、token 和缓存用量；运行时工具事实与离线评分标注分离。
 
-## 评测结果
+## 随附评测结果
+
+下列数值来自 `evaluation/runs/` 的已完成运行，与其中记录的实现和执行协议绑定。改变代码、预算或模型后，应使用新的结果报告。
 
 在 ChinaTravel 旅行环境中，与 **ReAct + 运行时检查器**（代码标识 `b2`）对照。双方使用同一 `qwen3.8-reasoner` 服务模型、公开输入、工具接口及模型调用/时间上限。
 
@@ -57,7 +59,15 @@ cp .env.example .env
 export MODEL_ID="qwen3.8-reasoner"  # 替换为当前服务可用的模型标识
 ```
 
-### 2. 生成行程
+### 2. 打开本地工作台
+
+```sh
+uv run --locked python scripts/demo.py --port 8765
+```
+
+打开 `http://127.0.0.1:8765/`。页面支持创建行程、修改要求和冲突确认，并展示费用、来源与修改前后对比。三个示例回放无需 API；实时生成使用本机配置的模型。
+
+### 3. 生成行程
 
 ```sh
 uv run --locked python scripts/trip.py plan \
@@ -68,7 +78,7 @@ uv run --locked python scripts/trip.py plan \
 
 成功后生成 `plan.json`、`task.json` 和 `record.json`。每次指定新的输出目录，避免覆盖现有计划。
 
-### 3. 修改并澄清
+### 4. 修改并澄清
 
 ```sh
 uv run --locked python scripts/trip.py revise \
@@ -87,7 +97,7 @@ uv run --locked python scripts/trip.py answer \
 
 `cancel_overnight` 表示取消住宿要求；`keep_original` 表示保留原行程。回答前会核对澄清状态与种子版本。仅在生成了待答复状态时运行 `answer`。
 
-### 4. 验证与复现
+### 5. 验证与复现
 
 以下检查不调用收费模型：
 
@@ -109,7 +119,8 @@ src/trippilot/
 ├── agent/          # ReAct 循环与轨迹
 ├── tools/          # 只读工具白名单与双语实体链接
 ├── plan/           # 结构、事实与时间检查
-└── models/         # API 配置、超时和重试
+├── models/         # API 配置、超时和重试
+└── web/            # 本地交互工作台
 scripts/            # 产品 CLI、评测运行与独立判分
 tests/              # 输入、规划、事务、澄清、超时与计费测试
 evaluation/         # 协议、逐任务结果、请求账本与校验清单
@@ -121,6 +132,7 @@ upstream/ChinaTravel/ # 保留归属的第三方环境与配套数据
 
 - 使用 ChinaTravel 示例数据，覆盖北京、上海、南京、杭州、苏州、深圳、成都、武汉、广州、重庆 10 座城市；不执行真实预订，也不提供实时营业或交通保证。
 - `checked_ok` 表示公开运行时检查通过；完整 benchmark 约束由离线评分器独立判定。
+- 执行 Agent 使用 macOS 文件访问策略或 Linux Landlock（ABI ≥ 3）。代码与工具事实只读，任务目录可写；不支持的系统会拒绝执行。网络仍用于模型 API，该边界不用于运行任意第三方代码。
 - 首次规划默认 360 秒，修复默认 240 秒；每请求 90 秒、最多 2 次尝试，最多 16 次逻辑模型调用。客户端取消不能保证远端立即停止计费。
 - 价格配置只用于已返回用量的估算。更换模型服务时需核对 `config/v3-pricing.json`，估算金额不能作为实际支付凭证。
 

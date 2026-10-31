@@ -56,6 +56,9 @@ def main():
             path=folder/method/key/'record.json';row={'uid':spec['uid'],'split':spec['split'],'method':method,'key':key,'all_pass':False,'complete':path.exists()}
             if not path.exists():rows.append(row);continue
             record=json.loads(path.read_text());result=record['result'];plan=result.get('plan') or {}
+            row['terminal']=result.get('terminal_state')
+            if not isinstance(plan,dict) or not isinstance(plan.get('itinerary',[]),list) or any(not isinstance(d,dict) or not isinstance(d.get('activities',[]),list) or any(not isinstance(a,dict) for a in d.get('activities',[])) for d in plan.get('itinerary',[])):
+                row['evaluation_error']='InvalidPlanStructure';rows.append(row);continue
             visible=json.loads((ROOT/'data/agent_visible'/spec['split']/(spec['uid']+'.json')).read_text())
             label=json.loads((ROOT/'data/scoring'/spec['split']/(spec['uid']+'.json')).read_text());query={**visible,**label}
             query['start_city']=score_run.CITY_ZH_TO_EN.get(query['start_city'],query['start_city'])
@@ -88,7 +91,7 @@ def main():
                 row.update(schema=uid in sp,commonsense=uid in cp,hard=uid in hp,event_ok=event_ok,
                            all_pass=bool(clean and supported and event_ok and uid in sp and uid in cp and uid in hp),
                            terminal=result.get('terminal_state'),annotation_rewrites=rewrites,explicit_lodging_waivers=waived,
-                           usability=bool(plan) and all(any(v.get('type')=='attraction' for v in d.get('activities',[])) and
+                           usability=bool(plan.get('itinerary')) and all(any(v.get('type')=='attraction' for v in d.get('activities',[])) and
                                any(v.get('type') in ('breakfast','lunch','dinner') for v in d.get('activities',[])) for d in plan.get('itinerary',[])))
             except Exception as exc:row['evaluation_error']=type(exc).__name__
             rows.append(row)

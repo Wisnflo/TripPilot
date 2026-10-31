@@ -1057,6 +1057,34 @@
     "learning": "requires user participation; never marked complete by code execution",
     "feedback_opportunities": 4,
     "development_note": "90s request timeouts interrupted full-plan generation; before formal evaluation, all methods get 180s requests within the same 360s task deadline.",
-    "selection_correction": "Before formal outcomes, full-ID matching replaced 6 overlaps missed by the original prefix filter."
+    "selection_correction": "Before formal outcomes, full-ID matching replaced 6 overlaps missed by the original prefix filter.",
+    "primary_model": "qwen3.8-reasoner",
+    "second_model": "glm-5.3-flash",
+    "output_tokens": 10000,
+    "dynamic_event_split_targets": {
+      "return_earlier": {
+        "easy": 12,
+        "medium": 11,
+        "human": 11
+      },
+      "transport_unavailable": {
+        "easy": 11,
+        "medium": 11,
+        "human": 11
+      },
+      "budget_cut": {
+        "easy": 11,
+        "medium": 11,
+        "human": 11
+      }
+    },
+    "dynamic_parent_order": "round-robin easy, medium, human; preserve manifest order within split",
+    "dynamic_seed_priority": [
+      "b2",
+      "b1",
+      "b0",
+      "structured"
+    ],
+    "dynamic_reference_search_limit": 72
   }
 }

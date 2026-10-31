@@ -82,7 +82,7 @@ Dynamic scoring is derived, not official gold. Only explicit event-covered day-c
 - [Verification summary](../evaluation/verification.json)
 - [Published file inventory](../evaluation/checksums.json)
 
-The same runtime implementation was used across all four evaluation stages. Core `src/` files are byte-identical to the evaluated snapshot. Publication adds documentation/packaging, renames test files and omits private operational material. The recorded source versions describe the implementation used during evaluation; publication packaging is documented separately. Local absolute paths in published JSON have been replaced by `{PROJECT_ROOT}`; the published inventory covers these sanitized files. Original local records were retained unchanged.
+The published result directories describe the implementation used in those runs. Later source changes do not inherit these measured results; use their recorded source descriptions when interpreting the tables. Publication adds documentation/packaging, renames test files and omits private operational material. The recorded source versions describe the implementation used during evaluation; publication packaging is documented separately. Local absolute paths in published JSON have been replaced by `{PROJECT_ROOT}`; the published inventory covers these sanitized files. Original local records were retained unchanged.
 
 The runtime rechecks task and seed versions, not every sandbox table per task. Source code and bundled data in this repository can be checked offline; neither API outputs nor future provider weights are guaranteed to replay bit-for-bit. Published tasks may have appeared in model pretraining.
 
@@ -111,6 +111,34 @@ If interrupted, inspect the stage state/logs under `experiments/v3/acceptance-<p
 
 ## Scope and attribution
 
-The benchmark is small, uses one provider alias and sample data, and has no NeSy/SOTA comparison. Candidate search is bounded and does not prove global optimality/infeasibility. Tool access is allowlisted; the process is not an OS security sandbox. List prices are current USTC platform rates for observed usage, not an invoice or actual cash payment. Failed/pending requests may still incur unknown remote charges.
+The benchmark is small, uses one provider alias and sample data, and has no NeSy/SOTA comparison. Candidate search is bounded and does not prove global optimality/infeasibility. The recorded runs used allowlisted tools without an OS file boundary. Current worker file policies are described in the architecture; those changes require a fresh measurement under the expanded protocol. List prices are current USTC platform rates for observed usage, not an invoice or actual cash payment. Failed/pending requests may still incur unknown remote charges.
 
 ChinaTravel supplies the environment, public tables and base evaluators. TripPilot supplies the structured planning/compiler control, transactional repair/clarification, shared execution budgets and evidence handling. See [third-party notices](../THIRD_PARTY_NOTICES.md).
+
+## Expanded paired protocol
+
+`config/completion-tasks.json` declares 200 static parents (70 easy, 60 medium, 70 human), disjoint from earlier exposed evaluation parents. It fixes 24 component parents, 12 repeat parents and 12 second-model parents before their outcomes. The primary model is `qwen3.8-reasoner`; the second is `glm-5.3-flash`.
+
+The four initial methods are single-shot generation, ReAct, ReAct with feedback and TripPilot. Each receives the same deterministic public fact packet and shared factual completion of missing local routes. Backend queries, validation and fallback consume the same task resource limits. This controls available evidence; it does not make their tool-use strategies identical.
+
+| Stage | Parents/events | Methods | Task executions |
+| --- | ---: | --- | ---: |
+| Initial planning | 200 parents | Four initial methods | 800 |
+| Components | 24 fixed parents | No feedback; full-plan generation | 48 |
+| Additional repeats | 12 fixed parents, twice | Four initial methods | 96 |
+| Conditional repair | 100 constructive events | Deterministic repair; ReAct with feedback; incremental repair | 300 |
+| Second model | 12 fixed parents | TripPilot; ReAct with feedback | 24 |
+
+Limits are 16 logical calls, 500,000 returned tokens, 400 backend queries, 4 feedback opportunities and 10,000 output tokens per request. Static/dynamic task deadlines are 360/240 seconds; requests have at most 180 seconds within the remaining task time, with at most 2 attempts. Concurrency is 4.
+
+The offline event constructor verifies at least one feasible reference solution before repair methods run. Event targets are 34 earlier returns, 33 unavailable transports and 33 budget reductions, split across difficulty groups as declared in the manifest. It interleaves difficulty groups and uses the fixed seed-method priority, without inspecting repair outcomes. Reference files stay on the offline side and are never included in worker jobs. If the constructive cohort falls short, execution stops with the shortfall recorded.
+
+```sh
+uv run --locked python scripts/run_completion.py --prefix paired-study
+```
+
+This is a substantial API workload. With four concurrent jobs, the sum of the configured deadlines gives an approximately 29.2-hour task-execution ceiling before setup/scoring overhead; actual time depends on responses and early stopping. This is a scheduling estimate, not a measured duration.
+
+After inspecting a stopped run, resume unchanged settings with `--resume`. Existing completed records are skipped; a partial attempt without a completed record is retained as interrupted rather than silently retried. Authentication/rate-limit errors or consecutive empty failures stop scheduling. Input, tool data or code changes require a new prefix. A run lock prevents two parents from writing the same run concurrently.
+
+The pipeline creates one `report.md` containing all stages. Unknown costs and interrupted attempts stay visible; missing stages are explicitly marked. It reports parent-paired statistics, duration percentiles, unmatched entities, change counts, unaffected-content retention and matched-success resource comparisons. Dynamic intervals resample parents instead of treating correlated events as independent observations. Additional component comparisons are exploratory; repeated attempts do not create independent parents.

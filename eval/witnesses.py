@@ -3,7 +3,7 @@
 Uses public tools and original-plan alternatives, never repair.agent/proposals.
 Hidden constraints are checked only here, in the independent task-construction role.
 """
-import ast
+from collections import Counter,defaultdict
 import contextlib
 import copy
 from decimal import Decimal,ROUND_FLOOR
@@ -23,6 +23,7 @@ from chinatravel.evaluation.schema_constraint import evaluate_schema_constraints
 from chinatravel.evaluation.commonsense_constraint import evaluate_commonsense_constraints
 from chinatravel.evaluation.hard_constraint import evaluate_hard_constraints_v2
 from trippilot.repair.events import ChangeEvent,apply_event_to_task
+from trippilot.repair.verification import event_violations
 from trippilot.repair.negotiation import begin_revision,resolve_revision
 from trippilot.plan.checker import check_plan,_tool_city,_minutes,CITY_ZH_TO_EN
 from trippilot.money import plan_total,multiply,amount
@@ -35,7 +36,8 @@ def load(p):return json.loads(Path(p).read_text())
 class Judge:
     def __init__(self):
         self.schema=load(ROOT/'upstream/ChinaTravel/chinatravel/evaluation/output_schema.json');self.maps=score_run.build_name_maps()
-    def passes(self,task,label,plan,event,state):
+    def passes(self,task,label,seed,plan,event,state):
+        if event_violations(task,seed,plan,event):return False
         query={**task,**label};query=apply_event_to_task(query,event);query['start_city']=_tool_city(query['start_city']);query['target_city']=_tool_city(query['target_city'])
         codes=[];changed=0
         for code in query['hard_logic_py']:
@@ -51,7 +53,7 @@ class Judge:
                 _,_,_,cp=evaluate_commonsense_constraints([uid],{uid:query},{uid:plan},verbose=False,lang='en')
                 hard=score_run.translate_plan_for_hard(plan,self.maps)
                 _,_,_,_,_,hp=evaluate_hard_constraints_v2([uid],{uid:query},{uid:hard},env_pass_id=cp,verbose=False,lang='zh')
-            usable=all(any(a.get('type')=='attraction' for a in d['activities']) and any(a.get('type') in ('breakfast','lunch','dinner') for a in d['activities']) for d in plan['itinerary'])
+            usable=bool(plan.get('itinerary')) and all(any(a.get('type')=='attraction' for a in d['activities']) and any(a.get('type') in ('breakfast','lunch','dinner') for a in d['activities']) for d in plan['itinerary'])
             return bool(uid in sp and uid in cp and uid in hp and usable)
         except Exception:return False
 
@@ -61,6 +63,7 @@ def route(box,city,start,end,when,mode,people):
     value=box.call('goto',{'city':city,'start':start,'end':end,'start_time':when,'transport_type':mode})
     legs=value.get('data')
     if not value.get('success') or not isinstance(legs,list) or not legs:return None
+    if any(not isinstance(leg,dict) or _minutes(leg.get('start_time')) is None or _minutes(leg.get('end_time')) is None for leg in legs):return None
     legs=copy.deepcopy(legs)
     for leg in legs:
         leg['price']=leg.get('cost',0)
@@ -142,13 +145,17 @@ def main():
     import argparse
     p=argparse.ArgumentParser();p.add_argument('--static-run-id',required=True);p.add_argument('--output',required=True);a=p.parse_args()
     run=ROOT/'experiments/v3'/a.static_run_id;protocol=load(run/'protocol.json');scores=load(run/'scores.json')
-    passing={(r['method'],r['uid']) for r in scores['rows'] if r.get('all_pass')};methods=['b2','b1','b0','structured']
+    passing={(r['method'],r['uid']) for r in scores['rows'] if r.get('all_pass') and r.get('usability')}
+    policy=load(ROOT/'config/completion-tasks.json')['protocol'];methods=policy['dynamic_seed_priority']
     output=ROOT/a.output
     if output.exists():raise SystemExit('Output exists; use a new task set')
     output.parent.mkdir(parents=True,exist_ok=True);proof_dir=output.parent/(output.stem+'-solutions');proof_dir.mkdir(exist_ok=False)
-    judge=Judge();box=ToolBox();selected=[];counts=Counter();attempted=Counter();targets={'return_earlier':34,'transport_unavailable':33,'budget_cut':33};clock=time.monotonic()
+    judge=Judge();box=ToolBox();selected=[];counts=Counter();by_split=defaultdict(Counter);attempted=Counter()
+    strata_targets=policy['dynamic_event_split_targets'];targets={kind:sum(groups.values()) for kind,groups in strata_targets.items()};clock=time.monotonic()
     # The parent order and method priority are declared before repair results.
-    for spec in protocol['events']:
+    strata={split:[e for e in protocol['events'] if e['split']==split] for split in ('easy','medium','human')}
+    ordered=[strata[split][i] for i in range(max(map(len,strata.values()))) for split in strata if i<len(strata[split])]
+    for spec in ordered:
         uid=spec['uid'];split=spec['split'];valid=[]
         for method in methods:
             if (method,uid) in passing:
@@ -158,7 +165,7 @@ def main():
         method,source,seed=valid[0];task=load(ROOT/'data/agent_visible'/split/(uid+'.json'));label=load(ROOT/'data/scoring'/split/(uid+'.json'))
         variants=list(replacements(seed,box))
         for kind in targets:
-            if counts[kind]>=targets[kind]:continue
+            if counts[kind]>=targets[kind] or by_split[kind][split]>=strata_targets[kind][split]:continue
             if kind=='return_earlier':
                 n=len(seed['itinerary'])-1
                 if n<1:continue
@@ -177,18 +184,18 @@ def main():
             state=begin_revision(task,seed,event)
             if state['status']=='needs_clarification':state=resolve_revision(state,'cancel_overnight',current_seed=seed)
             for number,candidate in enumerate(candidates):
-                if number>=72:break
+                if number>=policy['dynamic_reference_search_limit']:break
                 attempted[kind]+=1
                 if kind=='budget_cut' and plan_total(candidate)>event.new_budget:continue
-                if not judge.passes(task,label,candidate,event,state):continue
+                if not judge.passes(task,label,seed,candidate,event,state):continue
                 values={k:str(v) if isinstance(v,Decimal) else v for k,v in event.__dict__.items()}
                 values={k:v for k,v in values.items() if v is not None}
                 name=uid+'-'+kind;proof=proof_dir/(name+'.json')
-                proof.write_text(json.dumps({'task_uid':uid,'event':values,'plan':candidate,'complete_constraint_check':True,'construction':'independent public-tool constructor and previously valid alternative initial plans; repair methods not executed','seed_method':method},ensure_ascii=False,indent=2))
+                proof.write_text(json.dumps({'task_uid':uid,'event':values,'plan':candidate,'complete_constraint_check':True,'construction':'independent public-tool constructor and previously valid alternative initial plans; repair methods not executed','seed_method':method,'clarification':state},ensure_ascii=False,indent=2))
                 selected.append({'uid':uid,'split':split,'seed':str(source.relative_to(ROOT)),'event':values,'clarification_answer':'cancel_overnight' if state.get('explicit_lodging_waiver') else None,'solution_reference':str(proof.relative_to(ROOT))})
-                counts[kind]+=1;print('CONSTRUCTED',kind,counts[kind],uid,flush=True);break
+                counts[kind]+=1;by_split[kind][split]+=1;print('CONSTRUCTED',kind,counts[kind],uid,flush=True);break
         if sum(counts.values())==sum(targets.values()):break
-    result={'dynamic':selected,'targets':targets,'completed':dict(counts),'shortfall':{k:targets[k]-counts[k] for k in targets},'construction_attempts':dict(attempted),'construction_seconds':time.monotonic()-clock,'initial_parent_count':len(protocol['events']),'dynamic_parent_count':len({s['uid'] for s in selected}),'seed_method_priority':methods,'note':'Known-feasible constructive tasks; parent order and quotas fixed before compared repair outcomes. The solution files are offline-only, never passed to workers.'}
+    result={'dynamic':selected,'targets':targets,'strata_targets':strata_targets,'strata_completed':{k:dict(v) for k,v in by_split.items()},'completed':dict(counts),'shortfall':{k:targets[k]-counts[k] for k in targets},'construction_attempts':dict(attempted),'construction_seconds':time.monotonic()-clock,'initial_parent_count':len(protocol['events']),'dynamic_parent_count':len({s['uid'] for s in selected}),'seed_method_priority':methods,'note':'Known-feasible constructive tasks; parent order and quotas fixed before compared repair outcomes. The solution files are offline-only, never passed to workers.'}
     output.write_text(json.dumps(result,ensure_ascii=False,indent=2));print(json.dumps({k:v for k,v in result.items() if k!='dynamic'}),flush=True)
 
 if __name__=='__main__':main()

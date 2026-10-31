@@ -20,12 +20,12 @@ def affected_activity_ids(plan: Dict[str, Any], event: ChangeEvent) -> List[str]
             day = int(activity_id.split(":")[0][1:])
             if day > new_days:
                 affected.append(activity_id)
-        # The last surviving day's return transport may also need to change.
+        # The final retained day needs a homebound trip and no overnight stay.
         if new_days >= 1:
             for activity_id in ids:
                 day = int(activity_id.split(":")[0][1:])
                 activity = mapping[activity_id]
-                if day == new_days and activity.get("type") in ("train", "airplane"):
+                if day == new_days and activity.get("type") in ("train", "airplane", "accommodation"):
                     affected.append(activity_id)
         return sorted(set(affected))
 

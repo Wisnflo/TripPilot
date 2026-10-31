@@ -40,7 +40,7 @@ class ExecutionBoundaryTest(unittest.TestCase):
         (ROOT/'output').mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(dir=ROOT/'output') as directory:
             folder=Path(directory);script=folder/'probe.py'
-            script.write_text('from pathlib import Path\nimport json\np=Path('+repr(str(visible))+')\ntry:p.read_text()\nexcept PermissionError:public_blocked=True\nelse:public_blocked=False\ntry:Path('+repr(str(secret))+').read_text()\nexcept PermissionError:secret_blocked=True\nelse:secret_blocked=False\nprint(json.dumps({"private_blocked":secret_blocked,"outside_job_input_blocked":public_blocked}))\nassert secret_blocked\n')
+            script.write_text('from pathlib import Path\nimport json\np=Path('+repr(str(visible))+')\ntry:p.read_text()\nexcept PermissionError:public_blocked=True\nelse:public_blocked=False\ntry:Path('+repr(str(secret))+').read_text()\nexcept PermissionError:secret_blocked=True\nelse:secret_blocked=False\nprint(json.dumps({"private_blocked":secret_blocked,"outside_job_input_blocked":public_blocked}))\nassert secret_blocked and public_blocked\n')
             reset_cancellation();out=supervise([sys.executable,str(script)],folder,10,restricted=True)
             self.assertEqual(out['returncode'],0,(folder/'worker.log').read_text())
 

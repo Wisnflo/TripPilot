@@ -97,6 +97,7 @@ class Jobs:
             if meta:self.items[folder.name]={'folder':folder,'process':None,'before':meta.get('before'),'task':meta.get('task'),'started':time.monotonic()}
 
     def create(self,data):
+        if not isinstance(data,dict):raise ValueError('请求必须是一个对象')
         command=data.get('command','plan');model=data.get('model','qwen3.8-reasoner')
         if command not in ('plan','revise','answer') or not isinstance(model,str) or len(model)>150:raise ValueError('请求类型或模型无效')
         key=uuid.uuid4().hex;folder=self.root/key;folder.mkdir();output=folder/'run'

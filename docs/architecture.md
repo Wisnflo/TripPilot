@@ -20,9 +20,13 @@ One-day return can conflict with explicit lodging requirements. A version-bound 
 
 ## Tools and evaluation boundary
 
-The model sees allowlisted read-only structured tools. It has no arbitrary code/file tool; query-loading and world-command endpoints are blocked. The runtime checker uses public rules and requirements predicted from user text. Hidden annotations are accessed only by offline scorers. The process shares the local filesystem, so this interface design must not be described as OS-enforced file isolation.
+The model sees allowlisted read-only structured tools. It has no arbitrary code/file tool; query-loading and world-command endpoints are blocked. The runtime checker uses public rules and requirements predicted from user text. Hidden annotations are accessed only by offline scorers. The parent passes only the public task, current seed and explicit event to a restricted worker. macOS uses a file access policy; Linux uses Landlock ABI ≥ 3. Workers can read the declared runtime/public tool paths and write only their task directory. Scoring annotations, offline reference plans and unrelated home files are outside the policy. Network access remains available for the model API; this is a file boundary, not a general untrusted-code execution service.
 
 ## Execution and accounting
+
+A task-local resource counter is shared by requirement extraction, planning, validation and fallback: up to 16 logical model calls, 500,000 returned tokens, 400 backend tool queries and 4 feedback opportunities. All public-packet preparation queries count. A conservative UTF-8 input preflight limits requested output against remaining tokens; missing provider usage cannot be counted exactly. Resource updates are journaled even if the process is later terminated.
+
+Itinerary prices use decimal arithmetic with cent rounding. API usage estimates retain sub-cent precision before JSON serialization.
 
 The parent supervises a child process group, terminates it on the task deadline and cleans it up on cancellation. The adapter clips request timeouts to the remaining budget and implements explicit retry/backoff. Every attempt emits start/success/error journal events without prompts or credentials.
 
@@ -38,5 +42,7 @@ Returned prompt/output/cache usage is aggregated without double charging cached 
 | `task.json` | Public task used for the operation |
 | `state.json` | Clarification/revision state when available |
 | `requests.jsonl` | Per-attempt timing, status and returned usage |
+| `resources.jsonl` | Durable model/token/tool/feedback counters |
+| `access-policy.json` | Declared worker file access |
 
 `checked_ok` is a runtime result, not a hidden-constraint guarantee. Request errors, invalid input, worker failures, cancellation and hard timeouts are explicit outcomes.

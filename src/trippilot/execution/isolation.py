@@ -39,7 +39,9 @@ def prepare(command, directory):
     spec_path.write_text(json.dumps(spec, indent=2))
     if platform.system() == "Darwin":
         # Restrict file content while leaving OS runtime services intact.
-        readable = []
+        # dyld opens the root directory while bootstrapping the interpreter.
+        # A literal directory grant does not grant its descendants.
+        readable = ['(literal "/")']
         for path in reads:
             selector = "subpath" if Path(path).is_dir() else "literal"
             readable.append("(%s %s)" % (selector, json.dumps(path)))
@@ -47,7 +49,7 @@ def prepare(command, directory):
         for parent in [ROOT, ROOT / "upstream", ROOT / "upstream/ChinaTravel", ROOT / "upstream/ChinaTravel/chinatravel"]:
             readable.append("(literal %s)" % json.dumps(str(parent)))
         rules = ["(version 1)", "(allow default)",
-                 '(deny file-read-data (require-all (subpath "/Users") (require-not (require-any %s))))' % " ".join(readable),
+                 '(deny file-read-data (require-not (require-any %s)))' % " ".join(readable),
                  '(deny file-write* (require-not (require-any (subpath %s) (literal "/dev/null") (literal "/dev/tty"))))' % json.dumps(str(directory))]
         return ["/usr/bin/sandbox-exec", "-p", "\n".join(rules), *command], env
     if platform.system() == "Linux":
