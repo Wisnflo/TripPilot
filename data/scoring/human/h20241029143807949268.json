@@ -1,0 +1,10 @@
+{
+  "hard_logic_py": [
+    "total_cost=0 \nfor activity in allactivities(plan):\n    total_cost+=activity_cost(activity)\n    total_cost += innercity_transport_cost(activity_transports(activity))\nresult=(total_cost<=people_count(plan)*10000)",
+    "attraction_type_set=set()\nfor activity in allactivities(plan):\n  if activity_type(activity)=='attraction': attraction_type_set.add(attraction_type(activity, target_city(plan)))\nresult=({'博物馆/纪念馆','历史古迹'}<=attraction_type_set)",
+    "result=(day_count(plan)==6)",
+    "result=(people_count(plan)==7)",
+    "result=True\nfor activity in allactivities(plan):\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False"
+  ],
+  "uid": "h20241029143807949268"
+}

@@ -1,0 +1,25 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  offline-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff
+        with:
+          version: "0.12.15"
+          python-version: "3.12"
+          enable-cache: true
+      - run: uv sync --locked
+      - name: Unit and integration tests
+        run: uv run --locked python -m unittest discover -s tests -q
+      - name: Public-input isolation
+        run: uv run --locked python scripts/check_isolation.py
+      - name: Published evidence integrity
+        run: uv run --locked python scripts/verify_release.py

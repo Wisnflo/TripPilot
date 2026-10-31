@@ -1,0 +1,584 @@
+{
+  "job": {
+    "uid": "m20241028164830108978",
+    "split": "easy",
+    "days": 3,
+    "method": "b2",
+    "kind": "static",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 90.0,
+    "attempts": 2
+  },
+  "result": {
+    "task_uid": "m20241028164830108978",
+    "method": "b2",
+    "model": "qwen3.8-reasoner",
+    "terminal_state": "checked_ok",
+    "plan": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "people_number": 2,
+      "start_city": "Shenzhen",
+      "target_city": "Wuhan",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "train",
+              "start_time": "07:50",
+              "end_time": "12:12",
+              "cost": 1164.06,
+              "price": 582.03,
+              "tickets": 2,
+              "start": "Shenzhen North Railway Station",
+              "end": "Wuhan Station",
+              "TrainID": "G82",
+              "transports": []
+            },
+            {
+              "type": "attraction",
+              "start_time": "12:25",
+              "end_time": "16:30",
+              "cost": 0.0,
+              "price": 0,
+              "tickets": 2,
+              "position": "Wuhan Train Culture Theme Park",
+              "transports": [
+                {
+                  "start": "Wuhan Station",
+                  "end": "Wuhan Train Culture Theme Park",
+                  "mode": "taxi",
+                  "start_time": "12:20",
+                  "end_time": "12:25",
+                  "price": 17.81,
+                  "cost": 17.81,
+                  "distance": 3.75,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "start_time": "17:00",
+              "end_time": "23:00",
+              "cost": 143.0,
+              "price": 143,
+              "rooms": 1,
+              "room_type": 1,
+              "position": "Shiquan Yumei Hotel",
+              "transports": [
+                {
+                  "start": "Wuhan Train Culture Theme Park",
+                  "end": "Shiquan Yumei Hotel",
+                  "mode": "taxi",
+                  "start_time": "16:30",
+                  "end_time": "16:30",
+                  "price": 11.0,
+                  "cost": 11.0,
+                  "distance": 0.45,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "attraction",
+              "start_time": "09:00",
+              "end_time": "11:00",
+              "cost": 0.0,
+              "price": 0,
+              "tickets": 2,
+              "position": "China Wuhan Iron and Steel Museum",
+              "transports": [
+                {
+                  "start": "Shiquan Yumei Hotel",
+                  "end": "China Wuhan Iron and Steel Museum",
+                  "mode": "walk",
+                  "start_time": "08:30",
+                  "end_time": "08:40",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 0.8922590119029663
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "start_time": "12:00",
+              "end_time": "23:00",
+              "cost": 143.0,
+              "price": 143,
+              "rooms": 1,
+              "room_type": 1,
+              "position": "Shiquan Yumei Hotel",
+              "transports": [
+                {
+                  "start": "China Wuhan Iron and Steel Museum",
+                  "end": "Shiquan Yumei Hotel",
+                  "mode": "walk",
+                  "start_time": "11:00",
+                  "end_time": "11:10",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 0.8922590119029663
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {
+              "type": "train",
+              "start_time": "10:07",
+              "end_time": "14:40",
+              "cost": 1164.06,
+              "price": 582.03,
+              "tickets": 2,
+              "start": "Wuhan Station",
+              "end": "Shenzhen North Railway Station",
+              "TrainID": "G883",
+              "transports": [
+                {
+                  "start": "Shiquan Yumei Hotel",
+                  "end": "Wuhan Station",
+                  "mode": "taxi",
+                  "start_time": "08:15",
+                  "end_time": "08:21",
+                  "price": 18.9,
+                  "cost": 18.9,
+                  "distance": 4.06,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step": 1,
+        "content": "\n\n\n\n",
+        "tool_calls": [
+          {
+            "name": "intercity_transport_select",
+            "arguments": {
+              "start_city": "Shenzhen",
+              "end_city": "Wuhan",
+              "intercity_type": "train"
+            }
+          },
+          {
+            "name": "attractions_select",
+            "arguments": {
+              "city": "Wuhan",
+              "key": "name",
+              "op": "contains",
+              "value": "武钢"
+            }
+          },
+          {
+            "name": "accommodations_keys",
+            "arguments": {
+              "city": "Wuhan"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "intercity_transport_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Wuhan\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Shenzhen\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['G1023' 'High-speed rail' 'Shenzhen Pingshan Station' 'Wuhan Station'\\n '06:33' '11:38' 5.08 582.03]\\n['G1022' 'High-speed rail' 'Shenzhen Pingshan Station' 'Wuhan Station'\\n '06:33' '11:38' 5.08 582.03]\\n['G1313' 'High-speed rail' 'Shenzhen North Railway Station'\\n"
+          },
+          {
+            "name": "attractions_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"attractions_select\", \"resolved_from_language\": \"zh\", \"data\": {\"type\": \"dataframe\", \"rows\": [{\"id\": 232, \"name\": \"China Wuhan Iron and Steel Museum\", \"type\": \"Museum/Memorial Hall\", \"lat\": 30.635696, \"lon\": 114.41219, \"opentime\": \"09:00\", \"endtime\": \"11:00\", \"price\": 0.0, \"recommendmintime\": 1.5, \"recommendmaxtime\": 2.0}, {\"id\": 253, \"name\": \"Wugang Cultural Tourism Area\", \"type\": \"Cultural Tourism Area\", \"lat\": 30.624312, \"lon\": 114.447601, \"opentime\": \"09:00\", \"end"
+          },
+          {
+            "name": "accommodations_keys",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_keys({\\\"city\\\": \\\"Wuhan\\\"})\", \"text\": \"[('id', <class 'numpy.int64'>), ('name', <class 'str'>), ('hotelname_en', <class 'str'>), ('featurehoteltype', <class 'str'>), ('lat', <class 'numpy.float64'>), ('lon', <class 'numpy.float64'>), ('price', <class 'numpy.int64'>), ('numbed', <class 'numpy.int64'>)]\", \"data\": [[\"id\", \"<class 'numpy.int64'>\"], [\"name\", \"<class 'str'>\"], [\"hotelname_en\", \"<class 'str'>\"], [\"featurehoteltype\", \"<class 'str'>\"], [\"lat\","
+          }
+        ],
+        "latency_seconds": 3.7051580830011517,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-81808506-a82b-473e-ad84-ed6f3d409850",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 3998,
+        "completion_tokens": 278,
+        "reasoning_tokens": 125,
+        "attempts": 1,
+        "request_latencies": [
+          3.7051580830011517
+        ]
+      },
+      {
+        "step": 2,
+        "content": "\n\n\n\n",
+        "tool_calls": [
+          {
+            "name": "intercity_transport_select",
+            "arguments": {
+              "end_city": "Shenzhen",
+              "intercity_type": "train",
+              "start_city": "Wuhan"
+            }
+          },
+          {
+            "name": "accommodations_nearby",
+            "arguments": {
+              "city": "Wuhan",
+              "point": "China Wuhan Iron and Steel Museum",
+              "topk": 5
+            }
+          },
+          {
+            "name": "attractions_nearby",
+            "arguments": {
+              "city": "Wuhan",
+              "point": "China Wuhan Iron and Steel Museum",
+              "topk": 5
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "intercity_transport_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Shenzhen\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Wuhan\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['G1001' 'High-speed rail' 'Wuhan Station'\\n 'Shenzhen North Railway Station' '07:25' '12:14' 4.82 582.03]\\n['G1003' 'High-speed rail' 'Wuhan Station'\\n 'Shenzhen North Railway Station' '07:55' '12:47' 4.87 582.03]\\n['G2705' 'High-speed rail' 'Wuhan Station' 'Shenzhe"
+          },
+          {
+            "name": "accommodations_nearby",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_nearby({\\\"city\\\": \\\"Wuhan\\\", \\\"point\\\": \\\"China Wuhan Iron and Steel Museum\\\", \\\"topk\\\": 5})\", \"text\": \"['id' 'name' 'hotelname_en' 'featurehoteltype' 'lat' 'lon' 'price'\\n 'numbed' 'distance']\\n[271 'Shiquan Yumei Hotel' 'Shiquan Yumei Hotel' 'Family Room' 30.643503\\n 114.414452 143 1 0.8922590119029663]\\n[334 'Vienna Hotel (Wuhan Honggangcheng)'\\n 'Vienna Hotel (Wuhan Honggangcheng)' 'Multifunction Hall' 30.639081\\n 114.403718 266 1 0.89466698886543"
+          },
+          {
+            "name": "attractions_nearby",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"attractions_nearby({\\\"city\\\": \\\"Wuhan\\\", \\\"point\\\": \\\"China Wuhan Iron and Steel Museum\\\", \\\"topk\\\": 5})\", \"text\": \"['id' 'name' 'type' 'lat' 'lon' 'opentime' 'endtime' 'price'\\n 'recommendmintime' 'recommendmaxtime' 'distance']\\n[232 'China Wuhan Iron and Steel Museum' 'Museum/Memorial Hall' 30.635696\\n 114.41219 '09:00' '11:00' 0.0 1.5 2.0 0.0]\\n[274 'Wuhan Train Culture Theme Park'\\n 'Amusement Park/Sports Entertainment' 30.641497 114.418586 '09:00'\\n '17:30' 0.0"
+          }
+        ],
+        "latency_seconds": 4.566580208018422,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-bc1c4ffa-2f25-4986-8397-4a5a14af00d2",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 6346,
+        "completion_tokens": 286,
+        "reasoning_tokens": 106,
+        "attempts": 1,
+        "request_latencies": [
+          4.566580208018422
+        ]
+      },
+      {
+        "step": 3,
+        "content": "\n\nI have enough information to build the plan. Let me get the required transport legs.\n\n\n\n\n\n",
+        "tool_calls": [
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Wuhan",
+              "end": "Wuhan Train Culture Theme Park",
+              "start": "Wuhan Station",
+              "start_time": "12:20",
+              "transport_type": "taxi"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Wuhan",
+              "end": "Shiquan Yumei Hotel",
+              "start": "Wuhan Train Culture Theme Park",
+              "start_time": "16:30",
+              "transport_type": "taxi"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Wuhan",
+              "end": "China Wuhan Iron and Steel Museum",
+              "start": "Shiquan Yumei Hotel",
+              "start_time": "08:30",
+              "transport_type": "walk"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Wuhan",
+              "end": "Shiquan Yumei Hotel",
+              "start": "China Wuhan Iron and Steel Museum",
+              "start_time": "11:00",
+              "transport_type": "walk"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Wuhan",
+              "end": "Wuhan Station",
+              "start": "Shiquan Yumei Hotel",
+              "start_time": "08:15",
+              "transport_type": "taxi"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Wuhan Train Culture Theme Park\\\", \\\"start\\\": \\\"Wuhan Station\\\", \\\"start_time\\\": \\\"12:20\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Wuhan Station', 'end': 'Wuhan Train Culture Theme Park', 'mode': 'taxi', 'start_time': '12:20', 'end_time': '12:25', 'cost': 17.81, 'distance': 3.75}]\", \"data\": [{\"start\": \"Wuhan Station\", \"end\": \"Wuhan Train Culture Theme Park\", \"mode\": \"taxi\", \"start_time\": \"12:20\", \"end_time\": \"12:25"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Shiquan Yumei Hotel\\\", \\\"start\\\": \\\"Wuhan Train Culture Theme Park\\\", \\\"start_time\\\": \\\"16:30\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Wuhan Train Culture Theme Park', 'end': 'Shiquan Yumei Hotel', 'mode': 'taxi', 'start_time': '16:30', 'end_time': '16:30', 'cost': 11.0, 'distance': 0.45}]\", \"data\": [{\"start\": \"Wuhan Train Culture Theme Park\", \"end\": \"Shiquan Yumei Hotel\", \"mode\": \"taxi\", \"start_time\": \"16:30\", \""
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"China Wuhan Iron and Steel Museum\\\", \\\"start\\\": \\\"Shiquan Yumei Hotel\\\", \\\"start_time\\\": \\\"08:30\\\", \\\"transport_type\\\": \\\"walk\\\"})\", \"text\": \"[{'start': 'Shiquan Yumei Hotel', 'end': 'China Wuhan Iron and Steel Museum', 'mode': 'walk', 'start_time': '08:30', 'end_time': '08:40', 'cost': 0.0, 'distance': 0.8922590119029663}]\", \"data\": [{\"start\": \"Shiquan Yumei Hotel\", \"end\": \"China Wuhan Iron and Steel Museum\", \"mode\": \"walk\", \"s"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Shiquan Yumei Hotel\\\", \\\"start\\\": \\\"China Wuhan Iron and Steel Museum\\\", \\\"start_time\\\": \\\"11:00\\\", \\\"transport_type\\\": \\\"walk\\\"})\", \"text\": \"[{'start': 'China Wuhan Iron and Steel Museum', 'end': 'Shiquan Yumei Hotel', 'mode': 'walk', 'start_time': '11:00', 'end_time': '11:10', 'cost': 0.0, 'distance': 0.8922590119029663}]\", \"data\": [{\"start\": \"China Wuhan Iron and Steel Museum\", \"end\": \"Shiquan Yumei Hotel\", \"mode\": \"walk\", \"s"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Wuhan Station\\\", \\\"start\\\": \\\"Shiquan Yumei Hotel\\\", \\\"start_time\\\": \\\"08:15\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Shiquan Yumei Hotel', 'end': 'Wuhan Station', 'mode': 'taxi', 'start_time': '08:15', 'end_time': '08:21', 'cost': 18.9, 'distance': 4.06}]\", \"data\": [{\"start\": \"Shiquan Yumei Hotel\", \"end\": \"Wuhan Station\", \"mode\": \"taxi\", \"start_time\": \"08:15\", \"end_time\": \"08:21\", \"cost\": 18.9, \"distance\": 4.06}"
+          }
+        ],
+        "latency_seconds": 144.33134608302498,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-e91ff850-0dd9-4fbf-9cd9-e482d9a75621",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 10541,
+        "completion_tokens": 3558,
+        "reasoning_tokens": 3095,
+        "attempts": 2,
+        "request_latencies": [
+          90.02746183297131,
+          54.30388425005367
+        ]
+      },
+      {
+        "step": 4,
+        "content": "\n\nNow I have all the information needed. Let me construct the final itinerary.\n\n```json\n{\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"people_number\": 2,\n  \"start_city\": \"Shenzhen\",\n  \"target_city\": \"Wuhan\",\n  \"itinerary\": [\n    {\n      \"day\": 1,\n      \"activities\": [\n        {\n          \"type\": \"train\",\n          \"start_time\": \"07:50\",\n          \"end_time\": \"12:12\",\n          \"cost\": 1164.06,\n          \"price\": 582.03,\n          \"tickets\": 2,\n          \"start\": \"Shenzhen North Railway Station\",\n          \"end\": \"Wuhan Station\",\n          \"TrainID\": \"G82\",\n          \"transports\": []\n        },\n        {\n          \"type\": \"attraction\",\n          \"start_time\": \"12:25\",\n          \"end_time\": \"16:30\",\n          \"cost\": 0,\n          \"price\": 0,\n          \"tickets\": 2,\n          \"position\": \"Wuhan Train Culture Theme Park\",\n          \"transports\": [\n            {\n              \"start\": \"Wuhan Station\",\n              \"end\": \"Wuhan Train Culture Theme Park\",\n              \"mode\": \"taxi\",\n              \"start_time\": \"12:20\",\n              \"end_time\": \"12:25\",\n              \"price\": 17.81,\n              \"cost\": 17.81,\n              \"distance\": 3.75,\n              \"tickets\": 1\n            }\n          ]\n        },\n        {\n          \"type\": \"accommodation\",\n          \"start_time\": \"17:00\",\n          \"end_time\": \"23:00\",\n          \"cost\": 143,\n          \"price\": 143,\n          \"rooms\": 1,\n          \"room_type\": 1,\n          \"position\": \"Shiquan Yumei Hotel\",\n          \"transports\": [\n            {\n              \"start\": \"Wuhan Train Culture Theme Park\",\n              \"end\": \"Shiquan Yumei Hotel\",\n              \"mode\": \"taxi\",\n              \"start_time\": \"16:30\",\n              \"end_time\": \"16:30\",\n              \"price\": 11.0,\n              \"cost\": 11.0,\n              \"distance\": 0.45,\n              \"tickets\": 1\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"day\": 2,\n      \"activities\": [\n        {\n          \"type\": \"attraction\",\n          \"start_ti",
+        "tool_calls": [],
+        "tool_results": [],
+        "latency_seconds": 62.75044454203453,
+        "finish_reason": "stop",
+        "request_id": "chatcmpl-d766c195-cc1f-4c2c-b059-05d5c30122af",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 12122,
+        "completion_tokens": 4879,
+        "reasoning_tokens": 3576,
+        "attempts": 1,
+        "request_latencies": [
+          62.75044454203453
+        ]
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 33007,
+      "completion_tokens": 9001,
+      "total_tokens": 42008,
+      "reasoning_tokens": 6902
+    },
+    "checker": {
+      "ok": true,
+      "violations": [],
+      "supported": [
+        "schema",
+        "day_count",
+        "people_number",
+        "start_target_city",
+        "activity_time_order",
+        "transport_time_order",
+        "transport_structure",
+        "activity_cost_rules",
+        "meal_time_windows",
+        "space_chain",
+        "accommodation_nights",
+        "intercity_transport_presence",
+        "ticket_fields",
+        "budget_if_in_text",
+        "entity_grounding",
+        "opening_hours",
+        "duplicate_activities",
+        "meal_type_once",
+        "transport_matches_goto",
+        "intercity_transport_values"
+      ],
+      "unsupported": [
+        "room_rules",
+        "overnight_hours",
+        "budget_not_found_in_text"
+      ]
+    },
+    "error": null,
+    "metadata": {
+      "event_text": null,
+      "usage_complete": true,
+      "request_count": 5,
+      "retry_count": 1,
+      "request_latency_seconds": 215.35352891607909
+    },
+    "started_at": "2026-10-30T17:11:21.552959+00:00",
+    "finished_at": "2026-10-30T17:14:59.631114+00:00",
+    "duration_seconds": 218.0781597919995,
+    "wall_seconds": 218.07843587500975
+  },
+  "supervision": {
+    "returncode": 0,
+    "hard_timeout": false,
+    "cancelled": false,
+    "wall_seconds": 218.50109654199332
+  },
+  "ledger": {
+    "request_attempts": 5,
+    "completed_attempts": 5,
+    "pending_attempts": 0,
+    "observed_usage": {
+      "prompt_tokens": 33007,
+      "completion_tokens": 9001,
+      "total_tokens": 42008
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0198896,
+      "upper": 0.0198896
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793380281.57361,
+        "attempt_id": "62747d208e77471bb352582d1e246d22",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793380285.2792268,
+        "attempt_id": "62747d208e77471bb352582d1e246d22",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 3.7051580830011517,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-81808506-a82b-473e-ad84-ed6f3d409850",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 3998,
+        "completion_tokens": 278,
+        "total_tokens": 4276,
+        "reasoning_tokens": 125
+      },
+      {
+        "kind": "start",
+        "time": 1793380285.8977659,
+        "attempt_id": "8f094fc6c472478990bda2c2762cd5e1",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793380290.464746,
+        "attempt_id": "8f094fc6c472478990bda2c2762cd5e1",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 4.566580208018422,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-bc1c4ffa-2f25-4986-8397-4a5a14af00d2",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 6346,
+        "completion_tokens": 286,
+        "total_tokens": 6632,
+        "reasoning_tokens": 106
+      },
+      {
+        "kind": "start",
+        "time": 1793380290.516163,
+        "attempt_id": "75efe11d0c5849458223213d79fe391c",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793380380.54412,
+        "attempt_id": "75efe11d0c5849458223213d79fe391c",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 90.02746183297131,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793380382.5550961,
+        "attempt_id": "a5faabae7e144d63bf17b0e581ee111c",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      },
+      {
+        "kind": "success",
+        "time": 1793380436.8598242,
+        "attempt_id": "a5faabae7e144d63bf17b0e581ee111c",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 54.30388425005367,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-e91ff850-0dd9-4fbf-9cd9-e482d9a75621",
+        "cached_prompt_tokens": 9216,
+        "prompt_tokens": 10541,
+        "completion_tokens": 3558,
+        "total_tokens": 14099,
+        "reasoning_tokens": 3095
+      },
+      {
+        "kind": "start",
+        "time": 1793380436.863925,
+        "attempt_id": "7eb8d3c23c7940baac93c5f44117e93e",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793380499.615289,
+        "attempt_id": "7eb8d3c23c7940baac93c5f44117e93e",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 62.75044454203453,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-d766c195-cc1f-4c2c-b059-05d5c30122af",
+        "cached_prompt_tokens": 9216,
+        "prompt_tokens": 12122,
+        "completion_tokens": 4879,
+        "total_tokens": 17001,
+        "reasoning_tokens": 3576
+      }
+    ]
+  }
+}

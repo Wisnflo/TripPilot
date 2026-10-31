@@ -1,0 +1,646 @@
+{
+  "job": {
+    "uid": "m20241028164723199132",
+    "split": "easy",
+    "seed": "experiments/v3/v3-static-test-01/structured/m20241028164723199132/result.json",
+    "event": {
+      "kind": "return_earlier",
+      "new_days": 1
+    },
+    "clarification_answer": "cancel_overnight",
+    "method": "b2",
+    "kind": "dynamic",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 240.0,
+    "request_timeout": 90.0,
+    "attempts": 2
+  },
+  "result": {
+    "task_uid": "m20241028164723199132",
+    "method": "b2",
+    "model": "qwen3.8-reasoner",
+    "terminal_state": "checked_ok",
+    "plan": {
+      "people_number": 3,
+      "start_city": "Chengdu",
+      "target_city": "Chongqing",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "train",
+              "start": "Chengdu East Railway Station",
+              "end": "Chongqing West Railway Station",
+              "start_time": "06:48",
+              "end_time": "08:05",
+              "price": 171.7,
+              "cost": 515.1,
+              "tickets": 3,
+              "transports": [],
+              "TrainID": "G2371"
+            },
+            {
+              "type": "attraction",
+              "position": "Ancient Architecture Museum of Ba-Shu",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "09:00",
+              "end_time": "09:30",
+              "transports": [
+                {
+                  "start": "Chongqing West Railway Station",
+                  "end": "Ancient Architecture Museum of Ba-Shu",
+                  "mode": "taxi",
+                  "start_time": "08:05",
+                  "end_time": "08:28",
+                  "cost": 64.47,
+                  "distance": 15.51,
+                  "price": 64.47,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Big Face Cat's Preserved Mustard Green and Braised Pork Pancake (Guanyinqiao Delicious Street Branch)",
+              "price": 7.0,
+              "cost": 21.0,
+              "start_time": "11:00",
+              "end_time": "11:45",
+              "transports": [
+                {
+                  "start": "Ancient Architecture Museum of Ba-Shu",
+                  "end": "Big Face Cat's Preserved Mustard Green and Braised Pork Pancake (Guanyinqiao Delicious Street Branch)",
+                  "mode": "taxi",
+                  "start_time": "09:30",
+                  "end_time": "09:58",
+                  "cost": 81.38,
+                  "distance": 19.26,
+                  "price": 81.38,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "1941 Teahouse and Theater",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "11:52",
+              "end_time": "12:52",
+              "transports": [
+                {
+                  "start": "Big Face Cat's Preserved Mustard Green and Braised Pork Pancake (Guanyinqiao Delicious Street Branch)",
+                  "end": "1941 Teahouse and Theater",
+                  "mode": "taxi",
+                  "start_time": "11:45",
+                  "end_time": "11:52",
+                  "cost": 22.69,
+                  "distance": 5.14,
+                  "price": 22.69,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "dinner",
+              "position": "Lei Family Old Farmer Main Store",
+              "price": 10.0,
+              "cost": 30.0,
+              "start_time": "17:00",
+              "end_time": "17:45",
+              "transports": [
+                {
+                  "start": "1941 Teahouse and Theater",
+                  "end": "Lei Family Old Farmer Main Store",
+                  "mode": "taxi",
+                  "start_time": "12:52",
+                  "end_time": "13:09",
+                  "cost": 48.18,
+                  "distance": 11.88,
+                  "price": 48.18,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "train",
+              "start": "Chongqing West Railway Station",
+              "end": "Chengdu East Railway Station",
+              "start_time": "21:50",
+              "end_time": "23:07",
+              "price": 171.7,
+              "cost": 515.1,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Lei Family Old Farmer Main Store",
+                  "end": "Chongqing West Railway Station",
+                  "mode": "taxi",
+                  "start_time": "17:45",
+                  "end_time": "17:55",
+                  "cost": 28.3,
+                  "distance": 6.74,
+                  "price": 28.3,
+                  "cars": 1
+                }
+              ],
+              "TrainID": "G2882"
+            }
+          ]
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step": 1,
+        "content": "\n\n",
+        "tool_calls": [
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Chongqing",
+              "start": "Lei Family Old Farmer Main Store",
+              "end": "Chongqing West Railway Station",
+              "start_time": "17:45",
+              "transport_type": "taxi"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Chongqing\\\", \\\"end\\\": \\\"Chongqing West Railway Station\\\", \\\"start\\\": \\\"Lei Family Old Farmer Main Store\\\", \\\"start_time\\\": \\\"17:45\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Lei Family Old Farmer Main Store', 'end': 'Chongqing West Railway Station', 'mode': 'taxi', 'start_time': '17:45', 'end_time': '17:55', 'cost': 28.3, 'distance': 6.74}]\", \"data\": [{\"start\": \"Lei Family Old Farmer Main Store\", \"end\": \"Chongqing West Railway Station"
+          }
+        ],
+        "latency_seconds": 10.201133458002005,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-19f6fa81-0ff7-40a3-9990-709ca98b4e09",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 5928,
+        "completion_tokens": 835,
+        "reasoning_tokens": 743,
+        "attempts": 1,
+        "request_latencies": [
+          10.201133458002005
+        ]
+      },
+      {
+        "step": 2,
+        "content": "\n\n{\"people_number\": 3, \"start_city\": \"Chengdu\", \"target_city\": \"Chongqing\", \"itinerary\": [{\"day\": 1, \"activities\": [{\"type\": \"train\", \"start\": \"Chengdu East Railway Station\", \"end\": \"Chongqing West Railway Station\", \"start_time\": \"06:48\", \"end_time\": \"08:05\", \"price\": 171.7, \"cost\": 515.1, \"tickets\": 3, \"transports\": [], \"TrainID\": \"G2371\"}, {\"type\": \"attraction\", \"position\": \"Ancient Architecture Museum of Ba-Shu\", \"price\": 0.0, \"cost\": 0.0, \"tickets\": 3, \"start_time\": \"09:00\", \"end_time\": \"09:30\", \"transports\": [{\"start\": \"Chongqing West Railway Station\", \"end\": \"Ancient Architecture Museum of Ba-Shu\", \"mode\": \"taxi\", \"start_time\": \"08:05\", \"end_time\": \"08:28\", \"cost\": 64.47, \"distance\": 15.51, \"price\": 64.47, \"cars\": 1}]}, {\"type\": \"lunch\", \"position\": \"Big Face Cat's Preserved Mustard Green and Braised Pork Pancake (Guanyinqiao Delicious Street Branch)\", \"price\": 7.0, \"cost\": 21.0, \"start_time\": \"11:00\", \"end_time\": \"11:45\", \"transports\": [{\"start\": \"Ancient Architecture Museum of Ba-Shu\", \"end\": \"Big Face Cat's Preserved Mustard Green and Braised Pork Pancake (Guanyinqiao Delicious Street Branch)\", \"mode\": \"taxi\", \"start_time\": \"09:30\", \"end_time\": \"09:58\", \"cost\": 81.38, \"distance\": 19.26, \"price\": 81.38, \"cars\": 1}]}, {\"type\": \"attraction\", \"position\": \"1941 Teahouse and Theater\", \"price\": 0.0, \"cost\": 0.0, \"tickets\": 3, \"start_time\": \"11:52\", \"end_time\": \"12:52\", \"transports\": [{\"start\": \"Big Face Cat's Preserved Mustard Green and Braised Pork Pancake (Guanyinqiao Delicious Street Branch)\", \"end\": \"1941 Teahouse and Theater\", \"mode\": \"taxi\", \"start_time\": \"11:45\", \"end_time\": \"11:52\", \"cost\": 22.69, \"distance\": 5.14, \"price\": 22.69, \"cars\": 1}]}, {\"type\": \"dinner\", \"position\": \"Lei Family Old Farmer Main Store\", \"price\": 10.0, \"cost\": 30.0, \"start_time\": \"17:00\", \"end_time\": \"17:45\", \"transports\": [{\"start\": \"1941 Teahouse and Theater\", \"end\": \"Lei Family Old Farmer Main Store\", \"mode\": \"taxi\", \"start_time\": \"12:52\", \"end_time\": \"13:09\", \"cost\": 48.18, \"dist",
+        "tool_calls": [],
+        "tool_results": [],
+        "latency_seconds": 14.383353999990504,
+        "finish_reason": "stop",
+        "request_id": "chatcmpl-3adc850c-a8e4-4e87-8c3b-ec4f1c23afbe",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 6243,
+        "completion_tokens": 1374,
+        "reasoning_tokens": 392,
+        "attempts": 1,
+        "request_latencies": [
+          14.383353999990504
+        ]
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 12171,
+      "completion_tokens": 2209,
+      "total_tokens": 14380,
+      "reasoning_tokens": 1135
+    },
+    "checker": {
+      "ok": true,
+      "violations": [],
+      "supported": [
+        "schema",
+        "day_count",
+        "people_number",
+        "start_target_city",
+        "activity_time_order",
+        "transport_time_order",
+        "transport_structure",
+        "activity_cost_rules",
+        "meal_time_windows",
+        "space_chain",
+        "accommodation_nights",
+        "intercity_transport_presence",
+        "ticket_fields",
+        "budget_if_in_text",
+        "entity_grounding",
+        "opening_hours",
+        "duplicate_activities",
+        "meal_type_once",
+        "transport_matches_goto",
+        "intercity_transport_values",
+        "explicit_dynamic_event"
+      ],
+      "unsupported": [
+        "room_rules",
+        "overnight_hours",
+        "budget_not_found_in_text"
+      ]
+    },
+    "error": null,
+    "metadata": {
+      "event_text": "The user must return earlier: the trip is now 1 days instead of the original length.",
+      "usage_complete": true,
+      "request_count": 2,
+      "retry_count": 0,
+      "request_latency_seconds": 24.58448745799251
+    },
+    "started_at": "2026-10-30T18:22:07.297524+00:00",
+    "finished_at": "2026-10-30T18:22:32.338469+00:00",
+    "duration_seconds": 25.04095191700617,
+    "wall_seconds": 25.043724499992095,
+    "clarification": {
+      "status": "ready",
+      "base_revision": "106a3763f48dee8561fd5359de36d73e51efde59b13674b2a55da111ae18ca64",
+      "task": {
+        "days": 2,
+        "limit_rooms": false,
+        "limits_room_type": false,
+        "nature_language": "当前位置成都。我们三个人想去重庆玩2天，住两间双床房，酒店要有多功能厅，请给我一个旅行规划。\n用户已明确确认：本次一日修订取消住宿、酒店设施、房型和房间数要求，其它需求保持。",
+        "nature_language_en": "Current location: Chengdu. Three of us want to visit Chongqing for 2 days and stay in two twin rooms. The hotel should have a multifunctional hall. Please provide me with a travel plan.\nUser explicitly confirmed: cancel all lodging, hotel, room-type and room-count requirements for this one-day revision. All non-lodging requirements remain.",
+        "people_number": 3,
+        "start_city": "成都",
+        "tag": "easy",
+        "target_city": "重庆",
+        "uid": "m20241028164723199132"
+      },
+      "seed_plan": {
+        "people_number": 3,
+        "start_city": "Chengdu",
+        "target_city": "Chongqing",
+        "itinerary": [
+          {
+            "day": 1,
+            "activities": [
+              {
+                "type": "train",
+                "start": "Chengdu East Railway Station",
+                "end": "Chongqing West Railway Station",
+                "start_time": "06:48",
+                "end_time": "08:05",
+                "price": 171.7,
+                "cost": 515.1,
+                "tickets": 3,
+                "transports": [],
+                "TrainID": "G2371"
+              },
+              {
+                "type": "attraction",
+                "position": "Ancient Architecture Museum of Ba-Shu",
+                "price": 0.0,
+                "cost": 0.0,
+                "tickets": 3,
+                "start_time": "09:00",
+                "end_time": "09:30",
+                "transports": [
+                  {
+                    "start": "Chongqing West Railway Station",
+                    "end": "Ancient Architecture Museum of Ba-Shu",
+                    "mode": "taxi",
+                    "start_time": "08:05",
+                    "end_time": "08:28",
+                    "cost": 64.47,
+                    "distance": 15.51,
+                    "price": 64.47,
+                    "cars": 1
+                  }
+                ]
+              },
+              {
+                "type": "lunch",
+                "position": "Big Face Cat's Preserved Mustard Green and Braised Pork Pancake (Guanyinqiao Delicious Street Branch)",
+                "price": 7.0,
+                "cost": 21.0,
+                "start_time": "11:00",
+                "end_time": "11:45",
+                "transports": [
+                  {
+                    "start": "Ancient Architecture Museum of Ba-Shu",
+                    "end": "Big Face Cat's Preserved Mustard Green and Braised Pork Pancake (Guanyinqiao Delicious Street Branch)",
+                    "mode": "taxi",
+                    "start_time": "09:30",
+                    "end_time": "09:58",
+                    "cost": 81.38,
+                    "distance": 19.26,
+                    "price": 81.38,
+                    "cars": 1
+                  }
+                ]
+              },
+              {
+                "type": "attraction",
+                "position": "1941 Teahouse and Theater",
+                "price": 0.0,
+                "cost": 0.0,
+                "tickets": 3,
+                "start_time": "11:52",
+                "end_time": "12:52",
+                "transports": [
+                  {
+                    "start": "Big Face Cat's Preserved Mustard Green and Braised Pork Pancake (Guanyinqiao Delicious Street Branch)",
+                    "end": "1941 Teahouse and Theater",
+                    "mode": "taxi",
+                    "start_time": "11:45",
+                    "end_time": "11:52",
+                    "cost": 22.69,
+                    "distance": 5.14,
+                    "price": 22.69,
+                    "cars": 1
+                  }
+                ]
+              },
+              {
+                "type": "dinner",
+                "position": "Lei Family Old Farmer Main Store",
+                "price": 10.0,
+                "cost": 30.0,
+                "start_time": "17:00",
+                "end_time": "17:45",
+                "transports": [
+                  {
+                    "start": "1941 Teahouse and Theater",
+                    "end": "Lei Family Old Farmer Main Store",
+                    "mode": "taxi",
+                    "start_time": "12:52",
+                    "end_time": "13:09",
+                    "cost": 48.18,
+                    "distance": 11.88,
+                    "price": 48.18,
+                    "cars": 1
+                  }
+                ]
+              },
+              {
+                "type": "accommodation",
+                "position": "Le Comforto All Suite Hotel (Chongqing Paradise Walk D)",
+                "price": 419.0,
+                "cost": 838.0,
+                "rooms": 2,
+                "room_type": 2,
+                "start_time": "18:00",
+                "end_time": "23:59",
+                "transports": [
+                  {
+                    "start": "Lei Family Old Farmer Main Store",
+                    "end": "Le Comforto All Suite Hotel (Chongqing Paradise Walk D)",
+                    "mode": "taxi",
+                    "start_time": "17:45",
+                    "end_time": "17:53",
+                    "cost": 24.22,
+                    "distance": 5.58,
+                    "price": 24.22,
+                    "cars": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "day": 2,
+            "activities": [
+              {
+                "type": "attraction",
+                "position": "Baolun Temple",
+                "price": 0.0,
+                "cost": 0.0,
+                "tickets": 3,
+                "start_time": "10:00",
+                "end_time": "11:00",
+                "transports": [
+                  {
+                    "start": "Le Comforto All Suite Hotel (Chongqing Paradise Walk D)",
+                    "end": "Baolun Temple",
+                    "mode": "taxi",
+                    "start_time": "08:00",
+                    "end_time": "08:12",
+                    "cost": 32.91,
+                    "distance": 8.06,
+                    "price": 32.91,
+                    "cars": 1
+                  }
+                ]
+              },
+              {
+                "type": "lunch",
+                "position": "Hao You Lai Spicy and Sour Noodles (Delicious Street Branch)",
+                "price": 10.0,
+                "cost": 30.0,
+                "start_time": "11:18",
+                "end_time": "12:03",
+                "transports": [
+                  {
+                    "start": "Baolun Temple",
+                    "end": "Hao You Lai Spicy and Sour Noodles (Delicious Street Branch)",
+                    "mode": "taxi",
+                    "start_time": "11:00",
+                    "end_time": "11:18",
+                    "cost": 49.04,
+                    "distance": 12.07,
+                    "price": 49.04,
+                    "cars": 1
+                  }
+                ]
+              },
+              {
+                "type": "attraction",
+                "position": "Bayu Culture Hall",
+                "price": 0.0,
+                "cost": 0.0,
+                "tickets": 3,
+                "start_time": "12:58",
+                "end_time": "13:58",
+                "transports": [
+                  {
+                    "start": "Hao You Lai Spicy and Sour Noodles (Delicious Street Branch)",
+                    "end": "Bayu Culture Hall",
+                    "mode": "taxi",
+                    "start_time": "12:03",
+                    "end_time": "12:58",
+                    "cost": 162.5,
+                    "distance": 37.29,
+                    "price": 162.5,
+                    "cars": 1
+                  }
+                ]
+              },
+              {
+                "type": "dinner",
+                "position": "Juntun Guokui (August 1st Branch)",
+                "price": 9.0,
+                "cost": 27.0,
+                "start_time": "17:00",
+                "end_time": "17:45",
+                "transports": [
+                  {
+                    "start": "Bayu Culture Hall",
+                    "end": "Juntun Guokui (August 1st Branch)",
+                    "mode": "taxi",
+                    "start_time": "13:58",
+                    "end_time": "14:54",
+                    "cost": 162.84,
+                    "distance": 37.36,
+                    "price": 162.84,
+                    "cars": 1
+                  }
+                ]
+              },
+              {
+                "type": "train",
+                "start": "Chongqing West Railway Station",
+                "end": "Chengdu East Railway Station",
+                "start_time": "21:50",
+                "end_time": "23:07",
+                "price": 171.7,
+                "cost": 515.1,
+                "tickets": 3,
+                "transports": [
+                  {
+                    "start": "Juntun Guokui (August 1st Branch)",
+                    "end": "Chongqing West Railway Station",
+                    "mode": "taxi",
+                    "start_time": "17:45",
+                    "end_time": "18:07",
+                    "cost": 61.22,
+                    "distance": 14.78,
+                    "price": 61.22,
+                    "cars": 1
+                  }
+                ],
+                "TrainID": "G2882"
+              }
+            ]
+          }
+        ]
+      },
+      "event": {
+        "kind": "return_earlier",
+        "day": null,
+        "new_days": 1,
+        "new_budget": null,
+        "target": null,
+        "description": ""
+      },
+      "question": "行程改为当天返回后，原来的住宿要求如何处理？",
+      "choices": {
+        "cancel_overnight": "取消住宿要求，继续安排一日行程",
+        "keep_original": "保留原住宿和原行程，暂不执行提前返程"
+      },
+      "answer": "cancel_overnight",
+      "explicit_lodging_waiver": true,
+      "state_revision": "91cb5d095e66e438c52224a51225e45154fa8835afb7ecad164e6904766895e4"
+    },
+    "event": {
+      "kind": "return_earlier",
+      "new_days": 1
+    },
+    "event_check": {
+      "ok": true,
+      "violations": [],
+      "supported": [
+        "schema",
+        "day_count",
+        "people_number",
+        "start_target_city",
+        "activity_time_order",
+        "transport_time_order",
+        "transport_structure",
+        "activity_cost_rules",
+        "meal_time_windows",
+        "space_chain",
+        "accommodation_nights",
+        "intercity_transport_presence",
+        "ticket_fields",
+        "budget_if_in_text",
+        "entity_grounding",
+        "opening_hours",
+        "duplicate_activities",
+        "meal_type_once",
+        "transport_matches_goto",
+        "intercity_transport_values",
+        "explicit_dynamic_event"
+      ],
+      "unsupported": [
+        "room_rules",
+        "overnight_hours",
+        "budget_not_found_in_text"
+      ]
+    }
+  },
+  "supervision": {
+    "returncode": 0,
+    "hard_timeout": false,
+    "cancelled": false,
+    "wall_seconds": 25.416626249963883
+  },
+  "ledger": {
+    "request_attempts": 2,
+    "completed_attempts": 2,
+    "pending_attempts": 0,
+    "observed_usage": {
+      "prompt_tokens": 12171,
+      "completion_tokens": 2209,
+      "total_tokens": 14380
+    },
+    "unobserved_billing_possible": false,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0088504,
+      "upper": 0.0088504
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793384527.31039,
+        "attempt_id": "992170930cb24e2c86650be2d31ddd95",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793384537.512083,
+        "attempt_id": "992170930cb24e2c86650be2d31ddd95",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 10.201133458002005,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-19f6fa81-0ff7-40a3-9990-709ca98b4e09",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 5928,
+        "completion_tokens": 835,
+        "total_tokens": 6763,
+        "reasoning_tokens": 743
+      },
+      {
+        "kind": "start",
+        "time": 1793384537.9376168,
+        "attempt_id": "e20dbc222c8043b5bd0e9b066ccd06b6",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793384552.321551,
+        "attempt_id": "e20dbc222c8043b5bd0e9b066ccd06b6",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 14.383353999990504,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-3adc850c-a8e4-4e87-8c3b-ec4f1c23afbe",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 6243,
+        "completion_tokens": 1374,
+        "total_tokens": 7617,
+        "reasoning_tokens": 392
+      }
+    ]
+  }
+}

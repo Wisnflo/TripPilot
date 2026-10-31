@@ -1,0 +1,10 @@
+{
+  "hard_logic_py": [
+    "intercity_transport_set=set()\nfor activity in allactivities(plan):\n  if activity_type(activity) in ['train', 'airplane']: intercity_transport_set.add(intercity_transport_type(activity))\nresult=({'airplane'}==intercity_transport_set)",
+    "attraction_name_set=set()\nfor activity in allactivities(plan):\n  if activity_type(activity)=='attraction': attraction_name_set.add(activity_position(activity))\nresult=({'白石龙音乐主题公园'}<=attraction_name_set)",
+    "result=(day_count(plan)==4)",
+    "result=(people_count(plan)==4)",
+    "result=True\nfor activity in allactivities(plan):\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False"
+  ],
+  "uid": "h20241029143826541906"
+}

@@ -1,0 +1,585 @@
+{
+  "job": {
+    "uid": "e20241028161305426441",
+    "split": "medium",
+    "days": 3,
+    "method": "b2",
+    "kind": "static",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 90.0,
+    "attempts": 2
+  },
+  "result": {
+    "task_uid": "e20241028161305426441",
+    "method": "b2",
+    "model": "qwen3.8-reasoner",
+    "terminal_state": "request_error",
+    "plan": null,
+    "steps": [
+      {
+        "step": 1,
+        "content": "\n\n\n\n\n",
+        "tool_calls": [
+          {
+            "name": "attractions_select",
+            "arguments": {
+              "city": "广州",
+              "key": "name",
+              "op": "contains",
+              "value": "塔"
+            }
+          },
+          {
+            "name": "accommodations_select",
+            "arguments": {
+              "city": "广州",
+              "key": "room_type",
+              "op": "eq",
+              "value": 2
+            }
+          },
+          {
+            "name": "intercity_transport_select",
+            "arguments": {
+              "start_city": "武汉",
+              "end_city": "广州",
+              "intercity_type": "train"
+            }
+          },
+          {
+            "name": "intercity_transport_select",
+            "arguments": {
+              "start_city": "广州",
+              "end_city": "武汉",
+              "intercity_type": "train",
+              "earliest_leave_time": "16:00"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "attractions_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"attractions_select\", \"resolved_from_language\": \"zh\", \"data\": {\"type\": \"dataframe\", \"rows\": [{\"id\": 2, \"name\": \"Canton Tower\", \"type\": \"Cultural Landscape\", \"lat\": 23.112223, \"lon\": 113.331084, \"opentime\": \"09:30\", \"endtime\": \"22:30\", \"price\": 149.0, \"recommendmintime\": 0.5, \"recommendmaxtime\": 1.5}, {\"id\": 38, \"name\": \"Pearl River Night Cruise at Canton Tower Wealth Pier\", \"type\": \"Amusement Park/Sports Entertainment\", \"lat\": 23.113208, \"lon\": 113.333565, \"opentime\""
+          },
+          {
+            "name": "accommodations_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_select({\\\"city\\\": \\\"Guangzhou\\\", \\\"key\\\": \\\"room_type\\\", \\\"op\\\": \\\"eq\\\", \\\"value\\\": 2})\", \"text\": \"Key not found.\", \"data\": \"Key not found.\"}"
+          },
+          {
+            "name": "intercity_transport_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Guangzhou\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Wuhan\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['G1103' 'High-speed rail' 'Wuhan Station'\\n 'Guangzhou South Railway Station' '06:46' '11:25' 4.65 543.6]\\n['G1001' 'High-speed rail' 'Wuhan Station'\\n 'Guangzhou South Railway Station' '07:25' '11:32' 4.12 543.6]\\n['G1003' 'High-speed rail' 'Wuhan Station'\\n 'Guan"
+          },
+          {
+            "name": "intercity_transport_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"earliest_leave_time\\\": \\\"16:00\\\", \\\"end_city\\\": \\\"Wuhan\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Guangzhou\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['G1012' 'High-speed rail' 'Guangzhou South Railway Station'\\n 'Wuhan Station' '16:01' '20:19' 4.38 543.6]\\n['G546' 'High-speed rail' 'Guangzhou South Railway Station'\\n 'Wuhan Station' '16:20' '21:00' 4.67 543.6]\\n['G810' 'High-s"
+          }
+        ],
+        "latency_seconds": 54.669957750011235,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-a8a294a9-9317-454e-8487-3d20da6747ca",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 4030,
+        "completion_tokens": 3721,
+        "reasoning_tokens": 3463,
+        "attempts": 1,
+        "request_latencies": [
+          54.669957750011235
+        ]
+      },
+      {
+        "step": 2,
+        "content": "\n\n\n",
+        "tool_calls": [
+          {
+            "name": "accommodations_keys",
+            "arguments": {
+              "city": "广州"
+            }
+          },
+          {
+            "name": "attractions_keys",
+            "arguments": {
+              "city": "广州"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "accommodations_keys",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_keys({\\\"city\\\": \\\"Guangzhou\\\"})\", \"text\": \"[('id', <class 'numpy.int64'>), ('name', <class 'str'>), ('hotelname_en', <class 'str'>), ('featurehoteltype', <class 'str'>), ('lat', <class 'numpy.float64'>), ('lon', <class 'numpy.float64'>), ('price', <class 'numpy.int64'>), ('numbed', <class 'numpy.int64'>)]\", \"data\": [[\"id\", \"<class 'numpy.int64'>\"], [\"name\", \"<class 'str'>\"], [\"hotelname_en\", \"<class 'str'>\"], [\"featurehoteltype\", \"<class 'str'>\"], [\"l"
+          },
+          {
+            "name": "attractions_keys",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"attractions_keys({\\\"city\\\": \\\"Guangzhou\\\"})\", \"text\": \"[('id', <class 'numpy.int64'>), ('name', <class 'str'>), ('type', <class 'str'>), ('lat', <class 'numpy.float64'>), ('lon', <class 'numpy.float64'>), ('opentime', <class 'str'>), ('endtime', <class 'str'>), ('price', <class 'numpy.float64'>), ('recommendmintime', <class 'numpy.float64'>), ('recommendmaxtime', <class 'numpy.float64'>)]\", \"data\": [[\"id\", \"<class 'numpy.int64'>\"], [\"name\", \"<class 'str'>\"], [\"type\""
+          }
+        ],
+        "latency_seconds": 2.14728804200422,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-02b38c94-3a0b-464d-9959-3bde4743aeaf",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 9215,
+        "completion_tokens": 76,
+        "reasoning_tokens": 17,
+        "attempts": 1,
+        "request_latencies": [
+          2.14728804200422
+        ]
+      },
+      {
+        "step": 3,
+        "content": "\n\n\n",
+        "tool_calls": [
+          {
+            "name": "accommodations_nearby",
+            "arguments": {
+              "city": "广州",
+              "point": "Canton Tower",
+              "topk": 6,
+              "dist": 3
+            }
+          },
+          {
+            "name": "restaurants_nearby",
+            "arguments": {
+              "city": "广州",
+              "point": "Canton Tower",
+              "topk": 8,
+              "dist": 2
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "accommodations_nearby",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_nearby({\\\"city\\\": \\\"Guangzhou\\\", \\\"dist\\\": 3, \\\"point\\\": \\\"Canton Tower\\\", \\\"topk\\\": 6})\", \"text\": \"['id' 'name' 'hotelname_en' 'featurehoteltype' 'lat' 'lon' 'price'\\n 'numbed' 'distance']\\n[213 'Hotel Indigo Guangzhou Haixinsha' 'Hotel Indigo Guangzhou Haixinsha'\\n 'Swimming Pool' 23.111235 113.329552 1086 2 0.1913127771857645]\\n[120 'Elegant Hotel (Zhujiang New Town Canton Tower)'\\n 'Elegant Hotel (Zhujiang New Town Canton Tower)'\\n 'Great view fro"
+          },
+          {
+            "name": "restaurants_nearby",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"restaurants_nearby({\\\"city\\\": \\\"Guangzhou\\\", \\\"dist\\\": 2, \\\"point\\\": \\\"Canton Tower\\\", \\\"topk\\\": 8})\", \"text\": \"['id' 'name' 'lat' 'lon' 'price' 'cuisine' 'opentime' 'endtime'\\n 'recommendedfood' 'distance']\\n[27 'Elegant Hotel (Canton Tower, Zhujiang New Town) · Riverside Pavilion'\\n 23.1138616 113.3330419 298.0 'buffet' '12:00' '21:00'\\n 'Pan-seared foie gras, salmon, steamed oysters in a clay pot, roasted lamb leg, abalone, steak'\\n 0.27047252032163815]\\n[400 'Bi"
+          }
+        ],
+        "latency_seconds": 12.9299564579851,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-96b09930-d0ff-4477-9434-9af1c17ad47b",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 9769,
+        "completion_tokens": 894,
+        "reasoning_tokens": 758,
+        "attempts": 1,
+        "request_latencies": [
+          12.9299564579851
+        ]
+      },
+      {
+        "step": 4,
+        "content": "\n\n\n",
+        "tool_calls": [
+          {
+            "name": "accommodations_select",
+            "arguments": {
+              "city": "广州",
+              "key": "price",
+              "op": "lt",
+              "value": 500
+            }
+          },
+          {
+            "name": "restaurants_select",
+            "arguments": {
+              "city": "广州",
+              "key": "price",
+              "op": "lt",
+              "value": 150
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "accommodations_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_select({\\\"city\\\": \\\"Guangzhou\\\", \\\"key\\\": \\\"price\\\", \\\"op\\\": \\\"lt\\\", \\\"value\\\": 500})\", \"text\": \"['id' 'name' 'hotelname_en' 'featurehoteltype' 'lat' 'lon' 'price'\\n 'numbed']\\n[0 'Guangzhou Panyu Wanbo Center Skanhem Hotel'\\n 'Guangzhou Panyu Wanbo Center Skanhem Hotel' 'Media Room' 23.009654\\n 113.346259 493 1]\\n[1 'Guangzhou Tianhe Sports Center Mercure Hotel'\\n 'Guangzhou Tianhe Sports Center Mercure Hotel' 'Butler Service' 23.142072\\n 113.328613 "
+          },
+          {
+            "name": "restaurants_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"restaurants_select({\\\"city\\\": \\\"Guangzhou\\\", \\\"key\\\": \\\"price\\\", \\\"op\\\": \\\"lt\\\", \\\"value\\\": 150})\", \"text\": \"['id' 'name' 'lat' 'lon' 'price' 'cuisine' 'opentime' 'endtime'\\n 'recommendedfood']\\n[7 'Zi Zhou Lou Shunde Cuisine (Panyu Square Main Store)' 22.9329379\\n 113.3862712 134.0 'Cantonese cuisine' '09:00' '21:30'\\n 'Cuttlefish balls, Golden fried dough sticks, Valley worm chicken, Shunde shredded fish congee, XO sauce stir-fried Chencun rice noodles, Traditiona"
+          }
+        ],
+        "latency_seconds": 15.997804749989882,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-50db4ecb-7c2c-4e86-894c-618f11a31669",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 13554,
+        "completion_tokens": 1254,
+        "reasoning_tokens": 1124,
+        "attempts": 1,
+        "request_latencies": [
+          15.997804749989882
+        ]
+      },
+      {
+        "step": 5,
+        "content": "\n\n\n\n\n\n\n\n\n",
+        "tool_calls": [
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "广州",
+              "start": "Guangzhou South Railway Station",
+              "end": "Hotel Indigo Guangzhou Haixinsha",
+              "start_time": "11:32",
+              "transport_type": "taxi"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "广州",
+              "start": "Hotel Indigo Guangzhou Haixinsha",
+              "end": "Canton Tower",
+              "start_time": "12:00",
+              "transport_type": "walk"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "广州",
+              "start": "Canton Tower",
+              "end": "Jinshan Koufu Qiaojiao Beef Hot Pot (Tiande Plaza Branch)",
+              "start_time": "14:00",
+              "transport_type": "walk"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "广州",
+              "start": "Jinshan Koufu Qiaojiao Beef Hot Pot (Tiande Plaza Branch)",
+              "end": "Lively Fresh Seafood Artistry (Tiande Plaza Branch)",
+              "start_time": "17:00",
+              "transport_type": "walk"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "广州",
+              "start": "Lively Fresh Seafood Artistry (Tiande Plaza Branch)",
+              "end": "Pearl River Night Cruise: Canton Tower to Sun Yat-sen University Pier",
+              "start_time": "19:00",
+              "transport_type": "walk"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "广州",
+              "start": "Hotel Indigo Guangzhou Haixinsha",
+              "end": "Chigang Pagoda",
+              "start_time": "09:00",
+              "transport_type": "walk"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "广州",
+              "start": "Chigang Pagoda",
+              "end": "Haimen Fish Delicacy · Chaoshan Flavor (Pearl River Road Branch)",
+              "start_time": "12:00",
+              "transport_type": "walk"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "广州",
+              "start": "Haimen Fish Delicacy · Chaoshan Flavor (Pearl River Road Branch)",
+              "end": "Guangzhou South Railway Station",
+              "start_time": "15:00",
+              "transport_type": "taxi"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Guangzhou\\\", \\\"end\\\": \\\"Hotel Indigo Guangzhou Haixinsha\\\", \\\"start\\\": \\\"Guangzhou South Railway Station\\\", \\\"start_time\\\": \\\"11:32\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Guangzhou South Railway Station', 'end': 'Hotel Indigo Guangzhou Haixinsha', 'mode': 'taxi', 'start_time': '11:32', 'end_time': '11:54', 'cost': 62.48, 'distance': 15.06}]\", \"data\": [{\"start\": \"Guangzhou South Railway Station\", \"end\": \"Hotel Indigo Guangzhou Haix"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Guangzhou\\\", \\\"end\\\": \\\"Canton Tower\\\", \\\"start\\\": \\\"Hotel Indigo Guangzhou Haixinsha\\\", \\\"start_time\\\": \\\"12:00\\\", \\\"transport_type\\\": \\\"walk\\\"})\", \"text\": \"[{'start': 'Hotel Indigo Guangzhou Haixinsha', 'end': 'Canton Tower', 'mode': 'walk', 'start_time': '12:00', 'end_time': '12:02', 'cost': 0.0, 'distance': 0.1913127771857645}]\", \"data\": [{\"start\": \"Hotel Indigo Guangzhou Haixinsha\", \"end\": \"Canton Tower\", \"mode\": \"walk\", \"start_time\": \"12:00\","
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Guangzhou\\\", \\\"end\\\": \\\"Jinshan Koufu Qiaojiao Beef Hot Pot (Tiande Plaza Branch)\\\", \\\"start\\\": \\\"Canton Tower\\\", \\\"start_time\\\": \\\"14:00\\\", \\\"transport_type\\\": \\\"walk\\\"})\", \"text\": \"[{'start': 'Canton Tower', 'end': 'Jinshan Koufu Qiaojiao Beef Hot Pot (Tiande Plaza Branch)', 'mode': 'walk', 'start_time': '14:00', 'end_time': '14:03', 'cost': 0.0, 'distance': 0.28330520213180915}]\", \"data\": [{\"start\": \"Canton Tower\", \"end\": \"Jinshan Koufu Qiaojiao"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Guangzhou\\\", \\\"end\\\": \\\"Lively Fresh Seafood Artistry (Tiande Plaza Branch)\\\", \\\"start\\\": \\\"Jinshan Koufu Qiaojiao Beef Hot Pot (Tiande Plaza Branch)\\\", \\\"start_time\\\": \\\"17:00\\\", \\\"transport_type\\\": \\\"walk\\\"})\", \"text\": \"[{'start': 'Jinshan Koufu Qiaojiao Beef Hot Pot (Tiande Plaza Branch)', 'end': 'Lively Fresh Seafood Artistry (Tiande Plaza Branch)', 'mode': 'walk', 'start_time': '17:00', 'end_time': '17:00', 'cost': 0.0, 'distance': 0.043523969"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Guangzhou\\\", \\\"end\\\": \\\"Pearl River Night Cruise: Canton Tower to Sun Yat-sen University Pier\\\", \\\"start\\\": \\\"Lively Fresh Seafood Artistry (Tiande Plaza Branch)\\\", \\\"start_time\\\": \\\"19:00\\\", \\\"transport_type\\\": \\\"walk\\\"})\", \"text\": \"[{'start': 'Lively Fresh Seafood Artistry (Tiande Plaza Branch)', 'end': 'Pearl River Night Cruise: Canton Tower to Sun Yat-sen University Pier', 'mode': 'walk', 'start_time': '19:00', 'end_time': '19:33', 'cost': 0.0,"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Guangzhou\\\", \\\"end\\\": \\\"Chigang Pagoda\\\", \\\"start\\\": \\\"Hotel Indigo Guangzhou Haixinsha\\\", \\\"start_time\\\": \\\"09:00\\\", \\\"transport_type\\\": \\\"walk\\\"})\", \"text\": \"[{'start': 'Hotel Indigo Guangzhou Haixinsha', 'end': 'Chigang Pagoda', 'mode': 'walk', 'start_time': '09:00', 'end_time': '09:04', 'cost': 0.0, 'distance': 0.40432501200741605}]\", \"data\": [{\"start\": \"Hotel Indigo Guangzhou Haixinsha\", \"end\": \"Chigang Pagoda\", \"mode\": \"walk\", \"start_time\": \""
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Guangzhou\\\", \\\"end\\\": \\\"Haimen Fish Delicacy · Chaoshan Flavor (Pearl River Road Branch)\\\", \\\"start\\\": \\\"Chigang Pagoda\\\", \\\"start_time\\\": \\\"12:00\\\", \\\"transport_type\\\": \\\"walk\\\"})\", \"text\": \"[{'start': 'Chigang Pagoda', 'end': 'Haimen Fish Delicacy · Chaoshan Flavor (Pearl River Road Branch)', 'mode': 'walk', 'start_time': '12:00', 'end_time': '12:16', 'cost': 0.0, 'distance': 1.356373211876184}]\", \"data\": [{\"start\": \"Chigang Pagoda\", \"end\": \"Haim"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Guangzhou\\\", \\\"end\\\": \\\"Guangzhou South Railway Station\\\", \\\"start\\\": \\\"Haimen Fish Delicacy · Chaoshan Flavor (Pearl River Road Branch)\\\", \\\"start_time\\\": \\\"15:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Haimen Fish Delicacy · Chaoshan Flavor (Pearl River Road Branch)', 'end': 'Guangzhou South Railway Station', 'mode': 'taxi', 'start_time': '15:00', 'end_time': '15:24', 'cost': 66.88, 'distance': 16.04}]\", \"data\": [{\"start\": \"Haime"
+          }
+        ],
+        "latency_seconds": 15.906394374964293,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-092c898b-98c3-4e4a-a221-07fa86e13048",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 18149,
+        "completion_tokens": 1401,
+        "reasoning_tokens": 630,
+        "attempts": 1,
+        "request_latencies": [
+          15.906394374964293
+        ]
+      },
+      {
+        "step": 6,
+        "attempts": 2,
+        "request_latencies": [
+          90.0394020419917,
+          90.04023066698574
+        ],
+        "error": "APITimeoutError"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 54717,
+      "completion_tokens": 7346,
+      "total_tokens": 62063,
+      "reasoning_tokens": 5992
+    },
+    "checker": null,
+    "error": null,
+    "metadata": {
+      "event_text": null,
+      "usage_complete": false,
+      "request_error": "model request failed after 2 attempts: Request timed out.",
+      "request_attempts": 2,
+      "request_latencies": [
+        90.0394020419917,
+        90.04023066698574
+      ],
+      "request_count": 7,
+      "retry_count": 1,
+      "request_latency_seconds": 281.7310340839322
+    },
+    "started_at": "2026-10-30T17:23:23.695635+00:00",
+    "finished_at": "2026-10-30T17:28:08.093086+00:00",
+    "duration_seconds": 284.39675541594625,
+    "wall_seconds": 284.39689104200806
+  },
+  "supervision": {
+    "returncode": 0,
+    "hard_timeout": false,
+    "cancelled": false,
+    "wall_seconds": 284.776769124961
+  },
+  "ledger": {
+    "request_attempts": 7,
+    "completed_attempts": 7,
+    "pending_attempts": 0,
+    "observed_usage": {
+      "prompt_tokens": 54717,
+      "completion_tokens": 7346,
+      "total_tokens": 62063
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.030959,
+      "upper": 0.030959
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793381003.708147,
+        "attempt_id": "489be6307de94eb686259c961b2988fa",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793381058.3792698,
+        "attempt_id": "489be6307de94eb686259c961b2988fa",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 54.669957750011235,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-a8a294a9-9317-454e-8487-3d20da6747ca",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 4030,
+        "completion_tokens": 3721,
+        "total_tokens": 7751,
+        "reasoning_tokens": 3463
+      },
+      {
+        "kind": "start",
+        "time": 1793381058.958808,
+        "attempt_id": "670e1f56f981418fb4e2fda363f1db4a",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793381061.106661,
+        "attempt_id": "670e1f56f981418fb4e2fda363f1db4a",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 2.14728804200422,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-02b38c94-3a0b-464d-9959-3bde4743aeaf",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 9215,
+        "completion_tokens": 76,
+        "total_tokens": 9291,
+        "reasoning_tokens": 17
+      },
+      {
+        "kind": "start",
+        "time": 1793381061.109299,
+        "attempt_id": "ca69f1d494ff4128aeb06f4da90b4d04",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793381074.0399659,
+        "attempt_id": "ca69f1d494ff4128aeb06f4da90b4d04",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 12.9299564579851,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-96b09930-d0ff-4477-9434-9af1c17ad47b",
+        "cached_prompt_tokens": 7680,
+        "prompt_tokens": 9769,
+        "completion_tokens": 894,
+        "total_tokens": 10663,
+        "reasoning_tokens": 758
+      },
+      {
+        "kind": "start",
+        "time": 1793381074.097453,
+        "attempt_id": "90c03a9b395540d49b98a80a005324f9",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793381090.095524,
+        "attempt_id": "90c03a9b395540d49b98a80a005324f9",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 15.997804749989882,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-50db4ecb-7c2c-4e86-894c-618f11a31669",
+        "cached_prompt_tokens": 8448,
+        "prompt_tokens": 13554,
+        "completion_tokens": 1254,
+        "total_tokens": 14808,
+        "reasoning_tokens": 1124
+      },
+      {
+        "kind": "start",
+        "time": 1793381090.097642,
+        "attempt_id": "f0fd637befff4644971bf36391129c94",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793381106.004543,
+        "attempt_id": "f0fd637befff4644971bf36391129c94",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 15.906394374964293,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-092c898b-98c3-4e4a-a221-07fa86e13048",
+        "cached_prompt_tokens": 12288,
+        "prompt_tokens": 18149,
+        "completion_tokens": 1401,
+        "total_tokens": 19550,
+        "reasoning_tokens": 630
+      },
+      {
+        "kind": "start",
+        "time": 1793381106.00814,
+        "attempt_id": "90adb93f805447fa90504e0306788c8f",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793381196.048115,
+        "attempt_id": "90adb93f805447fa90504e0306788c8f",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 90.0394020419917,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793381198.0506308,
+        "attempt_id": "e30939b2f8da4584983dec22a0018ce8",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      },
+      {
+        "kind": "error",
+        "time": 1793381288.091815,
+        "attempt_id": "e30939b2f8da4584983dec22a0018ce8",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 90.04023066698574,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-31",
+  "initial": {
+    "parents": 24,
+    "per_split": 8,
+    "methods": [
+      "structured",
+      "b2"
+    ],
+    "steps": 16,
+    "seconds": 360,
+    "request_timeout": 90,
+    "attempts": 2
+  },
+  "dynamic": {
+    "recipe": "scripts/build_dynamic_suite.py, <=4 valid multi-day intercity structured parents per split, all three events each",
+    "seconds": 240,
+    "steps": 16,
+    "request_timeout": 90,
+    "explicit_consent_simulation": "cancel_overnight only after a clarification question"
+  },
+  "repeats": {
+    "parents": 6,
+    "additional_runs": 2,
+    "selection": "first 2 preregistered test UIDs per split, independent of outcomes"
+  },
+  "primary_metrics": [
+    "original official static all-pass",
+    "dynamic adapted all-pass with disclosed consent",
+    "known token and cached billing",
+    "hard wall-clock",
+    "usable plan rate"
+  ],
+  "denominators": "All initial tasks including failures. Dynamic conditional cohort and shortfalls separately reported. Missing/timeout not removed. No outcome-driven reruns.",
+  "statistics": "paired per-task comparisons; Wilson intervals; dynamic uncertainty clustered by parent; repeats not treated as new independent tasks"
+}

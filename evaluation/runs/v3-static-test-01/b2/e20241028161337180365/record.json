@@ -1,0 +1,537 @@
+{
+  "job": {
+    "uid": "e20241028161337180365",
+    "split": "medium",
+    "days": 2,
+    "method": "b2",
+    "kind": "static",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 90.0,
+    "attempts": 2
+  },
+  "result": {
+    "task_uid": "e20241028161337180365",
+    "method": "b2",
+    "model": "qwen3.8-reasoner",
+    "terminal_state": "checked_ok",
+    "plan": {
+      "people_number": 2,
+      "start_city": "Shenzhen",
+      "target_city": "Hangzhou",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "airplane",
+              "start_time": "10:39",
+              "end_time": "11:57",
+              "cost": 1028.68,
+              "price": 514.34,
+              "tickets": 2,
+              "start": "Shenzhen Bao'an International Airport",
+              "end": "Hangzhou Xiaoshan International Airport",
+              "FlightID": "FL218",
+              "transports": []
+            },
+            {
+              "type": "attraction",
+              "start_time": "13:00",
+              "end_time": "14:30",
+              "cost": 0.0,
+              "price": 0,
+              "tickets": 2,
+              "position": "Leifeng Pagoda",
+              "transports": [
+                {
+                  "start": "Hangzhou Xiaoshan International Airport",
+                  "end": "Leifeng Pagoda",
+                  "mode": "taxi",
+                  "start_time": "12:00",
+                  "end_time": "12:40",
+                  "price": 114.71,
+                  "cost": 114.71,
+                  "distance": 26.67,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "start_time": "15:12",
+              "end_time": "23:59",
+              "cost": 350.0,
+              "price": 350,
+              "tickets": 1,
+              "position": "Atour Hotel (Hangzhou Xixi Wetland)",
+              "rooms": 1,
+              "room_type": 1,
+              "transports": [
+                {
+                  "start": "Leifeng Pagoda",
+                  "end": "Atour Hotel (Hangzhou Xixi Wetland)",
+                  "mode": "taxi",
+                  "start_time": "15:00",
+                  "end_time": "15:12",
+                  "price": 34.22,
+                  "cost": 34.22,
+                  "distance": 8.44,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "airplane",
+              "start_time": "12:27",
+              "end_time": "13:45",
+              "cost": 1036.18,
+              "price": 518.09,
+              "tickets": 2,
+              "start": "Hangzhou Xiaoshan International Airport",
+              "end": "Shenzhen Bao'an International Airport",
+              "FlightID": "FL506",
+              "transports": [
+                {
+                  "start": "Atour Hotel (Hangzhou Xixi Wetland)",
+                  "end": "Hangzhou Xiaoshan International Airport",
+                  "mode": "taxi",
+                  "start_time": "11:00",
+                  "end_time": "11:52",
+                  "price": 151.6,
+                  "cost": 151.6,
+                  "distance": 34.87,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step": 1,
+        "content": "\n\n\n\n\n",
+        "tool_calls": [
+          {
+            "name": "intercity_transport_select",
+            "arguments": {
+              "start_city": "Shenzhen",
+              "end_city": "Hangzhou",
+              "intercity_type": "airplane"
+            }
+          },
+          {
+            "name": "intercity_transport_select",
+            "arguments": {
+              "start_city": "Hangzhou",
+              "end_city": "Shenzhen",
+              "intercity_type": "airplane"
+            }
+          },
+          {
+            "name": "attractions_keys",
+            "arguments": {
+              "city": "Hangzhou"
+            }
+          },
+          {
+            "name": "accommodations_keys",
+            "arguments": {
+              "city": "Hangzhou"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "intercity_transport_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Hangzhou\\\", \\\"intercity_type\\\": \\\"airplane\\\", \\\"start_city\\\": \\\"Shenzhen\\\"})\", \"text\": \"['FlightID' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['FL219' \\\"Shenzhen Bao'an International Airport\\\"\\n 'Hangzhou Xiaoshan International Airport' '06:02' '07:20' 1.31 572.69]\\n['FL220' \\\"Shenzhen Bao'an International Airport\\\"\\n 'Hangzhou Xiaoshan International Airport' '09:37' '10:55' 1.31 556.25]\\n['FL218' \\\"Shenzhen Ba"
+          },
+          {
+            "name": "intercity_transport_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Shenzhen\\\", \\\"intercity_type\\\": \\\"airplane\\\", \\\"start_city\\\": \\\"Hangzhou\\\"})\", \"text\": \"['FlightID' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['FL502' 'Hangzhou Xiaoshan International Airport'\\n \\\"Shenzhen Bao'an International Airport\\\" '02:45' '04:03' 1.31 483.26]\\n['FL503' 'Hangzhou Xiaoshan International Airport'\\n \\\"Shenzhen Bao'an International Airport\\\" '04:41' '05:59' 1.31 515.8]\\n['FL505' 'Hangzhou Xiao"
+          },
+          {
+            "name": "attractions_keys",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"attractions_keys({\\\"city\\\": \\\"Hangzhou\\\"})\", \"text\": \"[('id', <class 'numpy.int64'>), ('name', <class 'str'>), ('type', <class 'str'>), ('lat', <class 'numpy.float64'>), ('lon', <class 'numpy.float64'>), ('opentime', <class 'str'>), ('endtime', <class 'str'>), ('price', <class 'numpy.float64'>), ('recommendmintime', <class 'numpy.float64'>), ('recommendmaxtime', <class 'numpy.float64'>)]\", \"data\": [[\"id\", \"<class 'numpy.int64'>\"], [\"name\", \"<class 'str'>\"], [\"type\","
+          },
+          {
+            "name": "accommodations_keys",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_keys({\\\"city\\\": \\\"Hangzhou\\\"})\", \"text\": \"[('id', <class 'numpy.int64'>), ('name', <class 'str'>), ('hotelname_en', <class 'str'>), ('featurehoteltype', <class 'str'>), ('lat', <class 'numpy.float64'>), ('lon', <class 'numpy.float64'>), ('price', <class 'numpy.int64'>), ('numbed', <class 'numpy.int64'>)]\", \"data\": [[\"id\", \"<class 'numpy.int64'>\"], [\"name\", \"<class 'str'>\"], [\"hotelname_en\", \"<class 'str'>\"], [\"featurehoteltype\", \"<class 'str'>\"], [\"la"
+          }
+        ],
+        "latency_seconds": 82.25432529201498,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-d17ebbee-4a33-421c-a147-46f84c4f2ac7",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 4034,
+        "completion_tokens": 7134,
+        "reasoning_tokens": 6957,
+        "attempts": 1,
+        "request_latencies": [
+          82.25432529201498
+        ]
+      },
+      {
+        "step": 2,
+        "content": "\n\n\n",
+        "tool_calls": [
+          {
+            "name": "attractions_select",
+            "arguments": {
+              "city": "Hangzhou",
+              "key": "name",
+              "op": "eq",
+              "value": "Leifeng Pagoda"
+            }
+          },
+          {
+            "name": "accommodations_select",
+            "arguments": {
+              "city": "Hangzhou",
+              "key": "numbed",
+              "op": "eq",
+              "value": 1
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "attractions_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"attractions_select({\\\"city\\\": \\\"Hangzhou\\\", \\\"key\\\": \\\"name\\\", \\\"op\\\": \\\"eq\\\", \\\"value\\\": \\\"Leifeng Pagoda\\\"})\", \"text\": \"['id' 'name' 'type' 'lat' 'lon' 'opentime' 'endtime' 'price'\\n 'recommendmintime' 'recommendmaxtime']\\n[9 'Leifeng Pagoda' 'historical site' 30.236901 120.155363 '08:00' '20:00'\\n 0.0 0.5 2.0]\\nPage/Total: 1/1\", \"data\": {\"type\": \"dataframe\", \"columns\": [\"id\", \"name\", \"type\", \"lat\", \"lon\", \"opentime\", \"endtime\", \"price\", \"recommendmintime\", \"recom"
+          },
+          {
+            "name": "accommodations_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_select({\\\"city\\\": \\\"Hangzhou\\\", \\\"key\\\": \\\"numbed\\\", \\\"op\\\": \\\"eq\\\", \\\"value\\\": 1})\", \"text\": \"['id' 'name' 'hotelname_en' 'featurehoteltype' 'lat' 'lon' 'price'\\n 'numbed']\\n[0 'Atour Hotel Pinghai Road, West Lake, Hangzhou'\\n 'Atour Hotel Pinghai Road, West Lake, Hangzhou' 'Family Room' 30.254433\\n 120.169771 482 1]\\n[2 'SSAW Boutique Hotel Hangzhou Xixi Park'\\n 'SSAW Boutique Hotel Hangzhou Xixi Park' 'Butler Service' 30.264508\\n 120.106204 598 1]\\"
+          }
+        ],
+        "latency_seconds": 4.891301625000779,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-fe6b478d-e214-423f-b903-231f9afc2753",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 7516,
+        "completion_tokens": 287,
+        "reasoning_tokens": 153,
+        "attempts": 1,
+        "request_latencies": [
+          4.891301625000779
+        ]
+      },
+      {
+        "step": 3,
+        "content": "\n\n\n\n",
+        "tool_calls": [
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Hangzhou",
+              "start": "Hangzhou Xiaoshan International Airport",
+              "end": "Leifeng Pagoda",
+              "start_time": "12:00",
+              "transport_type": "taxi"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Hangzhou",
+              "start": "Leifeng Pagoda",
+              "end": "Atour Hotel (Hangzhou Xixi Wetland)",
+              "start_time": "15:00",
+              "transport_type": "taxi"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Hangzhou",
+              "start": "Atour Hotel (Hangzhou Xixi Wetland)",
+              "end": "Hangzhou Xiaoshan International Airport",
+              "start_time": "11:00",
+              "transport_type": "taxi"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Hangzhou\\\", \\\"end\\\": \\\"Leifeng Pagoda\\\", \\\"start\\\": \\\"Hangzhou Xiaoshan International Airport\\\", \\\"start_time\\\": \\\"12:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Hangzhou Xiaoshan International Airport', 'end': 'Leifeng Pagoda', 'mode': 'taxi', 'start_time': '12:00', 'end_time': '12:40', 'cost': 114.71, 'distance': 26.67}]\", \"data\": [{\"start\": \"Hangzhou Xiaoshan International Airport\", \"end\": \"Leifeng Pagoda\", \"mode\": \"taxi\", \"start"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Hangzhou\\\", \\\"end\\\": \\\"Atour Hotel (Hangzhou Xixi Wetland)\\\", \\\"start\\\": \\\"Leifeng Pagoda\\\", \\\"start_time\\\": \\\"15:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Leifeng Pagoda', 'end': 'Atour Hotel (Hangzhou Xixi Wetland)', 'mode': 'taxi', 'start_time': '15:00', 'end_time': '15:12', 'cost': 34.22, 'distance': 8.44}]\", \"data\": [{\"start\": \"Leifeng Pagoda\", \"end\": \"Atour Hotel (Hangzhou Xixi Wetland)\", \"mode\": \"taxi\", \"start_time\": \"15:00"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Hangzhou\\\", \\\"end\\\": \\\"Hangzhou Xiaoshan International Airport\\\", \\\"start\\\": \\\"Atour Hotel (Hangzhou Xixi Wetland)\\\", \\\"start_time\\\": \\\"11:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Atour Hotel (Hangzhou Xixi Wetland)', 'end': 'Hangzhou Xiaoshan International Airport', 'mode': 'taxi', 'start_time': '11:00', 'end_time': '11:52', 'cost': 151.6, 'distance': 34.87}]\", \"data\": [{\"start\": \"Atour Hotel (Hangzhou Xixi Wetland)\", \"end\": \"Ha"
+          }
+        ],
+        "latency_seconds": 71.75420816696715,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-7897e339-cfbd-49ac-a13e-5a9b36467862",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 9675,
+        "completion_tokens": 5325,
+        "reasoning_tokens": 5044,
+        "attempts": 1,
+        "request_latencies": [
+          71.75420816696715
+        ]
+      },
+      {
+        "step": 4,
+        "content": "\n\nBased on the data gathered, I have all the information needed to construct the travel plan. Let me compile it:\n\n- **Flights**: FL212 Shenzhen→Hangzhou (12:53-14:11, ¥506.23) and FL506 Hangzhou→Shenzhen (12:27-13:45, ¥518.09)\n- **Attraction**: Leifeng Pagoda (free, open 08:00-20:00)\n- **Hotel**: Atour Hotel (Hangzhou Xixi Wetland), ¥350/night, 1 bed (king bed)\n- **Transports**: Taxi legs between locations\n\nTotal estimated cost: ¥2,699.17 (within ¥4,000 budget)\n\n{\"$schema\":\"http://json-schema.org/draft-07/schema#\",\"type\":\"object\",\"properties\":{\"people_number\":{\"type\":\"integer\"},\"start_city\":{\"type\":\"string\"},\"target_city\":{\"type\":\"string\"},\"itinerary\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"day\":{\"type\":\"integer\"},\"activities\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\",\"enum\":[\"airplane\",\"attraction\",\"lunch\",\"dinner\",\"breakfast\",\"accommodation\",\"train\"]},\"start_time\":{\"type\":\"string\",\"pattern\":\"^\\\\d{2}:\\\\d{2}$\"},\"end_time\":{\"type\":\"string\",\"pattern\":\"^\\\\d{2}:\\\\d{2}$\"},\"cost\":{\"type\":\"number\"},\"price\":{\"type\":\"number\"},\"tickets\":{\"type\":\"integer\"},\"position\":{\"type\":\"string\"},\"transports\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"start\":{\"type\":\"string\"},\"end\":{\"type\":\"string\"},\"mode\":{\"type\":\"string\",\"enum\":[\"walk\",\"metro\",\"taxi\"]},\"start_time\":{\"type\":\"string\",\"pattern\":\"^\\\\d{2}:\\\\d{2}$\"},\"end_time\":{\"type\":\"string\",\"pattern\":\"^\\\\d{2}:\\\\d{2}$\"},\"cost\":{\"type\":\"number\"},\"price\":{\"type\":\"number\"},\"distance\":{\"type\":\"number\"},\"tickets\":{\"type\":\"integer\"}},\"required\":[\"start\",\"end\",\"mode\",\"start_time\",\"end_time\",\"price\",\"cost\",\"distance\"]}},\"room_type\":{\"type\":\"integer\"},\"rooms\":{\"type\":\"integer\"},\"FlightID\":{\"type\":\"string\"},\"TrainID\":{\"type\":\"string\"}},\"required\":[\"type\",\"start_time\",\"end_time\",\"cost\",\"price\",\"transports\"],\"allOf\":[{\"if\":{\"properties\":{\"type\":{\"enum\":[\"airplane\",\"train\"]}},\"required\":[\"type\"]},\"then\":{\"required\":[\"start\",\"end\"],\"not\":{\"required\":[\"position\"]}},\"else\":{\"required\":[\"posi",
+        "tool_calls": [],
+        "tool_results": [],
+        "latency_seconds": 50.45667075004894,
+        "finish_reason": "stop",
+        "request_id": "chatcmpl-7383730c-50d4-42a0-ab47-80114a0c6a99",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 10646,
+        "completion_tokens": 4853,
+        "reasoning_tokens": 4178,
+        "attempts": 1,
+        "request_latencies": [
+          50.45667075004894
+        ]
+      },
+      {
+        "step": 5,
+        "content": "\n\n{\"people_number\":2,\"start_city\":\"Shenzhen\",\"target_city\":\"Hangzhou\",\"itinerary\":[{\"day\":1,\"activities\":[{\"type\":\"airplane\",\"start_time\":\"10:39\",\"end_time\":\"11:57\",\"cost\":1028.68,\"price\":514.34,\"tickets\":2,\"start\":\"Shenzhen Bao'an International Airport\",\"end\":\"Hangzhou Xiaoshan International Airport\",\"FlightID\":\"FL218\",\"transports\":[]},{\"type\":\"attraction\",\"start_time\":\"13:00\",\"end_time\":\"14:30\",\"cost\":0,\"price\":0,\"tickets\":2,\"position\":\"Leifeng Pagoda\",\"transports\":[{\"start\":\"Hangzhou Xiaoshan International Airport\",\"end\":\"Leifeng Pagoda\",\"mode\":\"taxi\",\"start_time\":\"12:00\",\"end_time\":\"12:40\",\"price\":114.71,\"cost\":114.71,\"distance\":26.67}]},{\"type\":\"accommodation\",\"start_time\":\"15:12\",\"end_time\":\"23:59\",\"cost\":350,\"price\":350,\"tickets\":1,\"position\":\"Atour Hotel (Hangzhou Xixi Wetland)\",\"rooms\":1,\"room_type\":1,\"transports\":[{\"start\":\"Leifeng Pagoda\",\"end\":\"Atour Hotel (Hangzhou Xixi Wetland)\",\"mode\":\"taxi\",\"start_time\":\"15:00\",\"end_time\":\"15:12\",\"price\":34.22,\"cost\":34.22,\"distance\":8.44}]}]},{\"day\":2,\"activities\":[{\"type\":\"airplane\",\"start_time\":\"12:27\",\"end_time\":\"13:45\",\"cost\":1036.18,\"price\":518.09,\"tickets\":2,\"start\":\"Hangzhou Xiaoshan International Airport\",\"end\":\"Shenzhen Bao'an International Airport\",\"FlightID\":\"FL506\",\"transports\":[{\"start\":\"Atour Hotel (Hangzhou Xixi Wetland)\",\"end\":\"Hangzhou Xiaoshan International Airport\",\"mode\":\"taxi\",\"start_time\":\"11:00\",\"end_time\":\"11:52\",\"price\":151.6,\"cost\":151.6,\"distance\":34.87}]}]}]}",
+        "tool_calls": [],
+        "tool_results": [],
+        "latency_seconds": 140.0209361660527,
+        "finish_reason": "stop",
+        "request_id": "chatcmpl-16ad1673-5e53-4633-ac78-99acc2528755",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 11414,
+        "completion_tokens": 3944,
+        "reasoning_tokens": 3430,
+        "attempts": 2,
+        "request_latencies": [
+          90.03317745804088,
+          49.987758708011825
+        ]
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 43285,
+      "completion_tokens": 21543,
+      "total_tokens": 64828,
+      "reasoning_tokens": 19762
+    },
+    "checker": {
+      "ok": true,
+      "violations": [],
+      "supported": [
+        "schema",
+        "day_count",
+        "people_number",
+        "start_target_city",
+        "activity_time_order",
+        "transport_time_order",
+        "transport_structure",
+        "activity_cost_rules",
+        "meal_time_windows",
+        "space_chain",
+        "accommodation_nights",
+        "intercity_transport_presence",
+        "ticket_fields",
+        "budget_if_in_text",
+        "entity_grounding",
+        "opening_hours",
+        "duplicate_activities",
+        "meal_type_once",
+        "transport_matches_goto",
+        "intercity_transport_values"
+      ],
+      "unsupported": [
+        "room_rules",
+        "overnight_hours"
+      ]
+    },
+    "error": null,
+    "metadata": {
+      "event_text": null,
+      "usage_complete": true,
+      "request_count": 6,
+      "retry_count": 1,
+      "request_latency_seconds": 349.37744200008456
+    },
+    "started_at": "2026-10-30T17:27:14.370733+00:00",
+    "finished_at": "2026-10-30T17:33:06.243650+00:00",
+    "duration_seconds": 351.8728439999977,
+    "wall_seconds": 351.873069333029
+  },
+  "supervision": {
+    "returncode": 0,
+    "hard_timeout": false,
+    "cancelled": false,
+    "wall_seconds": 352.2855753750191
+  },
+  "ledger": {
+    "request_attempts": 6,
+    "completed_attempts": 6,
+    "pending_attempts": 0,
+    "observed_usage": {
+      "prompt_tokens": 43285,
+      "completion_tokens": 21543,
+      "total_tokens": 64828
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.037180000000000005,
+      "upper": 0.037180000000000005
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793381234.391555,
+        "attempt_id": "93663822f2044976a7a60f1b97881d6a",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793381316.646514,
+        "attempt_id": "93663822f2044976a7a60f1b97881d6a",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 82.25432529201498,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-d17ebbee-4a33-421c-a147-46f84c4f2ac7",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 4034,
+        "completion_tokens": 7134,
+        "total_tokens": 11168,
+        "reasoning_tokens": 6957
+      },
+      {
+        "kind": "start",
+        "time": 1793381317.084621,
+        "attempt_id": "2ec645aaedc7459d8d7d2e77a4195ced",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793381321.9765,
+        "attempt_id": "2ec645aaedc7459d8d7d2e77a4195ced",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 4.891301625000779,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-fe6b478d-e214-423f-b903-231f9afc2753",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 7516,
+        "completion_tokens": 287,
+        "total_tokens": 7803,
+        "reasoning_tokens": 153
+      },
+      {
+        "kind": "start",
+        "time": 1793381321.982396,
+        "attempt_id": "a9c58c10239948288e641cd207371b59",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793381393.737277,
+        "attempt_id": "a9c58c10239948288e641cd207371b59",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 71.75420816696715,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-7897e339-cfbd-49ac-a13e-5a9b36467862",
+        "cached_prompt_tokens": 6144,
+        "prompt_tokens": 9675,
+        "completion_tokens": 5325,
+        "total_tokens": 15000,
+        "reasoning_tokens": 5044
+      },
+      {
+        "kind": "start",
+        "time": 1793381393.741377,
+        "attempt_id": "1158acea9d6943a1b37b63001acfbe9b",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793381444.1988428,
+        "attempt_id": "1158acea9d6943a1b37b63001acfbe9b",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 50.45667075004894,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-7383730c-50d4-42a0-ab47-80114a0c6a99",
+        "cached_prompt_tokens": 8448,
+        "prompt_tokens": 10646,
+        "completion_tokens": 4853,
+        "total_tokens": 15499,
+        "reasoning_tokens": 4178
+      },
+      {
+        "kind": "start",
+        "time": 1793381444.203667,
+        "attempt_id": "676db5ace6694c12897c8e8c619fde9a",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793381534.2385762,
+        "attempt_id": "676db5ace6694c12897c8e8c619fde9a",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 90.03317745804088,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793381536.244202,
+        "attempt_id": "e741e06d05c3480aa2c0e6c8dc104f81",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      },
+      {
+        "kind": "success",
+        "time": 1793381586.233112,
+        "attempt_id": "e741e06d05c3480aa2c0e6c8dc104f81",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 49.987758708011825,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-16ad1673-5e53-4633-ac78-99acc2528755",
+        "cached_prompt_tokens": 9984,
+        "prompt_tokens": 11414,
+        "completion_tokens": 3944,
+        "total_tokens": 15358,
+        "reasoning_tokens": 3430
+      }
+    ]
+  }
+}

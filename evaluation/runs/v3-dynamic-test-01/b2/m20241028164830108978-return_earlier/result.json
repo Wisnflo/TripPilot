@@ -1,0 +1,782 @@
+{
+  "task_uid": "m20241028164830108978",
+  "method": "b2",
+  "model": "qwen3.8-reasoner",
+  "terminal_state": "checked_ok",
+  "plan": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "people_number": 2,
+    "start_city": "Shenzhen",
+    "target_city": "Wuhan",
+    "itinerary": [
+      {
+        "day": 1,
+        "activities": [
+          {
+            "type": "airplane",
+            "start": "Shenzhen Bao'an International Airport",
+            "end": "Wuhan Tianhe International Airport",
+            "start_time": "07:21",
+            "end_time": "08:28",
+            "price": 445.8,
+            "cost": 891.6,
+            "tickets": 2,
+            "transports": [],
+            "FlightID": "FL228"
+          },
+          {
+            "type": "attraction",
+            "position": "China Wuhan Iron and Steel Museum",
+            "price": 0.0,
+            "cost": 0.0,
+            "tickets": 2,
+            "start_time": "09:03",
+            "end_time": "10:33",
+            "transports": [
+              {
+                "start": "Wuhan Tianhe International Airport",
+                "end": "China Wuhan Iron and Steel Museum",
+                "mode": "taxi",
+                "start_time": "08:28",
+                "end_time": "09:03",
+                "cost": 102.04,
+                "distance": 23.85,
+                "price": 102.04,
+                "tickets": 1,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "position": "First Generation Roasted Chicken Wing King (Dahankou Branch)",
+            "price": 11.0,
+            "cost": 22.0,
+            "start_time": "11:00",
+            "end_time": "11:45",
+            "transports": [
+              {
+                "start": "China Wuhan Iron and Steel Museum",
+                "end": "First Generation Roasted Chicken Wing King (Dahankou Branch)",
+                "mode": "taxi",
+                "start_time": "10:33",
+                "end_time": "10:52",
+                "cost": 54.22,
+                "distance": 13.23,
+                "price": 54.22,
+                "tickets": 1,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "accommodation",
+            "position": "Qiyue Hotel",
+            "price": 78.0,
+            "cost": 78.0,
+            "rooms": 1,
+            "room_type": 2,
+            "start_time": "18:00",
+            "end_time": "23:59",
+            "transports": [
+              {
+                "start": "First Generation Roasted Chicken Wing King (Dahankou Branch)",
+                "end": "Qiyue Hotel",
+                "mode": "taxi",
+                "start_time": "11:45",
+                "end_time": "12:04",
+                "cost": 54.46,
+                "distance": 13.28,
+                "price": 54.46,
+                "tickets": 1,
+                "cars": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "activities": [
+          {
+            "type": "attraction",
+            "position": "Aquatic Life Museum",
+            "price": 0.0,
+            "cost": 0.0,
+            "tickets": 2,
+            "start_time": "08:30",
+            "end_time": "11:00",
+            "transports": [
+              {
+                "start": "Qiyue Hotel",
+                "end": "Aquatic Life Museum",
+                "mode": "taxi",
+                "start_time": "08:00",
+                "end_time": "08:09",
+                "cost": 26.57,
+                "distance": 6.25,
+                "price": 26.57,
+                "tickets": 1,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "position": "Shuita Li's Crispy Dumplings (Shuita Branch)",
+            "price": 7.0,
+            "cost": 14.0,
+            "start_time": "11:11",
+            "end_time": "11:56",
+            "transports": [
+              {
+                "start": "Aquatic Life Museum",
+                "end": "Shuita Li's Crispy Dumplings (Shuita Branch)",
+                "mode": "taxi",
+                "start_time": "11:00",
+                "end_time": "11:11",
+                "cost": 31.56,
+                "distance": 7.67,
+                "price": 31.56,
+                "tickets": 1,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "train",
+            "start": "Wuhan Station",
+            "end": "Shenzhen North Railway Station",
+            "start_time": "12:56",
+            "end_time": "17:50",
+            "price": 582.03,
+            "cost": 1164.06,
+            "tickets": 2,
+            "transports": [
+              {
+                "start": "Shuita Li's Crispy Dumplings (Shuita Branch)",
+                "end": "Wuhan Station",
+                "mode": "taxi",
+                "start_time": "11:56",
+                "end_time": "12:16",
+                "cost": 55.59,
+                "distance": 13.53,
+                "price": 55.59,
+                "tickets": 1,
+                "cars": 1
+              }
+            ],
+            "TrainID": "G1189"
+          }
+        ]
+      }
+    ]
+  },
+  "steps": [
+    {
+      "step": 1,
+      "content": "\n\n\n\n\n\n\n\n\n",
+      "tool_calls": [
+        {
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Shenzhen",
+            "end_city": "Wuhan",
+            "intercity_type": "airplane"
+          }
+        },
+        {
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Wuhan",
+            "end_city": "Shenzhen",
+            "intercity_type": "train"
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Wuhan",
+            "start": "Wuhan Tianhe International Airport",
+            "end": "China Wuhan Iron and Steel Museum",
+            "start_time": "08:28",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Wuhan",
+            "start": "China Wuhan Iron and Steel Museum",
+            "end": "First Generation Roasted Chicken Wing King (Dahankou Branch)",
+            "start_time": "10:33",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Wuhan",
+            "start": "First Generation Roasted Chicken Wing King (Dahankou Branch)",
+            "end": "Qiyue Hotel",
+            "start_time": "11:45",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Wuhan",
+            "start": "Qiyue Hotel",
+            "end": "Aquatic Life Museum",
+            "start_time": "08:00",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Wuhan",
+            "start": "Aquatic Life Museum",
+            "end": "Shuita Li's Crispy Dumplings (Shuita Branch)",
+            "start_time": "11:00",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Wuhan",
+            "start": "Shuita Li's Crispy Dumplings (Shuita Branch)",
+            "end": "Wuhan Station",
+            "start_time": "11:56",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "intercity_transport_select",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Wuhan\\\", \\\"intercity_type\\\": \\\"airplane\\\", \\\"start_city\\\": \\\"Shenzhen\\\"})\", \"text\": \"['FlightID' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['FL222' \\\"Shenzhen Bao'an International Airport\\\"\\n 'Wuhan Tianhe International Airport' '01:39' '02:46' 1.12 419.39]\\n['FL226' \\\"Shenzhen Bao'an International Airport\\\"\\n 'Wuhan Tianhe International Airport' '02:19' '03:26' 1.12 464.6]\\n['FL225' \\\"Shenzhen Bao'an Internati"
+        },
+        {
+          "name": "intercity_transport_select",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Shenzhen\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Wuhan\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['G1001' 'High-speed rail' 'Wuhan Station'\\n 'Shenzhen North Railway Station' '07:25' '12:14' 4.82 582.03]\\n['G1003' 'High-speed rail' 'Wuhan Station'\\n 'Shenzhen North Railway Station' '07:55' '12:47' 4.87 582.03]\\n['G2705' 'High-speed rail' 'Wuhan Station' 'Shenzhe"
+        },
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"China Wuhan Iron and Steel Museum\\\", \\\"start\\\": \\\"Wuhan Tianhe International Airport\\\", \\\"start_time\\\": \\\"08:28\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Wuhan Tianhe International Airport', 'end': 'China Wuhan Iron and Steel Museum', 'mode': 'taxi', 'start_time': '08:28', 'end_time': '09:03', 'cost': 102.04, 'distance': 23.85}]\", \"data\": [{\"start\": \"Wuhan Tianhe International Airport\", \"end\": \"China Wuhan Iron an"
+        },
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"First Generation Roasted Chicken Wing King (Dahankou Branch)\\\", \\\"start\\\": \\\"China Wuhan Iron and Steel Museum\\\", \\\"start_time\\\": \\\"10:33\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'China Wuhan Iron and Steel Museum', 'end': 'First Generation Roasted Chicken Wing King (Dahankou Branch)', 'mode': 'taxi', 'start_time': '10:33', 'end_time': '10:52', 'cost': 54.22, 'distance': 13.23}]\", \"data\": [{\"start\": \"China Wuhan I"
+        },
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Qiyue Hotel\\\", \\\"start\\\": \\\"First Generation Roasted Chicken Wing King (Dahankou Branch)\\\", \\\"start_time\\\": \\\"11:45\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'First Generation Roasted Chicken Wing King (Dahankou Branch)', 'end': 'Qiyue Hotel', 'mode': 'taxi', 'start_time': '11:45', 'end_time': '12:04', 'cost': 54.46, 'distance': 13.28}]\", \"data\": [{\"start\": \"First Generation Roasted Chicken Wing King (Dahankou Bran"
+        },
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Aquatic Life Museum\\\", \\\"start\\\": \\\"Qiyue Hotel\\\", \\\"start_time\\\": \\\"08:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Qiyue Hotel', 'end': 'Aquatic Life Museum', 'mode': 'taxi', 'start_time': '08:00', 'end_time': '08:09', 'cost': 26.57, 'distance': 6.25}]\", \"data\": [{\"start\": \"Qiyue Hotel\", \"end\": \"Aquatic Life Museum\", \"mode\": \"taxi\", \"start_time\": \"08:00\", \"end_time\": \"08:09\", \"cost\": 26.57, \"distance\": 6.25}]}"
+        },
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Shuita Li's Crispy Dumplings (Shuita Branch)\\\", \\\"start\\\": \\\"Aquatic Life Museum\\\", \\\"start_time\\\": \\\"11:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Aquatic Life Museum', 'end': \\\"Shuita Li's Crispy Dumplings (Shuita Branch)\\\", 'mode': 'taxi', 'start_time': '11:00', 'end_time': '11:11', 'cost': 31.56, 'distance': 7.67}]\", \"data\": [{\"start\": \"Aquatic Life Museum\", \"end\": \"Shuita Li's Crispy Dumplings (Shuita Branc"
+        },
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Wuhan Station\\\", \\\"start\\\": \\\"Shuita Li's Crispy Dumplings (Shuita Branch)\\\", \\\"start_time\\\": \\\"11:56\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': \\\"Shuita Li's Crispy Dumplings (Shuita Branch)\\\", 'end': 'Wuhan Station', 'mode': 'taxi', 'start_time': '11:56', 'end_time': '12:16', 'cost': 55.59, 'distance': 13.53}]\", \"data\": [{\"start\": \"Shuita Li's Crispy Dumplings (Shuita Branch)\", \"end\": \"Wuhan Station\", \"mode\": \"tax"
+        }
+      ],
+      "latency_seconds": 40.76890033297241,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-ab430206-6c20-4bd0-906c-ac03ca774480",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 6089,
+      "completion_tokens": 4024,
+      "reasoning_tokens": 3346,
+      "attempts": 1,
+      "request_latencies": [
+        40.76890033297241
+      ]
+    },
+    {
+      "step": 2,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "intercity_transport_select",
+          "arguments": {
+            "earliest_leave_time": "12:20",
+            "end_city": "Shenzhen",
+            "intercity_type": "train",
+            "start_city": "Wuhan"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "intercity_transport_select",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"earliest_leave_time\\\": \\\"12:20\\\", \\\"end_city\\\": \\\"Shenzhen\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Wuhan\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['G1189' 'High-speed rail' 'Wuhan Station'\\n 'Shenzhen North Railway Station' '12:56' '17:50' 5.02 582.03]\\n['G335' 'High-speed rail' 'Wuhan Station' 'Shenzhen North Railway Station'\\n '13:16' '17:56' 4.73 582.03]\\n['G1009' 'High-s"
+        }
+      ],
+      "latency_seconds": 92.14606112393085,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-bfe97a4d-de68-4597-ae31-09fa72c13988",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 10995,
+      "completion_tokens": 120,
+      "reasoning_tokens": 42,
+      "attempts": 2,
+      "request_latencies": [
+        90.05179158295505,
+        2.0942695409758016
+      ]
+    },
+    {
+      "step": 3,
+      "content": "\n\n{\"$schema\": \"http://json-schema.org/draft-07/schema#\", \"people_number\": 2, \"start_city\": \"Shenzhen\", \"target_city\": \"Wuhan\", \"itinerary\": [{\"day\": 1, \"activities\": [{\"type\": \"airplane\", \"start\": \"Shenzhen Bao'an International Airport\", \"end\": \"Wuhan Tianhe International Airport\", \"start_time\": \"07:21\", \"end_time\": \"08:28\", \"price\": 445.8, \"cost\": 891.6, \"tickets\": 2, \"transports\": [], \"FlightID\": \"FL228\"}, {\"type\": \"attraction\", \"position\": \"China Wuhan Iron and Steel Museum\", \"price\": 0.0, \"cost\": 0.0, \"tickets\": 2, \"start_time\": \"09:03\", \"end_time\": \"10:33\", \"transports\": [{\"start\": \"Wuhan Tianhe International Airport\", \"end\": \"China Wuhan Iron and Steel Museum\", \"mode\": \"taxi\", \"start_time\": \"08:28\", \"end_time\": \"09:03\", \"cost\": 102.04, \"distance\": 23.85, \"price\": 102.04, \"tickets\": 1}]}, {\"type\": \"lunch\", \"position\": \"First Generation Roasted Chicken Wing King (Dahankou Branch)\", \"price\": 11.0, \"cost\": 22.0, \"start_time\": \"11:00\", \"end_time\": \"11:45\", \"transports\": [{\"start\": \"China Wuhan Iron and Steel Museum\", \"end\": \"First Generation Roasted Chicken Wing King (Dahankou Branch)\", \"mode\": \"taxi\", \"start_time\": \"10:33\", \"end_time\": \"10:52\", \"cost\": 54.22, \"distance\": 13.23, \"price\": 54.22, \"tickets\": 1}]}, {\"type\": \"accommodation\", \"position\": \"Qiyue Hotel\", \"price\": 78.0, \"cost\": 78.0, \"rooms\": 1, \"room_type\": 2, \"start_time\": \"18:00\", \"end_time\": \"23:59\", \"transports\": [{\"start\": \"First Generation Roasted Chicken Wing King (Dahankou Branch)\", \"end\": \"Qiyue Hotel\", \"mode\": \"taxi\", \"start_time\": \"11:45\", \"end_time\": \"12:04\", \"cost\": 54.46, \"distance\": 13.28, \"price\": 54.46, \"tickets\": 1}]}]}, {\"day\": 2, \"activities\": [{\"type\": \"attraction\", \"position\": \"Aquatic Life Museum\", \"price\": 0.0, \"cost\": 0.0, \"tickets\": 2, \"start_time\": \"08:30\", \"end_time\": \"11:00\", \"transports\": [{\"start\": \"Qiyue Hotel\", \"end\": \"Aquatic Life Museum\", \"mode\": \"taxi\", \"start_time\": \"08:00\", \"end_time\": \"08:09\", \"cost\": 26.57, \"distance\": 6.25, \"price\": 26.57, \"tickets\": 1}]}, {\"type\": ",
+      "tool_calls": [],
+      "tool_results": [],
+      "latency_seconds": 13.605246083985548,
+      "finish_reason": "stop",
+      "request_id": "chatcmpl-f1ed467a-e1c3-4732-804f-e563cba2c235",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 12555,
+      "completion_tokens": 1260,
+      "reasoning_tokens": 117,
+      "attempts": 1,
+      "request_latencies": [
+        13.605246083985548
+      ]
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 29639,
+    "completion_tokens": 5404,
+    "total_tokens": 35043,
+    "reasoning_tokens": 3505
+  },
+  "checker": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours",
+      "budget_not_found_in_text"
+    ]
+  },
+  "error": null,
+  "metadata": {
+    "event_text": "The user must return earlier: the trip is now 2 days instead of the original length.",
+    "usage_complete": true,
+    "request_count": 4,
+    "retry_count": 1,
+    "request_latency_seconds": 146.5202075408888
+  },
+  "started_at": "2026-10-30T18:19:37.913900+00:00",
+  "finished_at": "2026-10-30T18:22:06.921495+00:00",
+  "duration_seconds": 149.0075926670106,
+  "wall_seconds": 149.01003129198216,
+  "clarification": {
+    "status": "ready",
+    "base_revision": "1414637e7f9603ce908d3a902fce362dfb5bcdcf45f8676adc5157510a17edc8",
+    "task": {
+      "days": 3,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置深圳。我和朋友两个人想去武汉玩3天，想去中国武钢博物馆，请给我们一个旅行规划。",
+      "nature_language_en": "Current location: Shenzhen. My friend and I want to visit Wuhan for 3 days and we would like to go to the China WISCO Museum. Could you please provide us with a travel plan?",
+      "people_number": 2,
+      "start_city": "深圳",
+      "tag": "easy",
+      "target_city": "武汉",
+      "uid": "m20241028164830108978"
+    },
+    "seed_plan": {
+      "people_number": 2,
+      "start_city": "Shenzhen",
+      "target_city": "Wuhan",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "airplane",
+              "start": "Shenzhen Bao'an International Airport",
+              "end": "Wuhan Tianhe International Airport",
+              "start_time": "07:21",
+              "end_time": "08:28",
+              "price": 445.8,
+              "cost": 891.6,
+              "tickets": 2,
+              "transports": [],
+              "FlightID": "FL228"
+            },
+            {
+              "type": "attraction",
+              "position": "China Wuhan Iron and Steel Museum",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "09:03",
+              "end_time": "10:33",
+              "transports": [
+                {
+                  "start": "Wuhan Tianhe International Airport",
+                  "end": "China Wuhan Iron and Steel Museum",
+                  "mode": "taxi",
+                  "start_time": "08:28",
+                  "end_time": "09:03",
+                  "cost": 102.04,
+                  "distance": 23.85,
+                  "price": 102.04,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "First Generation Roasted Chicken Wing King (Dahankou Branch)",
+              "price": 11.0,
+              "cost": 22.0,
+              "start_time": "11:00",
+              "end_time": "11:45",
+              "transports": [
+                {
+                  "start": "China Wuhan Iron and Steel Museum",
+                  "end": "First Generation Roasted Chicken Wing King (Dahankou Branch)",
+                  "mode": "taxi",
+                  "start_time": "10:33",
+                  "end_time": "10:52",
+                  "cost": 54.22,
+                  "distance": 13.23,
+                  "price": 54.22,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Bagong House",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "11:48",
+              "end_time": "12:18",
+              "transports": [
+                {
+                  "start": "First Generation Roasted Chicken Wing King (Dahankou Branch)",
+                  "end": "Bagong House",
+                  "mode": "taxi",
+                  "start_time": "11:45",
+                  "end_time": "11:48",
+                  "cost": 11.98,
+                  "distance": 2.08,
+                  "price": 11.98,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "Qiyue Hotel",
+              "price": 78.0,
+              "cost": 78.0,
+              "rooms": 1,
+              "room_type": 2,
+              "start_time": "18:00",
+              "end_time": "23:59",
+              "transports": [
+                {
+                  "start": "Bagong House",
+                  "end": "Qiyue Hotel",
+                  "mode": "taxi",
+                  "start_time": "12:18",
+                  "end_time": "12:37",
+                  "cost": 53.71,
+                  "distance": 13.11,
+                  "price": 53.71,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "attraction",
+              "position": "Aquatic Life Museum",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "08:30",
+              "end_time": "11:00",
+              "transports": [
+                {
+                  "start": "Qiyue Hotel",
+                  "end": "Aquatic Life Museum",
+                  "mode": "taxi",
+                  "start_time": "08:00",
+                  "end_time": "08:09",
+                  "cost": 26.57,
+                  "distance": 6.25,
+                  "price": 26.57,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Shuita Li's Crispy Dumplings (Shuita Branch)",
+              "price": 7.0,
+              "cost": 14.0,
+              "start_time": "11:11",
+              "end_time": "11:56",
+              "transports": [
+                {
+                  "start": "Aquatic Life Museum",
+                  "end": "Shuita Li's Crispy Dumplings (Shuita Branch)",
+                  "mode": "taxi",
+                  "start_time": "11:00",
+                  "end_time": "11:11",
+                  "cost": 31.56,
+                  "distance": 7.67,
+                  "price": 31.56,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "5D Starry Sky Illusion Art Museum",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "11:57",
+              "end_time": "13:57",
+              "transports": [
+                {
+                  "start": "Shuita Li's Crispy Dumplings (Shuita Branch)",
+                  "end": "5D Starry Sky Illusion Art Museum",
+                  "mode": "taxi",
+                  "start_time": "11:56",
+                  "end_time": "11:57",
+                  "cost": 11.0,
+                  "distance": 1.13,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "Qiyue Hotel",
+              "price": 78.0,
+              "cost": 78.0,
+              "rooms": 1,
+              "room_type": 2,
+              "start_time": "18:00",
+              "end_time": "23:59",
+              "transports": [
+                {
+                  "start": "5D Starry Sky Illusion Art Museum",
+                  "end": "Qiyue Hotel",
+                  "mode": "taxi",
+                  "start_time": "13:57",
+                  "end_time": "14:17",
+                  "cost": 55.38,
+                  "distance": 13.48,
+                  "price": 55.38,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {
+              "type": "attraction",
+              "position": "Bafen Mountain",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "08:27",
+              "end_time": "09:57",
+              "transports": [
+                {
+                  "start": "Qiyue Hotel",
+                  "end": "Bafen Mountain",
+                  "mode": "taxi",
+                  "start_time": "08:00",
+                  "end_time": "08:27",
+                  "cost": 76.95,
+                  "distance": 18.28,
+                  "price": 76.95,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Feng's Fresh Fish Paste Noodle Soup",
+              "price": 6.0,
+              "cost": 12.0,
+              "start_time": "11:00",
+              "end_time": "11:45",
+              "transports": [
+                {
+                  "start": "Bafen Mountain",
+                  "end": "Feng's Fresh Fish Paste Noodle Soup",
+                  "mode": "taxi",
+                  "start_time": "09:57",
+                  "end_time": "10:26",
+                  "cost": 84.32,
+                  "distance": 19.92,
+                  "price": 84.32,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Ancient Alley Snack Street",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "11:47",
+              "end_time": "13:47",
+              "transports": [
+                {
+                  "start": "Feng's Fresh Fish Paste Noodle Soup",
+                  "end": "Ancient Alley Snack Street",
+                  "mode": "taxi",
+                  "start_time": "11:45",
+                  "end_time": "11:47",
+                  "cost": 11.0,
+                  "distance": 1.48,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "train",
+              "start": "Wuhan Station",
+              "end": "Shenzhen North Railway Station",
+              "start_time": "18:14",
+              "end_time": "22:44",
+              "price": 582.03,
+              "cost": 1164.06,
+              "tickets": 2,
+              "transports": [
+                {
+                  "start": "Ancient Alley Snack Street",
+                  "end": "Wuhan Station",
+                  "mode": "taxi",
+                  "start_time": "13:47",
+                  "end_time": "14:06",
+                  "cost": 53.46,
+                  "distance": 13.06,
+                  "price": 53.46,
+                  "cars": 1
+                }
+              ],
+              "TrainID": "G81"
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "kind": "return_earlier",
+      "day": null,
+      "new_days": 2,
+      "new_budget": null,
+      "target": null,
+      "description": ""
+    },
+    "state_revision": "d3104e0f63799946a7d2914652d66808dba7eb3cf4a5b3944e5a7de6c383586d"
+  },
+  "event": {
+    "kind": "return_earlier",
+    "new_days": 2
+  },
+  "event_check": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours",
+      "budget_not_found_in_text"
+    ]
+  }
+}

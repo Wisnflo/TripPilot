@@ -1,0 +1,555 @@
+{
+  "job": {
+    "uid": "e20241028160848776495",
+    "split": "medium",
+    "days": 2,
+    "method": "b2",
+    "kind": "static",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 90.0,
+    "attempts": 2
+  },
+  "result": {
+    "task_uid": "e20241028160848776495",
+    "method": "b2",
+    "model": "qwen3.8-reasoner",
+    "terminal_state": "checked_ok",
+    "plan": {
+      "people_number": 4,
+      "start_city": "Guangzhou",
+      "target_city": "Hangzhou",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "train",
+              "start_time": "07:16",
+              "end_time": "04:24",
+              "cost": 1677.0,
+              "price": 419.25,
+              "tickets": 4,
+              "start": "Guangzhou Station",
+              "end": "Hangzhou South Railway Station",
+              "TrainID": "K512",
+              "transports": []
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "accommodation",
+              "start_time": "04:54",
+              "end_time": "05:30",
+              "cost": 824.0,
+              "price": 412,
+              "tickets": 4,
+              "position": "Atour Hotel Hangzhou east railway station",
+              "rooms": 2,
+              "room_type": 2,
+              "transports": [
+                {
+                  "start": "Hangzhou South Railway Station",
+                  "end": "Atour Hotel Hangzhou east railway station",
+                  "mode": "taxi",
+                  "start_time": "04:30",
+                  "end_time": "04:54",
+                  "cost": 67.89,
+                  "price": 67.89,
+                  "distance": 16.26,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "start_time": "06:00",
+              "end_time": "08:00",
+              "cost": 0.0,
+              "price": 0,
+              "tickets": 4,
+              "position": "West Lake Scenic Area",
+              "transports": [
+                {
+                  "start": "Atour Hotel Hangzhou east railway station",
+                  "end": "West Lake Scenic Area",
+                  "mode": "taxi",
+                  "start_time": "05:30",
+                  "end_time": "05:45",
+                  "cost": 41.37,
+                  "price": 41.37,
+                  "distance": 10.37,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "train",
+              "start_time": "13:35",
+              "end_time": "04:51",
+              "cost": 2096.24,
+              "price": 524.06,
+              "tickets": 4,
+              "start": "Hangzhou South Railway Station",
+              "end": "Guangzhou Station",
+              "TrainID": "T169",
+              "transports": [
+                {
+                  "start": "West Lake Scenic Area",
+                  "end": "Hangzhou South Railway Station",
+                  "mode": "taxi",
+                  "start_time": "12:00",
+                  "end_time": "12:25",
+                  "cost": 72.0,
+                  "price": 72.0,
+                  "distance": 17.18,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step": 1,
+        "content": "\n\n\n\n\n",
+        "tool_calls": [
+          {
+            "name": "intercity_transport_select",
+            "arguments": {
+              "start_city": "Guangzhou",
+              "end_city": "Hangzhou",
+              "intercity_type": "train"
+            }
+          },
+          {
+            "name": "intercity_transport_select",
+            "arguments": {
+              "start_city": "Hangzhou",
+              "end_city": "Guangzhou",
+              "intercity_type": "train"
+            }
+          },
+          {
+            "name": "attractions_keys",
+            "arguments": {
+              "city": "Hangzhou"
+            }
+          },
+          {
+            "name": "accommodations_keys",
+            "arguments": {
+              "city": "Hangzhou"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "intercity_transport_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Hangzhou\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Guangzhou\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['K512' 'Express' 'Guangzhou Station' 'Hangzhou South Railway Station'\\n '07:16' '04:24' 21.38 419.25]\\n['G818' 'High-speed rail' 'Guangzhou South Railway Station'\\n 'Hangzhou East Railway Station' '08:00' '14:00' 6.0 681.28]\\n['G1184' 'High-speed rail' 'Guangzho"
+          },
+          {
+            "name": "intercity_transport_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Guangzhou\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Hangzhou\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['D3123' 'EMU (Electric Multiple Unit)' 'Hangzhou East Railway Station'\\n 'Guangzhou East Station' '07:20' '18:57' 11.62 628.88]\\n['D3122' 'EMU (Electric Multiple Unit)' 'Hangzhou East Railway Station'\\n 'Guangzhou East Station' '07:20' '18:57' 11.62 628.88]\\n['G"
+          },
+          {
+            "name": "attractions_keys",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"attractions_keys({\\\"city\\\": \\\"Hangzhou\\\"})\", \"text\": \"[('id', <class 'numpy.int64'>), ('name', <class 'str'>), ('type', <class 'str'>), ('lat', <class 'numpy.float64'>), ('lon', <class 'numpy.float64'>), ('opentime', <class 'str'>), ('endtime', <class 'str'>), ('price', <class 'numpy.float64'>), ('recommendmintime', <class 'numpy.float64'>), ('recommendmaxtime', <class 'numpy.float64'>)]\", \"data\": [[\"id\", \"<class 'numpy.int64'>\"], [\"name\", \"<class 'str'>\"], [\"type\","
+          },
+          {
+            "name": "accommodations_keys",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_keys({\\\"city\\\": \\\"Hangzhou\\\"})\", \"text\": \"[('id', <class 'numpy.int64'>), ('name', <class 'str'>), ('hotelname_en', <class 'str'>), ('featurehoteltype', <class 'str'>), ('lat', <class 'numpy.float64'>), ('lon', <class 'numpy.float64'>), ('price', <class 'numpy.int64'>), ('numbed', <class 'numpy.int64'>)]\", \"data\": [[\"id\", \"<class 'numpy.int64'>\"], [\"name\", \"<class 'str'>\"], [\"hotelname_en\", \"<class 'str'>\"], [\"featurehoteltype\", \"<class 'str'>\"], [\"la"
+          }
+        ],
+        "latency_seconds": 8.10741749999579,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-2eb1182d-c0aa-4cec-995f-67db0e3a138b",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 4016,
+        "completion_tokens": 708,
+        "reasoning_tokens": 531,
+        "attempts": 1,
+        "request_latencies": [
+          8.10741749999579
+        ]
+      },
+      {
+        "step": 2,
+        "content": "\n\n\n",
+        "tool_calls": [
+          {
+            "name": "attractions_select",
+            "arguments": {
+              "city": "Hangzhou",
+              "key": "price",
+              "op": "le",
+              "value": 0
+            }
+          },
+          {
+            "name": "accommodations_select",
+            "arguments": {
+              "city": "Hangzhou",
+              "key": "numbed",
+              "op": "eq",
+              "value": 2
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "attractions_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"attractions_select({\\\"city\\\": \\\"Hangzhou\\\", \\\"key\\\": \\\"price\\\", \\\"op\\\": \\\"le\\\", \\\"value\\\": 0})\", \"text\": \"['id' 'name' 'type' 'lat' 'lon' 'opentime' 'endtime' 'price'\\n 'recommendmintime' 'recommendmaxtime']\\n[0 'Lingyin Temple' 'historical site' 30.246914 120.107833 '06:30' '17:45'\\n 0.0 0.5 1.5]\\n[2 'West Lake Scenic Area' 'natural scenery' 30.228932 120.12792 '00:00'\\n '24:00' 0.0 1.0 2.0]\\n[9 'Leifeng Pagoda' 'historical site' 30.236901 120.155363 '08:00' '20:00"
+          },
+          {
+            "name": "accommodations_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_select({\\\"city\\\": \\\"Hangzhou\\\", \\\"key\\\": \\\"numbed\\\", \\\"op\\\": \\\"eq\\\", \\\"value\\\": 2})\", \"text\": \"['id' 'name' 'hotelname_en' 'featurehoteltype' 'lat' 'lon' 'price'\\n 'numbed']\\n[1 'Grand New Century Hotel Binjiang Hangzhou'\\n 'Grand New Century Hotel Binjiang Hangzhou' 'Butler Service' 30.169152\\n 120.168127 498 2]\\n[6 'Grand New Century Hotel Canal Hangzhou'\\n 'Grand New Century Hotel Canal Hangzhou' 'Executive Lounge' 30.310393\\n 120.159222 459 2]\\n[9"
+          }
+        ],
+        "latency_seconds": 107.63706895901123,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-960f2140-752c-44a8-ba4b-eea9abcce199",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 7742,
+        "completion_tokens": 1214,
+        "reasoning_tokens": 1084,
+        "attempts": 2,
+        "request_latencies": [
+          90.02496262500063,
+          17.612106334010605
+        ]
+      },
+      {
+        "step": 3,
+        "content": "\n\n\n",
+        "tool_calls": [
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Hangzhou",
+              "start": "Hangzhou South Railway Station",
+              "end": "Atour Hotel Hangzhou east railway station",
+              "start_time": "04:30",
+              "transport_type": "taxi"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Hangzhou",
+              "start": "Atour Hotel Hangzhou east railway station",
+              "end": "Hangzhou South Railway Station",
+              "start_time": "12:30",
+              "transport_type": "taxi"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Hangzhou\\\", \\\"end\\\": \\\"Atour Hotel Hangzhou east railway station\\\", \\\"start\\\": \\\"Hangzhou South Railway Station\\\", \\\"start_time\\\": \\\"04:30\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Hangzhou South Railway Station', 'end': 'Atour Hotel Hangzhou east railway station', 'mode': 'taxi', 'start_time': '04:30', 'end_time': '04:54', 'cost': 67.89, 'distance': 16.26}]\", \"data\": [{\"start\": \"Hangzhou South Railway Station\", \"end\": \"Atour Hotel H"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Hangzhou\\\", \\\"end\\\": \\\"Hangzhou South Railway Station\\\", \\\"start\\\": \\\"Atour Hotel Hangzhou east railway station\\\", \\\"start_time\\\": \\\"12:30\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Atour Hotel Hangzhou east railway station', 'end': 'Hangzhou South Railway Station', 'mode': 'taxi', 'start_time': '12:30', 'end_time': '12:54', 'cost': 67.89, 'distance': 16.26}]\", \"data\": [{\"start\": \"Atour Hotel Hangzhou east railway station\", \"end\": \"Ha"
+          }
+        ],
+        "latency_seconds": 61.30422633403214,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-5cc611a1-d60a-4d5e-ac31-e515d7322313",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 11372,
+        "completion_tokens": 4241,
+        "reasoning_tokens": 4059,
+        "attempts": 1,
+        "request_latencies": [
+          61.30422633403214
+        ]
+      },
+      {
+        "step": 4,
+        "content": "\n\n\n",
+        "tool_calls": [
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Hangzhou",
+              "end": "West Lake Scenic Area",
+              "start": "Atour Hotel Hangzhou east railway station",
+              "start_time": "05:30",
+              "transport_type": "taxi"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Hangzhou",
+              "end": "Hangzhou South Railway Station",
+              "start": "West Lake Scenic Area",
+              "start_time": "12:00",
+              "transport_type": "taxi"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Hangzhou\\\", \\\"end\\\": \\\"West Lake Scenic Area\\\", \\\"start\\\": \\\"Atour Hotel Hangzhou east railway station\\\", \\\"start_time\\\": \\\"05:30\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Atour Hotel Hangzhou east railway station', 'end': 'West Lake Scenic Area', 'mode': 'taxi', 'start_time': '05:30', 'end_time': '05:45', 'cost': 41.37, 'distance': 10.37}]\", \"data\": [{\"start\": \"Atour Hotel Hangzhou east railway station\", \"end\": \"West Lake Scenic Are"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Hangzhou\\\", \\\"end\\\": \\\"Hangzhou South Railway Station\\\", \\\"start\\\": \\\"West Lake Scenic Area\\\", \\\"start_time\\\": \\\"12:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'West Lake Scenic Area', 'end': 'Hangzhou South Railway Station', 'mode': 'taxi', 'start_time': '12:00', 'end_time': '12:25', 'cost': 72.0, 'distance': 17.18}]\", \"data\": [{\"start\": \"West Lake Scenic Area\", \"end\": \"Hangzhou South Railway Station\", \"mode\": \"taxi\", \"start_time\": "
+          }
+        ],
+        "latency_seconds": 47.398997624986805,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-cb02fb7d-b8b6-496d-a218-1618776b1c01",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 12002,
+        "completion_tokens": 3762,
+        "reasoning_tokens": 3583,
+        "attempts": 1,
+        "request_latencies": [
+          47.398997624986805
+        ]
+      },
+      {
+        "step": 5,
+        "content": "\n\n{\"people_number\":4,\"start_city\":\"Guangzhou\",\"target_city\":\"Hangzhou\",\"itinerary\":[{\"day\":1,\"activities\":[{\"type\":\"train\",\"start_time\":\"07:16\",\"end_time\":\"04:24\",\"cost\":1677.0,\"price\":419.25,\"tickets\":4,\"start\":\"Guangzhou Station\",\"end\":\"Hangzhou South Railway Station\",\"TrainID\":\"K512\",\"transports\":[]}]},{\"day\":2,\"activities\":[{\"type\":\"accommodation\",\"start_time\":\"04:54\",\"end_time\":\"05:30\",\"cost\":824.0,\"price\":412,\"tickets\":4,\"position\":\"Atour Hotel Hangzhou east railway station\",\"rooms\":2,\"room_type\":2,\"transports\":[{\"start\":\"Hangzhou South Railway Station\",\"end\":\"Atour Hotel Hangzhou east railway station\",\"mode\":\"taxi\",\"start_time\":\"04:30\",\"end_time\":\"04:54\",\"cost\":67.89,\"price\":67.89,\"distance\":16.26}]},{\"type\":\"attraction\",\"start_time\":\"06:00\",\"end_time\":\"08:00\",\"cost\":0,\"price\":0,\"tickets\":4,\"position\":\"West Lake Scenic Area\",\"transports\":[{\"start\":\"Atour Hotel Hangzhou east railway station\",\"end\":\"West Lake Scenic Area\",\"mode\":\"taxi\",\"start_time\":\"05:30\",\"end_time\":\"05:45\",\"cost\":41.37,\"price\":41.37,\"distance\":10.37}]},{\"type\":\"train\",\"start_time\":\"13:35\",\"end_time\":\"04:51\",\"cost\":2096.24,\"price\":524.06,\"tickets\":4,\"start\":\"Hangzhou South Railway Station\",\"end\":\"Guangzhou Station\",\"TrainID\":\"T169\",\"transports\":[{\"start\":\"West Lake Scenic Area\",\"end\":\"Hangzhou South Railway Station\",\"mode\":\"taxi\",\"start_time\":\"12:00\",\"end_time\":\"12:25\",\"cost\":72.0,\"price\":72.0,\"distance\":17.18}]}]}]}",
+        "tool_calls": [],
+        "tool_results": [],
+        "latency_seconds": 71.21374966698932,
+        "finish_reason": "stop",
+        "request_id": "chatcmpl-5f2905c7-ce2c-45cf-889f-a78a2c3b015d",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 12618,
+        "completion_tokens": 6559,
+        "reasoning_tokens": 6070,
+        "attempts": 1,
+        "request_latencies": [
+          71.21374966698932
+        ]
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 47750,
+      "completion_tokens": 16484,
+      "total_tokens": 64234,
+      "reasoning_tokens": 15327
+    },
+    "checker": {
+      "ok": true,
+      "violations": [],
+      "supported": [
+        "schema",
+        "day_count",
+        "people_number",
+        "start_target_city",
+        "activity_time_order",
+        "transport_time_order",
+        "transport_structure",
+        "activity_cost_rules",
+        "meal_time_windows",
+        "space_chain",
+        "accommodation_nights",
+        "intercity_transport_presence",
+        "ticket_fields",
+        "budget_if_in_text",
+        "entity_grounding",
+        "opening_hours",
+        "duplicate_activities",
+        "meal_type_once",
+        "transport_matches_goto",
+        "intercity_transport_values"
+      ],
+      "unsupported": [
+        "room_rules",
+        "overnight_hours"
+      ]
+    },
+    "error": null,
+    "metadata": {
+      "event_text": null,
+      "usage_complete": true,
+      "request_count": 6,
+      "retry_count": 1,
+      "request_latency_seconds": 295.6614600850153
+    },
+    "started_at": "2026-10-30T17:25:14.897761+00:00",
+    "finished_at": "2026-10-30T17:30:13.074164+00:00",
+    "duration_seconds": 298.1763476249762,
+    "wall_seconds": 298.17647545796353
+  },
+  "supervision": {
+    "returncode": 0,
+    "hard_timeout": false,
+    "cancelled": false,
+    "wall_seconds": 298.62165441701654
+  },
+  "ledger": {
+    "request_attempts": 6,
+    "completed_attempts": 6,
+    "pending_attempts": 0,
+    "observed_usage": {
+      "prompt_tokens": 47750,
+      "completion_tokens": 16484,
+      "total_tokens": 64234
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.030365200000000002,
+      "upper": 0.030365200000000002
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793381114.917762,
+        "attempt_id": "c2c83e4eaef443718faeda11ee484e6d",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793381123.0257652,
+        "attempt_id": "c2c83e4eaef443718faeda11ee484e6d",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 8.10741749999579,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-2eb1182d-c0aa-4cec-995f-67db0e3a138b",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 4016,
+        "completion_tokens": 708,
+        "total_tokens": 4724,
+        "reasoning_tokens": 531
+      },
+      {
+        "kind": "start",
+        "time": 1793381123.4799428,
+        "attempt_id": "0852c2209dc142949b6a04a57f89e1a0",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793381213.505802,
+        "attempt_id": "0852c2209dc142949b6a04a57f89e1a0",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 90.02496262500063,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793381215.5164201,
+        "attempt_id": "35e7e0fd531c42868ac888f5976e1e8b",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      },
+      {
+        "kind": "success",
+        "time": 1793381233.129376,
+        "attempt_id": "35e7e0fd531c42868ac888f5976e1e8b",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 17.612106334010605,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-960f2140-752c-44a8-ba4b-eea9abcce199",
+        "cached_prompt_tokens": 6912,
+        "prompt_tokens": 7742,
+        "completion_tokens": 1214,
+        "total_tokens": 8956,
+        "reasoning_tokens": 1084
+      },
+      {
+        "kind": "start",
+        "time": 1793381233.137556,
+        "attempt_id": "3d41c09ccc624210b6113c0162c3d07c",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793381294.442515,
+        "attempt_id": "3d41c09ccc624210b6113c0162c3d07c",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 61.30422633403214,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-5cc611a1-d60a-4d5e-ac31-e515d7322313",
+        "cached_prompt_tokens": 6912,
+        "prompt_tokens": 11372,
+        "completion_tokens": 4241,
+        "total_tokens": 15613,
+        "reasoning_tokens": 4059
+      },
+      {
+        "kind": "start",
+        "time": 1793381294.446492,
+        "attempt_id": "e264541f10c94dd8b964c8798aa62bf4",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793381341.846179,
+        "attempt_id": "e264541f10c94dd8b964c8798aa62bf4",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 47.398997624986805,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-cb02fb7d-b8b6-496d-a218-1618776b1c01",
+        "cached_prompt_tokens": 9984,
+        "prompt_tokens": 12002,
+        "completion_tokens": 3762,
+        "total_tokens": 15764,
+        "reasoning_tokens": 3583
+      },
+      {
+        "kind": "start",
+        "time": 1793381341.8495061,
+        "attempt_id": "e6fda356390b4542acb42841ae4e43e5",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793381413.063916,
+        "attempt_id": "e6fda356390b4542acb42841ae4e43e5",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 71.21374966698932,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-5f2905c7-ce2c-45cf-889f-a78a2c3b015d",
+        "cached_prompt_tokens": 10752,
+        "prompt_tokens": 12618,
+        "completion_tokens": 6559,
+        "total_tokens": 19177,
+        "reasoning_tokens": 6070
+      }
+    ]
+  }
+}

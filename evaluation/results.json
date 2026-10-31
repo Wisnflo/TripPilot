@@ -1,0 +1,195 @@
+{
+  "evaluated_on": "2026-10-31",
+  "model_alias": "qwen3.8-reasoner",
+  "baseline": "ReAct + runtime checker (b2)",
+  "runs": {
+    "v3-static-test-01": {
+      "b2": {
+        "n": 24,
+        "pass": 9,
+        "usable": 3,
+        "schema": 14,
+        "cs": 13,
+        "hard": 9,
+        "tokens": 2511093,
+        "seconds": 7130.675604960939,
+        "p50": 303.674380125507,
+        "p95": 360.023578458,
+        "requests": 208,
+        "fallback": 0,
+        "cost_low": 1.021557,
+        "cost_high": 1.021557,
+        "unknown_bill_tasks": 18,
+        "terminals": {
+          "checked_ok": 13,
+          "hard_timeout": 6,
+          "checked_with_violations": 1,
+          "request_error": 4
+        }
+      },
+      "structured": {
+        "n": 24,
+        "pass": 17,
+        "usable": 17,
+        "schema": 17,
+        "cs": 17,
+        "hard": 17,
+        "tokens": 561673,
+        "seconds": 4088.184829832113,
+        "p50": 134.95737104202271,
+        "p95": 360.03335975005757,
+        "requests": 91,
+        "fallback": 0,
+        "cost_low": 0.4393305999999999,
+        "cost_high": 0.4393305999999999,
+        "unknown_bill_tasks": 10,
+        "terminals": {
+          "checked_ok": 17,
+          "hard_timeout": 4,
+          "request_error": 3
+        }
+      }
+    },
+    "v3-static-repeat-01": {
+      "b2": {
+        "n": 6,
+        "pass": 3,
+        "usable": 0,
+        "schema": 4,
+        "cs": 3,
+        "hard": 4,
+        "tokens": 812473,
+        "seconds": 1915.6313444169355,
+        "p50": 359.3569670209836,
+        "p95": 360.02282983402256,
+        "requests": 59,
+        "fallback": 0,
+        "cost_low": 0.325177,
+        "cost_high": 0.325177,
+        "unknown_bill_tasks": 3,
+        "terminals": {
+          "checked_ok": 3,
+          "hard_timeout": 2,
+          "request_error": 1
+        }
+      },
+      "structured": {
+        "n": 6,
+        "pass": 6,
+        "usable": 6,
+        "schema": 6,
+        "cs": 6,
+        "hard": 6,
+        "tokens": 107023,
+        "seconds": 708.277391540003,
+        "p50": 112.05293854099,
+        "p95": 164.15775366604794,
+        "requests": 16,
+        "fallback": 0,
+        "cost_low": 0.0904342,
+        "cost_high": 0.0904342,
+        "unknown_bill_tasks": 1,
+        "terminals": {
+          "checked_ok": 6
+        }
+      }
+    },
+    "v3-static-repeat-02": {
+      "b2": {
+        "n": 6,
+        "pass": 2,
+        "usable": 0,
+        "schema": 4,
+        "cs": 3,
+        "hard": 2,
+        "tokens": 858729,
+        "seconds": 1689.4682627070579,
+        "p50": 299.02202972900704,
+        "p95": 360.02375724999,
+        "requests": 61,
+        "fallback": 0,
+        "cost_low": 0.32719620000000005,
+        "cost_high": 0.32719620000000005,
+        "unknown_bill_tasks": 3,
+        "terminals": {
+          "checked_ok": 3,
+          "checked_with_violations": 1,
+          "hard_timeout": 2
+        }
+      },
+      "structured": {
+        "n": 6,
+        "pass": 6,
+        "usable": 6,
+        "schema": 6,
+        "cs": 6,
+        "hard": 6,
+        "tokens": 88155,
+        "seconds": 478.05377291695913,
+        "p50": 77.66475204148446,
+        "p95": 94.92747733404394,
+        "requests": 14,
+        "fallback": 0,
+        "cost_low": 0.08055179999999999,
+        "cost_high": 0.08055179999999999,
+        "unknown_bill_tasks": 0,
+        "terminals": {
+          "checked_ok": 6
+        }
+      }
+    },
+    "v3-dynamic-test-01": {
+      "b2": {
+        "n": 33,
+        "pass": 22,
+        "usable": 22,
+        "schema": 25,
+        "cs": 23,
+        "hard": 23,
+        "tokens": 1555663,
+        "seconds": 4285.807886954863,
+        "p50": 116.97879504103912,
+        "p95": 240.02740066696424,
+        "requests": 164,
+        "fallback": 0,
+        "cost_low": 0.7075606000000001,
+        "cost_high": 0.7075606000000001,
+        "unknown_bill_tasks": 9,
+        "terminals": {
+          "checked_ok": 23,
+          "hard_timeout": 8,
+          "checked_with_violations": 2
+        }
+      },
+      "patch": {
+        "n": 33,
+        "pass": 27,
+        "usable": 27,
+        "schema": 28,
+        "cs": 28,
+        "hard": 27,
+        "tokens": 951153,
+        "seconds": 2593.228591958934,
+        "p50": 1.0153050829540007,
+        "p95": 240.0217252909788,
+        "requests": 90,
+        "fallback": 11,
+        "cost_low": 0.42653220000000003,
+        "cost_high": 0.42653220000000003,
+        "unknown_bill_tasks": 6,
+        "terminals": {
+          "checked_ok": 28,
+          "hard_timeout": 5
+        }
+      }
+    }
+  },
+  "notes": [
+    "24 independent static parents, balanced 8 per difficulty; repeats are not extra independent parents",
+    "Dynamic conditional on 11 successful structured multi-day intercity seeds; 33 events, not end-to-end success",
+    "All errors/timeouts retained; no outcome-selected retries",
+    "Returned usage only; actual billed totals unknown",
+    "Original protocol source hashes describe the evaluated snapshot; publication changes packaging/docs, not core src",
+    "Absolute local project paths in published artifacts replaced by {PROJECT_ROOT}; original local evidence unchanged"
+  ]
+}

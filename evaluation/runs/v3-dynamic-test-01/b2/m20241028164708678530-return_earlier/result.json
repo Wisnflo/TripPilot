@@ -1,0 +1,776 @@
+{
+  "task_uid": "m20241028164708678530",
+  "method": "b2",
+  "model": "qwen3.8-reasoner",
+  "terminal_state": "checked_ok",
+  "plan": {
+    "people_number": 2,
+    "start_city": "Nanjing",
+    "target_city": "Beijing",
+    "itinerary": [
+      {
+        "day": 1,
+        "activities": [
+          {
+            "type": "airplane",
+            "start": "Nanjing Lukou International Airport",
+            "end": "Beijing Daxing International Airport",
+            "start_time": "07:53",
+            "end_time": "09:00",
+            "price": 470.31,
+            "cost": 940.62,
+            "tickets": 2,
+            "transports": [],
+            "FlightID": "FL657"
+          },
+          {
+            "type": "lunch",
+            "position": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)",
+            "price": 16.0,
+            "cost": 32.0,
+            "start_time": "11:00",
+            "end_time": "11:45",
+            "transports": [
+              {
+                "start": "Beijing Daxing International Airport",
+                "end": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)",
+                "mode": "taxi",
+                "start_time": "09:00",
+                "end_time": "10:12",
+                "cost": 213.44,
+                "distance": 48.61,
+                "price": 213.44,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Beihai Park",
+            "price": 0.0,
+            "cost": 0.0,
+            "tickets": 2,
+            "start_time": "11:46",
+            "end_time": "14:16",
+            "transports": [
+              {
+                "start": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)",
+                "end": "Beihai Park",
+                "mode": "taxi",
+                "start_time": "11:45",
+                "end_time": "11:46",
+                "cost": 11.0,
+                "distance": 1.0,
+                "price": 11.0,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Beijing Central Axis Tour by Ding-Ding Tram",
+            "price": 0.0,
+            "cost": 0.0,
+            "tickets": 2,
+            "start_time": "14:21",
+            "end_time": "14:51",
+            "transports": [
+              {
+                "start": "Beihai Park",
+                "end": "Beijing Central Axis Tour by Ding-Ding Tram",
+                "mode": "taxi",
+                "start_time": "14:16",
+                "end_time": "14:21",
+                "cost": 16.43,
+                "distance": 3.35,
+                "price": 16.43,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "accommodation",
+            "position": "Beijing Zhongguancun Xueyuanqiao Subway Station Yaduo Hotel",
+            "price": 702.0,
+            "cost": 702.0,
+            "rooms": 1,
+            "room_type": 2,
+            "start_time": "18:00",
+            "end_time": "23:59",
+            "transports": [
+              {
+                "start": "Beijing Central Axis Tour by Ding-Ding Tram",
+                "end": "Beijing Zhongguancun Xueyuanqiao Subway Station Yaduo Hotel",
+                "mode": "taxi",
+                "start_time": "14:51",
+                "end_time": "15:06",
+                "cost": 40.71,
+                "distance": 10.22,
+                "price": 40.71,
+                "cars": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "activities": [
+          {
+            "type": "attraction",
+            "position": "798 Art District",
+            "price": 0.0,
+            "cost": 0.0,
+            "tickets": 2,
+            "start_time": "08:19",
+            "end_time": "10:49",
+            "transports": [
+              {
+                "start": "Beijing Zhongguancun Xueyuanqiao Subway Station Yaduo Hotel",
+                "end": "798 Art District",
+                "mode": "taxi",
+                "start_time": "08:00",
+                "end_time": "08:19",
+                "cost": 52.61,
+                "distance": 12.87,
+                "price": 52.61,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "position": "Zengshengkui Snack Shop",
+            "price": 16.0,
+            "cost": 32.0,
+            "start_time": "11:04",
+            "end_time": "11:49",
+            "transports": [
+              {
+                "start": "798 Art District",
+                "end": "Zengshengkui Snack Shop",
+                "mode": "taxi",
+                "start_time": "10:49",
+                "end_time": "11:04",
+                "cost": 41.63,
+                "distance": 10.43,
+                "price": 41.63,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "airplane",
+            "start": "Beijing Capital International Airport",
+            "end": "Nanjing Lukou International Airport",
+            "start_time": "19:54",
+            "end_time": "21:01",
+            "price": 479.32,
+            "cost": 958.64,
+            "tickets": 2,
+            "transports": [
+              {
+                "start": "Zengshengkui Snack Shop",
+                "end": "Beijing Capital International Airport",
+                "mode": "taxi",
+                "start_time": "11:49",
+                "end_time": "12:24",
+                "cost": 100.89,
+                "distance": 23.6,
+                "price": 100.89,
+                "cars": 1
+              }
+            ],
+            "FlightID": "FL160"
+          }
+        ]
+      }
+    ]
+  },
+  "steps": [
+    {
+      "step": 1,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Zengshengkui Snack Shop",
+            "end": "Beijing Capital International Airport",
+            "start_time": "11:49",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Beijing\\\", \\\"end\\\": \\\"Beijing Capital International Airport\\\", \\\"start\\\": \\\"Zengshengkui Snack Shop\\\", \\\"start_time\\\": \\\"11:49\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Zengshengkui Snack Shop', 'end': 'Beijing Capital International Airport', 'mode': 'taxi', 'start_time': '11:49', 'end_time': '12:24', 'cost': 100.89, 'distance': 23.6}]\", \"data\": [{\"start\": \"Zengshengkui Snack Shop\", \"end\": \"Beijing Capital International Airport\", \"mo"
+        }
+      ],
+      "latency_seconds": 20.826899874955416,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-c185adee-9362-4836-90a8-9a003b02c70c",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 6212,
+      "completion_tokens": 1487,
+      "reasoning_tokens": 1396,
+      "attempts": 1,
+      "request_latencies": [
+        20.826899874955416
+      ]
+    },
+    {
+      "step": 2,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Zengshengkui Snack Shop",
+            "end": "Beijing Capital International Airport",
+            "start_time": "11:49",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Beijing\\\", \\\"end\\\": \\\"Beijing Capital International Airport\\\", \\\"start\\\": \\\"Zengshengkui Snack Shop\\\", \\\"start_time\\\": \\\"11:49\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Zengshengkui Snack Shop', 'end': 'Beijing Capital International Airport', 'mode': 'taxi', 'start_time': '11:49', 'end_time': '12:24', 'cost': 100.89, 'distance': 23.6}]\", \"data\": [{\"start\": \"Zengshengkui Snack Shop\", \"end\": \"Beijing Capital International Airport\", \"mo"
+        }
+      ],
+      "latency_seconds": 6.828346625028644,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-d77feee4-e08c-4dc9-a100-fa9e9ad16486",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 6529,
+      "completion_tokens": 473,
+      "reasoning_tokens": 382,
+      "attempts": 1,
+      "request_latencies": [
+        6.828346625028644
+      ]
+    },
+    {
+      "step": 3,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beijing Zhongguancun Xueyuanqiao Subway Station Yaduo Hotel",
+            "end": "798 Art District",
+            "start_time": "08:00",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Beijing\\\", \\\"end\\\": \\\"798 Art District\\\", \\\"start\\\": \\\"Beijing Zhongguancun Xueyuanqiao Subway Station Yaduo Hotel\\\", \\\"start_time\\\": \\\"08:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Beijing Zhongguancun Xueyuanqiao Subway Station Yaduo Hotel', 'end': '798 Art District', 'mode': 'taxi', 'start_time': '08:00', 'end_time': '08:19', 'cost': 52.61, 'distance': 12.87}]\", \"data\": [{\"start\": \"Beijing Zhongguancun Xueyuanqiao Subway Station"
+        }
+      ],
+      "latency_seconds": 13.633022916968912,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-763fc811-43ec-4547-95c6-3257111db1be",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 6846,
+      "completion_tokens": 1385,
+      "reasoning_tokens": 1283,
+      "attempts": 1,
+      "request_latencies": [
+        13.633022916968912
+      ]
+    },
+    {
+      "step": 4,
+      "content": "\n\n{\"$schema\": \"http://json-schema.org/draft-07/schema#\", \"type\": \"object\", \"properties\": {\"people_number\": {\"type\": \"integer\"}, \"start_city\": {\"type\": \"string\"}, \"target_city\": {\"type\": \"string\"}, \"itinerary\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"day\": {\"type\": \"integer\"}, \"activities\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"type\": {\"type\": \"string\", \"enum\": [\"airplane\", \"attraction\", \"lunch\", \"dinner\", \"breakfast\", \"accommodation\", \"train\"]}, \"start_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"end_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"cost\": {\"type\": \"number\"}, \"price\": {\"type\": \"number\"}, \"tickets\": {\"type\": \"integer\"}, \"position\": {\"type\": \"string\"}, \"transports\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"start\": {\"type\": \"string\"}, \"end\": {\"type\": \"string\"}, \"mode\": {\"type\": \"string\", \"enum\": [\"walk\", \"metro\", \"taxi\"]}, \"start_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"end_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"cost\": {\"type\": \"number\"}, \"price\": {\"type\": \"number\"}, \"distance\": {\"type\": \"number\"}, \"tickets\": {\"type\": \"integer\"}}, \"required\": [\"start\", \"end\", \"mode\", \"start_time\", \"end_time\", \"price\", \"cost\", \"distance\"]}}, \"room_type\": {\"type\": \"integer\"}, \"rooms\": {\"type\": \"integer\"}, \"FlightID\": {\"type\": \"string\"}, \"TrainID\": {\"type\": \"string\"}}, \"required\": [\"type\", \"start_time\", \"end_time\", \"cost\", \"price\", \"transports\"], \"allOf\": [{\"if\": {\"properties\": {\"type\": {\"enum\": [\"airplane\", \"train\"]}}, \"required\": [\"type\"]}, \"then\": {\"required\": [\"start\", \"end\"], \"not\": {\"required\": [\"position\"]}}, \"else\": {\"required\": [\"position\"], \"not\": {\"anyOf\": [{\"required\": [\"start\"]}, {\"required\": [\"end\"]}, {\"required\": [\"FlightID\"]}, {\"required\": [\"TrainID\"]}]}}}, {\"if\": {\"properties\": {\"type\": {\"const\": \"airplane\"}}}, \"then\": {\"required\": [\"FlightID\"]}}, {\"if\": {\"properties\": {\"type\": {\"const\": \"train\"}}}, \"then\": {\"required\": [\"TrainID\"]}}",
+      "tool_calls": [],
+      "tool_results": [],
+      "latency_seconds": 19.0785914590233,
+      "finish_reason": "stop",
+      "request_id": "chatcmpl-a8710d62-1738-4cf1-90a9-19414cfa2225",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 7207,
+      "completion_tokens": 1385,
+      "reasoning_tokens": 714,
+      "attempts": 1,
+      "request_latencies": [
+        19.0785914590233
+      ]
+    },
+    {
+      "step": 5,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "798 Art District",
+            "end": "Zengshengkui Snack Shop",
+            "start_time": "10:49",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Beijing\\\", \\\"end\\\": \\\"Zengshengkui Snack Shop\\\", \\\"start\\\": \\\"798 Art District\\\", \\\"start_time\\\": \\\"10:49\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': '798 Art District', 'end': 'Zengshengkui Snack Shop', 'mode': 'taxi', 'start_time': '10:49', 'end_time': '11:04', 'cost': 41.63, 'distance': 10.43}]\", \"data\": [{\"start\": \"798 Art District\", \"end\": \"Zengshengkui Snack Shop\", \"mode\": \"taxi\", \"start_time\": \"10:49\", \"end_time\": \"11:04\", \"cost\""
+        }
+      ],
+      "latency_seconds": 3.6267042919644155,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-01e51fad-0aa1-497d-984e-8e1826aba036",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 7970,
+      "completion_tokens": 143,
+      "reasoning_tokens": 52,
+      "attempts": 1,
+      "request_latencies": [
+        3.6267042919644155
+      ]
+    },
+    {
+      "step": 6,
+      "content": "\n\n{\"people_number\": 2, \"start_city\": \"Nanjing\", \"target_city\": \"Beijing\", \"itinerary\": [{\"day\": 1, \"activities\": [{\"type\": \"airplane\", \"start\": \"Nanjing Lukou International Airport\", \"end\": \"Beijing Daxing International Airport\", \"start_time\": \"07:53\", \"end_time\": \"09:00\", \"price\": 470.31, \"cost\": 940.62, \"tickets\": 2, \"transports\": [], \"FlightID\": \"FL657\"}, {\"type\": \"lunch\", \"position\": \"Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)\", \"price\": 16.0, \"cost\": 32.0, \"start_time\": \"11:00\", \"end_time\": \"11:45\", \"transports\": [{\"start\": \"Beijing Daxing International Airport\", \"end\": \"Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)\", \"mode\": \"taxi\", \"start_time\": \"09:00\", \"end_time\": \"10:12\", \"cost\": 213.44, \"distance\": 48.61, \"price\": 213.44}]}, {\"type\": \"attraction\", \"position\": \"Beihai Park\", \"price\": 0.0, \"cost\": 0.0, \"tickets\": 2, \"start_time\": \"11:46\", \"end_time\": \"14:16\", \"transports\": [{\"start\": \"Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)\", \"end\": \"Beihai Park\", \"mode\": \"taxi\", \"start_time\": \"11:45\", \"end_time\": \"11:46\", \"cost\": 11.0, \"distance\": 1.0, \"price\": 11.0}]}, {\"type\": \"attraction\", \"position\": \"Beijing Central Axis Tour by Ding-Ding Tram\", \"price\": 0.0, \"cost\": 0.0, \"tickets\": 2, \"start_time\": \"14:21\", \"end_time\": \"14:51\", \"transports\": [{\"start\": \"Beihai Park\", \"end\": \"Beijing Central Axis Tour by Ding-Ding Tram\", \"mode\": \"taxi\", \"start_time\": \"14:16\", \"end_time\": \"14:21\", \"cost\": 16.43, \"distance\": 3.35, \"price\": 16.43}]}, {\"type\": \"accommodation\", \"position\": \"Beijing Zhongguancun Xueyuanqiao Subway Station Yaduo Hotel\", \"price\": 702.0, \"cost\": 702.0, \"rooms\": 1, \"room_type\": 2, \"start_time\": \"18:00\", \"end_time\": \"23:59\", \"transports\": [{\"start\": \"Beijing Central Axis Tour by Ding-Ding Tram\", \"end\": \"Beijing Zhongguancun Xueyuanqiao Subway Station Yaduo Hotel\", \"mode\": \"taxi\", \"start_time\": \"14:51\", \"end_time\": \"15:06\", \"cost\": 40.71, \"distance\": 10.22, \"price\": 40.71}]}]}, {\"day\": 2, \"activities\": [{\"type\": \"attraction\"",
+      "tool_calls": [],
+      "tool_results": [],
+      "latency_seconds": 15.978291750012431,
+      "finish_reason": "stop",
+      "request_id": "chatcmpl-ece43ff0-f483-41b2-92cd-176e0e7e02ad",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 8287,
+      "completion_tokens": 1533,
+      "reasoning_tokens": 253,
+      "attempts": 1,
+      "request_latencies": [
+        15.978291750012431
+      ]
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 43051,
+    "completion_tokens": 6406,
+    "total_tokens": 49457,
+    "reasoning_tokens": 4080
+  },
+  "checker": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours",
+      "budget_not_found_in_text"
+    ]
+  },
+  "error": null,
+  "metadata": {
+    "event_text": "The user must return earlier: the trip is now 2 days instead of the original length.",
+    "usage_complete": true,
+    "request_count": 6,
+    "retry_count": 0,
+    "request_latency_seconds": 79.97185691795312
+  },
+  "started_at": "2026-10-30T18:16:59.177751+00:00",
+  "finished_at": "2026-10-30T18:18:19.677218+00:00",
+  "duration_seconds": 80.49946841597557,
+  "wall_seconds": 80.50272845895961,
+  "clarification": {
+    "status": "ready",
+    "base_revision": "4cb77e48f10e8dbf0c73d65769d9e54d1367fed4a52a62d19ef354640cd92cf8",
+    "task": {
+      "days": 3,
+      "limit_rooms": true,
+      "limits_room_type": true,
+      "nature_language": "当前位置南京。我和朋友两个人想去北京玩3天，住一间双床房，酒店要可以看电影，请给我一个旅行规划。",
+      "nature_language_en": "Current location: Nanjing. My friend and I want to go to Beijing for 3 days. We need a twin room in a hotel that offers movie-watching facilities. Please provide me with a travel plan.",
+      "people_number": 2,
+      "start_city": "南京",
+      "tag": "easy",
+      "target_city": "北京",
+      "uid": "m20241028164708678530"
+    },
+    "seed_plan": {
+      "people_number": 2,
+      "start_city": "Nanjing",
+      "target_city": "Beijing",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "airplane",
+              "start": "Nanjing Lukou International Airport",
+              "end": "Beijing Daxing International Airport",
+              "start_time": "07:53",
+              "end_time": "09:00",
+              "price": 470.31,
+              "cost": 940.62,
+              "tickets": 2,
+              "transports": [],
+              "FlightID": "FL657"
+            },
+            {
+              "type": "lunch",
+              "position": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)",
+              "price": 16.0,
+              "cost": 32.0,
+              "start_time": "11:00",
+              "end_time": "11:45",
+              "transports": [
+                {
+                  "start": "Beijing Daxing International Airport",
+                  "end": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)",
+                  "mode": "taxi",
+                  "start_time": "09:00",
+                  "end_time": "10:12",
+                  "cost": 213.44,
+                  "distance": 48.61,
+                  "price": 213.44,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Beihai Park",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "11:46",
+              "end_time": "14:16",
+              "transports": [
+                {
+                  "start": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)",
+                  "end": "Beihai Park",
+                  "mode": "taxi",
+                  "start_time": "11:45",
+                  "end_time": "11:46",
+                  "cost": 11.0,
+                  "distance": 1.0,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Beijing Central Axis Tour by Ding-Ding Tram",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "14:21",
+              "end_time": "14:51",
+              "transports": [
+                {
+                  "start": "Beihai Park",
+                  "end": "Beijing Central Axis Tour by Ding-Ding Tram",
+                  "mode": "taxi",
+                  "start_time": "14:16",
+                  "end_time": "14:21",
+                  "cost": 16.43,
+                  "distance": 3.35,
+                  "price": 16.43,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "Beijing Zhongguancun Xueyuanqiao Subway Station Yaduo Hotel",
+              "price": 702.0,
+              "cost": 702.0,
+              "rooms": 1,
+              "room_type": 2,
+              "start_time": "18:00",
+              "end_time": "23:59",
+              "transports": [
+                {
+                  "start": "Beijing Central Axis Tour by Ding-Ding Tram",
+                  "end": "Beijing Zhongguancun Xueyuanqiao Subway Station Yaduo Hotel",
+                  "mode": "taxi",
+                  "start_time": "14:51",
+                  "end_time": "15:06",
+                  "cost": 40.71,
+                  "distance": 10.22,
+                  "price": 40.71,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "attraction",
+              "position": "798 Art District",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "08:19",
+              "end_time": "10:49",
+              "transports": [
+                {
+                  "start": "Beijing Zhongguancun Xueyuanqiao Subway Station Yaduo Hotel",
+                  "end": "798 Art District",
+                  "mode": "taxi",
+                  "start_time": "08:00",
+                  "end_time": "08:19",
+                  "cost": 52.61,
+                  "distance": 12.87,
+                  "price": 52.61,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Zengshengkui Snack Shop",
+              "price": 16.0,
+              "cost": 32.0,
+              "start_time": "11:04",
+              "end_time": "11:49",
+              "transports": [
+                {
+                  "start": "798 Art District",
+                  "end": "Zengshengkui Snack Shop",
+                  "mode": "taxi",
+                  "start_time": "10:49",
+                  "end_time": "11:04",
+                  "cost": 41.63,
+                  "distance": 10.43,
+                  "price": 41.63,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Apiron Creativity Park",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "12:32",
+              "end_time": "13:32",
+              "transports": [
+                {
+                  "start": "Zengshengkui Snack Shop",
+                  "end": "Apiron Creativity Park",
+                  "mode": "taxi",
+                  "start_time": "11:49",
+                  "end_time": "12:32",
+                  "cost": 126.07,
+                  "distance": 29.19,
+                  "price": 126.07,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "Beijing Zhongguancun Xueyuanqiao Subway Station Yaduo Hotel",
+              "price": 702.0,
+              "cost": 702.0,
+              "rooms": 1,
+              "room_type": 2,
+              "start_time": "18:00",
+              "end_time": "23:59",
+              "transports": [
+                {
+                  "start": "Apiron Creativity Park",
+                  "end": "Beijing Zhongguancun Xueyuanqiao Subway Station Yaduo Hotel",
+                  "mode": "taxi",
+                  "start_time": "13:32",
+                  "end_time": "14:25",
+                  "cost": 156.49,
+                  "distance": 35.95,
+                  "price": 156.49,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {
+              "type": "attraction",
+              "position": "Beijing Ancient Architecture Museum",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "09:00",
+              "end_time": "10:00",
+              "transports": [
+                {
+                  "start": "Beijing Zhongguancun Xueyuanqiao Subway Station Yaduo Hotel",
+                  "end": "Beijing Ancient Architecture Museum",
+                  "mode": "taxi",
+                  "start_time": "08:00",
+                  "end_time": "08:18",
+                  "cost": 49.64,
+                  "distance": 12.21,
+                  "price": 49.64,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Dahua Pancake (Jiaodaokou North Scissors Lane Branch)",
+              "price": 12.0,
+              "cost": 24.0,
+              "start_time": "11:00",
+              "end_time": "11:45",
+              "transports": [
+                {
+                  "start": "Beijing Ancient Architecture Museum",
+                  "end": "Dahua Pancake (Jiaodaokou North Scissors Lane Branch)",
+                  "mode": "taxi",
+                  "start_time": "10:00",
+                  "end_time": "10:09",
+                  "cost": 25.77,
+                  "distance": 6.02,
+                  "price": 25.77,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Beijing Aquarium",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "11:53",
+              "end_time": "12:23",
+              "transports": [
+                {
+                  "start": "Dahua Pancake (Jiaodaokou North Scissors Lane Branch)",
+                  "end": "Beijing Aquarium",
+                  "mode": "taxi",
+                  "start_time": "11:45",
+                  "end_time": "11:53",
+                  "cost": 24.71,
+                  "distance": 5.72,
+                  "price": 24.71,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "airplane",
+              "start": "Beijing Capital International Airport",
+              "end": "Nanjing Lukou International Airport",
+              "start_time": "19:54",
+              "end_time": "21:01",
+              "price": 479.32,
+              "cost": 958.64,
+              "tickets": 2,
+              "transports": [
+                {
+                  "start": "Beijing Aquarium",
+                  "end": "Beijing Capital International Airport",
+                  "mode": "taxi",
+                  "start_time": "12:23",
+                  "end_time": "13:02",
+                  "cost": 112.51,
+                  "distance": 26.18,
+                  "price": 112.51,
+                  "cars": 1
+                }
+              ],
+              "FlightID": "FL160"
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "kind": "return_earlier",
+      "day": null,
+      "new_days": 2,
+      "new_budget": null,
+      "target": null,
+      "description": ""
+    },
+    "state_revision": "e3b162f766c04c7db52db02e0e4a6f58c0166764545397bbcfad502b30aa5d26"
+  },
+  "event": {
+    "kind": "return_earlier",
+    "new_days": 2
+  },
+  "event_check": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours",
+      "budget_not_found_in_text"
+    ]
+  }
+}

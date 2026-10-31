@@ -1,0 +1,652 @@
+{
+  "job": {
+    "uid": "t20241206211714065305",
+    "split": "easy",
+    "days": 2,
+    "method": "b2",
+    "kind": "static",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 90.0,
+    "attempts": 2
+  },
+  "result": {
+    "task_uid": "t20241206211714065305",
+    "method": "b2",
+    "model": "qwen3.8-reasoner",
+    "terminal_state": "checked_ok",
+    "plan": {
+      "people_number": 4,
+      "start_city": "Hangzhou",
+      "target_city": "Beijing",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "train",
+              "start_time": "07:48",
+              "end_time": "12:20",
+              "start": "Hangzhou East Railway Station",
+              "end": "Beijing South Railway Station",
+              "TrainID": "G32",
+              "price": 730.27,
+              "tickets": 4,
+              "cost": 2921.08,
+              "transports": []
+            },
+            {
+              "type": "attraction",
+              "position": "The Palace Museum",
+              "start_time": "12:45",
+              "end_time": "15:45",
+              "price": 0.0,
+              "tickets": 4,
+              "cost": 0.0,
+              "transports": [
+                {
+                  "start": "Beijing South Railway Station",
+                  "end": "The Palace Museum",
+                  "mode": "taxi",
+                  "start_time": "12:30",
+                  "end_time": "12:40",
+                  "price": 28.83,
+                  "cost": 28.83,
+                  "distance": 6.9,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "Empark Prime Hotel Beijing",
+              "start_time": "16:00",
+              "end_time": "23:59",
+              "price": 1260.0,
+              "rooms": 2,
+              "room_type": 1,
+              "cost": 2520.0,
+              "tickets": 4,
+              "transports": [
+                {
+                  "start": "The Palace Museum",
+                  "end": "Empark Prime Hotel Beijing",
+                  "mode": "taxi",
+                  "start_time": "15:45",
+                  "end_time": "15:45",
+                  "price": 11.0,
+                  "cost": 11.0,
+                  "distance": 0.65,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "train",
+              "start_time": "15:12",
+              "end_time": "21:01",
+              "start": "Beijing South Railway Station",
+              "end": "Hangzhou East Railway Station",
+              "TrainID": "G189",
+              "price": 730.27,
+              "tickets": 4,
+              "cost": 2921.08,
+              "transports": [
+                {
+                  "start": "Empark Prime Hotel Beijing",
+                  "end": "Beijing South Railway Station",
+                  "mode": "taxi",
+                  "start_time": "13:00",
+                  "end_time": "13:10",
+                  "price": 29.56,
+                  "cost": 29.56,
+                  "distance": 7.1,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step": 1,
+        "content": "\n\n\n\n",
+        "tool_calls": [
+          {
+            "name": "intercity_transport_select",
+            "arguments": {
+              "start_city": "杭州",
+              "end_city": "北京",
+              "intercity_type": "train"
+            }
+          },
+          {
+            "name": "intercity_transport_select",
+            "arguments": {
+              "start_city": "北京",
+              "end_city": "杭州",
+              "intercity_type": "train"
+            }
+          },
+          {
+            "name": "attractions_types",
+            "arguments": {
+              "city": "北京"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "intercity_transport_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Beijing\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Hangzhou\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['G172' 'High-speed rail' 'Hangzhou East Railway Station'\\n 'Beijing South Railway Station' '06:50' '13:08' 6.3 730.27]\\n['G32' 'High-speed rail' 'Hangzhou East Railway Station'\\n 'Beijing South Railway Station' '07:48' '12:20' 4.53 730.27]\\n['K1276' 'Express' 'Han"
+          },
+          {
+            "name": "intercity_transport_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Hangzhou\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Beijing\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['G171' 'High-speed rail' 'Beijing South Railway Station'\\n 'Hangzhou East Railway Station' '06:30' '12:20' 5.83 730.27]\\n['G173' 'High-speed rail' 'Beijing South Railway Station'\\n 'Hangzhou East Railway Station' '07:04' '13:02' 5.97 730.27]\\n['G177' 'High-speed r"
+          },
+          {
+            "name": "attractions_types",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"attractions_types({\\\"city\\\": \\\"Beijing\\\"})\", \"text\": \"['Amusement Park/Sports Entertainment' 'historical site'\\n 'Museum/Memorial Hall' 'Cultural Tourism Area' 'park'\\n 'Cultural Landscape' 'commercial district' 'Art museum'\\n 'Red tourism sites' 'natural scenery' 'University campus' 'Other']\", \"data\": \"['Amusement Park/Sports Entertainment' 'historical site'\\n 'Museum/Memorial Hall' 'Cultural Tourism Area' 'park'\\n 'Cultural Landscape' 'commercial district' 'Art mu"
+          }
+        ],
+        "latency_seconds": 6.354741582996212,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-c4cd674f-36c3-4193-8843-c914034187ab",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 4003,
+        "completion_tokens": 237,
+        "reasoning_tokens": 97,
+        "attempts": 1,
+        "request_latencies": [
+          6.354741582996212
+        ]
+      },
+      {
+        "step": 2,
+        "content": "\n\n\n",
+        "tool_calls": [
+          {
+            "name": "intercity_transport_select",
+            "arguments": {
+              "earliest_leave_time": "15:00",
+              "end_city": "杭州",
+              "intercity_type": "train",
+              "start_city": "北京"
+            }
+          },
+          {
+            "name": "attractions_keys",
+            "arguments": {
+              "city": "北京"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "intercity_transport_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"earliest_leave_time\\\": \\\"15:00\\\", \\\"end_city\\\": \\\"Hangzhou\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Beijing\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['G189' 'High-speed rail' 'Beijing South Railway Station'\\n 'Hangzhou East Railway Station' '15:12' '21:01' 5.82 730.27]\\n['G191' 'High-speed rail' 'Beijing South Railway Station'\\n 'Hangzhou East Railway Station' '15:18' '21:26'"
+          },
+          {
+            "name": "attractions_keys",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"attractions_keys({\\\"city\\\": \\\"Beijing\\\"})\", \"text\": \"[('id', <class 'numpy.int64'>), ('name', <class 'str'>), ('type', <class 'str'>), ('lat', <class 'numpy.float64'>), ('lon', <class 'numpy.float64'>), ('opentime', <class 'str'>), ('endtime', <class 'str'>), ('price', <class 'numpy.float64'>), ('recommendmintime', <class 'numpy.float64'>), ('recommendmaxtime', <class 'numpy.float64'>)]\", \"data\": [[\"id\", \"<class 'numpy.int64'>\"], [\"name\", \"<class 'str'>\"], [\"type\", "
+          }
+        ],
+        "latency_seconds": 100.026995000022,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-6ff7040a-2aa4-4785-8852-21d0a3c0b650",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 7282,
+        "completion_tokens": 307,
+        "reasoning_tokens": 203,
+        "attempts": 2,
+        "request_latencies": [
+          90.02656033303356,
+          10.00043466698844
+        ]
+      },
+      {
+        "step": 3,
+        "content": "\n\n",
+        "tool_calls": [
+          {
+            "name": "attractions_select",
+            "arguments": {
+              "city": "北京",
+              "key": "type",
+              "op": "eq",
+              "value": "historical site"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "attractions_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"attractions_select({\\\"city\\\": \\\"Beijing\\\", \\\"key\\\": \\\"type\\\", \\\"op\\\": \\\"eq\\\", \\\"value\\\": \\\"historical site\\\"})\", \"text\": \"['id' 'name' 'type' 'lat' 'lon' 'opentime' 'endtime' 'price'\\n 'recommendmintime' 'recommendmaxtime']\\n[1 'The Palace Museum' 'historical site' 39.924091 116.403414 '08:30'\\n '17:00' 0.0 0.5 1.0]\\n[2 'Badaling Great Wall' 'historical site' 40.362639 116.024067 '06:30'\\n '16:30' 40.0 1.0 2.5]\\n[5 \\\"Prince Gong's Mansion\\\" 'historical site' 39.9433"
+          }
+        ],
+        "latency_seconds": 93.31135887600249,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-be89f337-8ec8-4c5a-ac00-56b010a016c0",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 9157,
+        "completion_tokens": 141,
+        "reasoning_tokens": 75,
+        "attempts": 2,
+        "request_latencies": [
+          90.03133283404168,
+          3.2800260419608094
+        ]
+      },
+      {
+        "step": 4,
+        "content": "\n\n\n",
+        "tool_calls": [
+          {
+            "name": "accommodations_nearby",
+            "arguments": {
+              "city": "北京",
+              "point": "The Palace Museum",
+              "topk": 3
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "北京",
+              "start": "Beijing South Railway Station",
+              "end": "The Palace Museum",
+              "start_time": "12:30",
+              "transport_type": "taxi"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "accommodations_nearby",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_nearby({\\\"city\\\": \\\"Beijing\\\", \\\"point\\\": \\\"The Palace Museum\\\", \\\"topk\\\": 3})\", \"text\": \"['id' 'name' 'hotelname_en' 'featurehoteltype' 'lat' 'lon' 'price'\\n 'numbed' 'distance']\\n[218 'the Puxuan Hotel and Spa' 'the Puxuan Hotel and Spa'\\n 'Butler Service' 39.923984 116.410292 2636 1 0.5881092684620658]\\n[267 'Empark Prime Hotel Beijing' 'Empark Prime Hotel Beijing'\\n 'Swimming Pool' 39.923917 116.411064 1260 1 0.654271928817328]\\n[196 'Renaissance "
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Beijing\\\", \\\"end\\\": \\\"The Palace Museum\\\", \\\"start\\\": \\\"Beijing South Railway Station\\\", \\\"start_time\\\": \\\"12:30\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Beijing South Railway Station', 'end': 'The Palace Museum', 'mode': 'taxi', 'start_time': '12:30', 'end_time': '12:40', 'cost': 28.83, 'distance': 6.9}]\", \"data\": [{\"start\": \"Beijing South Railway Station\", \"end\": \"The Palace Museum\", \"mode\": \"taxi\", \"start_time\": \"12:30\", \"end_tim"
+          }
+        ],
+        "latency_seconds": 52.93724912498146,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-5076bb28-3d68-480c-ac28-edf7848bc0eb",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 11089,
+        "completion_tokens": 3960,
+        "reasoning_tokens": 3818,
+        "attempts": 1,
+        "request_latencies": [
+          52.93724912498146
+        ]
+      },
+      {
+        "step": 5,
+        "content": "\n\n\n",
+        "tool_calls": [
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "北京",
+              "end": "Empark Prime Hotel Beijing",
+              "start": "The Palace Museum",
+              "start_time": "15:45",
+              "transport_type": "taxi"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "北京",
+              "end": "Beijing South Railway Station",
+              "start": "Empark Prime Hotel Beijing",
+              "start_time": "13:00",
+              "transport_type": "taxi"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Beijing\\\", \\\"end\\\": \\\"Empark Prime Hotel Beijing\\\", \\\"start\\\": \\\"The Palace Museum\\\", \\\"start_time\\\": \\\"15:45\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'The Palace Museum', 'end': 'Empark Prime Hotel Beijing', 'mode': 'taxi', 'start_time': '15:45', 'end_time': '15:45', 'cost': 11.0, 'distance': 0.65}]\", \"data\": [{\"start\": \"The Palace Museum\", \"end\": \"Empark Prime Hotel Beijing\", \"mode\": \"taxi\", \"start_time\": \"15:45\", \"end_time\": \"15:4"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Beijing\\\", \\\"end\\\": \\\"Beijing South Railway Station\\\", \\\"start\\\": \\\"Empark Prime Hotel Beijing\\\", \\\"start_time\\\": \\\"13:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Empark Prime Hotel Beijing', 'end': 'Beijing South Railway Station', 'mode': 'taxi', 'start_time': '13:00', 'end_time': '13:10', 'cost': 29.56, 'distance': 7.1}]\", \"data\": [{\"start\": \"Empark Prime Hotel Beijing\", \"end\": \"Beijing South Railway Station\", \"mode\": \"taxi\", \"sta"
+          }
+        ],
+        "latency_seconds": 29.13417745800689,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-9e6e513e-2bd0-4ae1-a86d-669715e09ceb",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 12169,
+        "completion_tokens": 2325,
+        "reasoning_tokens": 2153,
+        "attempts": 1,
+        "request_latencies": [
+          29.13417745800689
+        ]
+      },
+      {
+        "step": 6,
+        "content": "\n\n{\"$schema\": \"http://json-schema.org/draft-07/schema#\", \"type\": \"object\", \"properties\": {\"people_number\": {\"type\": \"integer\"}, \"start_city\": {\"type\": \"string\"}, \"target_city\": {\"type\": \"string\"}, \"itinerary\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"day\": {\"type\": \"integer\"}, \"activities\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"type\": {\"type\": \"string\", \"enum\": [\"airplane\", \"attraction\", \"lunch\", \"dinner\", \"breakfast\", \"accommodation\", \"train\"]}, \"start_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"end_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"cost\": {\"type\": \"number\"}, \"price\": {\"type\": \"number\"}, \"tickets\": {\"type\": \"integer\"}, \"position\": {\"type\": \"string\"}, \"transports\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"start\": {\"type\": \"string\"}, \"end\": {\"type\": \"string\"}, \"mode\": {\"type\": \"string\", \"enum\": [\"walk\", \"metro\", \"taxi\"]}, \"start_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"end_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"cost\": {\"type\": \"number\"}, \"price\": {\"type\": \"number\"}, \"distance\": {\"type\": \"number\"}, \"tickets\": {\"type\": \"integer\"}}, \"required\": [\"start\", \"end\", \"mode\", \"start_time\", \"end_time\", \"price\", \"cost\", \"distance\"]}}, \"room_type\": {\"type\": \"integer\"}, \"rooms\": {\"type\": \"integer\"}, \"FlightID\": {\"type\": \"string\"}, \"TrainID\": {\"type\": \"string\"}}, \"required\": [\"type\", \"start_time\", \"end_time\", \"cost\", \"price\", \"transports\"], \"allOf\": [{\"if\": {\"properties\": {\"type\": {\"enum\": [\"airplane\", \"train\"]}}, \"required\": [\"type\"]}, \"then\": {\"required\": [\"start\", \"end\"], \"not\": {\"required\": [\"position\"]}}, \"else\": {\"required\": [\"position\"], \"not\": {\"anyOf\": [{\"required\": [\"start\"]}, {\"required\": [\"end\"]}, {\"required\": [\"FlightID\"]}, {\"required\": [\"TrainID\"]}]}}}, {\"if\": {\"properties\": {\"type\": {\"const\": \"airplane\"}}}, \"then\": {\"required\": [\"FlightID\"]}}, {\"if\": {\"properties\": {\"type\": {\"const\": \"train\"}}}, \"then\": {\"required\": [\"TrainID\"]}}",
+        "tool_calls": [],
+        "tool_results": [],
+        "latency_seconds": 45.54694874997949,
+        "finish_reason": "stop",
+        "request_id": "chatcmpl-677720fc-c003-4c51-a11a-e5a3b1d77db7",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 12757,
+        "completion_tokens": 4162,
+        "reasoning_tokens": 2197,
+        "attempts": 1,
+        "request_latencies": [
+          45.54694874997949
+        ]
+      },
+      {
+        "step": 7,
+        "content": "\n\n{\"people_number\": 4, \"start_city\": \"Hangzhou\", \"target_city\": \"Beijing\", \"itinerary\": [{\"day\": 1, \"activities\": [{\"type\": \"train\", \"start_time\": \"07:48\", \"end_time\": \"12:20\", \"start\": \"Hangzhou East Railway Station\", \"end\": \"Beijing South Railway Station\", \"TrainID\": \"G32\", \"price\": 730.27, \"tickets\": 4, \"cost\": 2921.08, \"transports\": []}, {\"type\": \"attraction\", \"position\": \"The Palace Museum\", \"start_time\": \"12:45\", \"end_time\": \"15:45\", \"price\": 0.0, \"tickets\": 4, \"cost\": 0.0, \"transports\": [{\"start\": \"Beijing South Railway Station\", \"end\": \"The Palace Museum\", \"mode\": \"taxi\", \"start_time\": \"12:30\", \"end_time\": \"12:40\", \"price\": 28.83, \"cost\": 28.83, \"distance\": 6.9, \"tickets\": 1}]}, {\"type\": \"accommodation\", \"position\": \"Empark Prime Hotel Beijing\", \"start_time\": \"16:00\", \"end_time\": \"23:59\", \"price\": 1260.0, \"rooms\": 2, \"room_type\": 1, \"cost\": 2520.0, \"tickets\": 4, \"transports\": [{\"start\": \"The Palace Museum\", \"end\": \"Empark Prime Hotel Beijing\", \"mode\": \"taxi\", \"start_time\": \"15:45\", \"end_time\": \"15:45\", \"price\": 11.0, \"cost\": 11.0, \"distance\": 0.65, \"tickets\": 1}]}]}, {\"day\": 2, \"activities\": [{\"type\": \"train\", \"start_time\": \"15:12\", \"end_time\": \"21:01\", \"start\": \"Beijing South Railway Station\", \"end\": \"Hangzhou East Railway Station\", \"TrainID\": \"G189\", \"price\": 730.27, \"tickets\": 4, \"cost\": 2921.08, \"transports\": [{\"start\": \"Empark Prime Hotel Beijing\", \"end\": \"Beijing South Railway Station\", \"mode\": \"taxi\", \"start_time\": \"13:00\", \"end_time\": \"13:10\", \"price\": 29.56, \"cost\": 29.56, \"distance\": 7.1, \"tickets\": 1}]}]}]}",
+        "tool_calls": [],
+        "tool_results": [],
+        "latency_seconds": 12.669535708031617,
+        "finish_reason": "stop",
+        "request_id": "chatcmpl-7747ffb7-deec-46f8-acbf-1b7b02a48339",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 14750,
+        "completion_tokens": 1102,
+        "reasoning_tokens": 474,
+        "attempts": 1,
+        "request_latencies": [
+          12.669535708031617
+        ]
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 71207,
+      "completion_tokens": 12234,
+      "total_tokens": 83441,
+      "reasoning_tokens": 9017
+    },
+    "checker": {
+      "ok": true,
+      "violations": [],
+      "supported": [
+        "schema",
+        "day_count",
+        "people_number",
+        "start_target_city",
+        "activity_time_order",
+        "transport_time_order",
+        "transport_structure",
+        "activity_cost_rules",
+        "meal_time_windows",
+        "space_chain",
+        "accommodation_nights",
+        "intercity_transport_presence",
+        "ticket_fields",
+        "budget_if_in_text",
+        "entity_grounding",
+        "opening_hours",
+        "duplicate_activities",
+        "meal_type_once",
+        "transport_matches_goto",
+        "intercity_transport_values"
+      ],
+      "unsupported": [
+        "room_rules",
+        "overnight_hours",
+        "budget_not_found_in_text"
+      ]
+    },
+    "error": null,
+    "metadata": {
+      "event_text": null,
+      "usage_complete": true,
+      "request_count": 9,
+      "retry_count": 2,
+      "request_latency_seconds": 339.98100650002016
+    },
+    "started_at": "2026-10-30T17:15:07.431239+00:00",
+    "finished_at": "2026-10-30T17:20:51.987196+00:00",
+    "duration_seconds": 344.5559500409872,
+    "wall_seconds": 344.5560647500097
+  },
+  "supervision": {
+    "returncode": 0,
+    "hard_timeout": false,
+    "cancelled": false,
+    "wall_seconds": 344.93363708397374
+  },
+  "ledger": {
+    "request_attempts": 9,
+    "completed_attempts": 9,
+    "pending_attempts": 0,
+    "observed_usage": {
+      "prompt_tokens": 71207,
+      "completion_tokens": 12234,
+      "total_tokens": 83441
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0336746,
+      "upper": 0.0336746
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793380507.4434812,
+        "attempt_id": "cc95a481fd714508a16be9d67f3db961",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793380513.798728,
+        "attempt_id": "cc95a481fd714508a16be9d67f3db961",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 6.354741582996212,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-c4cd674f-36c3-4193-8843-c914034187ab",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 4003,
+        "completion_tokens": 237,
+        "total_tokens": 4240,
+        "reasoning_tokens": 97
+      },
+      {
+        "kind": "start",
+        "time": 1793380514.262495,
+        "attempt_id": "a364ded468ee4d0eb50c74c4060c06f5",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793380604.290262,
+        "attempt_id": "a364ded468ee4d0eb50c74c4060c06f5",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 90.02656033303356,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793380606.302093,
+        "attempt_id": "f1e784fa093c4c7ca252a541fd3fa8ba",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      },
+      {
+        "kind": "success",
+        "time": 1793380616.3033211,
+        "attempt_id": "f1e784fa093c4c7ca252a541fd3fa8ba",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 10.00043466698844,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-6ff7040a-2aa4-4785-8852-21d0a3c0b650",
+        "cached_prompt_tokens": 6144,
+        "prompt_tokens": 7282,
+        "completion_tokens": 307,
+        "total_tokens": 7589,
+        "reasoning_tokens": 203
+      },
+      {
+        "kind": "start",
+        "time": 1793380616.309342,
+        "attempt_id": "c31193067df942178b7b2ae2abc93179",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793380706.341433,
+        "attempt_id": "c31193067df942178b7b2ae2abc93179",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 90.03133283404168,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793380708.351651,
+        "attempt_id": "57919854aced4a41adfceb837b9fe231",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      },
+      {
+        "kind": "success",
+        "time": 1793380711.63244,
+        "attempt_id": "57919854aced4a41adfceb837b9fe231",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 3.2800260419608094,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-be89f337-8ec8-4c5a-ac00-56b010a016c0",
+        "cached_prompt_tokens": 6144,
+        "prompt_tokens": 9157,
+        "completion_tokens": 141,
+        "total_tokens": 9298,
+        "reasoning_tokens": 75
+      },
+      {
+        "kind": "start",
+        "time": 1793380711.637398,
+        "attempt_id": "6283d9d4bd8a4882894e10099a414834",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793380764.5753138,
+        "attempt_id": "6283d9d4bd8a4882894e10099a414834",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 52.93724912498146,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-5076bb28-3d68-480c-ac28-edf7848bc0eb",
+        "cached_prompt_tokens": 7680,
+        "prompt_tokens": 11089,
+        "completion_tokens": 3960,
+        "total_tokens": 15049,
+        "reasoning_tokens": 3818
+      },
+      {
+        "kind": "start",
+        "time": 1793380764.612354,
+        "attempt_id": "27e994f327144f9b89c7da69b8ecd2a0",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793380793.747139,
+        "attempt_id": "27e994f327144f9b89c7da69b8ecd2a0",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 29.13417745800689,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-9e6e513e-2bd0-4ae1-a86d-669715e09ceb",
+        "cached_prompt_tokens": 9984,
+        "prompt_tokens": 12169,
+        "completion_tokens": 2325,
+        "total_tokens": 14494,
+        "reasoning_tokens": 2153
+      },
+      {
+        "kind": "start",
+        "time": 1793380793.750832,
+        "attempt_id": "21f7133f9b864cffb5a66cf0db0ac41e",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793380839.298325,
+        "attempt_id": "21f7133f9b864cffb5a66cf0db0ac41e",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 45.54694874997949,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-677720fc-c003-4c51-a11a-e5a3b1d77db7",
+        "cached_prompt_tokens": 10752,
+        "prompt_tokens": 12757,
+        "completion_tokens": 4162,
+        "total_tokens": 16919,
+        "reasoning_tokens": 2197
+      },
+      {
+        "kind": "start",
+        "time": 1793380839.30785,
+        "attempt_id": "5d8b4e2ba5a446298a3920eed6cedcb4",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793380851.978109,
+        "attempt_id": "5d8b4e2ba5a446298a3920eed6cedcb4",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 12.669535708031617,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-7747ffb7-deec-46f8-acbf-1b7b02a48339",
+        "cached_prompt_tokens": 11520,
+        "prompt_tokens": 14750,
+        "completion_tokens": 1102,
+        "total_tokens": 15852,
+        "reasoning_tokens": 474
+      }
+    ]
+  }
+}

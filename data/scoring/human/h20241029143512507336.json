@@ -1,0 +1,10 @@
+{
+  "hard_logic_py": [
+    "intercity_transport_set=set()\nfor activity in allactivities(plan):\n  if activity_type(activity) in ['train', 'airplane']: intercity_transport_set.add(intercity_transport_type(activity))\nresult=({'train'}==intercity_transport_set)",
+    "restaurant_type_set=set()\nfor activity in allactivities(plan):\n  if activity_type(activity) in ['breakfast', 'lunch', 'dinner']: restaurant_type_set.add(restaurant_type(activity, target_city(plan)))\nresult=({'北京菜'}<=restaurant_type_set)",
+    "result=(day_count(plan)==5)",
+    "result=(people_count(plan)==2)",
+    "result=True\nfor activity in allactivities(plan):\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False"
+  ],
+  "uid": "h20241029143512507336"
+}

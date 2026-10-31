@@ -1,0 +1,978 @@
+{
+  "job": {
+    "uid": "m20241028164723199132",
+    "split": "easy",
+    "days": 2,
+    "method": "b2",
+    "kind": "static",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 90.0,
+    "attempts": 2
+  },
+  "result": {
+    "task_uid": "m20241028164723199132",
+    "method": "b2",
+    "model": "qwen3.8-reasoner",
+    "terminal_state": "checked_ok",
+    "plan": {
+      "people_number": 3,
+      "start_city": "Chengdu",
+      "target_city": "Chongqing",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "train",
+              "start": "Chengdu East Railway Station",
+              "end": "Chongqing West Railway Station",
+              "TrainID": "G2371",
+              "start_time": "06:48",
+              "end_time": "08:05",
+              "price": 171.7,
+              "cost": 515.1,
+              "tickets": 3,
+              "transports": []
+            },
+            {
+              "type": "attraction",
+              "position": "Hongya Cave",
+              "start_time": "09:00",
+              "end_time": "11:30",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Chongqing West Railway Station",
+                  "end": "Hongya Cave",
+                  "mode": "taxi",
+                  "start_time": "08:10",
+                  "end_time": "08:34",
+                  "price": 67.14,
+                  "cost": 67.14,
+                  "distance": 16.1,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "At Yuli Chongqing Hot Pot (Jiefangbei Delicious Street Branch)",
+              "start_time": "12:00",
+              "end_time": "13:30",
+              "price": 78.0,
+              "cost": 234.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Hongya Cave",
+                  "end": "At Yuli Chongqing Hot Pot (Jiefangbei Delicious Street Branch)",
+                  "mode": "walk",
+                  "start_time": "11:30",
+                  "end_time": "11:48",
+                  "price": 0.0,
+                  "cost": 0.0,
+                  "distance": 1.5815275383558585
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "Le Comforto All Suite Hotel (Chongqing Paradise Walk D)",
+              "start_time": "18:00",
+              "end_time": "23:00",
+              "price": 419.0,
+              "cost": 838.0,
+              "tickets": 3,
+              "rooms": 2,
+              "room_type": 2,
+              "transports": [
+                {
+                  "start": "At Yuli Chongqing Hot Pot (Jiefangbei Delicious Street Branch)",
+                  "end": "Le Comforto All Suite Hotel (Chongqing Paradise Walk D)",
+                  "mode": "taxi",
+                  "start_time": "13:30",
+                  "end_time": "13:40",
+                  "price": 28.28,
+                  "cost": 28.28,
+                  "distance": 6.74,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "attraction",
+              "position": "Liberation Monument Pedestrian Street",
+              "start_time": "09:00",
+              "end_time": "11:00",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Le Comforto All Suite Hotel (Chongqing Paradise Walk D)",
+                  "end": "Liberation Monument Pedestrian Street",
+                  "mode": "taxi",
+                  "start_time": "08:30",
+                  "end_time": "08:41",
+                  "price": 31.53,
+                  "cost": 31.53,
+                  "distance": 7.67,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "train",
+              "start": "Chongqing West Railway Station",
+              "end": "Chengdu East Railway Station",
+              "TrainID": "G8764",
+              "start_time": "13:03",
+              "end_time": "14:35",
+              "price": 171.7,
+              "cost": 515.1,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Liberation Monument Pedestrian Street",
+                  "end": "Chongqing West Railway Station",
+                  "mode": "taxi",
+                  "start_time": "11:00",
+                  "end_time": "11:23",
+                  "price": 65.63,
+                  "cost": 65.63,
+                  "distance": 15.76,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step": 1,
+        "content": "\n\n\n\n\n",
+        "tool_calls": [
+          {
+            "name": "intercity_transport_select",
+            "arguments": {
+              "start_city": "成都",
+              "end_city": "重庆",
+              "intercity_type": "train"
+            }
+          },
+          {
+            "name": "accommodations_keys",
+            "arguments": {
+              "city": "重庆"
+            }
+          },
+          {
+            "name": "attractions_keys",
+            "arguments": {
+              "city": "重庆"
+            }
+          },
+          {
+            "name": "restaurants_keys",
+            "arguments": {
+              "city": "重庆"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "intercity_transport_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Chongqing\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Chengdu\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['D3055' 'EMU (Electric Multiple Unit)' 'Chengdu East Railway Station'\\n 'Chongqing North Railway Station' '06:12' '08:32' 2.33 158.49]\\n['D3058' 'EMU (Electric Multiple Unit)' 'Chengdu East Railway Station'\\n 'Chongqing North Railway Station' '06:12' '08:32' 2.33"
+          },
+          {
+            "name": "accommodations_keys",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_keys({\\\"city\\\": \\\"Chongqing\\\"})\", \"text\": \"[('id', <class 'numpy.int64'>), ('name', <class 'str'>), ('hotelname_en', <class 'str'>), ('featurehoteltype', <class 'str'>), ('lat', <class 'numpy.float64'>), ('lon', <class 'numpy.float64'>), ('price', <class 'numpy.int64'>), ('numbed', <class 'numpy.int64'>)]\", \"data\": [[\"id\", \"<class 'numpy.int64'>\"], [\"name\", \"<class 'str'>\"], [\"hotelname_en\", \"<class 'str'>\"], [\"featurehoteltype\", \"<class 'str'>\"], [\"l"
+          },
+          {
+            "name": "attractions_keys",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"attractions_keys({\\\"city\\\": \\\"Chongqing\\\"})\", \"text\": \"[('id', <class 'numpy.int64'>), ('name', <class 'str'>), ('type', <class 'str'>), ('lat', <class 'numpy.float64'>), ('lon', <class 'numpy.float64'>), ('opentime', <class 'str'>), ('endtime', <class 'str'>), ('price', <class 'numpy.float64'>), ('recommendmintime', <class 'numpy.float64'>), ('recommendmaxtime', <class 'numpy.float64'>)]\", \"data\": [[\"id\", \"<class 'numpy.int64'>\"], [\"name\", \"<class 'str'>\"], [\"type\""
+          },
+          {
+            "name": "restaurants_keys",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"restaurants_keys({\\\"city\\\": \\\"Chongqing\\\"})\", \"text\": \"[('id', <class 'numpy.int64'>), ('name', <class 'str'>), ('lat', <class 'numpy.float64'>), ('lon', <class 'numpy.float64'>), ('price', <class 'numpy.float64'>), ('cuisine', <class 'str'>), ('opentime', <class 'str'>), ('endtime', <class 'str'>), ('recommendedfood', <class 'str'>)]\", \"data\": [[\"id\", \"<class 'numpy.int64'>\"], [\"name\", \"<class 'str'>\"], [\"lat\", \"<class 'numpy.float64'>\"], [\"lon\", \"<class 'numpy.flo"
+          }
+        ],
+        "latency_seconds": 4.022773957985919,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-e08e6c87-d779-4c70-861c-09ff9653eded",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 4006,
+        "completion_tokens": 282,
+        "reasoning_tokens": 141,
+        "attempts": 1,
+        "request_latencies": [
+          4.022773957985919
+        ]
+      },
+      {
+        "step": 2,
+        "content": "\n\n\n\n",
+        "tool_calls": [
+          {
+            "name": "accommodations_select",
+            "arguments": {
+              "city": "重庆",
+              "key": "featurehoteltype",
+              "op": "contains",
+              "value": "多功能厅"
+            }
+          },
+          {
+            "name": "attractions_select",
+            "arguments": {
+              "city": "重庆",
+              "key": "price",
+              "op": "le",
+              "value": 50
+            }
+          },
+          {
+            "name": "restaurants_select",
+            "arguments": {
+              "city": "重庆",
+              "key": "price",
+              "op": "le",
+              "value": 100
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "accommodations_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_select({\\\"city\\\": \\\"Chongqing\\\", \\\"key\\\": \\\"featurehoteltype\\\", \\\"op\\\": \\\"contains\\\", \\\"value\\\": \\\"多功能厅\\\"})\", \"text\": \"No data.\", \"data\": {\"type\": \"dataframe\", \"columns\": [\"id\", \"name\", \"hotelname_en\", \"featurehoteltype\", \"lat\", \"lon\", \"price\", \"numbed\"], \"rows\": [], \"row_count\": 0, \"returned_rows\": 0, \"page\": 1, \"pages\": 0}}"
+          },
+          {
+            "name": "attractions_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"attractions_select({\\\"city\\\": \\\"Chongqing\\\", \\\"key\\\": \\\"price\\\", \\\"op\\\": \\\"le\\\", \\\"value\\\": 50})\", \"text\": \"['id' 'name' 'type' 'lat' 'lon' 'opentime' 'endtime' 'price'\\n 'recommendmintime' 'recommendmaxtime']\\n[0 'Yangtze River Cableway' 'Amusement Park/Sports Entertainment'\\n 29.563863 106.589285 '08:00' '22:00' 20.0 0.5 1.0]\\n[2 'Wulong Karst Tourist Area' 'natural scenery' 29.42398 107.774556\\n '08:30' '16:30' 50.0 0.5 1.0]\\n[3 'Chongqing Zoo' 'Amusement Park/Sp"
+          },
+          {
+            "name": "restaurants_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"restaurants_select({\\\"city\\\": \\\"Chongqing\\\", \\\"key\\\": \\\"price\\\", \\\"op\\\": \\\"le\\\", \\\"value\\\": 100})\", \"text\": \"['id' 'name' 'lat' 'lon' 'price' 'cuisine' 'opentime' 'endtime'\\n 'recommendedfood']\\n[0 'Yang Ji Long Fu (Liberation Monument Main Store)' 29.5609878\\n 106.5781935 96.0 'Sichuan cuisine' '11:00' '22:00'\\n \\\"Yang's Family Braised Goose, Republican Era Spicy Rabbit, Yang's Signature Fish, Traditional Sichuan Pepper Chicken, Bald Commander, Pan-Fried Heart of C"
+          }
+        ],
+        "latency_seconds": 4.865699583024252,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-6914450a-9689-44d4-8780-7c827cdffb6e",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 6436,
+        "completion_tokens": 277,
+        "reasoning_tokens": 83,
+        "attempts": 1,
+        "request_latencies": [
+          4.865699583024252
+        ]
+      },
+      {
+        "step": 3,
+        "content": "\n\n\n",
+        "tool_calls": [
+          {
+            "name": "accommodations_select",
+            "arguments": {
+              "city": "重庆",
+              "key": "featurehoteltype",
+              "op": "contains",
+              "value": "多功能"
+            }
+          },
+          {
+            "name": "intercity_transport_select",
+            "arguments": {
+              "earliest_leave_time": "13:00",
+              "end_city": "成都",
+              "intercity_type": "train",
+              "start_city": "重庆"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "accommodations_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_select({\\\"city\\\": \\\"Chongqing\\\", \\\"key\\\": \\\"featurehoteltype\\\", \\\"op\\\": \\\"contains\\\", \\\"value\\\": \\\"多功能\\\"})\", \"text\": \"No data.\", \"data\": {\"type\": \"dataframe\", \"columns\": [\"id\", \"name\", \"hotelname_en\", \"featurehoteltype\", \"lat\", \"lon\", \"price\", \"numbed\"], \"rows\": [], \"row_count\": 0, \"returned_rows\": 0, \"page\": 1, \"pages\": 0}}"
+          },
+          {
+            "name": "intercity_transport_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"earliest_leave_time\\\": \\\"13:00\\\", \\\"end_city\\\": \\\"Chengdu\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Chongqing\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['G8764' 'High-speed rail' 'Chongqing West Railway Station'\\n 'Chengdu East Railway Station' '13:03' '14:35' 1.62 171.7]\\n['G8765' 'High-speed rail' 'Chongqing West Railway Station'\\n 'Chengdu East Railway Station' '13:03' '14:3"
+          }
+        ],
+        "latency_seconds": 38.66726312501123,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-a2de04ff-c3de-4f3d-b6f6-21db02d1b7c1",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 11293,
+        "completion_tokens": 2869,
+        "reasoning_tokens": 2728,
+        "attempts": 1,
+        "request_latencies": [
+          38.66726312501123
+        ]
+      },
+      {
+        "step": 4,
+        "content": "\n\n",
+        "tool_calls": [
+          {
+            "name": "accommodations_select",
+            "arguments": {
+              "city": "重庆",
+              "key": "price",
+              "op": "le",
+              "value": 300
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "accommodations_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_select({\\\"city\\\": \\\"Chongqing\\\", \\\"key\\\": \\\"price\\\", \\\"op\\\": \\\"le\\\", \\\"value\\\": 300})\", \"text\": \"['id' 'name' 'hotelname_en' 'featurehoteltype' 'lat' 'lon' 'price'\\n 'numbed']\\n[0 'Qingyue OneJasper select Hotel' 'Qingyue OneJasper select Hotel'\\n 'Butler Service' 29.538263 106.51261 291 1]\\n[15\\n 'Lavande Hotel (Chongqing Yuelai International Expo Center Central Park)'\\n 'Lavande Hotel (Chongqing Yuelai International Expo Center Central Park)'\\n 'Gre"
+          }
+        ],
+        "latency_seconds": 17.07689741702052,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-ed3443d2-be5a-45f8-8847-fba5dac62e68",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 13151,
+        "completion_tokens": 1136,
+        "reasoning_tokens": 1069,
+        "attempts": 1,
+        "request_latencies": [
+          17.07689741702052
+        ]
+      },
+      {
+        "step": 5,
+        "content": "\n\n",
+        "tool_calls": [
+          {
+            "name": "accommodations_select",
+            "arguments": {
+              "city": "重庆",
+              "key": "featurehoteltype",
+              "op": "contains",
+              "value": "Multi"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "accommodations_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"accommodations_select({\\\"city\\\": \\\"Chongqing\\\", \\\"key\\\": \\\"featurehoteltype\\\", \\\"op\\\": \\\"contains\\\", \\\"value\\\": \\\"Multi\\\"})\", \"text\": \"['id' 'name' 'hotelname_en' 'featurehoteltype' 'lat' 'lon' 'price'\\n 'numbed']\\n[86 'Le Comforto All Suite Hotel (Chongqing Paradise Walk D)'\\n 'Le Comforto All Suite Hotel (Chongqing Paradise Walk D)'\\n 'Multifunction Hall' 29.533058 106.512601 419 2]\\nPage/Total: 1/1\", \"data\": {\"type\": \"dataframe\", \"columns\": [\"id\", \"name\", \"hoteln"
+          }
+        ],
+        "latency_seconds": 3.1205174579517916,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-3dab3a20-7811-4bc1-9039-431abaf8b84e",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 15126,
+        "completion_tokens": 126,
+        "reasoning_tokens": 59,
+        "attempts": 1,
+        "request_latencies": [
+          3.1205174579517916
+        ]
+      },
+      {
+        "step": 6,
+        "content": "\n\n{\"$schema\": \"http://json-schema.org/draft-07/schema#\", \"type\": \"object\", \"properties\": {\"people_number\": {\"type\": \"integer\"}, \"start_city\": {\"type\": \"string\"}, \"target_city\": {\"type\": \"string\"}, \"itinerary\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"day\": {\"type\": \"integer\"}, \"activities\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"type\": {\"type\": \"string\", \"enum\": [\"airplane\", \"attraction\", \"lunch\", \"dinner\", \"breakfast\", \"accommodation\", \"train\"]}, \"start_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"end_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"cost\": {\"type\": \"number\"}, \"price\": {\"type\": \"number\"}, \"tickets\": {\"type\": \"integer\"}, \"position\": {\"type\": \"string\"}, \"transports\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"start\": {\"type\": \"string\"}, \"end\": {\"type\": \"string\"}, \"mode\": {\"type\": \"string\", \"enum\": [\"walk\", \"metro\", \"taxi\"]}, \"start_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"end_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"cost\": {\"type\": \"number\"}, \"price\": {\"type\": \"number\"}, \"distance\": {\"type\": \"number\"}, \"tickets\": {\"type\": \"integer\"}}, \"required\": [\"start\", \"end\", \"mode\", \"start_time\", \"end_time\", \"price\", \"cost\", \"distance\"]}}, \"room_type\": {\"type\": \"integer\"}, \"rooms\": {\"type\": \"integer\"}, \"FlightID\": {\"type\": \"string\"}, \"TrainID\": {\"type\": \"string\"}}, \"required\": [\"type\", \"start_time\", \"end_time\", \"cost\", \"price\", \"transports\"], \"allOf\": [{\"if\": {\"properties\": {\"type\": {\"enum\": [\"airplane\", \"train\"]}}, \"required\": [\"type\"]}, \"then\": {\"required\": [\"start\", \"end\"], \"not\": {\"required\": [\"position\"]}}, \"else\": {\"required\": [\"position\"], \"not\": {\"anyOf\": [{\"required\": [\"start\"]}, {\"required\": [\"end\"]}, {\"required\": [\"FlightID\"]}, {\"required\": [\"TrainID\"]}]}}}, {\"if\": {\"properties\": {\"type\": {\"const\": \"airplane\"}}}, \"then\": {\"required\": [\"FlightID\"]}}, {\"if\": {\"properties\": {\"type\": {\"const\": \"train\"}}}, \"then\": {\"required\": [\"TrainID\"]}}",
+        "tool_calls": [
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "重庆",
+              "end": "Le Comforto All Suite Hotel (Chongqing Paradise Walk D)",
+              "start": "Chongqing West Railway Station",
+              "start_time": "08:05",
+              "transport_type": "taxi"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Chongqing\\\", \\\"end\\\": \\\"Le Comforto All Suite Hotel (Chongqing Paradise Walk D)\\\", \\\"start\\\": \\\"Chongqing West Railway Station\\\", \\\"start_time\\\": \\\"08:05\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Chongqing West Railway Station', 'end': 'Le Comforto All Suite Hotel (Chongqing Paradise Walk D)', 'mode': 'taxi', 'start_time': '08:05', 'end_time': '08:17', 'cost': 33.04, 'distance': 8.1}]\", \"data\": [{\"start\": \"Chongqing West Railway Stat"
+          }
+        ],
+        "latency_seconds": 42.960917124990374,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-c514c84c-384b-46e4-ae1b-4600552975ff",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 15539,
+        "completion_tokens": 3497,
+        "reasoning_tokens": 2731,
+        "attempts": 1,
+        "request_latencies": [
+          42.960917124990374
+        ]
+      },
+      {
+        "step": 7,
+        "content": "\n\n\n",
+        "tool_calls": [
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "重庆",
+              "end": "Hongya Cave",
+              "start": "Chongqing West Railway Station",
+              "start_time": "08:10",
+              "transport_type": "taxi"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "重庆",
+              "end": "At Yuli Chongqing Hot Pot (Jiefangbei Delicious Street Branch)",
+              "start": "Hongya Cave",
+              "start_time": "11:30",
+              "transport_type": "walk"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Chongqing\\\", \\\"end\\\": \\\"Hongya Cave\\\", \\\"start\\\": \\\"Chongqing West Railway Station\\\", \\\"start_time\\\": \\\"08:10\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Chongqing West Railway Station', 'end': 'Hongya Cave', 'mode': 'taxi', 'start_time': '08:10', 'end_time': '08:34', 'cost': 67.14, 'distance': 16.1}]\", \"data\": [{\"start\": \"Chongqing West Railway Station\", \"end\": \"Hongya Cave\", \"mode\": \"taxi\", \"start_time\": \"08:10\", \"end_time\": \"08:34\","
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Chongqing\\\", \\\"end\\\": \\\"At Yuli Chongqing Hot Pot (Jiefangbei Delicious Street Branch)\\\", \\\"start\\\": \\\"Hongya Cave\\\", \\\"start_time\\\": \\\"11:30\\\", \\\"transport_type\\\": \\\"walk\\\"})\", \"text\": \"[{'start': 'Hongya Cave', 'end': 'At Yuli Chongqing Hot Pot (Jiefangbei Delicious Street Branch)', 'mode': 'walk', 'start_time': '11:30', 'end_time': '11:48', 'cost': 0.0, 'distance': 1.5815275383558585}]\", \"data\": [{\"start\": \"Hongya Cave\", \"end\": \"At Yuli Chongqin"
+          }
+        ],
+        "latency_seconds": 19.666494000004604,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-97bc58ed-86f8-4340-ab5b-b1c2d3cc523d",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 16550,
+        "completion_tokens": 1318,
+        "reasoning_tokens": 1136,
+        "attempts": 1,
+        "request_latencies": [
+          19.666494000004604
+        ]
+      },
+      {
+        "step": 8,
+        "content": "\n\n{\"$schema\":\"http://json-schema.org/draft-07/schema#\",\"type\":\"object\",\"properties\":{\"people_number\":{\"type\":\"integer\"},\"start_city\":{\"type\":\"string\"},\"target_city\":{\"type\":\"string\"},\"itinerary\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"day\":{\"type\":\"integer\"},\"activities\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\",\"enum\":[\"airplane\",\"attraction\",\"lunch\",\"dinner\",\"breakfast\",\"accommodation\",\"train\"]},\"start_time\":{\"type\":\"string\",\"pattern\":\"^\\\\d{2}:\\\\d{2}$\"},\"end_time\":{\"type\":\"string\",\"pattern\":\"^\\\\d{2}:\\\\d{2}$\"},\"cost\":{\"type\":\"number\"},\"price\":{\"type\":\"number\"},\"tickets\":{\"type\":\"integer\"},\"position\":{\"type\":\"string\"},\"transports\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"start\":{\"type\":\"string\"},\"end\":{\"type\":\"string\"},\"mode\":{\"type\":\"string\",\"enum\":[\"walk\",\"metro\",\"taxi\"]},\"start_time\":{\"type\":\"string\",\"pattern\":\"^\\\\d{2}:\\\\d{2}$\"},\"end_time\":{\"type\":\"string\",\"pattern\":\"^\\\\d{2}:\\\\d{2}$\"},\"cost\":{\"type\":\"number\"},\"price\":{\"type\":\"number\"},\"distance\":{\"type\":\"number\"},\"tickets\":{\"type\":\"integer\"}},\"required\":[\"start\",\"end\",\"mode\",\"start_time\",\"end_time\",\"price\",\"cost\",\"distance\"]}},\"room_type\":{\"type\":\"integer\"},\"rooms\":{\"type\":\"integer\"},\"FlightID\":{\"type\":\"string\"},\"TrainID\":{\"type\":\"string\"}},\"required\":[\"type\",\"start_time\",\"end_time\",\"cost\",\"price\",\"transports\"],\"allOf\":[{\"if\":{\"properties\":{\"type\":{\"enum\":[\"airplane\",\"train\"]}},\"required\":[\"type\"]},\"then\":{\"required\":[\"start\",\"end\"],\"not\":{\"required\":[\"position\"]}},\"else\":{\"required\":[\"position\"],\"not\":{\"anyOf\":[{\"required\":[\"start\"]},{\"required\":[\"end\"]},{\"required\":[\"FlightID\"]},{\"required\":[\"TrainID\"]}]}}},{\"if\":{\"properties\":{\"type\":{\"const\":\"airplane\"}}},\"then\":{\"required\":[\"FlightID\"]}},{\"if\":{\"properties\":{\"type\":{\"const\":\"train\"}}},\"then\":{\"required\":[\"TrainID\"]}}]}}},\"required\":[\"day\",\"activities\"]}}},\"required\":[\"people_number\",\"start_city\",\"target_city\",\"itinerary\"]}",
+        "tool_calls": [],
+        "tool_results": [],
+        "latency_seconds": 117.67196433298523,
+        "finish_reason": "stop",
+        "request_id": "chatcmpl-2690348d-7818-4878-8289-9f33b7452c16",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 17206,
+        "completion_tokens": 2204,
+        "reasoning_tokens": 1712,
+        "attempts": 2,
+        "request_latencies": [
+          90.03731145797065,
+          27.63465287501458
+        ]
+      },
+      {
+        "step": 9,
+        "content": "\n\n{\"$schema\": \"http://json-schema.org/draft-07/schema#\", \"type\": \"object\", \"properties\": {\"people_number\": {\"type\": \"integer\"}, \"start_city\": {\"type\": \"string\"}, \"target_city\": {\"type\": \"string\"}, \"itinerary\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"day\": {\"type\": \"integer\"}, \"activities\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"type\": {\"type\": \"string\", \"enum\": [\"airplane\", \"attraction\", \"lunch\", \"dinner\", \"breakfast\", \"accommodation\", \"train\"]}, \"start_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"end_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"cost\": {\"type\": \"number\"}, \"price\": {\"type\": \"number\"}, \"tickets\": {\"type\": \"integer\"}, \"position\": {\"type\": \"string\"}, \"transports\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"start\": {\"type\": \"string\"}, \"end\": {\"type\": \"string\"}, \"mode\": {\"type\": \"string\", \"enum\": [\"walk\", \"metro\", \"taxi\"]}, \"start_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"end_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"cost\": {\"type\": \"number\"}, \"price\": {\"type\": \"number\"}, \"distance\": {\"type\": \"number\"}, \"tickets\": {\"type\": \"integer\"}}, \"required\": [\"start\", \"end\", \"mode\", \"start_time\", \"end_time\", \"price\", \"cost\", \"distance\"]}}, \"room_type\": {\"type\": \"integer\"}, \"rooms\": {\"type\": \"integer\"}, \"FlightID\": {\"type\": \"string\"}, \"TrainID\": {\"type\": \"string\"}}, \"required\": [\"type\", \"start_time\", \"end_time\", \"cost\", \"price\", \"transports\"], \"allOf\": [{\"if\": {\"properties\": {\"type\": {\"enum\": [\"airplane\", \"train\"]}}, \"required\": [\"type\"]}, \"then\": {\"required\": [\"start\", \"end\"], \"not\": {\"required\": [\"position\"]}}, \"else\": {\"required\": [\"position\"], \"not\": {\"anyOf\": [{\"required\": [\"start\"]}, {\"required\": [\"end\"]}, {\"required\": [\"FlightID\"]}, {\"required\": [\"TrainID\"]}]}}}, {\"if\": {\"properties\": {\"type\": {\"const\": \"airplane\"}}}, \"then\": {\"required\": [\"FlightID\"]}}, {\"if\": {\"properties\": {\"type\": {\"const\": \"train\"}}}, \"then\": {\"required\": [\"TrainID\"]}}",
+        "tool_calls": [],
+        "tool_results": [],
+        "latency_seconds": 36.636765041039325,
+        "finish_reason": "stop",
+        "request_id": "chatcmpl-a16a07d7-aa78-45c2-8a29-af5b130be709",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 17791,
+        "completion_tokens": 3226,
+        "reasoning_tokens": 1801,
+        "attempts": 1,
+        "request_latencies": [
+          36.636765041039325
+        ]
+      },
+      {
+        "step": 10,
+        "content": "\n\n{\"people_number\": 3, \"start_city\": \"Chengdu\", \"target_city\": \"Chongqing\", \"itinerary\": [{\"day\": 1, \"activities\": [{\"type\": \"train\", \"start\": \"Chengdu East Railway Station\", \"end\": \"Chongqing West Railway Station\", \"TrainID\": \"G2371\", \"start_time\": \"06:48\", \"end_time\": \"08:05\", \"price\": 171.7, \"cost\": 515.1, \"tickets\": 3, \"transports\": []}, {\"type\": \"attraction\", \"position\": \"Hongya Cave\", \"start_time\": \"09:00\", \"end_time\": \"11:30\", \"price\": 0.0, \"cost\": 0.0, \"tickets\": 3, \"transports\": [{\"start\": \"Chongqing West Railway Station\", \"end\": \"Hongya Cave\", \"mode\": \"taxi\", \"start_time\": \"08:10\", \"end_time\": \"08:34\", \"price\": 67.14, \"cost\": 67.14, \"distance\": 16.1}]}, {\"type\": \"lunch\", \"position\": \"At Yuli Chongqing Hot Pot (Jiefangbei Delicious Street Branch)\", \"start_time\": \"12:00\", \"end_time\": \"13:30\", \"price\": 78.0, \"cost\": 234.0, \"tickets\": 3, \"transports\": [{\"start\": \"Hongya Cave\", \"end\": \"At Yuli Chongqing Hot Pot (Jiefangbei Delicious Street Branch)\", \"mode\": \"walk\", \"start_time\": \"11:30\", \"end_time\": \"11:48\", \"price\": 0.0, \"cost\": 0.0, \"distance\": 1.5815275383558585}]}, {\"type\": \"accommodation\", \"position\": \"Le Comforto All Suite Hotel (Chongqing Paradise Walk D)\", \"start_time\": \"18:00\", \"end_time\": \"23:00\", \"price\": 419.0, \"cost\": 838.0, \"tickets\": 3, \"rooms\": 2, \"room_type\": 2, \"transports\": []}]}, {\"day\": 2, \"activities\": [{\"type\": \"attraction\", \"position\": \"Liberation Monument Pedestrian Street\", \"start_time\": \"09:00\", \"end_time\": \"11:00\", \"price\": 0.0, \"cost\": 0.0, \"tickets\": 3, \"transports\": []}, {\"type\": \"train\", \"start\": \"Chongqing West Railway Station\", \"end\": \"Chengdu East Railway Station\", \"TrainID\": \"G8764\", \"start_time\": \"13:03\", \"end_time\": \"14:35\", \"price\": 171.7, \"cost\": 515.1, \"tickets\": 3, \"transports\": []}]}]}",
+        "tool_calls": [],
+        "tool_results": [],
+        "latency_seconds": 47.83465120900655,
+        "finish_reason": "stop",
+        "request_id": "chatcmpl-971bbb77-cec7-40d5-b210-e2eed28e4ef3",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 19244,
+        "completion_tokens": 3979,
+        "reasoning_tokens": 3261,
+        "attempts": 1,
+        "request_latencies": [
+          47.83465120900655
+        ]
+      },
+      {
+        "step": 11,
+        "content": "\n\n\n\n",
+        "tool_calls": [
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "重庆",
+              "end": "Le Comforto All Suite Hotel (Chongqing Paradise Walk D)",
+              "start": "At Yuli Chongqing Hot Pot (Jiefangbei Delicious Street Branch)",
+              "start_time": "13:30",
+              "transport_type": "taxi"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "重庆",
+              "end": "Liberation Monument Pedestrian Street",
+              "start": "Le Comforto All Suite Hotel (Chongqing Paradise Walk D)",
+              "start_time": "08:30",
+              "transport_type": "taxi"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "重庆",
+              "end": "Chongqing West Railway Station",
+              "start": "Liberation Monument Pedestrian Street",
+              "start_time": "11:00",
+              "transport_type": "taxi"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Chongqing\\\", \\\"end\\\": \\\"Le Comforto All Suite Hotel (Chongqing Paradise Walk D)\\\", \\\"start\\\": \\\"At Yuli Chongqing Hot Pot (Jiefangbei Delicious Street Branch)\\\", \\\"start_time\\\": \\\"13:30\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'At Yuli Chongqing Hot Pot (Jiefangbei Delicious Street Branch)', 'end': 'Le Comforto All Suite Hotel (Chongqing Paradise Walk D)', 'mode': 'taxi', 'start_time': '13:30', 'end_time': '13:40', 'cost': 28.28, 'di"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Chongqing\\\", \\\"end\\\": \\\"Liberation Monument Pedestrian Street\\\", \\\"start\\\": \\\"Le Comforto All Suite Hotel (Chongqing Paradise Walk D)\\\", \\\"start_time\\\": \\\"08:30\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Le Comforto All Suite Hotel (Chongqing Paradise Walk D)', 'end': 'Liberation Monument Pedestrian Street', 'mode': 'taxi', 'start_time': '08:30', 'end_time': '08:41', 'cost': 31.53, 'distance': 7.67}]\", \"data\": [{\"start\": \"Le Comforto "
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Chongqing\\\", \\\"end\\\": \\\"Chongqing West Railway Station\\\", \\\"start\\\": \\\"Liberation Monument Pedestrian Street\\\", \\\"start_time\\\": \\\"11:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Liberation Monument Pedestrian Street', 'end': 'Chongqing West Railway Station', 'mode': 'taxi', 'start_time': '11:00', 'end_time': '11:23', 'cost': 65.63, 'distance': 15.76}]\", \"data\": [{\"start\": \"Liberation Monument Pedestrian Street\", \"end\": \"Chongqing Wes"
+          }
+        ],
+        "latency_seconds": 4.620162083010655,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-08787b77-3fda-4f46-a135-5d166551232b",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 20096,
+        "completion_tokens": 350,
+        "reasoning_tokens": 53,
+        "attempts": 1,
+        "request_latencies": [
+          4.620162083010655
+        ]
+      },
+      {
+        "step": 12,
+        "content": "\n\n{\"people_number\": 3, \"start_city\": \"Chengdu\", \"target_city\": \"Chongqing\", \"itinerary\": [{\"day\": 1, \"activities\": [{\"type\": \"train\", \"start\": \"Chengdu East Railway Station\", \"end\": \"Chongqing West Railway Station\", \"TrainID\": \"G2371\", \"start_time\": \"06:48\", \"end_time\": \"08:05\", \"price\": 171.7, \"cost\": 515.1, \"tickets\": 3, \"transports\": []}, {\"type\": \"attraction\", \"position\": \"Hongya Cave\", \"start_time\": \"09:00\", \"end_time\": \"11:30\", \"price\": 0.0, \"cost\": 0.0, \"tickets\": 3, \"transports\": [{\"start\": \"Chongqing West Railway Station\", \"end\": \"Hongya Cave\", \"mode\": \"taxi\", \"start_time\": \"08:10\", \"end_time\": \"08:34\", \"price\": 67.14, \"cost\": 67.14, \"distance\": 16.1}]}, {\"type\": \"lunch\", \"position\": \"At Yuli Chongqing Hot Pot (Jiefangbei Delicious Street Branch)\", \"start_time\": \"12:00\", \"end_time\": \"13:30\", \"price\": 78.0, \"cost\": 234.0, \"tickets\": 3, \"transports\": [{\"start\": \"Hongya Cave\", \"end\": \"At Yuli Chongqing Hot Pot (Jiefangbei Delicious Street Branch)\", \"mode\": \"walk\", \"start_time\": \"11:30\", \"end_time\": \"11:48\", \"price\": 0.0, \"cost\": 0.0, \"distance\": 1.5815275383558585}]}, {\"type\": \"accommodation\", \"position\": \"Le Comforto All Suite Hotel (Chongqing Paradise Walk D)\", \"start_time\": \"18:00\", \"end_time\": \"23:00\", \"price\": 419.0, \"cost\": 838.0, \"tickets\": 3, \"rooms\": 2, \"room_type\": 2, \"transports\": [{\"start\": \"At Yuli Chongqing Hot Pot (Jiefangbei Delicious Street Branch)\", \"end\": \"Le Comforto All Suite Hotel (Chongqing Paradise Walk D)\", \"mode\": \"taxi\", \"start_time\": \"13:30\", \"end_time\": \"13:40\", \"price\": 28.28, \"cost\": 28.28, \"distance\": 6.74}]}]}, {\"day\": 2, \"activities\": [{\"type\": \"attraction\", \"position\": \"Liberation Monument Pedestrian Street\", \"start_time\": \"09:00\", \"end_time\": \"11:00\", \"price\": 0.0, \"cost\": 0.0, \"tickets\": 3, \"transports\": [{\"start\": \"Le Comforto All Suite Hotel (Chongqing Paradise Walk D)\", \"end\": \"Liberation Monument Pedestrian Street\", \"mode\": \"taxi\", \"start_time\": \"08:30\", \"end_time\": \"08:41\", \"price\": 31.53, \"cost\": 31.53, \"distance\": 7.",
+        "tool_calls": [],
+        "tool_results": [],
+        "latency_seconds": 9.942602208990138,
+        "finish_reason": "stop",
+        "request_id": "chatcmpl-a088c796-8969-49a5-813c-dd53a594c357",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 21137,
+        "completion_tokens": 1024,
+        "reasoning_tokens": 40,
+        "attempts": 1,
+        "request_latencies": [
+          9.942602208990138
+        ]
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 177575,
+      "completion_tokens": 20288,
+      "total_tokens": 197863,
+      "reasoning_tokens": 14814
+    },
+    "checker": {
+      "ok": true,
+      "violations": [],
+      "supported": [
+        "schema",
+        "day_count",
+        "people_number",
+        "start_target_city",
+        "activity_time_order",
+        "transport_time_order",
+        "transport_structure",
+        "activity_cost_rules",
+        "meal_time_windows",
+        "space_chain",
+        "accommodation_nights",
+        "intercity_transport_presence",
+        "ticket_fields",
+        "budget_if_in_text",
+        "entity_grounding",
+        "opening_hours",
+        "duplicate_activities",
+        "meal_type_once",
+        "transport_matches_goto",
+        "intercity_transport_values"
+      ],
+      "unsupported": [
+        "room_rules",
+        "overnight_hours",
+        "budget_not_found_in_text"
+      ]
+    },
+    "error": null,
+    "metadata": {
+      "event_text": null,
+      "usage_complete": true,
+      "request_count": 13,
+      "retry_count": 1,
+      "request_latency_seconds": 347.0867075410206
+    },
+    "started_at": "2026-10-30T18:05:10.702091+00:00",
+    "finished_at": "2026-10-30T18:11:00.328333+00:00",
+    "duration_seconds": 349.62621370801935,
+    "wall_seconds": 349.62641825003084
+  },
+  "supervision": {
+    "returncode": 0,
+    "hard_timeout": false,
+    "cancelled": false,
+    "wall_seconds": 349.9962966250023
+  },
+  "ledger": {
+    "request_attempts": 13,
+    "completed_attempts": 13,
+    "pending_attempts": 0,
+    "observed_usage": {
+      "prompt_tokens": 177575,
+      "completion_tokens": 20288,
+      "total_tokens": 197863
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0637702,
+      "upper": 0.0637702
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793383510.7188501,
+        "attempt_id": "032f9a070ee844419803741b79465ceb",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793383514.741846,
+        "attempt_id": "032f9a070ee844419803741b79465ceb",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 4.022773957985919,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-e08e6c87-d779-4c70-861c-09ff9653eded",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 4006,
+        "completion_tokens": 282,
+        "total_tokens": 4288,
+        "reasoning_tokens": 141
+      },
+      {
+        "kind": "start",
+        "time": 1793383515.170902,
+        "attempt_id": "0f3a7d349aa84ccc92c5a3291cbfcb7a",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793383520.037199,
+        "attempt_id": "0f3a7d349aa84ccc92c5a3291cbfcb7a",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 4.865699583024252,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-6914450a-9689-44d4-8780-7c827cdffb6e",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 6436,
+        "completion_tokens": 277,
+        "total_tokens": 6713,
+        "reasoning_tokens": 83
+      },
+      {
+        "kind": "start",
+        "time": 1793383520.044943,
+        "attempt_id": "a9788cc53afe4f88974e46bd6d9e4908",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793383558.7129421,
+        "attempt_id": "a9788cc53afe4f88974e46bd6d9e4908",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 38.66726312501123,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-a2de04ff-c3de-4f3d-b6f6-21db02d1b7c1",
+        "cached_prompt_tokens": 5376,
+        "prompt_tokens": 11293,
+        "completion_tokens": 2869,
+        "total_tokens": 14162,
+        "reasoning_tokens": 2728
+      },
+      {
+        "kind": "start",
+        "time": 1793383558.7213922,
+        "attempt_id": "b690d2254f2d448a954a3e827fd59620",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793383575.799006,
+        "attempt_id": "b690d2254f2d448a954a3e827fd59620",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 17.07689741702052,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-ed3443d2-be5a-45f8-8847-fba5dac62e68",
+        "cached_prompt_tokens": 9984,
+        "prompt_tokens": 13151,
+        "completion_tokens": 1136,
+        "total_tokens": 14287,
+        "reasoning_tokens": 1069
+      },
+      {
+        "kind": "start",
+        "time": 1793383575.803853,
+        "attempt_id": "cf626019c90e47b09057c3b234952770",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793383578.9250948,
+        "attempt_id": "cf626019c90e47b09057c3b234952770",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 3.1205174579517916,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-3dab3a20-7811-4bc1-9039-431abaf8b84e",
+        "cached_prompt_tokens": 12288,
+        "prompt_tokens": 15126,
+        "completion_tokens": 126,
+        "total_tokens": 15252,
+        "reasoning_tokens": 59
+      },
+      {
+        "kind": "start",
+        "time": 1793383578.9292219,
+        "attempt_id": "fbb1a27d7a3e40ada3ba5372ce272182",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793383621.890956,
+        "attempt_id": "fbb1a27d7a3e40ada3ba5372ce272182",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 42.960917124990374,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-c514c84c-384b-46e4-ae1b-4600552975ff",
+        "cached_prompt_tokens": 13824,
+        "prompt_tokens": 15539,
+        "completion_tokens": 3497,
+        "total_tokens": 19036,
+        "reasoning_tokens": 2731
+      },
+      {
+        "kind": "start",
+        "time": 1793383621.894735,
+        "attempt_id": "8513d4f0f0ce4861a87ab0b09d5bd9d7",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793383641.561942,
+        "attempt_id": "8513d4f0f0ce4861a87ab0b09d5bd9d7",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 19.666494000004604,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-97bc58ed-86f8-4340-ab5b-b1c2d3cc523d",
+        "cached_prompt_tokens": 14592,
+        "prompt_tokens": 16550,
+        "completion_tokens": 1318,
+        "total_tokens": 17868,
+        "reasoning_tokens": 1136
+      },
+      {
+        "kind": "start",
+        "time": 1793383641.5655239,
+        "attempt_id": "97206cca8fb6403e83375d2f366258b1",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793383731.603541,
+        "attempt_id": "97206cca8fb6403e83375d2f366258b1",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 90.03731145797065,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793383733.6101701,
+        "attempt_id": "ac405e4dbb864c959c32a359f2b09713",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      },
+      {
+        "kind": "success",
+        "time": 1793383761.24586,
+        "attempt_id": "ac405e4dbb864c959c32a359f2b09713",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 27.63465287501458,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-2690348d-7818-4878-8289-9f33b7452c16",
+        "cached_prompt_tokens": 16128,
+        "prompt_tokens": 17206,
+        "completion_tokens": 2204,
+        "total_tokens": 19410,
+        "reasoning_tokens": 1712
+      },
+      {
+        "kind": "start",
+        "time": 1793383761.249424,
+        "attempt_id": "b918bb0b12d94a20836a9eb7f35b905c",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793383797.886812,
+        "attempt_id": "b918bb0b12d94a20836a9eb7f35b905c",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 36.636765041039325,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-a16a07d7-aa78-45c2-8a29-af5b130be709",
+        "cached_prompt_tokens": 16128,
+        "prompt_tokens": 17791,
+        "completion_tokens": 3226,
+        "total_tokens": 21017,
+        "reasoning_tokens": 1801
+      },
+      {
+        "kind": "start",
+        "time": 1793383797.8939,
+        "attempt_id": "33321d650b6e434f935b65d1595c16a6",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793383845.729198,
+        "attempt_id": "33321d650b6e434f935b65d1595c16a6",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 47.83465120900655,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-971bbb77-cec7-40d5-b210-e2eed28e4ef3",
+        "cached_prompt_tokens": 16896,
+        "prompt_tokens": 19244,
+        "completion_tokens": 3979,
+        "total_tokens": 23223,
+        "reasoning_tokens": 3261
+      },
+      {
+        "kind": "start",
+        "time": 1793383845.7461271,
+        "attempt_id": "b69ebaaa03d441779d6b413ca7634c95",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793383850.3670511,
+        "attempt_id": "b69ebaaa03d441779d6b413ca7634c95",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 4.620162083010655,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-08787b77-3fda-4f46-a135-5d166551232b",
+        "cached_prompt_tokens": 18432,
+        "prompt_tokens": 20096,
+        "completion_tokens": 350,
+        "total_tokens": 20446,
+        "reasoning_tokens": 53
+      },
+      {
+        "kind": "start",
+        "time": 1793383850.37026,
+        "attempt_id": "d9c7768c4a81499b9e03ce1c570c4858",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793383860.313462,
+        "attempt_id": "d9c7768c4a81499b9e03ce1c570c4858",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 9.942602208990138,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-a088c796-8969-49a5-813c-dd53a594c357",
+        "cached_prompt_tokens": 19200,
+        "prompt_tokens": 21137,
+        "completion_tokens": 1024,
+        "total_tokens": 22161,
+        "reasoning_tokens": 40
+      }
+    ]
+  }
+}

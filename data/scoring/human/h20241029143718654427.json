@@ -1,0 +1,10 @@
+{
+  "hard_logic_py": [
+    "total_cost=0 \nfor activity in allactivities(plan):\n    total_cost+=activity_cost(activity)\n    total_cost += innercity_transport_cost(activity_transports(activity))\nresult=(total_cost<=2500)",
+    "hotel_cost=0\nfor activity in allactivities(plan):\n  if activity_type(activity)=='accommodation': hotel_cost+=activity_cost(activity)\nresult=(hotel_cost/people_count(plan)/(day_count(plan)-1)<= 300)",
+    "result=(day_count(plan)==3)",
+    "result=(people_count(plan)==1)",
+    "result=True\nfor activity in allactivities(plan):\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False"
+  ],
+  "uid": "h20241029143718654427"
+}

@@ -1,0 +1,13 @@
+{
+  "hard_logic_py": [
+    "result=(day_count(plan)==2)",
+    "result=(people_count(plan)==4)",
+    "total_cost=0 \nfor activity in allactivities(plan):\n    total_cost+=activity_cost(activity)\n    total_cost += innercity_transport_cost(activity_transports(activity))\nresult=(total_cost<=6000)",
+    "innercity_transport_set=set()\nfor activity in allactivities(plan):\n  if activity_transports(activity)!=[]: innercity_transport_set.add(innercity_transport_type(activity_transports(activity)))\nresult=({'metro'}<=innercity_transport_set)",
+    "result=True\nfor activity in allactivities(plan):\n  if activity_type(activity) in ['attraction', 'airplane', 'train'] and activity_tickets(activity)!=4: result=False\n  if innercity_transport_type(activity_transports(activity))=='metro'and metro_tickets(activity_transports(activity))!=4: result=False",
+    "result=True\nfor activity in allactivities(plan):\n  if activity_type(activity)=='accommodation' and room_count(activity)!=2: result=False",
+    "result=True\nfor activity in allactivities(plan):\n  if activity_type(activity)=='accommodation' and room_type(activity)!=2: result=False",
+    "result=True\nfor activity in allactivities(plan):\n  if innercity_transport_type(activity_transports(activity))=='taxi'and taxi_cars(activity_transports(activity))!=1: result=False"
+  ],
+  "uid": "e20241028160930368370"
+}

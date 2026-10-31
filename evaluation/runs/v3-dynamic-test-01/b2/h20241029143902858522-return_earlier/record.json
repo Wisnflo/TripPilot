@@ -1,0 +1,708 @@
+{
+  "job": {
+    "uid": "h20241029143902858522",
+    "split": "human",
+    "seed": "experiments/v3/v3-static-test-01/structured/h20241029143902858522/result.json",
+    "event": {
+      "kind": "return_earlier",
+      "new_days": 1
+    },
+    "clarification_answer": "cancel_overnight",
+    "method": "b2",
+    "kind": "dynamic",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 240.0,
+    "request_timeout": 90.0,
+    "attempts": 2
+  },
+  "result": {
+    "task_uid": "h20241029143902858522",
+    "method": "b2",
+    "model": "qwen3.8-reasoner",
+    "terminal_state": "checked_ok",
+    "plan": {
+      "people_number": 1,
+      "start_city": "Beijing",
+      "target_city": "Suzhou",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "train",
+              "start": "Beijing South Railway Station",
+              "end": "Suzhou North Station",
+              "start_time": "06:10",
+              "end_time": "11:43",
+              "price": 668.44,
+              "cost": 668.44,
+              "tickets": 1,
+              "transports": [],
+              "TrainID": "G101"
+            },
+            {
+              "type": "lunch",
+              "position": "Old Wang's Egg Pancake (Shuyuan Alley Branch)",
+              "price": 10.0,
+              "cost": 10.0,
+              "start_time": "12:03",
+              "end_time": "12:48",
+              "transports": [
+                {
+                  "start": "Suzhou North Station",
+                  "end": "Old Wang's Egg Pancake (Shuyuan Alley Branch)",
+                  "mode": "taxi",
+                  "start_time": "11:43",
+                  "end_time": "12:03",
+                  "cost": 57.52,
+                  "distance": 13.96,
+                  "price": 57.52,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Baosheng Temple",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 1,
+              "start_time": "13:24",
+              "end_time": "14:24",
+              "transports": [
+                {
+                  "start": "Old Wang's Egg Pancake (Shuyuan Alley Branch)",
+                  "end": "Baosheng Temple",
+                  "mode": "taxi",
+                  "start_time": "12:48",
+                  "end_time": "13:24",
+                  "cost": 105.64,
+                  "distance": 24.65,
+                  "price": 105.64,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Arhat Hall",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 1,
+              "start_time": "15:05",
+              "end_time": "16:05",
+              "transports": [
+                {
+                  "start": "Baosheng Temple",
+                  "end": "Arhat Hall",
+                  "mode": "taxi",
+                  "start_time": "14:24",
+                  "end_time": "15:05",
+                  "cost": 118.59,
+                  "distance": 27.53,
+                  "price": 118.59,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "train",
+              "start": "Suzhou North Station",
+              "end": "Beijing South Railway Station",
+              "start_time": "17:23",
+              "end_time": "21:33",
+              "price": 668.44,
+              "cost": 668.44,
+              "tickets": 1,
+              "transports": [
+                {
+                  "start": "Arhat Hall",
+                  "end": "Suzhou North Station",
+                  "mode": "taxi",
+                  "start_time": "16:05",
+                  "end_time": "16:23",
+                  "cost": 49.32,
+                  "distance": 12.14,
+                  "price": 49.32,
+                  "cars": 1
+                }
+              ],
+              "TrainID": "G24"
+            }
+          ]
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step": 1,
+        "content": "\n\n",
+        "tool_calls": [
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Suzhou",
+              "start": "Arhat Hall",
+              "end": "Suzhou North Station",
+              "start_time": "16:05",
+              "transport_type": "taxi"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Suzhou\\\", \\\"end\\\": \\\"Suzhou North Station\\\", \\\"start\\\": \\\"Arhat Hall\\\", \\\"start_time\\\": \\\"16:05\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Arhat Hall', 'end': 'Suzhou North Station', 'mode': 'taxi', 'start_time': '16:05', 'end_time': '16:23', 'cost': 49.32, 'distance': 12.14}]\", \"data\": [{\"start\": \"Arhat Hall\", \"end\": \"Suzhou North Station\", \"mode\": \"taxi\", \"start_time\": \"16:05\", \"end_time\": \"16:23\", \"cost\": 49.32, \"distance\": 12.14}]"
+          }
+        ],
+        "latency_seconds": 28.127714667003602,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-bf1f7635-4b3d-4392-bfae-b16faa78a016",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 5675,
+        "completion_tokens": 2393,
+        "reasoning_tokens": 2305,
+        "attempts": 1,
+        "request_latencies": [
+          28.127714667003602
+        ]
+      },
+      {
+        "step": 2,
+        "content": "\n\n",
+        "tool_calls": [
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Suzhou",
+              "start": "Suzhou North Station",
+              "end": "Old Wang's Egg Pancake (Shuyuan Alley Branch)",
+              "start_time": "11:43",
+              "transport_type": "taxi"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Suzhou\\\", \\\"end\\\": \\\"Old Wang's Egg Pancake (Shuyuan Alley Branch)\\\", \\\"start\\\": \\\"Suzhou North Station\\\", \\\"start_time\\\": \\\"11:43\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Suzhou North Station', 'end': \\\"Old Wang's Egg Pancake (Shuyuan Alley Branch)\\\", 'mode': 'taxi', 'start_time': '11:43', 'end_time': '12:03', 'cost': 57.52, 'distance': 13.96}]\", \"data\": [{\"start\": \"Suzhou North Station\", \"end\": \"Old Wang's Egg Pancake (Shuyuan All"
+          }
+        ],
+        "latency_seconds": 11.785298792005051,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-400de5d4-2846-4ef7-80ea-2282ed8aed87",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 5978,
+        "completion_tokens": 863,
+        "reasoning_tokens": 765,
+        "attempts": 1,
+        "request_latencies": [
+          11.785298792005051
+        ]
+      },
+      {
+        "step": 3,
+        "content": "\n\n",
+        "tool_calls": [
+          {
+            "name": "intercity_transport_select",
+            "arguments": {
+              "start_city": "Suzhou",
+              "end_city": "Beijing",
+              "intercity_type": "train",
+              "earliest_leave_time": "16:30"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "intercity_transport_select",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"earliest_leave_time\\\": \\\"16:30\\\", \\\"end_city\\\": \\\"Beijing\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Suzhou\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['G24' 'High-speed rail' 'Suzhou North Station'\\n 'Beijing South Railway Station' '17:23' '21:33' 4.2 668.44]\\n['T110' 'Express' 'Suzhou Station' 'Beijing Railway Station' '17:25'\\n '08:32' 15.2 514.19]\\n['G156' 'High-speed rail' '"
+          }
+        ],
+        "latency_seconds": 3.568956708011683,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-db70d1d7-2bbb-409f-94db-6117e6a9fd1b",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 6320,
+        "completion_tokens": 170,
+        "reasoning_tokens": 91,
+        "attempts": 1,
+        "request_latencies": [
+          3.568956708011683
+        ]
+      },
+      {
+        "step": 4,
+        "content": "\n\n{\"people_number\": 1, \"start_city\": \"Beijing\", \"target_city\": \"Suzhou\", \"itinerary\": [{\"day\": 1, \"activities\": [{\"type\": \"train\", \"start\": \"Beijing South Railway Station\", \"end\": \"Suzhou North Station\", \"start_time\": \"06:10\", \"end_time\": \"11:43\", \"price\": 668.44, \"cost\": 668.44, \"tickets\": 1, \"transports\": [], \"TrainID\": \"G101\"}, {\"type\": \"lunch\", \"position\": \"Old Wang's Egg Pancake (Shuyuan Alley Branch)\", \"price\": 10.0, \"cost\": 10.0, \"start_time\": \"12:03\", \"end_time\": \"12:48\", \"transports\": [{\"start\": \"Suzhou North Station\", \"end\": \"Old Wang's Egg Pancake (Shuyuan Alley Branch)\", \"mode\": \"taxi\", \"start_time\": \"11:43\", \"end_time\": \"12:03\", \"cost\": 57.52, \"distance\": 13.96, \"price\": 57.52, \"cars\": 1}]}, {\"type\": \"attraction\", \"position\": \"Baosheng Temple\", \"price\": 0.0, \"cost\": 0.0, \"tickets\": 1, \"start_time\": \"13:24\", \"end_time\": \"14:24\", \"transports\": [{\"start\": \"Old Wang's Egg Pancake (Shuyuan Alley Branch)\", \"end\": \"Baosheng Temple\", \"mode\": \"taxi\", \"start_time\": \"12:48\", \"end_time\": \"13:24\", \"cost\": 105.64, \"distance\": 24.65, \"price\": 105.64, \"cars\": 1}]}, {\"type\": \"attraction\", \"position\": \"Arhat Hall\", \"price\": 0.0, \"cost\": 0.0, \"tickets\": 1, \"start_time\": \"15:05\", \"end_time\": \"16:05\", \"transports\": [{\"start\": \"Baosheng Temple\", \"end\": \"Arhat Hall\", \"mode\": \"taxi\", \"start_time\": \"14:24\", \"end_time\": \"15:05\", \"cost\": 118.59, \"distance\": 27.53, \"price\": 118.59, \"cars\": 1}]}, {\"type\": \"train\", \"start\": \"Suzhou North Station\", \"end\": \"Beijing South Railway Station\", \"start_time\": \"17:23\", \"end_time\": \"21:33\", \"price\": 668.44, \"cost\": 668.44, \"tickets\": 1, \"transports\": [{\"start\": \"Arhat Hall\", \"end\": \"Suzhou North Station\", \"mode\": \"taxi\", \"start_time\": \"16:05\", \"end_time\": \"16:23\", \"cost\": 49.32, \"distance\": 12.14, \"price\": 49.32, \"cars\": 1}], \"TrainID\": \"G24\"}]}]}",
+        "tool_calls": [],
+        "tool_results": [],
+        "latency_seconds": 11.063497499970254,
+        "finish_reason": "stop",
+        "request_id": "chatcmpl-b14b2f2e-b397-48e1-a5db-b3f8337aab07",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 7768,
+        "completion_tokens": 976,
+        "reasoning_tokens": 204,
+        "attempts": 1,
+        "request_latencies": [
+          11.063497499970254
+        ]
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 25741,
+      "completion_tokens": 4402,
+      "total_tokens": 30143,
+      "reasoning_tokens": 3365
+    },
+    "checker": {
+      "ok": true,
+      "violations": [],
+      "supported": [
+        "schema",
+        "day_count",
+        "people_number",
+        "start_target_city",
+        "activity_time_order",
+        "transport_time_order",
+        "transport_structure",
+        "activity_cost_rules",
+        "meal_time_windows",
+        "space_chain",
+        "accommodation_nights",
+        "intercity_transport_presence",
+        "ticket_fields",
+        "budget_if_in_text",
+        "entity_grounding",
+        "opening_hours",
+        "duplicate_activities",
+        "meal_type_once",
+        "transport_matches_goto",
+        "intercity_transport_values",
+        "explicit_dynamic_event"
+      ],
+      "unsupported": [
+        "room_rules",
+        "overnight_hours",
+        "budget_not_found_in_text"
+      ]
+    },
+    "error": null,
+    "metadata": {
+      "event_text": "The user must return earlier: the trip is now 1 days instead of the original length.",
+      "usage_complete": true,
+      "request_count": 4,
+      "retry_count": 0,
+      "request_latency_seconds": 54.54546766699059
+    },
+    "started_at": "2026-10-30T18:40:27.403202+00:00",
+    "finished_at": "2026-10-30T18:41:22.410114+00:00",
+    "duration_seconds": 55.00692845904268,
+    "wall_seconds": 55.009179958025925,
+    "clarification": {
+      "status": "ready",
+      "base_revision": "6e32030ebf4fa69675fcbd07ec8e1336345176e8d2acc3872bec7aed1d8d3ad1",
+      "task": {
+        "days": 2,
+        "limit_rooms": false,
+        "limits_room_type": false,
+        "nature_language": "[当前位置北京,目标位置苏州,旅行人数1,旅行天数2] 我想从北京坐火车去苏州玩两天,我喜欢人少的地方。请问我应当如何规划行程？",
+        "nature_language_en": "[Current location: Beijing, Destination: Suzhou, Number of travelers: 1, Number of travel days: 2] I want to take a train from Beijing to Suzhou for a two-day trip. I prefer places with fewer people. How should I plan my itinerary?",
+        "people_number": 1,
+        "start_city": "北京",
+        "tag": "human",
+        "target_city": "苏州",
+        "uid": "h20241029143902858522"
+      },
+      "seed_plan": {
+        "people_number": 1,
+        "start_city": "Beijing",
+        "target_city": "Suzhou",
+        "itinerary": [
+          {
+            "day": 1,
+            "activities": [
+              {
+                "type": "train",
+                "start": "Beijing South Railway Station",
+                "end": "Suzhou North Station",
+                "start_time": "06:10",
+                "end_time": "11:43",
+                "price": 668.44,
+                "cost": 668.44,
+                "tickets": 1,
+                "transports": [],
+                "TrainID": "G101"
+              },
+              {
+                "type": "lunch",
+                "position": "Old Wang's Egg Pancake (Shuyuan Alley Branch)",
+                "price": 10.0,
+                "cost": 10.0,
+                "start_time": "12:03",
+                "end_time": "12:48",
+                "transports": [
+                  {
+                    "start": "Suzhou North Station",
+                    "end": "Old Wang's Egg Pancake (Shuyuan Alley Branch)",
+                    "mode": "taxi",
+                    "start_time": "11:43",
+                    "end_time": "12:03",
+                    "cost": 57.52,
+                    "distance": 13.96,
+                    "price": 57.52,
+                    "cars": 1
+                  }
+                ]
+              },
+              {
+                "type": "attraction",
+                "position": "Baosheng Temple",
+                "price": 0.0,
+                "cost": 0.0,
+                "tickets": 1,
+                "start_time": "13:24",
+                "end_time": "14:24",
+                "transports": [
+                  {
+                    "start": "Old Wang's Egg Pancake (Shuyuan Alley Branch)",
+                    "end": "Baosheng Temple",
+                    "mode": "taxi",
+                    "start_time": "12:48",
+                    "end_time": "13:24",
+                    "cost": 105.64,
+                    "distance": 24.65,
+                    "price": 105.64,
+                    "cars": 1
+                  }
+                ]
+              },
+              {
+                "type": "attraction",
+                "position": "Arhat Hall",
+                "price": 0.0,
+                "cost": 0.0,
+                "tickets": 1,
+                "start_time": "15:05",
+                "end_time": "16:35",
+                "transports": [
+                  {
+                    "start": "Baosheng Temple",
+                    "end": "Arhat Hall",
+                    "mode": "taxi",
+                    "start_time": "14:24",
+                    "end_time": "15:05",
+                    "cost": 118.59,
+                    "distance": 27.53,
+                    "price": 118.59,
+                    "cars": 1
+                  }
+                ]
+              },
+              {
+                "type": "dinner",
+                "position": "Chen's Wonton (Wuqufang Branch)",
+                "price": 11.0,
+                "cost": 11.0,
+                "start_time": "17:00",
+                "end_time": "17:45",
+                "transports": [
+                  {
+                    "start": "Arhat Hall",
+                    "end": "Chen's Wonton (Wuqufang Branch)",
+                    "mode": "taxi",
+                    "start_time": "16:35",
+                    "end_time": "16:37",
+                    "cost": 11.41,
+                    "distance": 1.92,
+                    "price": 11.41,
+                    "cars": 1
+                  }
+                ]
+              },
+              {
+                "type": "accommodation",
+                "position": "Zeyiju Jingshe (Suzhou Guanqian Street Pingjiang Road)",
+                "price": 250.0,
+                "cost": 250.0,
+                "rooms": 1,
+                "room_type": 2,
+                "start_time": "18:00",
+                "end_time": "23:59",
+                "transports": [
+                  {
+                    "start": "Chen's Wonton (Wuqufang Branch)",
+                    "end": "Zeyiju Jingshe (Suzhou Guanqian Street Pingjiang Road)",
+                    "mode": "taxi",
+                    "start_time": "17:45",
+                    "end_time": "17:47",
+                    "cost": 11.0,
+                    "distance": 1.55,
+                    "price": 11.0,
+                    "cars": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "day": 2,
+            "activities": [
+              {
+                "type": "attraction",
+                "position": "Chang Garden",
+                "price": 0.0,
+                "cost": 0.0,
+                "tickets": 1,
+                "start_time": "08:01",
+                "end_time": "10:01",
+                "transports": [
+                  {
+                    "start": "Zeyiju Jingshe (Suzhou Guanqian Street Pingjiang Road)",
+                    "end": "Chang Garden",
+                    "mode": "taxi",
+                    "start_time": "08:00",
+                    "end_time": "08:01",
+                    "cost": 11.0,
+                    "distance": 0.69,
+                    "price": 11.0,
+                    "cars": 1
+                  }
+                ]
+              },
+              {
+                "type": "lunch",
+                "position": "Pretty Good Pavilion Bun Shop (Old Xuedian Branch)",
+                "price": 15.0,
+                "cost": 15.0,
+                "start_time": "11:00",
+                "end_time": "11:45",
+                "transports": [
+                  {
+                    "start": "Chang Garden",
+                    "end": "Pretty Good Pavilion Bun Shop (Old Xuedian Branch)",
+                    "mode": "taxi",
+                    "start_time": "10:01",
+                    "end_time": "10:02",
+                    "cost": 11.0,
+                    "distance": 0.86,
+                    "price": 11.0,
+                    "cars": 1
+                  }
+                ]
+              },
+              {
+                "type": "attraction",
+                "position": "Beijing-Hangzhou Grand Canal",
+                "price": 0.0,
+                "cost": 0.0,
+                "tickets": 1,
+                "start_time": "12:00",
+                "end_time": "13:00",
+                "transports": [
+                  {
+                    "start": "Pretty Good Pavilion Bun Shop (Old Xuedian Branch)",
+                    "end": "Beijing-Hangzhou Grand Canal",
+                    "mode": "taxi",
+                    "start_time": "11:45",
+                    "end_time": "12:00",
+                    "cost": 41.38,
+                    "distance": 10.37,
+                    "price": 41.38,
+                    "cars": 1
+                  }
+                ]
+              },
+              {
+                "type": "train",
+                "start": "Suzhou North Station",
+                "end": "Beijing South Railway Station",
+                "start_time": "18:12",
+                "end_time": "23:51",
+                "price": 668.44,
+                "cost": 668.44,
+                "tickets": 1,
+                "transports": [
+                  {
+                    "start": "Beijing-Hangzhou Grand Canal",
+                    "end": "Suzhou North Station",
+                    "mode": "taxi",
+                    "start_time": "13:00",
+                    "end_time": "13:18",
+                    "cost": 50.06,
+                    "distance": 12.3,
+                    "price": 50.06,
+                    "cars": 1
+                  }
+                ],
+                "TrainID": "G162"
+              }
+            ]
+          }
+        ]
+      },
+      "event": {
+        "kind": "return_earlier",
+        "day": null,
+        "new_days": 1,
+        "new_budget": null,
+        "target": null,
+        "description": ""
+      },
+      "state_revision": "e92ab9d999423426302380190ea6d3eccc2bb9f885231fe0acb9d27f631cb428"
+    },
+    "event": {
+      "kind": "return_earlier",
+      "new_days": 1
+    },
+    "event_check": {
+      "ok": true,
+      "violations": [],
+      "supported": [
+        "schema",
+        "day_count",
+        "people_number",
+        "start_target_city",
+        "activity_time_order",
+        "transport_time_order",
+        "transport_structure",
+        "activity_cost_rules",
+        "meal_time_windows",
+        "space_chain",
+        "accommodation_nights",
+        "intercity_transport_presence",
+        "ticket_fields",
+        "budget_if_in_text",
+        "entity_grounding",
+        "opening_hours",
+        "duplicate_activities",
+        "meal_type_once",
+        "transport_matches_goto",
+        "intercity_transport_values",
+        "explicit_dynamic_event"
+      ],
+      "unsupported": [
+        "room_rules",
+        "overnight_hours",
+        "budget_not_found_in_text"
+      ]
+    }
+  },
+  "supervision": {
+    "returncode": 0,
+    "hard_timeout": false,
+    "cancelled": false,
+    "wall_seconds": 55.38438575004693
+  },
+  "ledger": {
+    "request_attempts": 4,
+    "completed_attempts": 4,
+    "pending_attempts": 0,
+    "observed_usage": {
+      "prompt_tokens": 25741,
+      "completion_tokens": 4402,
+      "total_tokens": 30143
+    },
+    "unobserved_billing_possible": false,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0156278,
+      "upper": 0.0156278
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793385627.415829,
+        "attempt_id": "c99da087ce65403087350a4a4d48c88a",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793385655.54415,
+        "attempt_id": "c99da087ce65403087350a4a4d48c88a",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 28.127714667003602,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-bf1f7635-4b3d-4392-bfae-b16faa78a016",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 5675,
+        "completion_tokens": 2393,
+        "total_tokens": 8068,
+        "reasoning_tokens": 2305
+      },
+      {
+        "kind": "start",
+        "time": 1793385655.967942,
+        "attempt_id": "15e6284e4d8348889606145e28817aff",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793385667.753804,
+        "attempt_id": "15e6284e4d8348889606145e28817aff",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 11.785298792005051,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-400de5d4-2846-4ef7-80ea-2282ed8aed87",
+        "cached_prompt_tokens": 4608,
+        "prompt_tokens": 5978,
+        "completion_tokens": 863,
+        "total_tokens": 6841,
+        "reasoning_tokens": 765
+      },
+      {
+        "kind": "start",
+        "time": 1793385667.756601,
+        "attempt_id": "5ff22b8129da4fb3a7829e56ac6bc4d9",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793385671.326144,
+        "attempt_id": "5ff22b8129da4fb3a7829e56ac6bc4d9",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 3.568956708011683,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-db70d1d7-2bbb-409f-94db-6117e6a9fd1b",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 6320,
+        "completion_tokens": 170,
+        "total_tokens": 6490,
+        "reasoning_tokens": 91
+      },
+      {
+        "kind": "start",
+        "time": 1793385671.333747,
+        "attempt_id": "dff62bf596aa4d979721661ae536162a",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793385682.3980002,
+        "attempt_id": "dff62bf596aa4d979721661ae536162a",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 11.063497499970254,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-b14b2f2e-b397-48e1-a5db-b3f8337aab07",
+        "cached_prompt_tokens": 5376,
+        "prompt_tokens": 7768,
+        "completion_tokens": 976,
+        "total_tokens": 8744,
+        "reasoning_tokens": 204
+      }
+    ]
+  }
+}
