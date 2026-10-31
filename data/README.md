@@ -1,4 +1,4 @@
-# Frozen benchmark data
+# Benchmark task data
 
 ChinaTravel queries and sandbox tables are licensed under CC BY 4.0. See [attribution and versions](../THIRD_PARTY_NOTICES.md).
 

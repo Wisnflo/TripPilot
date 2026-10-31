@@ -59,7 +59,7 @@ Two parents per difficulty were selected before observing results, with two addi
 
 ## Conditional dynamic repair
 
-Parents are selected by a fixed UID hash order from successful structured plans with multiple days and intercity transport, up to 4 per difficulty. Actual selection is 4 easy, 4 medium, 3 human parents. Each produces all three event types; candidates are not filtered by revised-plan outcomes or proven feasibility. The budget event uses floor(95% of seed spend).
+Parents are selected by a predetermined ordering of task IDs from successful structured plans with multiple days and intercity transport, up to 4 per difficulty. Actual selection is 4 easy, 4 medium, 3 human parents. Each produces all three event types; candidates are not filtered by revised-plan outcomes or proven feasibility. The budget event uses floor(95% of seed spend).
 
 | Event | TripPilot | ReAct + checker |
 | --- | ---: | ---: |
@@ -68,23 +68,23 @@ Parents are selected by a fixed UID hash order from successful structured plans 
 | Budget reduction | 6/11 | 4/11 |
 | Total | 27/33 | 22/33 |
 
-Returned tokens are 951,153 vs 1,555,663 (38.9% fewer); summed repair time is 2,593.23 vs 4,285.81 s (39.5% less). Parent-cluster bootstrap intervals for reductions are 14.8%–56.9% and 26.0%–49.6%. Runtime states are 28 checked_ok/5 hard_timeout for TripPilot and 23 checked_ok/2 checked_with_violations/8 hard_timeout for the baseline.
+Returned tokens are 951,153 vs 1,555,663 (38.9% fewer); summed repair time is 2,593.23 vs 4,285.81 s (39.5% less). Parent-cluster bootstrap intervals for reductions are 14.8%–56.9% and 26.0%–49.6%. Runtime states are 28 checked_ok/5 hard_timeout for TripPilot and 23 checked_ok/2 checked_with_violations/8 hard_timeout for the ReAct agent.
 
 This is a **conditional repair** comparison, not end-to-end success. The initial 17/24 success and the one-parent selection shortfall remain visible.
 
 Dynamic scoring is derived, not official gold. Only explicit event-covered day-count equalities are rewritten. One-day return with explicit lodging requirements triggers clarification; the benchmark simulates an explicit user cancellation only after a question. Pure lodging clauses are waived only if the actual result records the accepted choice, question and explicit waiver. Mixed lodging/budget clauses are retained. Preliminary and stricter-review scores are both published; the stricter score remains 27/33 vs 22/33 without rerunning models.
 
-## Evidence and integrity
+## Result files
 
 - [Machine-readable metrics](../evaluation/results.json)
 - [Original per-run protocols, scores, records and request journals](../evaluation/runs/)
 - [Dynamic selection recipe](../evaluation/dynamic-cohort.json)
 - [Verification summary](../evaluation/verification.json)
-- [Published file checksums](../evaluation/checksums.json)
+- [Published file inventory](../evaluation/checksums.json)
 
-Four formal stages have identical recorded source hashes. Core `src/` files are byte-identical to the evaluated snapshot. Publication adds documentation/packaging, renames test files and omits private operational material. Original protocol hashes describe the evaluation-time source snapshot; they are not checksums for the public repository tree. Local absolute paths in published JSON have been replaced by `{PROJECT_ROOT}`; published checksums cover these sanitized bytes. Original local records were retained unchanged.
+The same runtime implementation was used across all four evaluation stages. Core `src/` files are byte-identical to the evaluated snapshot. Publication adds documentation/packaging, renames test files and omits private operational material. The recorded source versions describe the implementation used during evaluation; publication packaging is documented separately. Local absolute paths in published JSON have been replaced by `{PROJECT_ROOT}`; the published inventory covers these sanitized files. Original local records were retained unchanged.
 
-The runtime rechecks task/seed fingerprints, not every sandbox table per task. Source and frozen data in this repository can be checked offline; neither API outputs nor future provider weights are guaranteed to replay bit-for-bit. Published tasks may have appeared in model pretraining.
+The runtime rechecks task and seed versions, not every sandbox table per task. Source code and bundled data in this repository can be checked offline; neither API outputs nor future provider weights are guaranteed to replay bit-for-bit. Published tasks may have appeared in model pretraining.
 
 ## Reproduce
 
@@ -111,6 +111,6 @@ If interrupted, inspect the stage state/logs under `experiments/v3/acceptance-<p
 
 ## Scope and attribution
 
-The benchmark is small, uses one provider alias and frozen data, and has no NeSy/SOTA comparison. Candidate search is bounded and does not prove global optimality/infeasibility. Tool access is allowlisted; the process is not an OS security sandbox. List prices are current USTC platform rates for observed usage, not an invoice or actual cash payment. Failed/pending requests may still incur unknown remote charges.
+The benchmark is small, uses one provider alias and sample data, and has no NeSy/SOTA comparison. Candidate search is bounded and does not prove global optimality/infeasibility. Tool access is allowlisted; the process is not an OS security sandbox. List prices are current USTC platform rates for observed usage, not an invoice or actual cash payment. Failed/pending requests may still incur unknown remote charges.
 
 ChinaTravel supplies the environment, public tables and base evaluators. TripPilot supplies the structured planning/compiler control, transactional repair/clarification, shared execution budgets and evidence handling. See [third-party notices](../THIRD_PARTY_NOTICES.md).

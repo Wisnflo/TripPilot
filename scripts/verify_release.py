@@ -28,7 +28,7 @@ def main():
     if failures:
         print(json.dumps({"status": "failed", "files": failures}, ensure_ascii=False))
         return 1
-    print(json.dumps({"status": "verified", "hashed_files": len(manifest["files"]), "runs": len(metrics["runs"]), "model_calls": 0}))
+    print(json.dumps({"status": "verified", "checked_files": len(manifest["files"]), "runs": len(metrics["runs"]), "model_calls": 0}))
     return 0
 
 

@@ -61,7 +61,7 @@ def worker(path):
 
 
 def parse_args():
-    p=argparse.ArgumentParser(description='Travel Agent using frozen ChinaTravel data; writes new local versions, no bookings.')
+    p=argparse.ArgumentParser(description='Travel Agent using sample ChinaTravel data; writes new local versions, no bookings.')
     p.add_argument('--worker-job',help=argparse.SUPPRESS)
     # Worker dispatch happens before parsing public subcommands.
     if '--worker-job' in sys.argv:return p.parse_args()

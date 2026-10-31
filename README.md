@@ -21,7 +21,7 @@ TripPilot 是一个面向多约束旅行任务的 Agent：理解自然语言需�
 
 ## 评测结果
 
-在 ChinaTravel 冻结环境中，与 **ReAct + 运行时检查器**（代码标识 `b2`）对照。双方使用同一 `qwen3.8-reasoner` 服务模型、公开输入、工具接口及模型调用/时间上限。
+在 ChinaTravel 旅行环境中，与 **ReAct + 运行时检查器**（代码标识 `b2`）对照。双方使用同一 `qwen3.8-reasoner` 服务模型、公开输入、工具接口及模型调用/时间上限。
 
 | 任务 | TripPilot | ReAct + 检查器 | 已返回 token 减少 | 累计执行耗时减少 |
 | --- | ---: | ---: | ---: | ---: |
@@ -58,7 +58,7 @@ flowchart LR
 
 ### 1. 安装
 
-需要 [uv](https://docs.astral.sh/uv/) 与 Python 3.12。本仓库包含运行和离线验证所需的冻结工具表与任务数据，无需为体验下载完整上游项目。
+需要 [uv](https://docs.astral.sh/uv/) 与 Python 3.12。本仓库包含运行和离线验证所需的工具数据表与任务数据，无需为体验下载完整上游项目。
 
 ```sh
 git clone https://github.com/Wisnflo/TripPilot.git
@@ -130,12 +130,12 @@ scripts/            # 产品 CLI、评测运行与独立判分
 tests/              # 输入、规划、事务、澄清、超时与计费测试
 evaluation/         # 协议、逐任务结果、请求账本与校验清单
 data/               # 公开输入与仅供离线评分的标注
-upstream/ChinaTravel/ # 保留归属的第三方环境与冻结数据
+upstream/ChinaTravel/ # 保留归属的第三方环境与配套数据
 ```
 
 ## 运行边界
 
-- 使用冻结 ChinaTravel 数据，覆盖北京、上海、南京、杭州、苏州、深圳、成都、武汉、广州、重庆 10 座城市；不执行真实预订，也不提供实时营业或交通保证。
+- 使用 ChinaTravel 示例数据，覆盖北京、上海、南京、杭州、苏州、深圳、成都、武汉、广州、重庆 10 座城市；不执行真实预订，也不提供实时营业或交通保证。
 - `checked_ok` 表示公开运行时检查通过；完整 benchmark 约束由离线评分器独立判定。
 - 首次规划默认 360 秒，修复默认 240 秒；每请求 90 秒、最多 2 次尝试，最多 16 次逻辑模型调用。客户端取消不能保证远端立即停止计费。
 - 价格配置只用于已返回用量的估算。更换模型服务时需核对 `config/v3-pricing.json`，估算金额不能作为实际支付凭证。
@@ -144,4 +144,4 @@ upstream/ChinaTravel/ # 保留归属的第三方环境与冻结数据
 
 TripPilot 原创代码采用 [MIT](LICENSE)。第三方 ChinaTravel 代码保留其 [MIT 许可证](upstream/ChinaTravel/LICENSE)；查询与 sandbox 数据采用 **CC BY 4.0**。
 
-工具环境、冻结数据与基础评分器来自 [LAMDA-NeSy/ChinaTravel](https://github.com/LAMDA-NeSy/ChinaTravel)，并非本项目自研。版本、数据校验值、修改范围与引用方式见 [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md)。
+工具环境、配套数据与评分工具来自 [LAMDA-NeSy/ChinaTravel](https://github.com/LAMDA-NeSy/ChinaTravel)，并非本项目自研。数据来源、版本、修改范围与引用方式见 [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md)。
