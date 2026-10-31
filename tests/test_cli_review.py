@@ -34,12 +34,12 @@ class FinalReviewTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);task=root/'task.json';output=root/'out'
             task.write_text(json.dumps({'days':1,'people_number':1,'start_city':'上海','target_city':'杭州','nature_language':'去公园'}))
-            def fake(command,folder,seconds,cwd):
+            def fake(command,folder,seconds,cwd,**kwargs):
                 job=json.loads((folder/'job.json').read_text());self.assertTrue(job['task']['uid'].startswith('interactive-'))
                 (folder/'worker-result.json').write_text(json.dumps({'status':'checked_ok','task':job['task'],'plan':{'itinerary':[]}}))
                 return {'hard_timeout':False,'cancelled':False,'wall_seconds':0.1}
             with patch.object(sys,'argv',['trip.py','plan','--task',str(task),'--output-dir',str(output)]), \
-                 patch('trippilot.execution.supervisor.supervise',side_effect=fake),contextlib.redirect_stdout(io.StringIO()):
+                 patch('trippilot.execution.supervisor.supervise',side_effect=fake),patch('trippilot.models.config.resolve_model_config',return_value=__import__('trippilot.models.config',fromlist=['ModelConfig']).ModelConfig('test','unused')),contextlib.redirect_stdout(io.StringIO()):
                 self.assertEqual(cli.main(),0)
             self.assertTrue((output/'record.json').exists());self.assertTrue((output/'plan.json').exists())
 

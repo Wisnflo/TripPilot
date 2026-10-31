@@ -3,6 +3,7 @@
 import time
 import uuid
 from ..execution.ledger import emit
+from ..execution.budget import current
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
@@ -64,6 +65,9 @@ RETRYABLE = (APITimeoutError, APIConnectionError, RateLimitError, InternalServer
 
 
 def _call_with_retries(config: ModelConfig, client: OpenAI, kwargs: Dict[str, Any], deadline=None):
+    budget = current()
+    if budget is not None:
+        kwargs = budget.prepare_request(dict(kwargs))
     latencies: List[float] = []
     last_error: Optional[Exception] = None
     for attempt in range(1, config.max_attempts + 1):
@@ -83,6 +87,8 @@ def _call_with_retries(config: ModelConfig, client: OpenAI, kwargs: Dict[str, An
             emit("success", attempt_id=attempt_id, model=config.model, elapsed=elapsed,
                  response_model=getattr(response, "model", None), request_id=getattr(response, "id", None),
                  **_usage_fields(getattr(response, "usage", None)))
+            if budget is not None:
+                budget.consume(_usage_fields(getattr(response, "usage", None)))
             return response, latencies
         except RETRYABLE as exc:
             elapsed = time.perf_counter() - started

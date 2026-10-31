@@ -29,14 +29,19 @@ def reset_cancellation():
         _ABORT.clear()
 
 
-def supervise(command, directory, seconds, cwd=None):
+def supervise(command, directory, seconds, cwd=None, restricted=False):
     directory=Path(directory);directory.mkdir(parents=True,exist_ok=True)
     if seconds<=0:raise ValueError('seconds must be positive')
+    environment=None
+    if restricted:
+        from .isolation import prepare
+        command,environment=prepare(command,directory)
+        cwd=str(Path(directory).resolve())
     clock=time.monotonic()
     with (directory/'worker.log').open('w') as log:
         with _LOCK:
             if _ABORT.is_set():raise RuntimeError('batch cancelled')
-            process=subprocess.Popen(command,cwd=cwd,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+            process=subprocess.Popen(command,cwd=cwd,stdout=log,stderr=subprocess.STDOUT,start_new_session=True,env=environment)
             _ACTIVE.add(process)
         killed=False
         try:code=process.wait(timeout=seconds)

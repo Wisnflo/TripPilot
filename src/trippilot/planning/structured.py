@@ -7,11 +7,13 @@ import json
 import math
 import re
 import time
+from ..money import amount, number, multiply, plan_total, sum_cost
 from datetime import datetime, timezone
 
 from ..agent.loop import Trajectory, extract_plan, run_react
 from ..models.openai_adapter import chat_step, ModelRequestError
 from ..request import request_text
+from ..execution.budget import count_feedback
 from ..plan.checker import check_plan, Violation, _tool_city, extract_budget
 from ..repair.proposals import PublicTools, transport_activity, activity_position
 
@@ -137,7 +139,7 @@ def shortlist(catalog, task, bases, req):
         for value in req.get(field,[]):
             found=catalog.select(kind,city,key,value,op)
             pools[kind].extend(found)
-            if key=='name':req['entity_aliases'][value]=[r['name'] for r in found]
+            req['entity_aliases'][value]=[str(r.get(key,'')) for r in found]
     result={}
     for kind,values in pools.items():
         unique={str(row['id']):row for row in values if 'id' in row}
@@ -145,13 +147,13 @@ def shortlist(catalog, task, bases, req):
         def matches(row):
             if kind=='hotel':
                 return ((not req.get('room_type') or row.get('numbed')==req['room_type']) and
-                    all(v.lower() in str(row.get('featurehoteltype','')).lower() for v in req.get('hotel_features',[])) and
+                    all(any(alias.lower() in str(row.get('featurehoteltype','')).lower() for alias in req.get('entity_aliases',{}).get(v,[v])) for v in req.get('hotel_features',[])) and
                     (not req.get('hotel_names') or any(any(alias.lower() in row['name'].lower() for alias in req.get('entity_aliases',{}).get(v,[v])) for v in req['hotel_names'])))
             if kind=='restaurant' and req.get('meal_price_cap') is not None:
-                return float(row.get('price',0))<=req['meal_price_cap']
+                return amount(row.get('price',0))<=amount(req['meal_price_cap'])
             return True
         values=[v for v in values if matches(v)]
-        values.sort(key=lambda r:(float(r.get('price',0)),r['name']))
+        values.sort(key=lambda r:(amount(r.get('price',0)),r['name']))
         picked=[]
         groups={'attraction':[('type',v) for v in req.get('attraction_types',[])]+[('name',v) for v in req.get('attraction_names',[])],
                 'restaurant':[('cuisine',v) for v in req.get('cuisines',[])]+[('name',v) for v in req.get('restaurant_names',[])],
@@ -173,7 +175,8 @@ def shortlist(catalog, task, bases, req):
                     values.append(dict(row,_mode=mode))
             # Mix cheapest and useful arrival/departure windows; never only the
             # first ten midnight trains from the public table.
-            cheap=sorted(values,key=lambda v:float(v['Cost']))[:8]
+            values=[v for v in values if isinstance(v.get('Cost'),(int,float)) and math.isfinite(v['Cost']) and isinstance(v.get('TrainID') or v.get('FlightID'),str)]
+            cheap=sorted(values,key=lambda v:amount(v['Cost']))[:8]
             timed=sorted(values,key=lambda v:minute(v['EndTime']) if direction=='outbound' else -minute(v['BeginTime']))[:8]
             key=lambda v:v.get('TrainID') or v.get('FlightID')
             transport[direction]={key(v):v for v in cheap+timed}
@@ -214,7 +217,7 @@ def compile_sketch(task, sketch, facts, req, tools):
                     if option is not None:
                         try:arrival=minute(option[-1]['end_time']) if option else time_now
                         except ValueError:continue
-                        if arrival>=time_now:possibilities.append((arrival,sum(t.get('cost',0) for t in option),option))
+                        if arrival>=time_now:possibilities.append((arrival,sum_cost(option),option))
                 if not possibilities:raise ValueError('no route to '+str(target))
                 # Cost/arrival are compiler objectives; user mode constraints
                 # have already bounded the choices above.
@@ -237,8 +240,8 @@ def compile_sketch(task, sketch, facts, req, tools):
             kind=visit.get('kind');key=visit.get('id')
             group='attraction' if kind=='attraction' else 'restaurant'
             if kind not in ('attraction','breakfast','lunch','dinner') or key not in facts[group]:raise ValueError('unknown visit ID')
-            row=facts[group][key];price=float(row['price'])
-            activity={'type':kind,'position':row['name'],'price':price,'cost':round(price*people,2)}
+            row=facts[group][key];price=number(row['price'])
+            activity={'type':kind,'position':row['name'],'price':price,'cost':multiply(price,people)}
             if kind=='attraction':activity['tickets']=people
             opening=minute(row.get('opentime','00:00'));closing=minute(row.get('endtime','23:59'))
             if closing<opening:closing=1439
@@ -251,8 +254,8 @@ def compile_sketch(task, sketch, facts, req, tools):
         if not any(a['type']=='attraction' for a in activities):raise ValueError('each day needs an attraction')
         if not any(a['type'] in ('breakfast','lunch','dinner') for a in activities):raise ValueError('each day needs a meal')
         if dayindex<n:
-            attach({'type':'accommodation','position':hotel['name'],'price':float(hotel['price']),
-                    'cost':float(hotel['price'])*room_count,'rooms':room_count,'room_type':int(hotel['numbed'])},18*60)
+            attach({'type':'accommodation','position':hotel['name'],'price':number(hotel['price']),
+                    'cost':multiply(hotel['price'],room_count),'rooms':room_count,'room_type':int(hotel['numbed'])},18*60)
         elif inbound:attach(inbound)
         plan['itinerary'].append({'day':dayindex,'activities':activities})
     return plan
@@ -279,7 +282,7 @@ def check_requirements(task,plan,req,toolbox):
         if a.get('type')=='accommodation':
             for field,planfield in [('rooms','rooms'),('room_type','room_type')]:
                 if req.get(field) is not None and a.get(planfield)!=req[field]:result.violations.append(Violation('predicted_room_rule',field+' mismatch'))
-        if a.get('type') in ('breakfast','lunch','dinner') and req.get('meal_price_cap') is not None and a.get('price',0)>req['meal_price_cap']:
+        if a.get('type') in ('breakfast','lunch','dinner') and req.get('meal_price_cap') is not None and amount(a.get('price',0))>amount(req['meal_price_cap']):
             result.violations.append(Violation('predicted_meal_cap','meal price above user cap'))
     intercity=[a for a in acts if a.get('type') in ('train','airplane')]
     if req.get('intercity_mode') and any(a['type']!=req['intercity_mode'] for a in intercity):
@@ -295,13 +298,13 @@ def check_requirements(task,plan,req,toolbox):
                 mode='metro' if len(legs)==3 else legs[0].get('mode')
                 if mode not in req['local_modes']:result.violations.append(Violation('predicted_local_mode','wrong local mode'))
     if req.get('budget') is not None:
-        total=sum(a.get('cost',0)+sum(t.get('cost',0) for t in a.get('transports',[])) for a in acts)
-        if total>req['budget']:result.violations.append(Violation('predicted_budget','over budget'))
+        total=plan_total(plan)
+        if total>amount(req['budget']):result.violations.append(Violation('predicted_budget','over budget'))
     result.unsupported.extend(req.get('unsupported',[]))
     return result
 
 
-def run_structured(task,config,toolbox,max_steps=16,max_seconds=240):
+def run_structured(task,config,toolbox,max_steps=16,max_seconds=240,feedback=True,compile_plan=True,shared_facts=None):
     started=time.monotonic();deadline=started+max_seconds;steps=[];usage={};plan=None;terminal='max_steps'
     catalog=Catalog(toolbox,deadline);metadata={'usage_complete':True,'fallback':False};checker=None
     def record(response,phase):
@@ -315,10 +318,19 @@ def run_structured(task,config,toolbox,max_steps=16,max_seconds=240):
                       'completion_tokens':response.completion_tokens})
     try:
         city=_tool_city(task['target_city'])
-        bases={k:catalog.select(k,city) for k in ('attraction','hotel','restaurant')}
+        bases={k:catalog.select(k,city) for k in ('attraction','hotel','restaurant')} if shared_facts is None else {k:list(shared_facts[k].values()) for k in ('attraction','hotel','restaurant')}
         req=extract_requirements(task,bases,config,deadline,record);metadata['predicted_requirements']=req
-        facts=shortlist(catalog,task,bases,req);metadata['fact_catalog']=facts
-        compact={kind:{key:{k:v for k,v in row.items() if k not in ('lat','lon','recommendedfood','hotelname_en')}
+        facts=shortlist(catalog,task,bases,req) if shared_facts is None else copy.deepcopy(shared_facts)
+        req.setdefault('entity_aliases',{})
+        if shared_facts is not None:
+            for kind,field,key,op in [('attraction','attraction_types','type','eq'),('attraction','attraction_names','name','contains'),('hotel','hotel_features','featurehoteltype','contains'),('hotel','hotel_names','name','contains'),('restaurant','cuisines','cuisine','eq'),('restaurant','restaurant_names','name','contains')]:
+                for value in req.get(field,[]):
+                    found=catalog.select(kind,city,key,value,op)
+                    req['entity_aliases'][value]=[str(r.get(key,'')) for r in found]
+
+        metadata['fact_catalog']=facts
+        metadata['components']={'feedback':feedback,'compiler':compile_plan,'shared_context':shared_facts is not None}
+        compact={kind:{key:{k:v for k,v in row.items() if k not in ('recommendedfood','hotelname_en')}
                        for key,row in rows.items()} for kind,rows in facts.items()}
         messages=[{'role':'system','content':
             'Choose an itinerary SKETCH using ONLY offered IDs. No prices, times or invented entities. '
@@ -330,18 +342,27 @@ def run_structured(task,config,toolbox,max_steps=16,max_seconds=240):
             'Activities use minimum recommended duration; meals 45min; lunch 11-14, dinner 17-20; every night needs hotel. '
             'For one day hotel=null. Keep visits short (2-3/day) and affordable. Reply only JSON.'},
             {'role':'user','content':json.dumps({'task':task,'requirements':req,'facts':compact},ensure_ascii=False)}]
-        for _ in range(min(3,max_steps-len(steps))):
+        if not compile_plan:
+            from ..plan.schema import load_plan_schema
+            messages[0]['content']='Write a complete travel plan using ONLY supplied tool facts. Return JSON matching this schema: '+json.dumps(load_plan_schema(),ensure_ascii=False)
+        for _ in range(min(3 if feedback else 1,max_steps-len(steps))):
             response=chat_step(config,messages,deadline=deadline);record(response,'select_sketch')
             sketch=extract_plan(response.content) or {};messages.append({'role':'assistant','content':response.content})
             try:
-                candidate=compile_sketch(task,sketch,facts,req,catalog.tools)
+                if compile_plan:
+                    candidate=compile_sketch(task,sketch,facts,req,catalog.tools)
+                else:
+                    from ..plan.normalize import normalise_plan
+                    from ..plan.grounding import complete_routes
+                    candidate=complete_routes(task,normalise_plan(sketch,task.get('people_number')),toolbox)
                 checked=check_requirements(task,candidate,req,toolbox)
                 if checked.ok:
                     plan=candidate;checker=checked.as_dict();terminal='checked_ok';break
                 feedback=[v.message for v in checked.violations][:10]
             except (ValueError,KeyError,TypeError) as exc:feedback=[str(exc)]
+            count_feedback()
             messages.append({'role':'user','content':'Compiler rejected sketch: '+json.dumps(feedback)+'. Revise only the sketch. Do not invent IDs.'})
-        if plan is None and len(steps)<max_steps and time.monotonic()<deadline:
+        if feedback and plan is None and len(steps)<max_steps and time.monotonic()<deadline:
             metadata['fallback']=True
             revised=dict(task)
             revised['nature_language_en']=(task.get('nature_language_en') or task.get('nature_language',''))+'\nExtracted user constraints (predictions, not gold): '+json.dumps(req)

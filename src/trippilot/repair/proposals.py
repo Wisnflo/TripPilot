@@ -2,6 +2,7 @@
 import copy
 import json
 import time
+from ..money import amount, number, multiply, sum_cost, plan_total
 
 from ..plan.checker import _minutes, _tool_city
 from ..plan.compare import activity_map
@@ -65,7 +66,7 @@ class PublicTools:
                 leg["cost"] = price
             elif leg.get("mode") == "metro":
                 leg["tickets"] = people
-                leg["cost"] = round(price * people, 2)
+                leg["cost"] = multiply(price, people)
             else:
                 leg["cost"] = 0
         return routes
@@ -74,8 +75,8 @@ class PublicTools:
 def transport_activity(row, kind, people):
     key = "TrainID" if kind == "train" else "FlightID"
     return dict(type=kind, start=row["From"], end=row["To"], start_time=row["BeginTime"],
-                end_time=row["EndTime"], price=float(row["Cost"]),
-                cost=round(float(row["Cost"]) * people, 2), tickets=people,
+                end_time=row["EndTime"], price=number(row["Cost"]),
+                cost=multiply(row["Cost"], people), tickets=people,
                 transports=[], **{key: row[key]})
 
 
@@ -211,21 +212,20 @@ def build_proposals(task, seed, event, toolbox, max_candidates=12, deadline=None
             routes = old.get("transports") or []
             if not routes or not any(t.get("mode") == "taxi" for t in routes):
                 continue
-            original_cost = sum(t.get("cost", 0) for t in routes)
+            original_cost = sum_cost(routes)
             options = []
             for mode in [m for m in modes if m in ("metro", "walk")]:
                 new = tools.route(city, routes[0]["start"], routes[-1]["end"], routes[0]["start_time"], mode, people)
                 if new is not None and (not new or (_minutes(new[-1]["end_time"]) is not None and
                                                      _minutes(new[-1]["end_time"]) <= _minutes(old["start_time"]))):
-                    if sum(t.get("cost", 0) for t in new) < original_cost:
+                    if sum_cost(new) < original_cost:
                         options.append(new)
             if options:
                 revised = copy.deepcopy(old)
-                revised["transports"] = min(options, key=lambda value: sum(t.get("cost", 0) for t in value))
+                revised["transports"] = min(options, key=lambda value: sum_cost(value))
                 edits.append({"op": "replace", "id": key, "value": revised})
                 scope.add(key)
                 emit(edits, scope)
     candidates.sort(key=lambda c: (c["preservation"]["removed_or_modified"],
-                                  sum(a.get("cost", 0) + sum(t.get("cost", 0) for t in a.get("transports", []))
-                                      for day in c["plan"]["itinerary"] for a in day["activities"])))
+                                  plan_total(c["plan"])))
     return candidates, tools.trace, rejected

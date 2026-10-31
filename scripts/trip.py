@@ -18,6 +18,7 @@ def write(path,value):
 
 
 def worker(path):
+    from trippilot.execution.budget import ResourceBudget,activate,deactivate,BudgetExceeded
     from trippilot.agent_input import build_agent_input
     from trippilot.models.config import resolve_model_config
     from trippilot.models.openai_adapter import ModelRequestError
@@ -28,7 +29,9 @@ def worker(path):
     from trippilot.repair.transaction import revision
     from trippilot.tools.agent_tools import ToolBox
     job=json.loads(path.read_text());folder=path.parent;clock=time.monotonic();deadline=clock+job['seconds']
+    budget=ResourceBudget(token_limit=job.get('tokens',500000),tool_limit=job.get('tool_limit',400));budget_token=activate(budget)
     os.environ['TRIPPILOT_REQUEST_JOURNAL']=str(folder/'requests.jsonl')
+    os.environ['TRIPPILOT_RESOURCE_JOURNAL']=str(folder/'resources.jsonl')
     config=dataclasses.replace(resolve_model_config(model_override=job['model']),
         request_timeout_seconds=job['request_timeout'],max_attempts=job['attempts'])
     try:
@@ -53,11 +56,16 @@ def worker(path):
                         max_steps=16-len(state.get('intent_usage',{}).get('requests',[])),max_seconds=remaining)
                     result.update(status=trajectory.terminal_state,result=trajectory.as_dict(),plan=trajectory.plan)
         result['worker_wall_seconds']=time.monotonic()-clock
+    except BudgetExceeded:
+        result={'status':'budget_exhausted','plan':None,'worker_wall_seconds':time.monotonic()-clock}
     except ModelRequestError:
         result={'status':'request_error','plan':None,'worker_wall_seconds':time.monotonic()-clock}
     except (ValueError,KeyError,TypeError) as exc:
         result={'status':'invalid_request','plan':None,'message':str(exc),'worker_wall_seconds':time.monotonic()-clock}
+    result['resources']=budget.as_dict()
+    if budget.exhausted:result['status']='budget_exhausted'
     write(folder/'worker-result.json',result)
+    deactivate(budget_token)
 
 
 def parse_args():
@@ -72,10 +80,11 @@ def parse_args():
     answer=subs.add_parser('answer');answer.add_argument('--state',required=True);answer.add_argument('--answer',choices=['cancel_overnight','keep_original'],required=True)
     for sub in [plan,revise,answer]:
         sub.add_argument('--output-dir',required=True);sub.add_argument('--model',default='qwen3.8-reasoner')
+        sub.add_argument('--tokens',type=int,default=500000);sub.add_argument('--tool-limit',type=int,default=400)
         sub.add_argument('--seconds',type=float,default=360 if sub is plan else 240)
         sub.add_argument('--request-timeout',type=float,default=90);sub.add_argument('--attempts',type=int,default=2)
     a=p.parse_args()
-    if min(a.seconds,a.request_timeout,a.attempts)<=0:p.error('time budgets/attempts must be positive')
+    if min(a.seconds,a.request_timeout,a.attempts,a.tokens,a.tool_limit)<=0:p.error('time budgets/attempts must be positive')
     if a.command=='plan' and not a.task and not all([a.from_city,a.to_city,a.days,a.request]):p.error('supply --task or from/to/days/request')
     return a
 
@@ -88,7 +97,7 @@ def main():
     from trippilot.plan.checker import _tool_city,CITY_ZH_TO_EN
     from trippilot.execution.supervisor import supervise,terminate_all,reset_cancellation
     from trippilot.execution.ledger import summarize
-    job={'command':a.command,'model':a.model,'seconds':a.seconds,'request_timeout':a.request_timeout,'attempts':a.attempts}
+    job={'command':a.command,'model':a.model,'seconds':a.seconds,'request_timeout':a.request_timeout,'attempts':a.attempts,'tokens':a.tokens,'tool_limit':a.tool_limit}
     if a.command=='plan':
         task=json.loads(Path(a.task).read_text()) if a.task else {
             'uid':'interactive-'+uuid.uuid4().hex[:12],'start_city':a.from_city,'target_city':a.to_city,
@@ -108,9 +117,13 @@ def main():
         state=json.loads(Path(a.state).read_text());payload=json.loads(Path(state['seed_path']).read_text())
         job.update(state=state,answer=a.answer,current_seed=payload.get('plan',payload))
     folder=Path(a.output_dir);folder.mkdir(parents=True,exist_ok=False);write(folder/'job.json',job)
+    from trippilot.models.config import resolve_model_config
+    config=resolve_model_config(model_override=a.model,env_file=Path(os.environ['TRIPPILOT_CONFIG_FILE']) if os.environ.get('TRIPPILOT_CONFIG_FILE') else None)
+    os.environ['CHINATRAVEL_OPENAI_API_KEY']=config.api_key
+    if config.base_url:os.environ['CHINATRAVEL_OPENAI_BASE_URL']=config.base_url
     reset_cancellation();outcomes=[];errors=[];clock=time.monotonic()
     def execute():
-        try:outcomes.append(supervise([sys.executable,str(Path(__file__).resolve()),'--worker-job',str((folder/'job.json').resolve())],folder,a.seconds,cwd=ROOT))
+        try:outcomes.append(supervise([sys.executable,str(Path(__file__).resolve()),'--worker-job',str((folder/'job.json').resolve())],folder,a.seconds,cwd=ROOT,restricted=True))
         except Exception as exc:errors.append(type(exc).__name__)
     thread=threading.Thread(target=execute);thread.start()
     try:

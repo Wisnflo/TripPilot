@@ -43,6 +43,8 @@ def load_dotenv(path: Path = ENV_FILE, environ: Optional[Dict[str, str]] = None)
 
     Values are never printed or logged. Returns the parsed keys/values.
     """
+    if os.environ.get("TRIPPILOT_RESTRICTED") == "1":
+        return {}
     env = os.environ if environ is None else environ
     if not path.is_file():
         return {}

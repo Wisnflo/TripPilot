@@ -3,6 +3,7 @@
 import sys
 from pathlib import Path
 from typing import Any, Dict, List
+from ..execution.budget import count_tool
 
 UPSTREAM_ROOT = Path(__file__).resolve().parents[3] / "upstream" / "ChinaTravel"
 if str(UPSTREAM_ROOT) not in sys.path:
@@ -44,6 +45,12 @@ class ToolBox:
         self.lang = lang
         self.adapter = ChinaTravelEnvAdapter(lang=lang)
         self._zh_adapter = None
+        self.validation_cache = {}
+        self._intercity_cache = {}
+
+    def _invoke(self, name, arguments, adapter=None):
+        count_tool(name, arguments)
+        return (adapter or self.adapter).call_tool(name, arguments)
 
     def openai_tools(self) -> List[Dict[str, Any]]:
         specs = self.adapter.list_tools(format="openai")
@@ -65,20 +72,20 @@ class ToolBox:
         if self.lang == 'en':
             for key in ('city', 'start_city', 'end_city'):
                 if key in arguments: arguments[key] = CITY_ZH_TO_EN.get(arguments[key], arguments[key])
-        response = self.adapter.call_tool(name, arguments)
+        response = self._invoke(name, arguments)
         # Link user-spelled Chinese entity names through PUBLIC bilingual IDs.
         # This path is shared by every method, never uses scoring annotations.
         value = arguments.get('value')
-        is_name_query = name in ('attractions_select', 'restaurants_select', 'accommodations_select') and arguments.get('key') == 'name'
+        is_name_query = name in ('attractions_select', 'restaurants_select', 'accommodations_select') and arguments.get('key') in ('name','type','cuisine','featurehoteltype')
         if self.lang == 'en' and is_name_query and isinstance(value, str) and any('\u4e00' <= c <= '\u9fff' for c in value):
             if self._zh_adapter is None: self._zh_adapter = ChinaTravelEnvAdapter(lang='zh')
             zh = dict(arguments); inverse = {v:k for k,v in CITY_ZH_TO_EN.items()}
             zh['city'] = inverse.get(zh.get('city'), zh.get('city'))
-            linked = self._zh_adapter.call_tool(name, zh)
+            linked = self._invoke(name, zh, self._zh_adapter)
             data = linked.get('data') or {}; rows = data.get('rows', []) if isinstance(data, dict) else []
             english = []
             for row in rows[:10]:
-                mapped = self.adapter.call_tool(name, {'city':arguments['city'],'key':'id','op':'eq','value':int(row['id'])})
+                mapped = self._invoke(name, {'city':arguments['city'],'key':'id','op':'eq','value':int(row['id'])})
                 english.extend((mapped.get('data') or {}).get('rows', []))
             if english:
                 return {'success':True,'command':name,'resolved_from_language':'zh',
@@ -102,6 +109,9 @@ class ToolBox:
         The agent-facing adapter pages dataframes to 10 rows, which hides most
         train IDs. The checker needs the complete table to verify a plan.
         """
+        key=(start_city,end_city,intercity_type)
+        if key in self._intercity_cache:return self._intercity_cache[key]
+        count_tool("intercity_validation_rows", {"start_city": start_city, "end_city": end_city, "type": intercity_type})
         env = self.adapter._get_env()
         table = env.intercitytransport.select(
             start_city=start_city,
@@ -110,4 +120,5 @@ class ToolBox:
         )
         if table is None or not hasattr(table, "to_dict"):
             return []
-        return table.to_dict(orient="records")
+        self._intercity_cache[key]=table.to_dict(orient="records")
+        return self._intercity_cache[key]

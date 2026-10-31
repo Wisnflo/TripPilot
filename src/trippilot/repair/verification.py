@@ -1,5 +1,6 @@
 """Independent public event validation shared by all V2 methods; no gold access."""
 from decimal import Decimal
+from ..money import plan_total, amount
 
 from ..plan.checker import CheckResult, Violation, check_plan, _tool_city
 from .events import apply_event_to_task
@@ -40,9 +41,7 @@ def event_violations(task, seed, plan, event):
         if event.new_budget is None or event.new_budget < 0:
             fail("event_invalid", "budget must be nonnegative")
         else:
-            total = sum(Decimal(str(a.get("cost", 0))) +
-                        sum(Decimal(str(t.get("cost", 0))) for t in a.get("transports", []))
-                        for a in activities)
+            total = plan_total(plan)
             if total > event.new_budget:
                 fail("event_budget", "total exceeds new budget")
     return failures

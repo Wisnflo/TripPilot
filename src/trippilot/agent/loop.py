@@ -9,16 +9,18 @@ from typing import Any, Callable, Dict, List, Optional
 import json_repair
 
 from ..request import request_text
+from ..execution.budget import count_feedback
 from ..models.config import ModelConfig
 from ..models.openai_adapter import ChatStep, ModelRequestError, chat_step
 from ..plan.checker import CheckResult, check_plan
 from ..plan.compare import activity_map, changed_ids, preserve_violations
 from ..plan.normalize import normalise_plan
+from ..plan.grounding import complete_routes
 from ..plan.schema import load_plan_schema, validate_plan
 from ..tools.agent_tools import ToolBox
 
 
-SYSTEM_PROMPT = """You are TripPilot, a travel planning agent for a frozen benchmark sandbox.
+SYSTEM_PROMPT = """You are TripPilot, a travel planning agent for a sample travel environment.
 Use the provided tools to gather facts. Never invent POIs, prices, opening hours, train/flight IDs or transport times.
 Use exact entity names returned by tools. If a tool returns a page (Page/Total), decide whether you need next_page.
 When you have enough information, reply with ONLY one JSON object matching this schema:
@@ -31,7 +33,7 @@ Rules:
 - The first transport of an activity must start at the previous activity position; the last must end at this activity position. Leave transports empty when the position does not change.
 - The last transport must end at or before the activity start_time.
 - Do not repeat a tool call with identical arguments. If a tool returns no rows, change the query.
-- Gather facts with at most 8 tool calls, then output the plan.
+- Use the declared resource limits; batch independent tool lookups, reuse supplied facts, and leave enough budget to submit a complete plan.
 - itinerary length equals the requested days; day numbers are 1..N.
 - activities within a day are chronological and non-overlapping.
 - include intercity train/airplane activities when start_city != target_city; a 1-day round trip needs both directions.
@@ -164,7 +166,7 @@ def run_react(
     method: str = "b2",
     checker: Callable[[Dict[str, Any], Dict[str, Any]], CheckResult] = check_plan,
     max_steps: int = 12,
-    max_repairs: int = 2,
+    max_repairs: int = 4,
     client: Any = None,
     step_fn: Optional[Callable[[List[Dict[str, Any]], Optional[List[Dict[str, Any]]]], ChatStep]] = None,
     seed_plan: Optional[Dict[str, Any]] = None,
@@ -246,7 +248,7 @@ def run_react(
 
         step_record: Dict[str, Any] = {
             "step": step_index,
-            "content": (result.content or "")[:2000],
+            "content": result.content or "",
             "tool_calls": [],
             "tool_results": [],
             "latency_seconds": result.latency_seconds,
@@ -290,7 +292,7 @@ def run_react(
 
         candidate = extract_plan(result.content)
         if candidate is not None:
-            candidate = normalise_plan(candidate, task.get("people_number"))
+            candidate = complete_routes(task,normalise_plan(candidate, task.get("people_number")),toolbox)
         if candidate is None:
             messages.append(
                 {
@@ -303,6 +305,7 @@ def run_react(
         schema_errors = validate_plan(candidate)
         if schema_errors:
             if repairs < max_repairs:
+                count_feedback()
                 repairs += 1
                 messages.append(
                     {"role": "user", "content": _feedback(schema_errors, "The plan failed schema validation:")}
@@ -321,6 +324,7 @@ def run_react(
             violated = preserve_violations(seed_plan, candidate, preserve_ids)
             if violated:
                 if repairs < max_repairs:
+                    count_feedback()
                     repairs += 1
                     messages.append(
                         {
@@ -341,6 +345,7 @@ def run_react(
             metadata["outside_allowed"] = outside
             if outside:
                 if repairs < max_repairs:
+                    count_feedback()
                     repairs += 1
                     messages.append(
                         {
@@ -394,13 +399,15 @@ def run_single_shot(
     client: Any = None,
     step_fn: Optional[Callable[[List[Dict[str, Any]], Optional[List[Dict[str, Any]]]], ChatStep]] = None,
     max_seconds: Optional[float] = None,
+    toolbox=None,
 ) -> Trajectory:
-    """B0: one model call, no tools, one format repair at most."""
+    """One model call, shared route completion and no repair feedback."""
     schema_text = json.dumps(load_plan_schema(), ensure_ascii=False)
     messages: List[Dict[str, Any]] = [
         {"role": "system", "content": SYSTEM_PROMPT.replace("{schema}", schema_text)},
         {"role": "user", "content": task_text(task)},
     ]
+    messages[0]['content']+='\nThis is single-generation mode. Use the shared facts; do not call tools. For missing local routes use transports=[]; a shared factual completion step will query actual route data before checking. Do not invent route facts.'
     usage: Dict[str, int] = {}
     steps: List[Dict[str, Any]] = []
     started = _now()
@@ -408,7 +415,7 @@ def run_single_shot(
     plan = None
     terminal = "schema_invalid"
 
-    for step_index in range(1, 3):
+    for step_index in range(1, 2):
         if max_seconds is not None and time.perf_counter() - clock > max_seconds:
             terminal = "timeout"
             break
@@ -421,7 +428,7 @@ def run_single_shot(
         steps.append(
             {
                 "step": step_index,
-                "content": (result.content or "")[:2000],
+                "content": result.content or "",
                 "tool_calls": [],
                 "tool_results": [],
                 "latency_seconds": result.latency_seconds,
@@ -433,7 +440,7 @@ def run_single_shot(
         )
         candidate = extract_plan(result.content)
         if candidate is not None:
-            candidate = normalise_plan(candidate, task.get("people_number"))
+            candidate = complete_routes(task,normalise_plan(candidate, task.get("people_number")),toolbox)
         if candidate is not None and not validate_plan(candidate):
             plan = candidate
             terminal = "answer"

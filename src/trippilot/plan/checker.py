@@ -4,6 +4,7 @@ import re
 from collections import Counter
 from dataclasses import dataclass, field
 from decimal import Decimal, InvalidOperation
+from ..money import amount, decimal, plan_total
 from typing import Any, Dict, List, Optional
 
 from .schema import validate_plan
@@ -362,7 +363,7 @@ def check_plan(task: Dict[str, Any], plan: Dict[str, Any], toolbox: Any = None) 
             else:
                 multiplier = _number(people_number)
             if price is not None and cost is not None and multiplier is not None:
-                if abs(price * multiplier - cost) > 0.1:
+                if amount(decimal(price) * decimal(multiplier)) != amount(cost):
                     result.violations.append(
                         Violation(
                             "activity_cost_rule",
@@ -410,7 +411,7 @@ def check_plan(task: Dict[str, Any], plan: Dict[str, Any], toolbox: Any = None) 
                         )
                     )
                 if price is not None and cost is not None and _number(tickets) is not None:
-                    if abs(price * float(tickets) - cost) > 0.1:
+                    if amount(decimal(price) * decimal(tickets)) != amount(cost):
                         result.violations.append(
                             Violation("transport_cost_rule", "metro cost must equal price * tickets")
                         )
@@ -419,7 +420,7 @@ def check_plan(task: Dict[str, Any], plan: Dict[str, Any], toolbox: Any = None) 
                     result.violations.append(
                         Violation("taxi_cars", "taxi transport must have cars == 1")
                     )
-                if price is not None and cost is not None and abs(price - cost) > 0.1:
+                if price is not None and cost is not None and amount(price) != amount(cost):
                     result.violations.append(
                         Violation("transport_cost_rule", "taxi cost must equal price * cars")
                     )
@@ -555,7 +556,7 @@ def check_plan(task: Dict[str, Any], plan: Dict[str, Any], toolbox: Any = None) 
             position_list.append(appended_position)
 
     if toolbox is not None:
-        cache: Dict[Any, Any] = {}
+        cache: Dict[Any, Any] = getattr(toolbox,"validation_cache",{})
         city = _tool_city(task.get("target_city"))
         start_city = _tool_city(task.get("start_city"))
         for activity in _activities(plan):
@@ -575,7 +576,7 @@ def check_plan(task: Dict[str, Any], plan: Dict[str, Any], toolbox: Any = None) 
                 continue
             place_price = _number(place.get("price"))
             activity_price = _number(activity.get("price"))
-            if place_price is not None and activity_price is not None and abs(place_price - activity_price) > 0.1:
+            if place_price is not None and activity_price is not None and amount(place_price) != amount(activity_price):
                 result.violations.append(
                     Violation(
                         "entity_price_mismatch",
@@ -638,7 +639,7 @@ def check_plan(task: Dict[str, Any], plan: Dict[str, Any], toolbox: Any = None) 
                 for plan_field, tool_field in (("price", "cost"), ("distance", "distance")):
                     expected = _number(tool_row.get(tool_field))
                     actual = _number(transport.get(plan_field))
-                    if expected is not None and actual is not None and abs(expected - actual) > 0.1:
+                    if expected is not None and actual is not None and (amount(expected) != amount(actual) if plan_field == "price" else abs(expected - actual) > 0.1):
                         result.violations.append(
                             Violation(
                                 "transport_mismatch",
@@ -708,7 +709,7 @@ def check_plan(task: Dict[str, Any], plan: Dict[str, Any], toolbox: Any = None) 
                     )
             expected = _number(tool_row.get("Cost"))
             actual = _number(activity.get("price"))
-            if expected is not None and actual is not None and abs(expected - actual) > 0.1:
+            if expected is not None and actual is not None and amount(expected) != amount(actual):
                 result.violations.append(
                     Violation(
                         "intercity_mismatch",
@@ -719,7 +720,7 @@ def check_plan(task: Dict[str, Any], plan: Dict[str, Any], toolbox: Any = None) 
             cost = _number(activity.get("cost"))
             tickets = _number(activity.get("tickets"))
             if price is not None and cost is not None and tickets is not None:
-                if abs(price * tickets - cost) > 0.1:
+                if amount(decimal(price) * decimal(tickets)) != amount(cost):
                     result.violations.append(
                         Violation(
                             "intercity_cost_rule",

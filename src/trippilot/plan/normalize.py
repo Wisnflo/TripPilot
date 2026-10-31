@@ -8,6 +8,7 @@ arithmetic consistency, not route planning; it is applied to every method.
 """
 
 from typing import Any, Dict
+from ..money import multiply
 
 INTERCITY_TYPES = ("train", "airplane")
 MEAL_TYPES = ("breakfast", "lunch", "dinner")
@@ -22,7 +23,7 @@ def _number(value: Any):
 def _set_cost(item: Dict[str, Any], multiplier: int) -> None:
     price = _number(item.get("price"))
     if price is not None:
-        item["cost"] = round(price * multiplier, 2)
+        item["cost"] = multiply(price, multiplier)
 
 
 def normalise_plan(plan: Dict[str, Any], people_number: Any) -> Dict[str, Any]:

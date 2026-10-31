@@ -4,6 +4,7 @@ from typing import Any, Dict, List, Set
 
 from ..plan.compare import activity_ids, activity_map
 from .events import ChangeEvent
+from ..money import amount,sum_cost
 
 
 def affected_activity_ids(plan: Dict[str, Any], event: ChangeEvent) -> List[str]:
@@ -47,7 +48,7 @@ def affected_activity_ids(plan: Dict[str, Any], event: ChangeEvent) -> List[str]
         return [
             activity_id
             for activity_id, activity in mapping.items()
-            if float(activity.get("cost") or 0) > 0
+            if amount(activity.get("cost") or 0)+sum_cost(activity.get("transports",[])) > 0
         ]
 
     return []
@@ -70,6 +71,6 @@ def dependency_edges(plan: Dict[str, Any]) -> List[Dict[str, str]]:
             edges.append({"from": activity_id, "to": "arrival", "kind": "intercity_arrival"})
         if activity.get("type") == "accommodation":
             edges.append({"from": activity_id, "to": "next_day", "kind": "hotel_location"})
-        if float(activity.get("cost") or 0) > 0:
+        if amount(activity.get("cost") or 0)+sum_cost(activity.get("transports",[])) > 0:
             edges.append({"from": activity_id, "to": "budget", "kind": "cost"})
     return edges

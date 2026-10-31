@@ -18,17 +18,18 @@ from trippilot.execution.ledger import summarize
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--manifest',default='config/v3-tasks.json')
-    p.add_argument('--partition',choices=['dev','test','dynamic','repeat'],required=True)
+    p.add_argument('--partition',choices=['dev','test','dynamic','repeat','components','second_model'],required=True)
     p.add_argument('--kind',choices=['static','dynamic'],default='static')
     p.add_argument('--methods',nargs='+',default=['structured','b2'])
     p.add_argument('--model',default='qwen3.8-reasoner');p.add_argument('--run-id',required=True)
     p.add_argument('--seconds',type=float,default=240);p.add_argument('--steps',type=int,default=16)
+    p.add_argument('--shared-context',action='store_true');p.add_argument('--tokens',type=int,default=500000);p.add_argument('--tool-limit',type=int,default=400);p.add_argument('--output-tokens',type=int,default=10000)
     p.add_argument('--workers',type=int,default=2);p.add_argument('--limit',type=int)
     p.add_argument('--request-timeout',type=float,default=60);p.add_argument('--attempts',type=int,default=2)
     a=p.parse_args()
-    if min(a.seconds,a.steps,a.workers,a.request_timeout,a.attempts)<=0:p.error('budgets must be positive')
+    if min(a.seconds,a.steps,a.workers,a.request_timeout,a.attempts,a.tokens,a.tool_limit,a.output_tokens)<=0:p.error('budgets must be positive')
     if a.limit is not None and a.limit<=0:p.error('limit must be positive when provided')
-    allowed={'static':{'structured','b2'},'dynamic':{'patch','b2'}}[a.kind]
+    allowed={'static':{'structured','b2','b1','b0','no_feedback','direct_plan'},'dynamic':{'patch','b2','rules'}}[a.kind]
     if not a.methods or not set(a.methods)<=allowed or len(a.methods)!=len(set(a.methods)):p.error('invalid or duplicate methods for job kind')
     events=json.loads((ROOT/a.manifest).read_text())[a.partition]
     keys=[(e['uid'],e['event']['kind'] if a.kind=='dynamic' else '') for e in events]
@@ -45,7 +46,7 @@ def main():
     price_document=json.loads(price_path.read_text())
     prices=price_document['models'].get(a.model)
     protocol={'pricing':{'currency':'CNY','rates':prices,'observed_date':price_document['observed_date'],'sha256':hashlib.sha256(price_path.read_bytes()).hexdigest()},'kind':a.kind,'partition':a.partition,'events':events,'methods':a.methods,'model':a.model,
-              'steps':a.steps,'seconds':a.seconds,'timeout':a.request_timeout,'attempts':a.attempts,'workers':a.workers,'data_sha256':input_hashes,
+              'shared_context':a.shared_context,'tokens':a.tokens,'tool_limit':a.tool_limit,'output_tokens':a.output_tokens,'steps':a.steps,'seconds':a.seconds,'timeout':a.request_timeout,'attempts':a.attempts,'workers':a.workers,'data_sha256':input_hashes,
               'source_sha256':hashes,'manifest_sha256':hashlib.sha256((ROOT/a.manifest).read_bytes()).hexdigest()}
     frozen=folder/'protocol.json'
     if frozen.exists() and json.loads(frozen.read_text())!=protocol:raise SystemExit('Protocol changed; use new run-id.')
@@ -55,6 +56,11 @@ def main():
             for relative in hashes:archive.add(ROOT/relative,arcname=relative)
             for relative in ['pyproject.toml','uv.lock','.python-version']:archive.add(ROOT/relative,arcname=relative)
     prices=json.loads((ROOT/'config/v3-pricing.json').read_text())['models'].get(a.model)
+    from trippilot.models.config import resolve_model_config
+    import os
+    config=resolve_model_config(model_override=a.model,env_file=Path(os.environ["TRIPPILOT_CONFIG_FILE"]) if os.environ.get("TRIPPILOT_CONFIG_FILE") else None)
+    os.environ['CHINATRAVEL_OPENAI_API_KEY']=config.api_key
+    if config.base_url:os.environ['CHINATRAVEL_OPENAI_BASE_URL']=config.base_url
     reset_cancellation()
     stop=threading.Event()
     health={'empty_failures':0}
@@ -75,13 +81,16 @@ def main():
             print('STOP_CODE_CHANGED',changed,flush=True)
             return
         job={**event,'method':method,'kind':a.kind,'model':a.model,'steps':a.steps,'seconds':a.seconds,
-             'request_timeout':a.request_timeout,'attempts':a.attempts}
+             'request_timeout':a.request_timeout,'attempts':a.attempts,'tokens':a.tokens,'tool_limit':a.tool_limit,'output_tokens':a.output_tokens,'shared_context':a.shared_context}
+        job['task']=json.loads((ROOT/'data/agent_visible'/event['split']/(event['uid']+'.json')).read_text())
+        if a.kind=='dynamic':job['seed_plan']=json.loads((ROOT/event['seed']).read_text())['plan']
         (work/'job.json').write_text(json.dumps(job,ensure_ascii=False,indent=2))
         print('START',a.run_id,key,method,flush=True)
-        supervision=supervise([sys.executable,str(ROOT/'scripts/job_worker.py'),str(work/'job.json')],work,a.seconds,cwd=ROOT)
+        supervision=supervise([sys.executable,str(ROOT/'scripts/job_worker.py'),str(work/'job.json')],work,a.seconds,cwd=ROOT,restricted=True)
         result=json.loads((work/'result.json').read_text()) if (work/'result.json').exists() and not supervision['hard_timeout'] else {
             'task_uid':event['uid'],'method':method,'terminal_state':'cancelled' if supervision.get('cancelled') else 'hard_timeout' if supervision['hard_timeout'] else 'worker_error','plan':None}
-        record={'job':job,'result':result,'supervision':supervision,'ledger':summarize(work/'requests.jsonl',prices)}
+        from trippilot.execution.budget import read_resources
+        record={'job':job,'result':result,'supervision':supervision,'ledger':summarize(work/'requests.jsonl',prices),'resources':read_resources(work/'resources.jsonl')}
         temp=work/'record.tmp';temp.write_text(json.dumps(record,ensure_ascii=False,indent=2));temp.replace(work/'record.json')
         print('END',key,method,result['terminal_state'],round(supervision['wall_seconds'],2),record['ledger']['observed_usage']['total_tokens'],flush=True)
         statuses=[e.get('status_code') for e in record['ledger']['events'] if e['kind']=='error']
