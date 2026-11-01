@@ -2,7 +2,7 @@
 
 React frontend for the TripPilot local application. The page presents daily activities, itemized travel costs, evidence disclosures and itinerary changes. Creation, revision, explicit conflict answers and cancellation use the existing same-origin API.
 
-The initial Hangzhou screen is clearly labeled illustrative data. Actual execution replays and live tasks use their own records; no demonstration is counted as a measured result.
+The initial Hangzhou screen is clearly labeled illustrative data. Recorded-task replays and live tasks display their corresponding execution records.
 
 The Python launcher serves the bundled application without Node.js. To develop the client:
 

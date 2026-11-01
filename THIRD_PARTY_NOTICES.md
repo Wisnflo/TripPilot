@@ -5,7 +5,7 @@
 - Source: [LAMDA-NeSy/ChinaTravel](https://github.com/LAMDA-NeSy/ChinaTravel)
 - Pinned upstream commit: `f445e0011f42594fcc29b8c752ece06ded9a8218`
 - Code license: MIT; the original copyright and license are retained in `upstream/ChinaTravel/LICENSE`.
-- The vendored upstream implementation is retained for reproducibility. TripPilot wraps the read-only adapter, normalizes public responses and plans, and adds its own planner, compiler, repair logic, execution supervision and offline scoring orchestration. These additions do not make the upstream environment or benchmark original TripPilot work.
+- The vendored upstream implementation is retained for reproducibility. TripPilot wraps the read-only adapter, normalizes public responses and plans, and adds its own planner, compiler, repair logic, execution supervision and offline scoring orchestration. ChinaTravel supplies the environment, benchmark data and original evaluators.
 
 ## Query and sandbox data
 

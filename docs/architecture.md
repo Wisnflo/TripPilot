@@ -6,7 +6,7 @@ TripPilot separates semantic decisions from deterministic execution. An LLM inte
 
 1. Preserve the original request alongside any translation. Extract supported requirements with exact evidence quotes; explicit room/bed counts can correct a contradictory prediction, with an audit record.
 2. Query public attraction, restaurant, accommodation and transport catalogs. Bilingual names are linked through public record IDs. Candidate search is bounded.
-3. Ask the model for an ID-only itinerary sketch. It does not author prices or invent entities.
+3. Ask the model to select catalog IDs for an itinerary sketch; the compiler copies prices and other attributes from tool records.
 4. Compile the sketch: copy facts, connect transport, schedule within opening/meal/return windows, calculate party-size costs and validate the plan.
 5. Return a checked plan or feed compiler feedback into bounded sketch retries. If needed, use a ReAct fallback with the remaining logical-call and time budget.
 
@@ -16,11 +16,11 @@ The compiler requires an attraction and a meal per day as an explicit usability 
 
 A typed event represents earlier return, unavailable transport or a new budget. A proposed edit is located against an immutable seed snapshot and checked before an atomic version commit. Simple cases use public tool candidates; complex cases can invoke a model fallback.
 
-One-day return can conflict with explicit lodging requirements. A version-bound clarification state records the original seed, question and choices. `cancel_overnight` waives lodging only after an explicit answer; `keep_original` cancels the revision. State checksum and seed-version checks prevent accidental stale-state reuse; these are consistency controls, not multi-tenant authentication.
+One-day return can conflict with explicit lodging requirements. A version-bound clarification state records the original seed, question and choices. `cancel_overnight` waives lodging only after an explicit answer; `keep_original` cancels the revision. State and seed-version checks detect stale revision state before resumption.
 
 ## Tools and evaluation boundary
 
-The model sees allowlisted read-only structured tools. It has no arbitrary code/file tool; query-loading and world-command endpoints are blocked. The runtime checker uses public rules and requirements predicted from user text. Hidden annotations are accessed only by offline scorers. The parent passes only the public task, current seed and explicit event to a restricted worker. macOS uses a file access policy; Linux uses Landlock ABI ≥ 3. Workers can read the declared runtime/public tool paths and write only their task directory. Scoring annotations, offline reference plans and unrelated home files are outside the policy. Network access remains available for the model API; this is a file boundary, not a general untrusted-code execution service.
+The model sees allowlisted read-only structured tools. It has no arbitrary code/file tool; query-loading and world-command endpoints are blocked. The runtime checker uses public rules and requirements predicted from user text. Hidden annotations are accessed only by offline scorers. The parent passes only the public task, current seed and explicit event to a restricted worker. macOS uses a file access policy; Linux uses Landlock ABI ≥ 3. Workers can read the declared runtime/public tool paths and write only their task directory. Scoring annotations, offline reference plans and unrelated home files are outside the policy. The policy restricts file access while retaining network access to the model API.
 
 ## Execution and accounting
 

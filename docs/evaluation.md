@@ -19,7 +19,7 @@ The primary provider alias is `qwen3.8-reasoner`; the second is `glm-5.3-flash`.
 | `rules` | Deterministic bounded repair without model calls |
 | `patch` | Deterministic verified repair first, then ReAct fallback with the remaining task budget |
 
-All initial methods receive the same deterministic public fact packet and factual completion of missing local routes. Preparation, validation and fallback consume the task's resource limits. Equal available information and limits do not imply identical query strategies.
+All initial methods receive the same deterministic public fact packet and factual completion of missing local routes. Preparation, validation and fallback consume the task's resource limits. Each method chooses its own queries within these shared limits.
 
 | Resource | Initial planning | Conditional repair |
 | --- | ---: | ---: |
@@ -50,7 +50,7 @@ TripPilot succeeds on 71.0%, compared with 27.5% for ReAct + checker: a paired d
 
 Returned tokens decrease by 74.8% and summed task time by 41.4%; parent-paired 95% intervals are 70.8%–78.3% and 36.8%–45.9%. Across the 50 parents where both methods succeed, tokens are 1,255,141 versus 8,107,074 and time is 6,017.78 versus 12,565.44 seconds.
 
-TripPilot makes more backend queries: 53,884 versus 44,686. Hard timeouts are 45 versus 130, and possible unobserved billing affects 46 versus 135 tasks. The comparison measures complete systems within a common 360-second budget; it does not establish unlimited-time reasoning superiority or a complete billing reduction.
+TripPilot makes more backend queries: 53,884 versus 44,686. Hard timeouts are 45 versus 130, and possible unobserved billing affects 46 versus 135 tasks. The comparison measures complete-system performance within the shared 360-second task budget.
 
 | Difficulty | TripPilot | ReAct + checker |
 | --- | ---: | ---: |
@@ -89,7 +89,7 @@ The 80 jointly successful events provide a resource comparison on the same outco
 
 Full activity content and day are matched as multisets, so deletion does not shift subsequent matches. Entity metrics measure public name/transport-ID membership, not complete factual correctness. Both require submission denominators; statistics over different sets of returned plans should not be treated as matched comparisons.
 
-Sixty-six successful repairs use zero model requests. Thirty-three events have journaled model attempts; the final result metadata explicitly marks only 21 fallbacks because 12 forced terminations lose their return metadata. The metadata count is a lower bound. These deterministic fast-path gains should not be attributed to an LLM selector.
+Sixty-six successful repairs use zero model requests. Thirty-three events have journaled model attempts; the final result metadata explicitly marks only 21 fallbacks because 12 forced terminations lose their return metadata. The metadata count is a lower bound. These zero-request repairs are completed by the deterministic repair path.
 
 One-day return can conflict with requested lodging. A simulated explicit answer is supplied only after the same clarification step. Offline adaptations rewrite only the event-covered day count; pure lodging conditions are waived only with recorded consent. Mixed conditions remain. This is conditional repair from valid plans, not end-to-end travel-planning success or official dynamic benchmark gold.
 
@@ -103,7 +103,7 @@ One-day return can conflict with requested lodging. A simulated explicit answer 
 
 The structured setting exceeds no-feedback by 12.5 percentage points, with a parent-paired 95% interval of −8.33 to +33.33 points; exclusive successes are 5 versus 2, exact McNemar p=0.453125. Feedback uses more returned tokens and time on this subset. The sample does not establish a reliable feedback benefit.
 
-Against full-plan JSON, the difference is 70.83 points (95% interval 54.17–87.50), exclusive successes 17 versus 0, exact p=1.52588e-5. Twenty-three full-plan tasks reach the common deadline. This is a comparison of output strategies within the declared time/output budgets, not a universal proof that compilation outperforms direct generation. Intervals are exploratory, without a multiple-comparison adjustment.
+Against full-plan JSON, the difference is 70.83 points (95% interval 54.17–87.50), exclusive successes 17 versus 0, exact p=1.52588e-5. Twenty-three full-plan tasks reach the common deadline. The result compares the two output strategies under the declared task deadlines and output limits. Intervals are exploratory, without a multiple-comparison adjustment.
 
 The original component control records are retained for diagnosis and excluded from attribution: feedback state could be overwritten and the full-plan retry contained a conflicting output instruction. Corrected controls rerun all three settings on the same 24 predetermined parents with identical limits. Their results are exploratory and do not add independent test parents.
 
@@ -118,7 +118,7 @@ The original component control records are retained for diagnosis and excluded f
 | TripPilot | 4/12 | 97,654 | 3,714.33 | 8 |
 | ReAct + checker | 0/12 | 0 returned | 4,320.34 | 12 |
 
-The second service is `glm-5.3-flash`. All 24 executions are retained, including an initial 13 executions before a protective stop and the 11 previously unexecuted tasks completed after one same-protocol continuation. Exclusive successes are 4 versus 0 (exact two-sided p=0.125). Twenty tasks hit the deadline; possible unobserved billing affects 9 TripPilot and 12 comparison tasks. Zero returned tokens do not mean zero provider work or cost. This small, timeout-dominated result does not establish robust cross-model generalization.
+The second service is `glm-5.3-flash`. All 24 executions are retained, including an initial 13 executions before a protective stop and the 11 previously unexecuted tasks completed after one same-protocol continuation. Exclusive successes are 4 versus 0 (exact two-sided p=0.125). Twenty tasks hit the deadline; possible unobserved billing affects 9 TripPilot and 12 comparison tasks. Returned usage is incomplete for timed-out requests. With 20 of 24 tasks reaching the deadline, the comparison provides limited evidence about cross-model performance.
 
 ## Failure review and accounting
 
@@ -126,7 +126,7 @@ Nine returned TripPilot initial plans pass public checks but fail complete hard 
 
 Dynamic TripPilot failures include 12 hard timeouts, two public-check successes failing complete constraints and one worker error; ReAct + checker has nine hard timeouts and three complete-constraint failures. The worker error and a matching deterministic-repair error come from a non-finite public fare. A later input-boundary correction is regression-tested; it does not replace those measured failures.
 
-Known-usage list-price estimates are 5.739723 versus 11.629979 CNY for initial planning and 1.516295 versus 2.876372 CNY for repair. Dynamic possible unobserved billing affects 12 versus 13 tasks. Rates have an observed date and are not an invoice; killed or failed requests may still be charged remotely. Missing billing is never asserted to be zero.
+Known-usage list-price estimates are 5.739723 versus 11.629979 CNY for initial planning and 1.516295 versus 2.876372 CNY for repair. Dynamic possible unobserved billing affects 12 versus 13 tasks. Estimates use the recorded list rates and returned usage. Requests with missing usage remain marked as unknown billing; actual charges come from the provider invoice.
 
 ## Evidence and implementation provenance
 
@@ -157,8 +157,8 @@ For a new complete evaluation, configure an available compatible API and choose 
 uv run --locked python scripts/run_completion.py --prefix reproducible-study
 ```
 
-The complete workload contains 800 initial executions, 72 component executions, 96 repeat executions, 300 constructive repair executions and 24 second-model executions. At four workers, the sum of task deadlines gives a 29.8-hour scheduling ceiling before preparation/scoring overhead, not a predicted runtime. Service delays and stops can extend elapsed completion time.
+The complete workload contains 800 initial executions, 72 component executions, 96 repeat executions, 300 constructive repair executions and 24 second-model executions. At four workers, summing task deadlines and dividing by concurrency gives an execution-time estimate of 29.8 hours, excluding preparation, scoring and service waits. Service delays and stops can extend elapsed completion time.
 
 Inspect state and logs before using `--resume`. Completed outcomes are skipped, including failures. An incomplete attempt with a journal is retained as interrupted instead of purchasing another attempt. Source, tool data or configuration changes require a new identifier. A run lock prevents concurrent parents from writing the same study.
 
-The bundled ChinaTravel environment covers ten example cities and does not provide real-time booking. Candidate search is bounded; failure is not proof of infeasibility. No NeSy/SOTA comparison is claimed. ChinaTravel supplies public tools, data and the original evaluators; TripPilot supplies its planning, compilation, repair, consent and supervised execution design. See [third-party notices](../THIRD_PARTY_NOTICES.md).
+The bundled ChinaTravel environment covers ten example cities and does not provide real-time booking. Candidate search is bounded; failure is not proof of infeasibility. ChinaTravel’s neural-symbolic solvers are outside the comparison. ChinaTravel supplies public tools, data and the original evaluators; TripPilot supplies its planning, compilation, repair, consent and supervised execution design. See [third-party notices](../THIRD_PARTY_NOTICES.md).
