@@ -344,7 +344,9 @@ def run_structured(task,config,toolbox,max_steps=16,max_seconds=240,feedback=Tru
             {'role':'user','content':json.dumps({'task':task,'requirements':req,'facts':compact},ensure_ascii=False)}]
         if not compile_plan:
             from ..plan.schema import load_plan_schema
-            messages[0]['content']='Write a complete travel plan using ONLY supplied tool facts. Return JSON matching this schema: '+json.dumps(load_plan_schema(),ensure_ascii=False)
+            guidance='Exactly N days'+messages[0]['content'].split('Exactly N days',1)[1]
+            guidance=guidance.replace('For one day hotel=null.','For one day omit accommodation activities.')
+            messages[0]['content']='Write a complete travel plan using ONLY supplied tool facts. Return JSON matching this schema: '+json.dumps(load_plan_schema(),ensure_ascii=False)+' '+guidance
         for _ in range(min(3 if feedback else 1,max_steps-len(steps))):
             response=chat_step(config,messages,deadline=deadline);record(response,'select_sketch')
             sketch=extract_plan(response.content) or {};messages.append({'role':'assistant','content':response.content})
@@ -358,10 +360,12 @@ def run_structured(task,config,toolbox,max_steps=16,max_seconds=240,feedback=Tru
                 checked=check_requirements(task,candidate,req,toolbox)
                 if checked.ok:
                     plan=candidate;checker=checked.as_dict();terminal='checked_ok';break
-                feedback=[v.message for v in checked.violations][:10]
-            except (ValueError,KeyError,TypeError) as exc:feedback=[str(exc)]
+                feedback_messages=[v.message for v in checked.violations][:10]
+            except (ValueError,KeyError,TypeError) as exc:feedback_messages=[str(exc)]
+            if not feedback:break
             count_feedback()
-            messages.append({'role':'user','content':'Compiler rejected sketch: '+json.dumps(feedback)+'. Revise only the sketch. Do not invent IDs.'})
+            instruction=('Compiler rejected sketch: '+json.dumps(feedback_messages)+'. Revise only the sketch. Do not invent IDs.' if compile_plan else 'Checker rejected complete plan: '+json.dumps(feedback_messages)+'. Return a corrected complete JSON plan matching the required schema and supplied facts.')
+            messages.append({'role':'user','content':instruction})
         if feedback and plan is None and len(steps)<max_steps and time.monotonic()<deadline:
             metadata['fallback']=True
             revised=dict(task)

@@ -46,8 +46,19 @@ class PublicTools:
             if not extra:
                 break
             rows.extend(extra)
-        self.row_cache[key] = copy.deepcopy(rows)
-        return rows
+        # No-service placeholders and malformed rows are not usable fares.
+        valid=[]
+        id_key='TrainID' if kind=='train' else 'FlightID'
+        for row in rows:
+            if not isinstance(row,dict) or row.get('Cost') is None:continue
+            try:
+                if amount(row['Cost'])<0:continue
+            except (ValueError,TypeError):continue
+            if not all(isinstance(row.get(field),str) and row[field] for field in (id_key,'From','To')):continue
+            if _minutes(row.get('BeginTime')) is None or _minutes(row.get('EndTime')) is None:continue
+            valid.append(row)
+        self.row_cache[key] = copy.deepcopy(valid)
+        return copy.deepcopy(valid)
 
     def route(self, city, start, end, when, mode, people):
         if start == end:

@@ -12,6 +12,7 @@ LABELS={'structured':'TripPilot','b2':'ReAct + 检查器','b1':'ReAct','b0':'单
 
 
 def number(value,digits=2):return '未知' if value is None else f'{value:,.{digits}f}'
+def p_value(value):return '未知' if value is None else f'{value:.6g}'
 def percent(value):return '未知' if value is None else f'{100*value:.1f}%'
 def bounds(value):return '未知' if not value else '–'.join(percent(v) for v in value)
 def money(value):return '未知' if value.get('upper') is None else number(value['upper'],6)
@@ -27,7 +28,17 @@ def table(report):
     return '\n'.join(lines)
 
 
-def render(root,prefix,initial_prefix=None):
+def component_rows(report):
+    rows=report['rows'];methods=('structured','no_feedback','direct_plan')
+    keys={method:[r['key'] for r in rows if r['method']==method] for method in methods}
+    if any(not values or len(values)!=len(set(values)) for values in keys.values()):
+        raise ValueError('Missing or duplicate component task records')
+    if any(set(values)!=set(keys['structured']) for values in keys.values()):
+        raise ValueError('Component methods must use exactly the same parents')
+    return rows
+
+
+def render(root,prefix,initial_prefix=None,component_run=None):
     root=Path(root);pipeline=root/'experiments/v3'/(prefix+'-pipeline')
     state=json.loads((pipeline/'state.json').read_text()) if (pipeline/'state.json').exists() else {}
     reports={}
@@ -35,9 +46,13 @@ def render(root,prefix,initial_prefix=None):
         stage_prefix=initial_prefix if initial_prefix and stage in ('static','components','repeat-1','repeat-2') else prefix
         path=root/'experiments/v3'/(stage_prefix+'-'+stage)/'analysis.json'
         if path.exists():reports[stage]=json.loads(path.read_text())
+    if component_run:
+        reports['components']=json.loads((root/'experiments/v3'/component_run/'analysis.json').read_text())
     lines=['# TripPilot 综合评测报告','',f"评测标识：`{prefix}`。已产生分析的阶段：{len(reports)}/6。",'',
            '## 结论','']
-    if initial_prefix:lines+=['先前已完成的首次规划、组件和重复结果来自 `'+initial_prefix+'`；动态与第二模型使用当前执行记录。修复限流等待后，完整动态任务按新执行协议统一重测，旧限流记录保留，两个执行条件分别说明。','']
+    if initial_prefix:
+        component_source=('组件来自修正后三组完整研究 `'+component_run+'`；' if component_run else '原组件控制失效，仅作诊断；')
+        lines+=['首次规划和重复结果来自 `'+initial_prefix+'`；'+component_source+'动态与第二模型来自 `'+prefix+'`。各测量保留其执行实现归属，旧限流记录保留。','']
     initial=reports.get('static');dynamic=reports.get('dynamic')
     if initial and {'structured','b2'}<=initial['summary'].keys():
         left=initial['summary']['structured'];right=initial['summary']['b2'];delta=left['success']-right['success']
@@ -45,7 +60,7 @@ def render(root,prefix,initial_prefix=None):
         lines.append(f"首次规划中，TripPilot 完整通过 {left['success']}/{left['tasks']}，ReAct + 检查器通过 {right['success']}/{right['tasks']}，通过数{judgement}。")
         stats=initial['paired_statistics'].get('structured',{})
         lines.append(f"已返回 token 减少 {percent(stats.get('token_reduction'))}，累计任务耗时减少 {percent(stats.get('time_reduction'))}。减少比例为负值表示用量或耗时增加。")
-        lines.append(f"父任务配对的精确 McNemar p={number(stats.get('exact_mcnemar_p'),6)}；结论范围为本协议的任务、模型服务和执行预算。")
+        lines.append(f"父任务配对的精确 McNemar p={p_value(stats.get('exact_mcnemar_p'))}；结论范围为本协议的任务、模型服务和执行预算。")
     else:lines.append('首次规划完整对照尚未产生结果，不能判断当前实现是否提升。')
     if dynamic:
         r=dynamic['summary'];lines.append('动态修复从相同有效种子出发：'+ '；'.join(f"{LABELS.get(m,m)} {s['success']}/{s['tasks']}" for m,s in r.items())+'。这衡量条件修复，不代表端到端成功率。')
@@ -66,15 +81,15 @@ def render(root,prefix,initial_prefix=None):
                 interval=stats['parent_bootstrap_95'];lines.append(f"- {LABELS.get(method,method)} 相对 ReAct + 检查器：通过率差 {bounds(interval['success_rate_difference'])}；token 减少 {bounds(interval['token_reduction'])}；累计耗时减少 {bounds(interval['time_reduction'])}。")
     else:lines.append('未执行完毕。')
     lines+=['','## 组件实验','']
-    if 'components' in reports and initial:
-        component=reports['components'];uids={r['uid'] for r in component['rows']}
-        rows=component['rows']+[r for r in initial['rows'] if r['method']=='structured' and r['uid'] in uids]
-        lines+=['固定相同父任务与公开信息，比较关闭反馈、完整 JSON 生成和完整 TripPilot。','',
-                '| 组件设置 | 全部通过 | 相对完整方法的通过率差 | 配对 95% 区间 |','| --- | ---: | ---: | ---: |']
+    if component_run or any(r.get('method')=='structured' for r in reports.get('components',{}).get('rows',[])):
+        rows=component_rows(reports['components'])
+        lines+=['三个设置在相同预选父任务上完整运行，只比较本组同时执行的记录；旧控制失效研究仅作诊断，不合并其成绩。','',
+                '| 组件设置 | 全部通过 | 相对完整方法的通过率差 | 配对 95% 区间 |','| --- | ---: | ---: | ---: | ---: |']
         for method in ('structured','no_feedback','direct_plan'):
             selected=[r for r in rows if r['method']==method];stats=paired(rows,method,'structured') if method!='structured' else None
             lines.append('| '+LABELS[method]+f" | {sum(r['success'] for r in selected)}/{len(selected)} | "+(percent(stats.get('success_rate_difference')) if stats else '参照')+' | '+(bounds(stats.get('parent_bootstrap_95',{}).get('success_rate_difference')) if stats else '—')+' |')
-    else:lines.append('未执行完毕。')
+    else:
+        lines.append('原组件控制存在开关覆盖和输出指令冲突，已有记录仅作诊断，不能用于反馈或编译器的贡献归因。修正后的三组完整对照尚未指定。')
     lines+=['','## 重复运行与第二模型','', '| 对照 | 模型 | 方法 | 全部通过 |','| --- | --- | --- | ---: |']
     for stage in ('repeat-1','repeat-2','second-model'):
         report=reports.get(stage)
@@ -93,7 +108,7 @@ def render(root,prefix,initial_prefix=None):
     for stage,report in reports.items():
         for method,s in report['summary'].items():
             c=s['changes'];lines.append(f"| {stage} | {LABELS.get(method,method)} | {s['submitted_plans']}/{s['tasks']} | {s['unmatched_entity_mentions']}/{s['entity_mentions']} | {s['missing_entity_mentions']} | {c['unaffected_kept']}/{c['unaffected_total']} | {s['fallback_tasks']} | {s['unknown_billing_tasks']} |")
-    lines+=['','失败保留在分母；下列终态反映执行结果，不能全部归因于规划能力。','']
+    lines+=['','回退任务数仅统计完整返回结果中的标记，是可确认的下限；强制终止可能丢失这部分元信息，需结合持久请求日志复核。保留率仅在已提交计划上统计；双方提交数不同时，应另看共同成功任务的相同活动分母。失败保留在分母；下列终态反映执行结果，不能全部归因于规划能力。','']
     for stage,report in reports.items():
         for method,s in report['summary'].items():
             lines.append(f"- {stage} / {LABELS.get(method,method)}：`{json.dumps(s['failure_states'],ensure_ascii=False)}`；离线判分异常 `{json.dumps(s['evaluation_errors'],ensure_ascii=False)}`。")
@@ -117,11 +132,12 @@ def render(root,prefix,initial_prefix=None):
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--prefix',required=True);p.add_argument('--output');p.add_argument('--initial-prefix');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--prefix',required=True);p.add_argument('--output');p.add_argument('--initial-prefix');p.add_argument('--component-run');a=p.parse_args()
     if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]{0,60}',a.prefix):p.error('invalid prefix')
     if a.initial_prefix and not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]{0,60}',a.initial_prefix):p.error('invalid initial prefix')
+    if a.component_run and not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]{0,80}',a.component_run):p.error('invalid component run')
     output=Path(a.output) if a.output else ROOT/'experiments/v3'/(a.prefix+'-pipeline')/'report.md'
-    output.parent.mkdir(parents=True,exist_ok=True);output.write_text(render(ROOT,a.prefix,a.initial_prefix))
+    output.parent.mkdir(parents=True,exist_ok=True);output.write_text(render(ROOT,a.prefix,a.initial_prefix,a.component_run))
     print('REPORT_WRITTEN',output)
 
 
