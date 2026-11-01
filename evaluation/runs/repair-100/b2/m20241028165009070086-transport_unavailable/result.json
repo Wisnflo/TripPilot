@@ -1,0 +1,704 @@
+{
+  "task_uid": "m20241028165009070086",
+  "method": "b2",
+  "model": "qwen3.8-reasoner",
+  "terminal_state": "checked_ok",
+  "plan": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "people_number": 1,
+    "start_city": "北京",
+    "target_city": "深圳",
+    "itinerary": [
+      {
+        "day": 1,
+        "activities": [
+          {
+            "type": "airplane",
+            "start_time": "12:45",
+            "end_time": "15:10",
+            "cost": 931.04,
+            "price": 931.04,
+            "tickets": 1,
+            "FlightID": "FL092",
+            "start": "Beijing Capital International Airport",
+            "end": "Shenzhen Bao'an International Airport",
+            "transports": []
+          },
+          {
+            "type": "attraction",
+            "start_time": "16:00",
+            "end_time": "17:00",
+            "cost": 0.0,
+            "price": 0.0,
+            "tickets": 1,
+            "position": "Shenzhen Central Park",
+            "transports": [
+              {
+                "start": "Shenzhen Bao'an International Airport",
+                "end": "Shenzhen Central Park",
+                "mode": "taxi",
+                "start_time": "15:10",
+                "end_time": "15:53",
+                "cost": 126.55,
+                "price": 126.55,
+                "distance": 29.3,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "dinner",
+            "start_time": "17:00",
+            "end_time": "19:00",
+            "cost": 241.0,
+            "price": 241.0,
+            "position": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+            "transports": [
+              {
+                "start": "Shenzhen Central Park",
+                "end": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+                "mode": "taxi",
+                "start_time": "17:00",
+                "end_time": "17:00",
+                "cost": 11.0,
+                "price": 11.0,
+                "distance": 0.25,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "accommodation",
+            "start_time": "19:00",
+            "end_time": "21:00",
+            "cost": 420.0,
+            "price": 420.0,
+            "rooms": 1,
+            "room_type": 2,
+            "position": "Rezen Dong Hotel (Shenzhen Huaqiangbei)",
+            "transports": [
+              {
+                "start": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+                "end": "Rezen Dong Hotel (Shenzhen Huaqiangbei)",
+                "mode": "taxi",
+                "start_time": "19:00",
+                "end_time": "19:00",
+                "cost": 11.0,
+                "price": 11.0,
+                "distance": 0.18,
+                "cars": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "activities": [
+          {
+            "type": "breakfast",
+            "start_time": "08:30",
+            "end_time": "09:00",
+            "cost": 89.0,
+            "price": 89.0,
+            "position": "Diandude (Huaqiang South Branch)",
+            "transports": [
+              {
+                "start": "Rezen Dong Hotel (Shenzhen Huaqiangbei)",
+                "end": "Diandude (Huaqiang South Branch)",
+                "mode": "taxi",
+                "start_time": "08:00",
+                "end_time": "08:00",
+                "cost": 11.0,
+                "price": 11.0,
+                "distance": 0.47,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "start_time": "10:00",
+            "end_time": "12:00",
+            "cost": 0.0,
+            "price": 0.0,
+            "tickets": 1,
+            "position": "Huaqiangbei Museum",
+            "transports": [
+              {
+                "start": "Diandude (Huaqiang South Branch)",
+                "end": "Huaqiangbei Museum",
+                "mode": "taxi",
+                "start_time": "09:30",
+                "end_time": "09:32",
+                "cost": 11.0,
+                "price": 11.0,
+                "distance": 1.71,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "airplane",
+            "start_time": "16:34",
+            "end_time": "18:59",
+            "cost": 927.7,
+            "price": 927.7,
+            "tickets": 1,
+            "FlightID": "FL175",
+            "start": "Shenzhen Bao'an International Airport",
+            "end": "Beijing Capital International Airport",
+            "transports": [
+              {
+                "start": "Huaqiangbei Museum",
+                "end": "Shenzhen Bao'an International Airport",
+                "mode": "taxi",
+                "start_time": "13:00",
+                "end_time": "13:44",
+                "cost": 129.32,
+                "price": 129.32,
+                "distance": 29.92,
+                "cars": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "steps": [
+    {
+      "step": 1,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Beijing",
+            "end_city": "Shenzhen",
+            "intercity_type": "airplane",
+            "earliest_leave_time": "00:00"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "intercity_transport_select",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"earliest_leave_time\\\": \\\"00:00\\\", \\\"end_city\\\": \\\"Shenzhen\\\", \\\"intercity_type\\\": \\\"airplane\\\", \\\"start_city\\\": \\\"Beijing\\\"})\", \"text\": \"['FlightID' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['FL095' 'Beijing Capital International Airport'\\n \\\"Shenzhen Bao'an International Airport\\\" '01:11' '03:36' 2.43 923.58]\\n['FL096' 'Beijing Capital International Airport'\\n \\\"Shenzhen Bao'an International Airport\\\" '12:07' '14:32' 2.43 "
+        }
+      ],
+      "latency_seconds": 2.107079125009477,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-edb9fc51-35c8-4b00-b72c-e1a90ba1e330",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 5197,
+      "completion_tokens": 124,
+      "reasoning_tokens": 45,
+      "attempts": 1,
+      "request_latencies": [
+        2.107079125009477
+      ]
+    },
+    {
+      "step": 2,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Bao'an International Airport",
+            "end": "Shenzhen Central Park",
+            "start_time": "15:10",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Shenzhen\\\", \\\"end\\\": \\\"Shenzhen Central Park\\\", \\\"start\\\": \\\"Shenzhen Bao'an International Airport\\\", \\\"start_time\\\": \\\"15:10\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': \\\"Shenzhen Bao'an International Airport\\\", 'end': 'Shenzhen Central Park', 'mode': 'taxi', 'start_time': '15:10', 'end_time': '15:53', 'cost': 126.55, 'distance': 29.3}]\", \"data\": [{\"start\": \"Shenzhen Bao'an International Airport\", \"end\": \"Shenzhen Central Park\", \"mode\""
+        }
+      ],
+      "latency_seconds": 3.1750185830751434,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-187ec0de-f6bc-411a-85be-e035550da39c",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 6681,
+      "completion_tokens": 151,
+      "reasoning_tokens": 62,
+      "attempts": 1,
+      "request_latencies": [
+        3.1750185830751434
+      ]
+    },
+    {
+      "step": 3,
+      "content": "\n\nBased on the flight list, FL092 (12:45→15:10) from the same departure airport is a close replacement. I verified the new taxi leg arrives by 15:53, and kept the remainder of the plan unchanged.\n\n```json\n{\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"people_number\": 1,\n  \"start_city\": \"北京\",\n  \"target_city\": \"深圳\",\n  \"itinerary\": [\n    {\n      \"day\": 1,\n      \"activities\": [\n        {\n          \"type\": \"airplane\",\n          \"start_time\": \"12:45\",\n          \"end_time\": \"15:10\",\n          \"cost\": 931.04,\n          \"price\": 931.04,\n          \"tickets\": 1,\n          \"FlightID\": \"FL092\",\n          \"start\": \"Beijing Capital International Airport\",\n          \"end\": \"Shenzhen Bao'an International Airport\",\n          \"transports\": []\n        },\n        {\n          \"type\": \"attraction\",\n          \"start_time\": \"16:00\",\n          \"end_time\": \"17:00\",\n          \"cost\": 0.0,\n          \"price\": 0.0,\n          \"tickets\": 1,\n          \"position\": \"Shenzhen Central Park\",\n          \"transports\": [\n            {\n              \"start\": \"Shenzhen Bao'an International Airport\",\n              \"end\": \"Shenzhen Central Park\",\n              \"mode\": \"taxi\",\n              \"start_time\": \"15:10\",\n              \"end_time\": \"15:53\",\n              \"cost\": 126.55,\n              \"price\": 126.55,\n              \"distance\": 29.3,\n              \"cars\": 1\n            }\n          ]\n        },\n        {\n          \"type\": \"dinner\",\n          \"start_time\": \"17:00\",\n          \"end_time\": \"19:00\",\n          \"cost\": 241.0,\n          \"price\": 241.0,\n          \"position\": \"Jun Ting Chinese Restaurant (Hua Qiang Road Branch)\",\n          \"transports\": [\n            {\n              \"start\": \"Shenzhen Central Park\",\n              \"end\": \"Jun Ting Chinese Restaurant (Hua Qiang Road Branch)\",\n              \"mode\": \"taxi\",\n              \"start_time\": \"17:00\",\n              \"end_time\": \"17:00\",\n              \"cost\": 11.0,\n              \"price\": 11.0,\n              \"distance\": 0.25,\n              \"cars\": 1\n            }\n          ]\n        },\n        {\n          \"type\": \"accommodation\",\n          \"start_time\": \"19:00\",\n          \"end_time\": \"21:00\",\n          \"cost\": 420.0,\n          \"price\": 420.0,\n          \"rooms\": 1,\n          \"room_type\": 2,\n          \"position\": \"Rezen Dong Hotel (Shenzhen Huaqiangbei)\",\n          \"transports\": [\n            {\n              \"start\": \"Jun Ting Chinese Restaurant (Hua Qiang Road Branch)\",\n              \"end\": \"Rezen Dong Hotel (Shenzhen Huaqiangbei)\",\n              \"mode\": \"taxi\",\n              \"start_time\": \"19:00\",\n              \"end_time\": \"19:00\",\n              \"cost\": 11.0,\n              \"price\": 11.0,\n              \"distance\": 0.18,\n              \"cars\": 1\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"day\": 2,\n      \"activities\": [\n        {\n          \"type\": \"breakfast\",\n          \"start_time\": \"08:30\",\n          \"end_time\": \"09:00\",\n          \"cost\": 89.0,\n          \"price\": 89.0,\n          \"position\": \"Diandude (Huaqiang South Branch)\",\n          \"transports\": [\n            {\n              \"start\": \"Rezen Dong Hotel (Shenzhen Huaqiangbei)\",\n              \"end\": \"Diandude (Huaqiang South Branch)\",\n              \"mode\": \"taxi\",\n              \"start_time\": \"08:00\",\n              \"end_time\": \"08:00\",\n              \"cost\": 11.0,\n              \"price\": 11.0,\n              \"distance\": 0.47,\n              \"cars\": 1\n            }\n          ]\n        },\n        {\n          \"type\": \"attraction\",\n          \"start_time\": \"10:00\",\n          \"end_time\": \"12:00\",\n          \"cost\": 0.0,\n          \"price\": 0.0,\n          \"tickets\": 1,\n          \"position\": \"Huaqiangbei Museum\",\n          \"transports\": [\n            {\n              \"start\": \"Diandude (Huaqiang South Branch)\",\n              \"end\": \"Huaqiangbei Museum\",\n              \"mode\": \"taxi\",\n              \"start_time\": \"09:30\",\n              \"end_time\": \"09:32\",\n              \"cost\": 11.0,\n              \"price\": 11.0,\n              \"distance\": 1.71,\n              \"cars\": 1\n            }\n          ]\n        },\n        {\n          \"type\": \"airplane\",\n          \"start_time\": \"16:34\",\n          \"end_time\": \"18:59\",\n          \"cost\": 927.7,\n          \"price\": 927.7,\n          \"tickets\": 1,\n          \"FlightID\": \"FL175\",\n          \"start\": \"Shenzhen Bao'an International Airport\",\n          \"end\": \"Beijing Capital International Airport\",\n          \"transports\": [\n            {\n              \"start\": \"Huaqiangbei Museum\",\n              \"end\": \"Shenzhen Bao'an International Airport\",\n              \"mode\": \"taxi\",\n              \"start_time\": \"13:00\",\n              \"end_time\": \"13:44\",\n              \"cost\": 129.32,\n              \"price\": 129.32,\n              \"distance\": 29.92,\n              \"cars\": 1\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}\n```",
+      "tool_calls": [],
+      "tool_results": [],
+      "latency_seconds": 21.205274417065084,
+      "finish_reason": "stop",
+      "request_id": "chatcmpl-139818e9-fab3-4956-8cf0-11597c1fc1b5",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 6990,
+      "completion_tokens": 2105,
+      "reasoning_tokens": 546,
+      "attempts": 1,
+      "request_latencies": [
+        21.205274417065084
+      ]
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 18868,
+    "completion_tokens": 2380,
+    "total_tokens": 21248,
+    "reasoning_tokens": 653
+  },
+  "checker": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours",
+      "budget_not_found_in_text"
+    ]
+  },
+  "error": null,
+  "metadata": {
+    "event_text": "This transport is no longer available: FL096. Replace it and keep the rest feasible.",
+    "usage_complete": true,
+    "request_count": 3,
+    "retry_count": 0,
+    "request_latency_seconds": 26.487372125149705
+  },
+  "started_at": "2026-11-01T00:32:37.642368+00:00",
+  "finished_at": "2026-11-01T00:33:04.508681+00:00",
+  "duration_seconds": 26.866398291895166,
+  "wall_seconds": 26.866742082987912,
+  "resources": {
+    "limits": {
+      "feedback": 4,
+      "model_calls": 16,
+      "tokens": 500000,
+      "tools": 400,
+      "output_tokens_per_call": 10000
+    },
+    "model_calls": 3,
+    "returned_tokens": 21248,
+    "feedback_calls": 0,
+    "tool_calls": 15,
+    "exhausted": "",
+    "tool_receipts": [
+      {
+        "index": 1,
+        "name": "intercity_transport_select",
+        "arguments": {
+          "start_city": "Beijing",
+          "end_city": "Shenzhen",
+          "intercity_type": "airplane",
+          "earliest_leave_time": "00:00"
+        }
+      },
+      {
+        "index": 2,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Shenzhen Bao'an International Airport",
+          "end": "Shenzhen Central Park",
+          "start_time": "15:10",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 3,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Shenzhen",
+          "key": "name",
+          "op": "eq",
+          "value": "Shenzhen Central Park"
+        }
+      },
+      {
+        "index": 4,
+        "name": "restaurants_select",
+        "arguments": {
+          "city": "Shenzhen",
+          "key": "name",
+          "op": "eq",
+          "value": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)"
+        }
+      },
+      {
+        "index": 5,
+        "name": "accommodations_select",
+        "arguments": {
+          "city": "Shenzhen",
+          "key": "name",
+          "op": "eq",
+          "value": "Rezen Dong Hotel (Shenzhen Huaqiangbei)"
+        }
+      },
+      {
+        "index": 6,
+        "name": "restaurants_select",
+        "arguments": {
+          "city": "Shenzhen",
+          "key": "name",
+          "op": "eq",
+          "value": "Diandude (Huaqiang South Branch)"
+        }
+      },
+      {
+        "index": 7,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Shenzhen",
+          "key": "name",
+          "op": "eq",
+          "value": "Huaqiangbei Museum"
+        }
+      },
+      {
+        "index": 8,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Shenzhen Bao'an International Airport",
+          "end": "Shenzhen Central Park",
+          "start_time": "15:10",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 9,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Shenzhen Central Park",
+          "end": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+          "start_time": "17:00",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 10,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+          "end": "Rezen Dong Hotel (Shenzhen Huaqiangbei)",
+          "start_time": "19:00",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 11,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Rezen Dong Hotel (Shenzhen Huaqiangbei)",
+          "end": "Diandude (Huaqiang South Branch)",
+          "start_time": "08:00",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 12,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Diandude (Huaqiang South Branch)",
+          "end": "Huaqiangbei Museum",
+          "start_time": "09:30",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 13,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Huaqiangbei Museum",
+          "end": "Shenzhen Bao'an International Airport",
+          "start_time": "13:00",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 14,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Beijing",
+          "end_city": "Shenzhen",
+          "type": "airplane"
+        }
+      },
+      {
+        "index": 15,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Shenzhen",
+          "end_city": "Beijing",
+          "type": "airplane"
+        }
+      }
+    ],
+    "input_accounting": "conservative UTF-8 preflight; actual provider usage recorded; missing remote usage remains unknown"
+  },
+  "clarification": {
+    "status": "ready",
+    "base_revision": "da5076ddefcae96dd6473ea182cd532485252c666051716a8a3c67736dc4d7c0",
+    "task": {
+      "uid": "m20241028165009070086",
+      "tag": "easy",
+      "start_city": "北京",
+      "target_city": "深圳",
+      "days": 2,
+      "people_number": 1,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置北京。我一个人想去深圳玩2天，住丽呈東谷酒店(深圳华强北店)，请给我一个旅行规划。",
+      "nature_language_en": "Current location: Beijing. I want to travel alone to Shenzhen for 2 days and stay at the Rezen Dong Hotel (Shenzhen Huaqiangbei). Please provide me with a travel plan."
+    },
+    "seed_plan": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "people_number": 1,
+      "start_city": "北京",
+      "target_city": "深圳",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "airplane",
+              "start_time": "12:07",
+              "end_time": "14:32",
+              "cost": 949.32,
+              "price": 949.32,
+              "tickets": 1,
+              "FlightID": "FL096",
+              "start": "Beijing Capital International Airport",
+              "end": "Shenzhen Bao'an International Airport",
+              "transports": []
+            },
+            {
+              "type": "attraction",
+              "start_time": "15:30",
+              "end_time": "17:00",
+              "cost": 0.0,
+              "price": 0.0,
+              "tickets": 1,
+              "position": "Shenzhen Central Park",
+              "transports": [
+                {
+                  "start": "Shenzhen Bao'an International Airport",
+                  "end": "Shenzhen Central Park",
+                  "mode": "taxi",
+                  "start_time": "14:32",
+                  "end_time": "15:15",
+                  "cost": 126.55,
+                  "price": 126.55,
+                  "distance": 29.3,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "dinner",
+              "start_time": "17:00",
+              "end_time": "19:00",
+              "cost": 241.0,
+              "price": 241.0,
+              "position": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+              "transports": [
+                {
+                  "start": "Shenzhen Central Park",
+                  "end": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+                  "mode": "taxi",
+                  "start_time": "17:00",
+                  "end_time": "17:00",
+                  "cost": 11.0,
+                  "price": 11.0,
+                  "distance": 0.25,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "start_time": "19:00",
+              "end_time": "21:00",
+              "cost": 420.0,
+              "price": 420.0,
+              "rooms": 1,
+              "room_type": 2,
+              "position": "Rezen Dong Hotel (Shenzhen Huaqiangbei)",
+              "transports": [
+                {
+                  "start": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+                  "end": "Rezen Dong Hotel (Shenzhen Huaqiangbei)",
+                  "mode": "taxi",
+                  "start_time": "19:00",
+                  "end_time": "19:00",
+                  "cost": 11.0,
+                  "price": 11.0,
+                  "distance": 0.18,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "breakfast",
+              "start_time": "08:30",
+              "end_time": "09:00",
+              "cost": 89.0,
+              "price": 89.0,
+              "position": "Diandude (Huaqiang South Branch)",
+              "transports": [
+                {
+                  "start": "Rezen Dong Hotel (Shenzhen Huaqiangbei)",
+                  "end": "Diandude (Huaqiang South Branch)",
+                  "mode": "taxi",
+                  "start_time": "08:00",
+                  "end_time": "08:00",
+                  "cost": 11.0,
+                  "price": 11.0,
+                  "distance": 0.47,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "start_time": "10:00",
+              "end_time": "12:00",
+              "cost": 0.0,
+              "price": 0.0,
+              "tickets": 1,
+              "position": "Huaqiangbei Museum",
+              "transports": [
+                {
+                  "start": "Diandude (Huaqiang South Branch)",
+                  "end": "Huaqiangbei Museum",
+                  "mode": "taxi",
+                  "start_time": "09:30",
+                  "end_time": "09:32",
+                  "cost": 11.0,
+                  "price": 11.0,
+                  "distance": 1.71,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "airplane",
+              "start_time": "16:34",
+              "end_time": "18:59",
+              "cost": 927.7,
+              "price": 927.7,
+              "tickets": 1,
+              "FlightID": "FL175",
+              "start": "Shenzhen Bao'an International Airport",
+              "end": "Beijing Capital International Airport",
+              "transports": [
+                {
+                  "start": "Huaqiangbei Museum",
+                  "end": "Shenzhen Bao'an International Airport",
+                  "mode": "taxi",
+                  "start_time": "13:00",
+                  "end_time": "13:44",
+                  "cost": 129.32,
+                  "price": 129.32,
+                  "distance": 29.92,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "kind": "transport_unavailable",
+      "day": null,
+      "new_days": null,
+      "new_budget": null,
+      "target": "FL096",
+      "description": ""
+    },
+    "state_revision": "c6295958e039a208e5c460e0cf23d9827a53050bed80ac64d7fb39f8f574473a"
+  },
+  "event": {
+    "kind": "transport_unavailable",
+    "target": "FL096",
+    "description": ""
+  },
+  "event_check": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours",
+      "budget_not_found_in_text"
+    ]
+  }
+}

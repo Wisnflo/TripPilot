@@ -1,0 +1,1135 @@
+{
+  "job": {
+    "uid": "m20241028164751582756",
+    "split": "easy",
+    "event": {
+      "kind": "budget_cut",
+      "new_budget": "2580",
+      "description": ""
+    },
+    "clarification_answer": null,
+    "seed_plan": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "properties": {
+        "people_number": {
+          "type": "integer"
+        },
+        "start_city": {
+          "type": "string"
+        },
+        "target_city": {
+          "type": "string"
+        },
+        "itinerary": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "day": {
+                "type": "integer"
+              },
+              "activities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "airplane",
+                        "attraction",
+                        "lunch",
+                        "dinner",
+                        "breakfast",
+                        "accommodation",
+                        "train"
+                      ]
+                    },
+                    "start_time": {
+                      "type": "string",
+                      "pattern": "^\\d{2}:\\d{2}$"
+                    },
+                    "end_time": {
+                      "type": "string",
+                      "pattern": "^\\d{2}:\\d{2}$"
+                    },
+                    "cost": {
+                      "type": "number"
+                    },
+                    "price": {
+                      "type": "number"
+                    },
+                    "tickets": {
+                      "type": "integer"
+                    },
+                    "position": {
+                      "type": "string"
+                    },
+                    "transports": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "start": {
+                            "type": "string"
+                          },
+                          "end": {
+                            "type": "string"
+                          },
+                          "mode": {
+                            "type": "string",
+                            "enum": [
+                              "walk",
+                              "metro",
+                              "taxi"
+                            ]
+                          },
+                          "start_time": {
+                            "type": "string",
+                            "pattern": "^\\d{2}:\\d{2}$"
+                          },
+                          "end_time": {
+                            "type": "string",
+                            "pattern": "^\\d{2}:\\d{2}$"
+                          },
+                          "cost": {
+                            "type": "number"
+                          },
+                          "price": {
+                            "type": "number"
+                          },
+                          "distance": {
+                            "type": "number"
+                          },
+                          "tickets": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "start",
+                          "end",
+                          "mode",
+                          "start_time",
+                          "end_time",
+                          "price",
+                          "cost",
+                          "distance"
+                        ]
+                      }
+                    },
+                    "room_type": {
+                      "type": "integer"
+                    },
+                    "rooms": {
+                      "type": "integer"
+                    },
+                    "FlightID": {
+                      "type": "string"
+                    },
+                    "TrainID": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "start_time",
+                    "end_time",
+                    "cost",
+                    "price",
+                    "transports"
+                  ],
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "airplane",
+                              "train"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ]
+                      },
+                      "then": {
+                        "required": [
+                          "start",
+                          "end"
+                        ],
+                        "not": {
+                          "required": [
+                            "position"
+                          ]
+                        }
+                      },
+                      "else": {
+                        "required": [
+                          "position"
+                        ],
+                        "not": {
+                          "anyOf": [
+                            {
+                              "required": [
+                                "start"
+                              ]
+                            },
+                            {
+                              "required": [
+                                "end"
+                              ]
+                            },
+                            {
+                              "required": [
+                                "FlightID"
+                              ]
+                            },
+                            {
+                              "required": [
+                                "TrainID"
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "if": {
+                        "properties": {
+                          "type": {
+                            "const": "airplane"
+                          }
+                        }
+                      },
+                      "then": {
+                        "required": [
+                          "FlightID"
+                        ]
+                      }
+                    },
+                    {
+                      "if": {
+                        "properties": {
+                          "type": {
+                            "const": "train"
+                          }
+                        }
+                      },
+                      "then": {
+                        "required": [
+                          "TrainID"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "day",
+              "activities"
+            ]
+          }
+        }
+      },
+      "required": [
+        "people_number",
+        "start_city",
+        "target_city",
+        "itinerary"
+      ],
+      "people_number": 2,
+      "start_city": "Wuhan",
+      "target_city": "Shanghai",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "train",
+              "start_time": "08:00",
+              "end_time": "11:30",
+              "cost": 893.62,
+              "price": 446.81,
+              "tickets": 2,
+              "TrainID": "G1722",
+              "start": "Wuhan Station",
+              "end": "Shanghai Hongqiao Station",
+              "transports": []
+            },
+            {
+              "type": "attraction",
+              "start_time": "12:15",
+              "end_time": "13:15",
+              "cost": 0.0,
+              "price": 0,
+              "tickets": 2,
+              "position": "The Bund Architectural Complex",
+              "transports": [
+                {
+                  "start": "Shanghai Hongqiao Station",
+                  "end": "Hongqiao Railway Station-Metro Station",
+                  "mode": "walk",
+                  "start_time": "11:30",
+                  "end_time": "11:31",
+                  "cost": 0.0,
+                  "price": 0,
+                  "distance": 0.12
+                },
+                {
+                  "start": "Hongqiao Railway Station-Metro Station",
+                  "end": "International Passenger Transport Center-Metro Station",
+                  "mode": "metro",
+                  "start_time": "11:31",
+                  "end_time": "12:07",
+                  "cost": 10.0,
+                  "price": 5,
+                  "tickets": 2,
+                  "distance": 18.17
+                },
+                {
+                  "start": "International Passenger Transport Center-Metro Station",
+                  "end": "The Bund Architectural Complex",
+                  "mode": "walk",
+                  "start_time": "12:07",
+                  "end_time": "12:14",
+                  "cost": 0.0,
+                  "price": 0,
+                  "distance": 0.62
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "start_time": "13:30",
+              "end_time": "14:00",
+              "cost": 58.0,
+              "price": 29,
+              "tickets": 2,
+              "position": "Dahuchun (Sichuan Middle Road Branch)",
+              "transports": [
+                {
+                  "start": "The Bund Architectural Complex",
+                  "end": "Dahuchun (Sichuan Middle Road Branch)",
+                  "mode": "walk",
+                  "start_time": "13:15",
+                  "end_time": "13:30",
+                  "cost": 0.0,
+                  "price": 0,
+                  "distance": 1.2868453249451683
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "start_time": "14:25",
+              "end_time": "16:15",
+              "cost": 0.0,
+              "price": 0,
+              "tickets": 2,
+              "position": "263-meter Main Observation Deck",
+              "transports": [
+                {
+                  "start": "Dahuchun (Sichuan Middle Road Branch)",
+                  "end": "263-meter Main Observation Deck",
+                  "mode": "walk",
+                  "start_time": "14:00",
+                  "end_time": "14:24",
+                  "cost": 0.0,
+                  "price": 0,
+                  "distance": 2.00744467696377
+                }
+              ]
+            },
+            {
+              "type": "dinner",
+              "start_time": "16:30",
+              "end_time": "17:30",
+              "cost": 232.0,
+              "price": 116,
+              "tickets": 2,
+              "position": "Le Xin Dynasty (Shanghai Tower Branch)",
+              "transports": [
+                {
+                  "start": "263-meter Main Observation Deck",
+                  "end": "Le Xin Dynasty (Shanghai Tower Branch)",
+                  "mode": "walk",
+                  "start_time": "16:15",
+                  "end_time": "16:29",
+                  "cost": 0.0,
+                  "price": 0,
+                  "distance": 1.2374321543504643
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "start_time": "18:36",
+              "end_time": "19:00",
+              "cost": 399.0,
+              "price": 399,
+              "tickets": 2,
+              "rooms": 1,
+              "room_type": 1,
+              "position": "Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )",
+              "transports": [
+                {
+                  "start": "Le Xin Dynasty (Shanghai Tower Branch)",
+                  "end": "Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )",
+                  "mode": "walk",
+                  "start_time": "18:00",
+                  "end_time": "18:36",
+                  "cost": 0.0,
+                  "price": 0,
+                  "distance": 3.0504614655140103
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "attraction",
+              "start_time": "09:21",
+              "end_time": "11:30",
+              "cost": 0.0,
+              "price": 0,
+              "tickets": 2,
+              "position": "West Nanjing Road",
+              "transports": [
+                {
+                  "start": "Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )",
+                  "end": "Pudian Road (Line 6)-Metro Station",
+                  "mode": "walk",
+                  "start_time": "09:00",
+                  "end_time": "09:04",
+                  "cost": 0.0,
+                  "price": 0,
+                  "distance": 0.38
+                },
+                {
+                  "start": "Pudian Road (Line 6)-Metro Station",
+                  "end": "West Nanjing Road-Metro Station",
+                  "mode": "metro",
+                  "start_time": "09:04",
+                  "end_time": "09:17",
+                  "cost": 6.0,
+                  "price": 3,
+                  "tickets": 2,
+                  "distance": 6.7
+                },
+                {
+                  "start": "West Nanjing Road-Metro Station",
+                  "end": "West Nanjing Road",
+                  "mode": "walk",
+                  "start_time": "09:17",
+                  "end_time": "09:21",
+                  "cost": 0.0,
+                  "price": 0,
+                  "distance": 0.36
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "start_time": "11:45",
+              "end_time": "13:00",
+              "cost": 214.0,
+              "price": 107,
+              "tickets": 2,
+              "position": "Jingyunhua Roast Duck & Dim Sum (New World Store)",
+              "transports": [
+                {
+                  "start": "West Nanjing Road",
+                  "end": "Jingyunhua Roast Duck & Dim Sum (New World Store)",
+                  "mode": "walk",
+                  "start_time": "11:30",
+                  "end_time": "11:45",
+                  "cost": 0.0,
+                  "price": 0,
+                  "distance": 1.3074456195472839
+                }
+              ]
+            },
+            {
+              "type": "train",
+              "start_time": "16:55",
+              "end_time": "20:25",
+              "cost": 893.62,
+              "price": 446.81,
+              "tickets": 2,
+              "TrainID": "G1728",
+              "start": "Shanghai Hongqiao Station",
+              "end": "Wuhan Station",
+              "transports": [
+                {
+                  "start": "Jingyunhua Roast Duck & Dim Sum (New World Store)",
+                  "end": "People's Square-Metro Station",
+                  "mode": "walk",
+                  "start_time": "13:00",
+                  "end_time": "13:03",
+                  "cost": 0.0,
+                  "price": 0,
+                  "distance": 0.32
+                },
+                {
+                  "start": "People's Square-Metro Station",
+                  "end": "Hongqiao Railway Station-Metro Station",
+                  "mode": "metro",
+                  "start_time": "13:03",
+                  "end_time": "13:33",
+                  "cost": 10.0,
+                  "price": 5,
+                  "tickets": 2,
+                  "distance": 15.49
+                },
+                {
+                  "start": "Hongqiao Railway Station-Metro Station",
+                  "end": "Shanghai Hongqiao Station",
+                  "mode": "walk",
+                  "start_time": "13:33",
+                  "end_time": "13:34",
+                  "cost": 0.0,
+                  "price": 0,
+                  "distance": 0.12
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 240.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "rules",
+    "kind": "dynamic",
+    "task": {
+      "days": 2,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置武汉。我和朋友两个人想去上海玩2天，想去感受一下现代都市的繁华，请给我们一个旅行规划。",
+      "nature_language_en": "Current location: Wuhan. My friend and I want to visit Shanghai for 2 days to experience the bustling modern city. Could you please provide us with a travel plan?",
+      "people_number": 2,
+      "start_city": "武汉",
+      "tag": "easy",
+      "target_city": "上海",
+      "uid": "m20241028164751582756"
+    }
+  },
+  "result": {
+    "task_uid": "m20241028164751582756",
+    "method": "rules",
+    "model": "qwen3.8-reasoner",
+    "terminal_state": "no_candidate",
+    "plan": null,
+    "steps": [],
+    "usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "checker": null,
+    "error": null,
+    "metadata": {
+      "policy": "rules",
+      "fallback": false,
+      "usage_complete": true,
+      "source_revision": "18498f5a75bcd98dffba81ab8fdfdb980cf06f7cb336e4970ef9076231ab9435",
+      "budget_steps": 16,
+      "budget_seconds": 240.0,
+      "tool_trace": [],
+      "candidates": 0,
+      "rejected_proposals": [],
+      "request_count": 0,
+      "retry_count": 0,
+      "request_latency_seconds": 0
+    },
+    "started_at": "2026-11-01T01:32:07.816058+00:00",
+    "finished_at": "2026-11-01T01:32:07.816124+00:00",
+    "duration_seconds": 7.120799273252487e-05,
+    "wall_seconds": 0.0003653749590739608,
+    "resources": {
+      "limits": {
+        "feedback": 4,
+        "model_calls": 16,
+        "tokens": 500000,
+        "tools": 400,
+        "output_tokens_per_call": 10000
+      },
+      "model_calls": 0,
+      "returned_tokens": 0,
+      "feedback_calls": 0,
+      "tool_calls": 0,
+      "exhausted": "",
+      "tool_receipts": [],
+      "input_accounting": "conservative UTF-8 preflight; actual provider usage recorded; missing remote usage remains unknown"
+    },
+    "clarification": {
+      "status": "ready",
+      "base_revision": "18498f5a75bcd98dffba81ab8fdfdb980cf06f7cb336e4970ef9076231ab9435",
+      "task": {
+        "uid": "m20241028164751582756",
+        "tag": "easy",
+        "start_city": "武汉",
+        "target_city": "上海",
+        "days": 2,
+        "people_number": 2,
+        "limit_rooms": false,
+        "limits_room_type": false,
+        "nature_language": "当前位置武汉。我和朋友两个人想去上海玩2天，想去感受一下现代都市的繁华，请给我们一个旅行规划。",
+        "nature_language_en": "Current location: Wuhan. My friend and I want to visit Shanghai for 2 days to experience the bustling modern city. Could you please provide us with a travel plan?"
+      },
+      "seed_plan": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+          "people_number": {
+            "type": "integer"
+          },
+          "start_city": {
+            "type": "string"
+          },
+          "target_city": {
+            "type": "string"
+          },
+          "itinerary": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "day": {
+                  "type": "integer"
+                },
+                "activities": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "airplane",
+                          "attraction",
+                          "lunch",
+                          "dinner",
+                          "breakfast",
+                          "accommodation",
+                          "train"
+                        ]
+                      },
+                      "start_time": {
+                        "type": "string",
+                        "pattern": "^\\d{2}:\\d{2}$"
+                      },
+                      "end_time": {
+                        "type": "string",
+                        "pattern": "^\\d{2}:\\d{2}$"
+                      },
+                      "cost": {
+                        "type": "number"
+                      },
+                      "price": {
+                        "type": "number"
+                      },
+                      "tickets": {
+                        "type": "integer"
+                      },
+                      "position": {
+                        "type": "string"
+                      },
+                      "transports": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "start": {
+                              "type": "string"
+                            },
+                            "end": {
+                              "type": "string"
+                            },
+                            "mode": {
+                              "type": "string",
+                              "enum": [
+                                "walk",
+                                "metro",
+                                "taxi"
+                              ]
+                            },
+                            "start_time": {
+                              "type": "string",
+                              "pattern": "^\\d{2}:\\d{2}$"
+                            },
+                            "end_time": {
+                              "type": "string",
+                              "pattern": "^\\d{2}:\\d{2}$"
+                            },
+                            "cost": {
+                              "type": "number"
+                            },
+                            "price": {
+                              "type": "number"
+                            },
+                            "distance": {
+                              "type": "number"
+                            },
+                            "tickets": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "start",
+                            "end",
+                            "mode",
+                            "start_time",
+                            "end_time",
+                            "price",
+                            "cost",
+                            "distance"
+                          ]
+                        }
+                      },
+                      "room_type": {
+                        "type": "integer"
+                      },
+                      "rooms": {
+                        "type": "integer"
+                      },
+                      "FlightID": {
+                        "type": "string"
+                      },
+                      "TrainID": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "start_time",
+                      "end_time",
+                      "cost",
+                      "price",
+                      "transports"
+                    ],
+                    "allOf": [
+                      {
+                        "if": {
+                          "properties": {
+                            "type": {
+                              "enum": [
+                                "airplane",
+                                "train"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "type"
+                          ]
+                        },
+                        "then": {
+                          "required": [
+                            "start",
+                            "end"
+                          ],
+                          "not": {
+                            "required": [
+                              "position"
+                            ]
+                          }
+                        },
+                        "else": {
+                          "required": [
+                            "position"
+                          ],
+                          "not": {
+                            "anyOf": [
+                              {
+                                "required": [
+                                  "start"
+                                ]
+                              },
+                              {
+                                "required": [
+                                  "end"
+                                ]
+                              },
+                              {
+                                "required": [
+                                  "FlightID"
+                                ]
+                              },
+                              {
+                                "required": [
+                                  "TrainID"
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "if": {
+                          "properties": {
+                            "type": {
+                              "const": "airplane"
+                            }
+                          }
+                        },
+                        "then": {
+                          "required": [
+                            "FlightID"
+                          ]
+                        }
+                      },
+                      {
+                        "if": {
+                          "properties": {
+                            "type": {
+                              "const": "train"
+                            }
+                          }
+                        },
+                        "then": {
+                          "required": [
+                            "TrainID"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "day",
+                "activities"
+              ]
+            }
+          }
+        },
+        "required": [
+          "people_number",
+          "start_city",
+          "target_city",
+          "itinerary"
+        ],
+        "people_number": 2,
+        "start_city": "Wuhan",
+        "target_city": "Shanghai",
+        "itinerary": [
+          {
+            "day": 1,
+            "activities": [
+              {
+                "type": "train",
+                "start_time": "08:00",
+                "end_time": "11:30",
+                "cost": 893.62,
+                "price": 446.81,
+                "tickets": 2,
+                "TrainID": "G1722",
+                "start": "Wuhan Station",
+                "end": "Shanghai Hongqiao Station",
+                "transports": []
+              },
+              {
+                "type": "attraction",
+                "start_time": "12:15",
+                "end_time": "13:15",
+                "cost": 0.0,
+                "price": 0,
+                "tickets": 2,
+                "position": "The Bund Architectural Complex",
+                "transports": [
+                  {
+                    "start": "Shanghai Hongqiao Station",
+                    "end": "Hongqiao Railway Station-Metro Station",
+                    "mode": "walk",
+                    "start_time": "11:30",
+                    "end_time": "11:31",
+                    "cost": 0.0,
+                    "price": 0,
+                    "distance": 0.12
+                  },
+                  {
+                    "start": "Hongqiao Railway Station-Metro Station",
+                    "end": "International Passenger Transport Center-Metro Station",
+                    "mode": "metro",
+                    "start_time": "11:31",
+                    "end_time": "12:07",
+                    "cost": 10.0,
+                    "price": 5,
+                    "tickets": 2,
+                    "distance": 18.17
+                  },
+                  {
+                    "start": "International Passenger Transport Center-Metro Station",
+                    "end": "The Bund Architectural Complex",
+                    "mode": "walk",
+                    "start_time": "12:07",
+                    "end_time": "12:14",
+                    "cost": 0.0,
+                    "price": 0,
+                    "distance": 0.62
+                  }
+                ]
+              },
+              {
+                "type": "lunch",
+                "start_time": "13:30",
+                "end_time": "14:00",
+                "cost": 58.0,
+                "price": 29,
+                "tickets": 2,
+                "position": "Dahuchun (Sichuan Middle Road Branch)",
+                "transports": [
+                  {
+                    "start": "The Bund Architectural Complex",
+                    "end": "Dahuchun (Sichuan Middle Road Branch)",
+                    "mode": "walk",
+                    "start_time": "13:15",
+                    "end_time": "13:30",
+                    "cost": 0.0,
+                    "price": 0,
+                    "distance": 1.2868453249451683
+                  }
+                ]
+              },
+              {
+                "type": "attraction",
+                "start_time": "14:25",
+                "end_time": "16:15",
+                "cost": 0.0,
+                "price": 0,
+                "tickets": 2,
+                "position": "263-meter Main Observation Deck",
+                "transports": [
+                  {
+                    "start": "Dahuchun (Sichuan Middle Road Branch)",
+                    "end": "263-meter Main Observation Deck",
+                    "mode": "walk",
+                    "start_time": "14:00",
+                    "end_time": "14:24",
+                    "cost": 0.0,
+                    "price": 0,
+                    "distance": 2.00744467696377
+                  }
+                ]
+              },
+              {
+                "type": "dinner",
+                "start_time": "16:30",
+                "end_time": "17:30",
+                "cost": 232.0,
+                "price": 116,
+                "tickets": 2,
+                "position": "Le Xin Dynasty (Shanghai Tower Branch)",
+                "transports": [
+                  {
+                    "start": "263-meter Main Observation Deck",
+                    "end": "Le Xin Dynasty (Shanghai Tower Branch)",
+                    "mode": "walk",
+                    "start_time": "16:15",
+                    "end_time": "16:29",
+                    "cost": 0.0,
+                    "price": 0,
+                    "distance": 1.2374321543504643
+                  }
+                ]
+              },
+              {
+                "type": "accommodation",
+                "start_time": "18:36",
+                "end_time": "19:00",
+                "cost": 399.0,
+                "price": 399,
+                "tickets": 2,
+                "rooms": 1,
+                "room_type": 1,
+                "position": "Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )",
+                "transports": [
+                  {
+                    "start": "Le Xin Dynasty (Shanghai Tower Branch)",
+                    "end": "Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )",
+                    "mode": "walk",
+                    "start_time": "18:00",
+                    "end_time": "18:36",
+                    "cost": 0.0,
+                    "price": 0,
+                    "distance": 3.0504614655140103
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "day": 2,
+            "activities": [
+              {
+                "type": "attraction",
+                "start_time": "09:21",
+                "end_time": "11:30",
+                "cost": 0.0,
+                "price": 0,
+                "tickets": 2,
+                "position": "West Nanjing Road",
+                "transports": [
+                  {
+                    "start": "Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )",
+                    "end": "Pudian Road (Line 6)-Metro Station",
+                    "mode": "walk",
+                    "start_time": "09:00",
+                    "end_time": "09:04",
+                    "cost": 0.0,
+                    "price": 0,
+                    "distance": 0.38
+                  },
+                  {
+                    "start": "Pudian Road (Line 6)-Metro Station",
+                    "end": "West Nanjing Road-Metro Station",
+                    "mode": "metro",
+                    "start_time": "09:04",
+                    "end_time": "09:17",
+                    "cost": 6.0,
+                    "price": 3,
+                    "tickets": 2,
+                    "distance": 6.7
+                  },
+                  {
+                    "start": "West Nanjing Road-Metro Station",
+                    "end": "West Nanjing Road",
+                    "mode": "walk",
+                    "start_time": "09:17",
+                    "end_time": "09:21",
+                    "cost": 0.0,
+                    "price": 0,
+                    "distance": 0.36
+                  }
+                ]
+              },
+              {
+                "type": "lunch",
+                "start_time": "11:45",
+                "end_time": "13:00",
+                "cost": 214.0,
+                "price": 107,
+                "tickets": 2,
+                "position": "Jingyunhua Roast Duck & Dim Sum (New World Store)",
+                "transports": [
+                  {
+                    "start": "West Nanjing Road",
+                    "end": "Jingyunhua Roast Duck & Dim Sum (New World Store)",
+                    "mode": "walk",
+                    "start_time": "11:30",
+                    "end_time": "11:45",
+                    "cost": 0.0,
+                    "price": 0,
+                    "distance": 1.3074456195472839
+                  }
+                ]
+              },
+              {
+                "type": "train",
+                "start_time": "16:55",
+                "end_time": "20:25",
+                "cost": 893.62,
+                "price": 446.81,
+                "tickets": 2,
+                "TrainID": "G1728",
+                "start": "Shanghai Hongqiao Station",
+                "end": "Wuhan Station",
+                "transports": [
+                  {
+                    "start": "Jingyunhua Roast Duck & Dim Sum (New World Store)",
+                    "end": "People's Square-Metro Station",
+                    "mode": "walk",
+                    "start_time": "13:00",
+                    "end_time": "13:03",
+                    "cost": 0.0,
+                    "price": 0,
+                    "distance": 0.32
+                  },
+                  {
+                    "start": "People's Square-Metro Station",
+                    "end": "Hongqiao Railway Station-Metro Station",
+                    "mode": "metro",
+                    "start_time": "13:03",
+                    "end_time": "13:33",
+                    "cost": 10.0,
+                    "price": 5,
+                    "tickets": 2,
+                    "distance": 15.49
+                  },
+                  {
+                    "start": "Hongqiao Railway Station-Metro Station",
+                    "end": "Shanghai Hongqiao Station",
+                    "mode": "walk",
+                    "start_time": "13:33",
+                    "end_time": "13:34",
+                    "cost": 0.0,
+                    "price": 0,
+                    "distance": 0.12
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "event": {
+        "kind": "budget_cut",
+        "day": null,
+        "new_days": null,
+        "new_budget": "2580",
+        "target": null,
+        "description": ""
+      },
+      "state_revision": "d11fb1c0e1882a47adfc3e5067ea4d98f6600e1e6e0be96423d860ab74522365"
+    },
+    "event": {
+      "kind": "budget_cut",
+      "new_budget": "2580",
+      "description": ""
+    },
+    "event_check": null
+  },
+  "supervision": {
+    "returncode": 0,
+    "hard_timeout": false,
+    "cancelled": false,
+    "wall_seconds": 0.3958512080134824
+  },
+  "ledger": {
+    "request_attempts": 0,
+    "completed_attempts": 0,
+    "pending_attempts": 0,
+    "observed_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "unobserved_billing_possible": false,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "invoice_total_CNY": null,
+    "events": []
+  },
+  "resources": {
+    "model_calls": 0,
+    "returned_tokens": 0,
+    "tool_calls": 0,
+    "exhausted": ""
+  }
+}

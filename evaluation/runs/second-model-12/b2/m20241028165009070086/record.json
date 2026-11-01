@@ -1,0 +1,98 @@
+{
+  "job": {
+    "uid": "m20241028165009070086",
+    "split": "easy",
+    "model": "glm-5.3-flash",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "b2",
+    "kind": "static",
+    "task": {
+      "days": 2,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置北京。我一个人想去深圳玩2天，住丽呈東谷酒店(深圳华强北店)，请给我一个旅行规划。",
+      "nature_language_en": "Current location: Beijing. I want to travel alone to Shenzhen for 2 days and stay at the Rezen Dong Hotel (Shenzhen Huaqiangbei). Please provide me with a travel plan.",
+      "people_number": 1,
+      "start_city": "北京",
+      "tag": "easy",
+      "target_city": "深圳",
+      "uid": "m20241028165009070086"
+    }
+  },
+  "result": {
+    "task_uid": "m20241028165009070086",
+    "method": "b2",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.02347224997357
+  },
+  "ledger": {
+    "request_attempts": 2,
+    "completed_attempts": 1,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793497226.85436,
+        "attempt_id": "3e62db2342dc4d71adf3015aa3cc01e9",
+        "model": "glm-5.3-flash",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793497406.91177,
+        "attempt_id": "3e62db2342dc4d71adf3015aa3cc01e9",
+        "model": "glm-5.3-flash",
+        "elapsed": 180.05712445802055,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "backoff",
+        "time": 1793497406.913292,
+        "attempt_id": "3e62db2342dc4d71adf3015aa3cc01e9",
+        "model": "glm-5.3-flash",
+        "seconds": 2.0,
+        "reason": "transient"
+      },
+      {
+        "kind": "start",
+        "time": 1793497408.917842,
+        "attempt_id": "ad8d68bae85e40299ed02413a8faa24d",
+        "model": "glm-5.3-flash",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 1,
+    "returned_tokens": 0,
+    "tool_calls": 185,
+    "exhausted": ""
+  }
+}

@@ -1,94 +1,148 @@
 # Evaluation and reproducibility
 
-## Methods and protocol
+## Scope and task selection
 
-`structured` is TripPilot's initial requirement/sketch/compiler planner; `patch` is the transactional incremental repair method. `b2` is a ReAct agent with a runtime checker and revision feedback. Both see the same public request, tool interfaces and, for dynamic tasks, seed plan and event.
+The primary study uses 200 independent ChinaTravel parent tasks: 70 easy, 60 medium and 70 human. Task selection excludes 255 previously exposed project parents. Selection seed 2026103107 fixes the task order, 24 component parents, 12 repeat parents and 12 second-model parents before the corresponding outcomes. Repeated runs and overlapping subsets do not create additional independent parents.
 
-The preregistered configuration contains 6 development and 24 test parents, selected before implementing the evaluated method and excluding earlier project runs. The test split has 8 easy, 8 medium and 8 human tasks. The model is the provider alias `qwen3.8-reasoner`; the provider does not expose a weight version or fixed sampling configuration.
+Initial planning uses the original schema, commonsense and hard-constraint evaluators. A separately reported usability floor requires an attraction and a meal on each day. Runtime `checked_ok` verifies public rules and predicted requirements; it does not guarantee complete benchmark success.
 
-| Setting | Initial planning | Dynamic repair |
+The primary provider alias is `qwen3.8-reasoner`; the second is `glm-5.3-flash`. These are service identifiers. The provider does not expose fixed model weights or a reproducible sampling configuration. Published tasks may also have appeared in model pretraining.
+
+## Methods and shared limits
+
+| Identifier | Method |
+| --- | --- |
+| `b0` | Single model response producing a complete plan |
+| `b1` | ReAct with public tools |
+| `b2` | ReAct with public tools and runtime-check feedback |
+| `structured` | Requirement extraction, ID-only sketch selection, factual compilation and bounded feedback/fallback |
+| `rules` | Deterministic bounded repair without model calls |
+| `patch` | Deterministic verified repair first, then ReAct fallback with the remaining task budget |
+
+All initial methods receive the same deterministic public fact packet and factual completion of missing local routes. Preparation, validation and fallback consume the task's resource limits. Equal available information and limits do not imply identical query strategies.
+
+| Resource | Initial planning | Conditional repair |
 | --- | ---: | ---: |
 | Logical model calls | 16 | 16 |
+| Returned tokens | 500,000 | 500,000 |
+| Backend queries | 400 | 400 |
+| Feedback opportunities | 4 | 4 |
+| Maximum output tokens per request | 10,000 | 10,000 |
 | Task wall-clock deadline | 360 s | 240 s |
-| Request timeout | 90 s | 90 s |
-| Maximum attempts/request | 2 | 2 |
-| Concurrent jobs | 4 | 4 |
+| Request timeout, clipped to remaining time | 180 s | 180 s |
+| Maximum attempts per request | 2 | 2 |
+| Concurrent tasks | 4 | 4 |
 
-Extraction and fallback share the logical-call budget. Programmatic tool work is included in wall-clock time; there is no equal tool-call-count cap, and query scheduling differs by method. Comparisons measure the complete control design, not isolated LLM reasoning quality.
+Input preflight uses a conservative estimate. Every returned usage record is retained; failed or terminated requests may incur unobserved remote usage. Request retries honor provider reset times within the existing task deadline. Authentication failures, unrecovered rate limits and consecutive zero-usage failures stop scheduling.
 
-## Initial planning
+The runtime worker receives only the public task, seed plan and allowlisted event fields. Offline scoring annotations and constructive reference plans are outside its file-access policy. macOS file restrictions and Linux Landlock enforce this separation; the latter requires ABI ≥ 3.
 
-| Metric | TripPilot | ReAct + checker |
-| --- | ---: | ---: |
-| Original benchmark all-pass | 17/24 (70.8%) | 9/24 (37.5%) |
-| All-pass plus usability floor | 17/24 | 3/24 |
-| Returned tokens | 561,673 | 2,511,093 |
-| Summed task wall time | 4,088.18 s | 7,130.68 s |
-| Median task wall time | 134.96 s | 303.67 s |
-| Known-usage list-price estimate, CNY | 0.4393 | 1.0216 |
-| Tasks with possible unobserved billing | 10 | 18 |
+## Initial planning: 200 paired parents
 
-All-pass requires the original schema, commonsense and hard checks plus a completed submission. The additional usability floor requires at least one attraction and one meal each day, applied equally to both methods; it is not an official benchmark metric.
+| Method | Complete success | Success plus usability | Returned tokens | Summed task seconds | Median seconds |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Single response | 6/200 | 5/200 | 4,055,288 | 22,882.83 | 105.27 |
+| ReAct | 29/200 | 23/200 | 26,607,265 | 59,664.28 | 358.61 |
+| ReAct + checker | 55/200 | 50/200 | 29,785,729 | 64,248.86 | 360.02 |
+| TripPilot | 142/200 | 142/200 | 7,516,798 | 37,666.30 | 135.84 |
+
+TripPilot succeeds on 71.0%, compared with 27.5% for ReAct + checker: a paired difference of 43.5 percentage points. The parent-paired bootstrap 95% interval is 35.5–51.0 percentage points. Exclusive successes are 92 versus 5; exact two-sided McNemar p=8.59077e-22.
+
+Returned tokens decrease by 74.8% and summed task time by 41.4%; parent-paired 95% intervals are 70.8%–78.3% and 36.8%–45.9%. Across the 50 parents where both methods succeed, tokens are 1,255,141 versus 8,107,074 and time is 6,017.78 versus 12,565.44 seconds.
+
+TripPilot makes more backend queries: 53,884 versus 44,686. Hard timeouts are 45 versus 130, and possible unobserved billing affects 46 versus 135 tasks. The comparison measures complete systems within a common 360-second budget; it does not establish unlimited-time reasoning superiority or a complete billing reduction.
 
 | Difficulty | TripPilot | ReAct + checker |
 | --- | ---: | ---: |
-| easy | 6/8 | 4/8 |
-| medium | 7/8 | 2/8 |
-| human | 4/8 | 3/8 |
+| easy | 49/70 | 21/70 |
+| medium | 50/60 | 22/60 |
+| human | 43/70 | 12/70 |
 
-| Runtime terminal state | TripPilot | ReAct + checker |
+## Conditional repair: 100 feasible events
+
+An offline constructor verifies at least one complete feasible reference plan before running repair methods. It uses public tools and a separate search, without calling the compared repair proposer. Targets are 34 earlier-return, 33 unavailable-transport and 33 budget-reduction events; the completed cohort spans 56 parents with no shortfall. A separate review revalidated all 100 references.
+
+Parent ordering, difficulty quotas and seed priority (`b2`, `b1`, `b0`, `structured`) are fixed before repair outcomes. Each method starts with exactly the same seed and event. Reference plans remain offline. Known feasibility describes this constructed cohort and does not prove global search completeness.
+
+| Method | Complete success | Success plus usability | Returned tokens | Summed seconds | Median seconds |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Deterministic repair | 66/100 | 66/100 | 0 | 56.85 | 0.62 |
+| ReAct + checker | 88/100 | 86/100 | 7,136,238 | 10,013.09 | 76.39 |
+| TripPilot repair | 85/100 | 84/100 | 4,055,073 | 5,486.67 | 0.67 |
+
+TripPilot's repair success is 3 percentage points lower. The parent-cluster bootstrap 95% interval is −9.09 to +3.30 percentage points; this does not establish greater success or quality equivalence. Returned tokens decrease by 43.2% and summed time by 45.2%, with intervals 28.8%–56.0% and 34.9%–55.3%. Resampling uses 56 parent clusters, not 100 independent event pairs; an event-level McNemar test is not applied.
+
+| Event | TripPilot repair | ReAct + checker |
 | --- | ---: | ---: |
-| checked_ok | 17 | 13 |
-| checked_with_violations | 0 | 1 |
-| hard_timeout | 4 | 6 |
-| request_error | 3 | 4 |
+| Earlier return | 34/34 | 33/34 |
+| Unavailable transport | 32/33 | 33/33 |
+| Budget reduction | 19/33 | 22/33 |
 
-Runtime `checked_ok` does not guarantee original hidden-constraint all-pass. Errors and timeouts remain in the denominator and are not all attributable to planning ability.
+The 80 jointly successful events provide a resource comparison on the same outcomes:
 
-Wilson 95% intervals are 50.8%–85.1% vs 21.2%–57.3%. Paired exclusive successes are 11 vs 3; exact two-sided McNemar p=0.0574. Parent-paired bootstrap intervals for token and summed-time reductions are 63.3%–86.2% and 25.9%–56.3%, respectively (3,000 resamples, seed 20261031). These results do not establish general superiority.
-
-## Repeated runs
-
-Two parents per difficulty were selected before observing results, with two additional runs. Repeated attempts do not add independent parents.
-
-| Run | TripPilot | ReAct + checker |
+| Metric | TripPilot repair | ReAct + checker |
 | --- | ---: | ---: |
-| Selected parents, initial run | 6/6 | 1/6 |
-| Additional run 1 | 6/6 | 3/6 |
-| Additional run 2 | 6/6 | 2/6 |
+| Returned tokens | 1,444,103 | 4,599,547 |
+| Summed seconds | 1,871.63 | 6,308.89 |
+| Removed/modified plus added/modified activities | 501 | 882 |
+| Unaffected activities retained, same denominator | 329/334 | 203/334 |
 
-## Conditional dynamic repair
+Full activity content and day are matched as multisets, so deletion does not shift subsequent matches. Entity metrics measure public name/transport-ID membership, not complete factual correctness. Both require submission denominators; statistics over different sets of returned plans should not be treated as matched comparisons.
 
-Parents are selected by a predetermined ordering of task IDs from successful structured plans with multiple days and intercity transport, up to 4 per difficulty. Actual selection is 4 easy, 4 medium, 3 human parents. Each produces all three event types; candidates are not filtered by revised-plan outcomes or proven feasibility. The budget event uses floor(95% of seed spend).
+Sixty-six successful repairs use zero model requests. Thirty-three events have journaled model attempts; the final result metadata explicitly marks only 21 fallbacks because 12 forced terminations lose their return metadata. The metadata count is a lower bound. These deterministic fast-path gains should not be attributed to an LLM selector.
 
-| Event | TripPilot | ReAct + checker |
-| --- | ---: | ---: |
-| Earlier return | 10/11 | 8/11 |
-| Unavailable transport | 11/11 | 10/11 |
-| Budget reduction | 6/11 | 4/11 |
-| Total | 27/33 | 22/33 |
+One-day return can conflict with requested lodging. A simulated explicit answer is supplied only after the same clarification step. Offline adaptations rewrite only the event-covered day count; pure lodging conditions are waived only with recorded consent. Mixed conditions remain. This is conditional repair from valid plans, not end-to-end travel-planning success or official dynamic benchmark gold.
 
-Returned tokens are 951,153 vs 1,555,663 (38.9% fewer); summed repair time is 2,593.23 vs 4,285.81 s (39.5% less). Parent-cluster bootstrap intervals for reductions are 14.8%–56.9% and 26.0%–49.6%. Runtime states are 28 checked_ok/5 hard_timeout for TripPilot and 23 checked_ok/2 checked_with_violations/8 hard_timeout for the ReAct agent.
+## Component controls, repeats and second model
 
-This is a **conditional repair** comparison, not end-to-end success. The initial 17/24 success and the one-parent selection shortfall remain visible.
+| Setting, same 24 parents | Complete success | Returned tokens | Summed seconds | Hard timeouts |
+| --- | ---: | ---: | ---: | ---: |
+| Structured sketch + compiler + feedback | 18/24 | 957,121 | 3,880.99 | 4 |
+| Structured sketch + compiler, no feedback | 15/24 | 462,966 | 2,515.27 | 0 |
+| Full-plan JSON + checker feedback | 1/24 | 1,937,785 | 8,616.29 | 23 |
 
-Dynamic scoring is derived, not official gold. Only explicit event-covered day-count equalities are rewritten. One-day return with explicit lodging requirements triggers clarification; the benchmark simulates an explicit user cancellation only after a question. Pure lodging clauses are waived only if the actual result records the accepted choice, question and explicit waiver. Mixed lodging/budget clauses are retained. Preliminary and stricter-review scores are both published; the stricter score remains 27/33 vs 22/33 without rerunning models.
+The structured setting exceeds no-feedback by 12.5 percentage points, with a parent-paired 95% interval of −8.33 to +33.33 points; exclusive successes are 5 versus 2, exact McNemar p=0.453125. Feedback uses more returned tokens and time on this subset. The sample does not establish a reliable feedback benefit.
 
-## Result files
+Against full-plan JSON, the difference is 70.83 points (95% interval 54.17–87.50), exclusive successes 17 versus 0, exact p=1.52588e-5. Twenty-three full-plan tasks reach the common deadline. This is a comparison of output strategies within the declared time/output budgets, not a universal proof that compilation outperforms direct generation. Intervals are exploratory, without a multiple-comparison adjustment.
 
-- [Machine-readable metrics](../evaluation/results.json)
-- [Original per-run protocols, scores, records and request journals](../evaluation/runs/)
-- [Dynamic selection recipe](../evaluation/dynamic-cohort.json)
-- [Verification summary](../evaluation/verification.json)
-- [Published file inventory](../evaluation/checksums.json)
+The original component control records are retained for diagnosis and excluded from attribution: feedback state could be overwritten and the full-plan retry contained a conflicting output instruction. Corrected controls rerun all three settings on the same 24 predetermined parents with identical limits. Their results are exploratory and do not add independent test parents.
 
-The published result directories describe the implementation used in those runs. Later source changes do not inherit these measured results; use their recorded source descriptions when interpreting the tables. Publication adds documentation/packaging, renames test files and omits private operational material. The recorded source versions describe the implementation used during evaluation; publication packaging is documented separately. Local absolute paths in published JSON have been replaced by `{PROJECT_ROOT}`; the published inventory covers these sanitized files. Original local records were retained unchanged.
+| Fixed 12 parents | Single response | ReAct | ReAct + checker | TripPilot |
+| --- | ---: | ---: | ---: | ---: |
+| Initial run subset | 1/12 | 2/12 | 3/12 | 8/12 |
+| Additional run 1 | 0/12 | 0/12 | 4/12 | 8/12 |
+| Additional run 2 | 0/12 | 1/12 | 6/12 | 9/12 |
 
-The runtime rechecks task and seed versions, not every sandbox table per task. Source code and bundled data in this repository can be checked offline; neither API outputs nor future provider weights are guaranteed to replay bit-for-bit. Published tasks may have appeared in model pretraining.
+| Second service, fixed 12 parents | Complete success | Returned tokens | Summed seconds | Hard timeouts |
+| --- | ---: | ---: | ---: | ---: |
+| TripPilot | 4/12 | 97,654 | 3,714.33 | 8 |
+| ReAct + checker | 0/12 | 0 returned | 4,320.34 | 12 |
+
+The second service is `glm-5.3-flash`. All 24 executions are retained, including an initial 13 executions before a protective stop and the 11 previously unexecuted tasks completed after one same-protocol continuation. Exclusive successes are 4 versus 0 (exact two-sided p=0.125). Twenty tasks hit the deadline; possible unobserved billing affects 9 TripPilot and 12 comparison tasks. Zero returned tokens do not mean zero provider work or cost. This small, timeout-dominated result does not establish robust cross-model generalization.
+
+## Failure review and accounting
+
+Nine returned TripPilot initial plans pass public checks but fail complete hard constraints. Offline inspection identifies specific cuisine/hotel categories, a missing conjunctive attraction type, an implicit local-cuisine preference, an unsupported public-transport preference and broad West Lake name matching. They remain failures; checking predicted constraints does not verify that extraction captured the entire request.
+
+Dynamic TripPilot failures include 12 hard timeouts, two public-check successes failing complete constraints and one worker error; ReAct + checker has nine hard timeouts and three complete-constraint failures. The worker error and a matching deterministic-repair error come from a non-finite public fare. A later input-boundary correction is regression-tested; it does not replace those measured failures.
+
+Known-usage list-price estimates are 5.739723 versus 11.629979 CNY for initial planning and 1.516295 versus 2.876372 CNY for repair. Dynamic possible unobserved billing affects 12 versus 13 tasks. Rates have an observed date and are not an invoice; killed or failed requests may still be charged remotely. Missing billing is never asserted to be zero.
+
+## Evidence and implementation provenance
+
+Each study retains its execution protocol, per-task scores, records, request attempts and durable resource counters. Initial planning and repeated runs describe implementation `0e87c1a`; repair and the second model describe `99fbc71`, which changes request-limit recovery. The corrected component study describes implementation `6b53eea`. Later source corrections do not retroactively change measured results.
+
+The earlier service-interrupted repair execution and invalid-control records remain separate. No completed failure was selectively retried or replaced in the current comparison. Local paths, credentials and private endpoint identifiers are removed from published copies; diagnostic non-finite numbers are encoded as strings for strict JSON. Original local evidence is retained. The four earlier published study directories remain byte-for-byte unchanged, including 30 legacy JSON files with non-finite diagnostic values accepted by Python’s reader. Strict JSON normalization applies to the newly exported studies; no legacy score or output is rewritten.
+
+- [Machine-readable results](../evaluation/results.json)
+- [Per-study evidence](../evaluation/runs/)
+- [Feasible repair cohort](../evaluation/cohorts/repair-100.json)
+- [Offline reference plans](../evaluation/references/repair-100/)
+- [Published content inventory](../evaluation/checksums.json)
 
 ## Reproduce
 
-Offline integrity and interface checks:
+Offline checks do not call a model:
 
 ```sh
 uv sync --locked
@@ -97,55 +151,14 @@ uv run --locked python scripts/check_isolation.py
 uv run --locked python scripts/verify_release.py
 ```
 
-To repeat the complete model evaluation with the tested model alias, configure `.env`, then choose a fresh prefix:
+For a new complete evaluation, configure an available compatible API and choose a fresh identifier:
 
 ```sh
-uv run --locked python scripts/run_acceptance.py --prefix reproduction-001
+uv run --locked python scripts/run_completion.py --prefix reproducible-study
 ```
 
-This calls the configured API and incurs usage. It runs 24 paired initial tasks, two paired repeats on 6 fixed parents, and a newly derived conditional dynamic cohort. Each method has an atomic record; failures stay in the denominator. A new prefix prevents existing evidence from being overwritten.
+The complete workload contains 800 initial executions, 72 component executions, 96 repeat executions, 300 constructive repair executions and 24 second-model executions. At four workers, the sum of task deadlines gives a 29.8-hour scheduling ceiling before preparation/scoring overhead, not a predicted runtime. Service delays and stops can extend elapsed completion time.
 
-For a different model, run individual stages using `run_suite.py --help` and an explicit `--model`; keep the task manifest, budgets and offline scoring the same, and report it as a separate comparison. `run_acceptance.py` uses the evaluated default alias.
+Inspect state and logs before using `--resume`. Completed outcomes are skipped, including failures. An incomplete attempt with a journal is retained as interrupted instead of purchasing another attempt. Source, tool data or configuration changes require a new identifier. A run lock prevents concurrent parents from writing the same study.
 
-If interrupted, inspect the stage state/logs under `experiments/v3/acceptance-<prefix>/`. Reissue the incomplete stage with the same source, manifest, settings and run ID; completed method records are skipped. If the code/config changed, use a new run ID. Run `score_suite.py --run-id <id>` only after the stage completes. The orchestrator refuses an existing acceptance directory rather than restarting a completed or partial pipeline silently.
-
-## Scope and attribution
-
-The benchmark is small, uses one provider alias and sample data, and has no NeSy/SOTA comparison. Candidate search is bounded and does not prove global optimality/infeasibility. The recorded runs used allowlisted tools without an OS file boundary. Current worker file policies are described in the architecture; those changes require a fresh measurement under the expanded protocol. List prices are current USTC platform rates for observed usage, not an invoice or actual cash payment. Failed/pending requests may still incur unknown remote charges.
-
-ChinaTravel supplies the environment, public tables and base evaluators. TripPilot supplies the structured planning/compiler control, transactional repair/clarification, shared execution budgets and evidence handling. See [third-party notices](../THIRD_PARTY_NOTICES.md).
-
-## Expanded paired protocol
-
-`config/completion-tasks.json` declares 200 static parents (70 easy, 60 medium, 70 human), disjoint from earlier exposed evaluation parents. It fixes 24 component parents, 12 repeat parents and 12 second-model parents before their outcomes. The primary model is `qwen3.8-reasoner`; the second is `glm-5.3-flash`.
-
-The four initial methods are single-shot generation, ReAct, ReAct with feedback and TripPilot. Each receives the same deterministic public fact packet and shared factual completion of missing local routes. Backend queries, validation and fallback consume the same task resource limits. This controls available evidence; it does not make their tool-use strategies identical.
-
-| Stage | Parents/events | Methods | Task executions |
-| --- | ---: | --- | ---: |
-| Initial planning | 200 parents | Four initial methods | 800 |
-| Components | 24 fixed parents | No feedback; full-plan generation | 48 |
-| Additional repeats | 12 fixed parents, twice | Four initial methods | 96 |
-| Conditional repair | 100 constructive events | Deterministic repair; ReAct with feedback; incremental repair | 300 |
-| Second model | 12 fixed parents | TripPilot; ReAct with feedback | 24 |
-
-Limits are 16 logical calls, 500,000 returned tokens, 400 backend queries, 4 feedback opportunities and 10,000 output tokens per request. Static/dynamic task deadlines are 360/240 seconds; requests have at most 180 seconds within the remaining task time, with at most 2 attempts. Concurrency is 4.
-
-The offline event constructor verifies at least one feasible reference solution before repair methods run. Event targets are 34 earlier returns, 33 unavailable transports and 33 budget reductions, split across difficulty groups as declared in the manifest. It interleaves difficulty groups and uses the fixed seed-method priority, without inspecting repair outcomes. Reference files stay on the offline side and are never included in worker jobs. If the constructive cohort falls short, execution stops with the shortfall recorded.
-
-```sh
-uv run --locked python scripts/run_completion.py --prefix paired-study
-```
-
-This is a substantial API workload. With four concurrent jobs, the sum of the configured deadlines gives an approximately 29.2-hour task-execution ceiling before setup/scoring overhead; actual time depends on responses and early stopping. This is a scheduling estimate, not a measured duration.
-
-After inspecting a stopped run, resume unchanged settings with `--resume`. Existing completed records are skipped; a partial attempt without a completed record is retained as interrupted rather than silently retried. Authentication/rate-limit errors or consecutive empty failures stop scheduling. Input, tool data or code changes require a new prefix. A run lock prevents two parents from writing the same run concurrently.
-
-The pipeline creates one `report.md` containing all stages. Unknown costs and interrupted attempts stay visible; missing stages are explicitly marked. It reports parent-paired statistics, duration percentiles, unmatched entities, change counts, unaffected-content retention and matched-success resource comparisons. Dynamic intervals resample parents instead of treating correlated events as independent observations. Additional component comparisons are exploratory; repeated attempts do not create independent parents.
-
-
-## Upstream rate-limit recovery
-
-The repair workload can reach the service's request-count limit sooner than the longer initial-planning workload. The client honors Retry-After or the provider's explicit UTC reset time within the remaining task deadline. Recovered retries remain in the journal and no longer stop an otherwise successful batch. Authentication failures and exhausted rate-limit attempts still stop scheduling. Provider key identifiers and configured credentials are removed from persisted error text.
-
-If an execution-protocol correction is needed after earlier stages have completed, preserve their original records and use a fresh run identifier for a complete repair comparison. `scripts/finish_evaluation.py --initial-prefix <completed-prefix> --prefix <new-prefix>` reruns every selected repair event for all methods and then runs the second model. It records the inherited initial-planning, component and repeat evidence separately. The earlier interrupted repair execution and every failure remain available; this is a full comparison under amended request handling, not a selective retry of failures. Planner prompts, reference tasks and per-task caps remain fixed.
+The bundled ChinaTravel environment covers ten example cities and does not provide real-time booking. Candidate search is bounded; failure is not proof of infeasibility. No NeSy/SOTA comparison is claimed. ChinaTravel supplies public tools, data and the original evaluators; TripPilot supplies its planning, compilation, repair, consent and supervised execution design. See [third-party notices](../THIRD_PARTY_NOTICES.md).

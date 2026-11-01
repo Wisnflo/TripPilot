@@ -1,0 +1,680 @@
+{
+  "task_uid": "e20241028160409480928",
+  "method": "patch",
+  "model": "qwen3.8-reasoner",
+  "terminal_state": "checked_ok",
+  "plan": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "people_number": 1,
+    "start_city": "杭州",
+    "target_city": "武汉",
+    "itinerary": [
+      {
+        "day": 1,
+        "activities": [
+          {
+            "type": "airplane",
+            "start_time": "08:16",
+            "end_time": "08:58",
+            "cost": 232.88,
+            "price": 232.88,
+            "tickets": 1,
+            "start": "Hangzhou Xiaoshan International Airport",
+            "end": "Wuhan Tianhe International Airport",
+            "FlightID": "FL544",
+            "transports": []
+          },
+          {
+            "type": "attraction",
+            "start_time": "09:34",
+            "end_time": "12:00",
+            "cost": 0.0,
+            "price": 0,
+            "tickets": 1,
+            "position": "Qingchuan Pavilion",
+            "transports": [
+              {
+                "start": "Wuhan Tianhe International Airport",
+                "end": "Qingchuan Pavilion",
+                "mode": "taxi",
+                "start_time": "08:58",
+                "end_time": "09:34",
+                "price": 104.9,
+                "cost": 104.9,
+                "distance": 24.49,
+                "tickets": 1,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "start_time": "12:35",
+            "end_time": "13:30",
+            "cost": 23.0,
+            "price": 23,
+            "tickets": 1,
+            "position": "Dehua Restaurant (Jiqing Street Branch)",
+            "transports": [
+              {
+                "start": "Qingchuan Pavilion",
+                "end": "Dehua Restaurant (Jiqing Street Branch)",
+                "mode": "walk",
+                "start_time": "12:00",
+                "end_time": "12:32",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 2.726982622560085
+              }
+            ]
+          },
+          {
+            "type": "airplane",
+            "start_time": "14:59",
+            "end_time": "15:41",
+            "cost": 231.98,
+            "price": 231.98,
+            "tickets": 1,
+            "start": "Wuhan Tianhe International Airport",
+            "end": "Hangzhou Xiaoshan International Airport",
+            "FlightID": "FL625",
+            "transports": [
+              {
+                "start": "Dehua Restaurant (Jiqing Street Branch)",
+                "end": "Wuhan Tianhe International Airport",
+                "mode": "taxi",
+                "start_time": "13:30",
+                "end_time": "14:02",
+                "price": 93.42,
+                "cost": 93.42,
+                "distance": 21.94,
+                "tickets": 1,
+                "cars": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "steps": [
+    {
+      "step": 1,
+      "content": "\n\n\n\n\n",
+      "tool_calls": [
+        {
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "杭州",
+            "end_city": "武汉",
+            "intercity_type": "airplane"
+          }
+        },
+        {
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "武汉",
+            "end_city": "杭州",
+            "intercity_type": "airplane"
+          }
+        },
+        {
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "杭州",
+            "end_city": "武汉",
+            "intercity_type": "train"
+          }
+        },
+        {
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "武汉",
+            "end_city": "杭州",
+            "intercity_type": "train"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "intercity_transport_select",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Wuhan\\\", \\\"intercity_type\\\": \\\"airplane\\\", \\\"start_city\\\": \\\"Hangzhou\\\"})\", \"text\": \"['FlightID' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['FL543' 'Hangzhou Xiaoshan International Airport'\\n 'Wuhan Tianhe International Airport' '01:16' '01:58' 0.7000000000000001\\n 325.09]\\n['FL549' 'Hangzhou Xiaoshan International Airport'\\n 'Wuhan Tianhe International Airport' '01:18' '02:00' 0.7000000000000001\\n 329.0]\\n['FL"
+        },
+        {
+          "name": "intercity_transport_select",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Hangzhou\\\", \\\"intercity_type\\\": \\\"airplane\\\", \\\"start_city\\\": \\\"Wuhan\\\"})\", \"text\": \"['FlightID' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['FL628' 'Wuhan Tianhe International Airport'\\n 'Hangzhou Xiaoshan International Airport' '00:20' '01:02'\\n 0.7000000000000001 233.16]\\n['FL629' 'Wuhan Tianhe International Airport'\\n 'Hangzhou Xiaoshan International Airport' '02:18' '03:00'\\n 0.7000000000000001 281.24]\\n['F"
+        },
+        {
+          "name": "intercity_transport_select",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Wuhan\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Hangzhou\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['G1545' 'High-speed rail' 'Hangzhou West Railway Station' 'Wuhan Station'\\n '07:19' '11:34' 4.25 365.22]\\n['G1544' 'High-speed rail' 'Hangzhou West Railway Station' 'Wuhan Station'\\n '07:19' '11:34' 4.25 365.22]\\n['G2388' 'High-speed rail' 'Hangzhou West Railway Sta"
+        },
+        {
+          "name": "intercity_transport_select",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"end_city\\\": \\\"Hangzhou\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Wuhan\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['G3237' 'High-speed rail' 'Wuhan Station' 'Hangzhou West Railway Station'\\n '07:19' '12:54' 5.58 365.22]\\n['G3248' 'High-speed rail' 'Wuhan Station' 'Hangzhou West Railway Station'\\n '08:30' '13:05' 4.58 365.22]\\n['G3245' 'High-speed rail' 'Wuhan Station' 'Hangzhou "
+        }
+      ],
+      "latency_seconds": 6.053020374965854,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-5ef64194-3e26-4c16-87d3-c37f93ca36c1",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 4873,
+      "completion_tokens": 479,
+      "reasoning_tokens": 255,
+      "attempts": 1,
+      "request_latencies": [
+        6.053020374965854
+      ],
+      "phase": "full_fallback"
+    },
+    {
+      "step": 2,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "武汉",
+            "start": "Dehua Restaurant (Jiqing Street Branch)",
+            "end": "Wuhan Tianhe International Airport",
+            "start_time": "13:30",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Wuhan Tianhe International Airport\\\", \\\"start\\\": \\\"Dehua Restaurant (Jiqing Street Branch)\\\", \\\"start_time\\\": \\\"13:30\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Dehua Restaurant (Jiqing Street Branch)', 'end': 'Wuhan Tianhe International Airport', 'mode': 'taxi', 'start_time': '13:30', 'end_time': '14:02', 'cost': 93.42, 'distance': 21.94}]\", \"data\": [{\"start\": \"Dehua Restaurant (Jiqing Street Branch)\", \"end\": \"Wuh"
+        }
+      ],
+      "latency_seconds": 7.245183874969371,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-940ee082-a66c-4376-96c3-acd3fbd3ed48",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 11441,
+      "completion_tokens": 466,
+      "reasoning_tokens": 373,
+      "attempts": 1,
+      "request_latencies": [
+        7.245183874969371
+      ],
+      "phase": "full_fallback"
+    },
+    {
+      "step": 3,
+      "content": "\n\n{\"$schema\": \"http://json-schema.org/draft-07/schema#\", \"people_number\": 1, \"start_city\": \"杭州\", \"target_city\": \"武汉\", \"itinerary\": [{\"day\": 1, \"activities\": [{\"type\": \"airplane\", \"start_time\": \"08:16\", \"end_time\": \"08:58\", \"cost\": 232.88, \"price\": 232.88, \"tickets\": 1, \"start\": \"Hangzhou Xiaoshan International Airport\", \"end\": \"Wuhan Tianhe International Airport\", \"FlightID\": \"FL544\", \"transports\": []}, {\"type\": \"attraction\", \"start_time\": \"09:34\", \"end_time\": \"12:00\", \"cost\": 0.0, \"price\": 0, \"tickets\": 1, \"position\": \"Qingchuan Pavilion\", \"transports\": [{\"start\": \"Wuhan Tianhe International Airport\", \"end\": \"Qingchuan Pavilion\", \"mode\": \"taxi\", \"start_time\": \"08:58\", \"end_time\": \"09:34\", \"price\": 104.9, \"cost\": 104.9, \"distance\": 24.49, \"tickets\": 1, \"cars\": 1}]}, {\"type\": \"lunch\", \"start_time\": \"12:35\", \"end_time\": \"13:30\", \"cost\": 23.0, \"price\": 23, \"tickets\": 1, \"position\": \"Dehua Restaurant (Jiqing Street Branch)\", \"transports\": [{\"start\": \"Qingchuan Pavilion\", \"end\": \"Dehua Restaurant (Jiqing Street Branch)\", \"mode\": \"walk\", \"start_time\": \"12:00\", \"end_time\": \"12:32\", \"price\": 0, \"cost\": 0.0, \"distance\": 2.726982622560085}]}, {\"type\": \"airplane\", \"start_time\": \"14:59\", \"end_time\": \"15:41\", \"cost\": 231.98, \"price\": 231.98, \"tickets\": 1, \"start\": \"Wuhan Tianhe International Airport\", \"end\": \"Hangzhou Xiaoshan International Airport\", \"FlightID\": \"FL625\", \"transports\": [{\"start\": \"Dehua Restaurant (Jiqing Street Branch)\", \"end\": \"Wuhan Tianhe International Airport\", \"mode\": \"taxi\", \"start_time\": \"13:30\", \"end_time\": \"14:02\", \"price\": 93.42, \"cost\": 93.42, \"distance\": 21.94, \"tickets\": 1, \"cars\": 1}]}]}]}",
+      "tool_calls": [],
+      "tool_results": [],
+      "latency_seconds": 12.927034207968973,
+      "finish_reason": "stop",
+      "request_id": "chatcmpl-f407c21b-c6a1-4cd1-9aa8-d8b382bac1cb",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 11771,
+      "completion_tokens": 867,
+      "reasoning_tokens": 210,
+      "attempts": 1,
+      "request_latencies": [
+        12.927034207968973
+      ],
+      "phase": "full_fallback"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 28085,
+    "completion_tokens": 1812,
+    "total_tokens": 29897
+  },
+  "checker": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours"
+    ]
+  },
+  "error": null,
+  "metadata": {
+    "policy": "patch",
+    "fallback": true,
+    "usage_complete": true,
+    "source_revision": "05a7ef152100036486785b0ceaa213e61e7d3d0bbd7d7fea791c225319c678c1",
+    "budget_steps": 16,
+    "budget_seconds": 240.0,
+    "tool_trace": [
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Wuhan",
+          "start": "Wuhan Tianhe International Airport",
+          "end": "Qingchuan Pavilion",
+          "start_time": "08:58",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Wuhan\", \"end\": \"Qingchuan Pavilion\", \"start\": \"Wuhan Tianhe International Airport\", \"start_time\": \"08:58\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Wuhan Tianhe International Airport', 'end': 'Qingchuan Pavilion', 'mode': 'walk', 'start_time': '08:58', 'end_time': '13:51', 'cost': 0.0, 'distance': 24.488053736451842}]",
+          "data": [
+            {
+              "start": "Wuhan Tianhe International Airport",
+              "end": "Qingchuan Pavilion",
+              "mode": "walk",
+              "start_time": "08:58",
+              "end_time": "13:51",
+              "cost": 0.0,
+              "distance": 24.488053736451842
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Wuhan",
+          "start": "Wuhan Sightseeing Cruise (Qingchuan Pier)",
+          "end": "Wuhan Tianhe International Airport",
+          "start_time": "14:30",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Wuhan\", \"end\": \"Wuhan Tianhe International Airport\", \"start\": \"Wuhan Sightseeing Cruise (Qingchuan Pier)\", \"start_time\": \"14:30\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Wuhan Sightseeing Cruise (Qingchuan Pier)', 'end': 'Wuhan Tianhe International Airport', 'mode': 'walk', 'start_time': '14:30', 'end_time': '19:24', 'cost': 0.0, 'distance': 24.549828958016025}]",
+          "data": [
+            {
+              "start": "Wuhan Sightseeing Cruise (Qingchuan Pier)",
+              "end": "Wuhan Tianhe International Airport",
+              "mode": "walk",
+              "start_time": "14:30",
+              "end_time": "19:24",
+              "cost": 0.0,
+              "distance": 24.549828958016025
+            }
+          ]
+        }
+      }
+    ],
+    "candidates": 0,
+    "rejected_proposals": [],
+    "fallback_metadata": {
+      "event_text": "The user lowered the total budget to 704. Reduce cost while keeping all hard conditions satisfied.",
+      "usage_complete": true,
+      "request_count": 3,
+      "retry_count": 0,
+      "request_latency_seconds": 26.225238457904197
+    },
+    "request_count": 3,
+    "retry_count": 0,
+    "request_latency_seconds": 26.225238457904197
+  },
+  "started_at": "2026-11-01T01:31:11.213031+00:00",
+  "finished_at": "2026-11-01T01:31:37.796848+00:00",
+  "duration_seconds": 26.583910625078715,
+  "wall_seconds": 26.584087333991192,
+  "resources": {
+    "limits": {
+      "feedback": 4,
+      "model_calls": 16,
+      "tokens": 500000,
+      "tools": 400,
+      "output_tokens_per_call": 10000
+    },
+    "model_calls": 3,
+    "returned_tokens": 29897,
+    "feedback_calls": 0,
+    "tool_calls": 14,
+    "exhausted": "",
+    "tool_receipts": [
+      {
+        "index": 1,
+        "name": "goto",
+        "arguments": {
+          "city": "Wuhan",
+          "start": "Wuhan Tianhe International Airport",
+          "end": "Qingchuan Pavilion",
+          "start_time": "08:58",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 2,
+        "name": "goto",
+        "arguments": {
+          "city": "Wuhan",
+          "start": "Wuhan Sightseeing Cruise (Qingchuan Pier)",
+          "end": "Wuhan Tianhe International Airport",
+          "start_time": "14:30",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 3,
+        "name": "intercity_transport_select",
+        "arguments": {
+          "start_city": "Hangzhou",
+          "end_city": "Wuhan",
+          "intercity_type": "airplane"
+        }
+      },
+      {
+        "index": 4,
+        "name": "intercity_transport_select",
+        "arguments": {
+          "start_city": "Wuhan",
+          "end_city": "Hangzhou",
+          "intercity_type": "airplane"
+        }
+      },
+      {
+        "index": 5,
+        "name": "intercity_transport_select",
+        "arguments": {
+          "start_city": "Hangzhou",
+          "end_city": "Wuhan",
+          "intercity_type": "train"
+        }
+      },
+      {
+        "index": 6,
+        "name": "intercity_transport_select",
+        "arguments": {
+          "start_city": "Wuhan",
+          "end_city": "Hangzhou",
+          "intercity_type": "train"
+        }
+      },
+      {
+        "index": 7,
+        "name": "goto",
+        "arguments": {
+          "city": "Wuhan",
+          "start": "Dehua Restaurant (Jiqing Street Branch)",
+          "end": "Wuhan Tianhe International Airport",
+          "start_time": "13:30",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 8,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Wuhan",
+          "key": "name",
+          "op": "eq",
+          "value": "Qingchuan Pavilion"
+        }
+      },
+      {
+        "index": 9,
+        "name": "restaurants_select",
+        "arguments": {
+          "city": "Wuhan",
+          "key": "name",
+          "op": "eq",
+          "value": "Dehua Restaurant (Jiqing Street Branch)"
+        }
+      },
+      {
+        "index": 10,
+        "name": "goto",
+        "arguments": {
+          "city": "Wuhan",
+          "start": "Wuhan Tianhe International Airport",
+          "end": "Qingchuan Pavilion",
+          "start_time": "08:58",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 11,
+        "name": "goto",
+        "arguments": {
+          "city": "Wuhan",
+          "start": "Qingchuan Pavilion",
+          "end": "Dehua Restaurant (Jiqing Street Branch)",
+          "start_time": "12:00",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 12,
+        "name": "goto",
+        "arguments": {
+          "city": "Wuhan",
+          "start": "Dehua Restaurant (Jiqing Street Branch)",
+          "end": "Wuhan Tianhe International Airport",
+          "start_time": "13:30",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 13,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Hangzhou",
+          "end_city": "Wuhan",
+          "type": "airplane"
+        }
+      },
+      {
+        "index": 14,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Wuhan",
+          "end_city": "Hangzhou",
+          "type": "airplane"
+        }
+      }
+    ],
+    "input_accounting": "conservative UTF-8 preflight; actual provider usage recorded; missing remote usage remains unknown"
+  },
+  "clarification": {
+    "status": "ready",
+    "base_revision": "05a7ef152100036486785b0ceaa213e61e7d3d0bbd7d7fea791c225319c678c1",
+    "task": {
+      "uid": "e20241028160409480928",
+      "tag": "easy",
+      "start_city": "杭州",
+      "target_city": "武汉",
+      "days": 1,
+      "people_number": 1,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置杭州。我一个人想去武汉玩一天，预算1300人民币，请给我一个旅行规划。",
+      "nature_language_en": "Current location: Hangzhou. I want to visit Wuhan for a day by myself with a budget of 1,300 RMB. Please provide me with a travel plan."
+    },
+    "seed_plan": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "people_number": 1,
+      "start_city": "杭州",
+      "target_city": "武汉",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "airplane",
+              "start_time": "08:16",
+              "end_time": "08:58",
+              "cost": 232.88,
+              "price": 232.88,
+              "tickets": 1,
+              "start": "Hangzhou Xiaoshan International Airport",
+              "end": "Wuhan Tianhe International Airport",
+              "FlightID": "FL544",
+              "transports": []
+            },
+            {
+              "type": "attraction",
+              "start_time": "09:34",
+              "end_time": "12:00",
+              "cost": 0.0,
+              "price": 0,
+              "tickets": 1,
+              "position": "Qingchuan Pavilion",
+              "transports": [
+                {
+                  "start": "Wuhan Tianhe International Airport",
+                  "end": "Qingchuan Pavilion",
+                  "mode": "taxi",
+                  "start_time": "08:58",
+                  "end_time": "09:34",
+                  "price": 104.9,
+                  "cost": 104.9,
+                  "distance": 24.49,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "start_time": "12:35",
+              "end_time": "13:30",
+              "cost": 23.0,
+              "price": 23,
+              "tickets": 1,
+              "position": "Dehua Restaurant (Jiqing Street Branch)",
+              "transports": [
+                {
+                  "start": "Qingchuan Pavilion",
+                  "end": "Dehua Restaurant (Jiqing Street Branch)",
+                  "mode": "walk",
+                  "start_time": "12:00",
+                  "end_time": "12:32",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 2.726982622560085
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "start_time": "14:05",
+              "end_time": "14:30",
+              "cost": 0.0,
+              "price": 0,
+              "tickets": 1,
+              "position": "Wuhan Sightseeing Cruise (Qingchuan Pier)",
+              "transports": [
+                {
+                  "start": "Dehua Restaurant (Jiqing Street Branch)",
+                  "end": "Wuhan Sightseeing Cruise (Qingchuan Pier)",
+                  "mode": "walk",
+                  "start_time": "13:30",
+                  "end_time": "14:03",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 2.7614774916330336
+                }
+              ]
+            },
+            {
+              "type": "airplane",
+              "start_time": "16:01",
+              "end_time": "16:43",
+              "cost": 275.81,
+              "price": 275.81,
+              "tickets": 1,
+              "start": "Wuhan Tianhe International Airport",
+              "end": "Hangzhou Xiaoshan International Airport",
+              "FlightID": "FL621",
+              "transports": [
+                {
+                  "start": "Wuhan Sightseeing Cruise (Qingchuan Pier)",
+                  "end": "Wuhan Tianhe International Airport",
+                  "mode": "taxi",
+                  "start_time": "14:30",
+                  "end_time": "15:06",
+                  "price": 105.17,
+                  "cost": 105.17,
+                  "distance": 24.55,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "kind": "budget_cut",
+      "day": null,
+      "new_days": null,
+      "new_budget": "704",
+      "target": null,
+      "description": ""
+    },
+    "state_revision": "9b08f13f9f965dd26cd8e74e4a2295b478c9a43c631216f636118e45de38d585"
+  },
+  "event": {
+    "kind": "budget_cut",
+    "new_budget": "704",
+    "description": ""
+  },
+  "event_check": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours"
+    ]
+  }
+}

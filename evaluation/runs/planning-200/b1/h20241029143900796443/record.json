@@ -1,0 +1,90 @@
+{
+  "job": {
+    "uid": "h20241029143900796443",
+    "split": "human",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "b1",
+    "kind": "static",
+    "task": {
+      "days": 4,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "[当前位置北京,目标位置苏州,旅行人数2,旅行天数4] 我想和女朋友在苏州玩四天，从北京过来，她往返都坐高铁。预算尽量低一些。请问我应当如何规划行程？",
+      "nature_language_en": "[Current location: Beijing, Destination: Suzhou, Number of travelers: 2, Number of travel days: 4] I want to spend four days in Suzhou with my girlfriend, traveling from Beijing. She will take the high-speed train for both trips. I would like to keep the budget as low as possible. How should I plan the itinerary?",
+      "people_number": 2,
+      "start_city": "北京",
+      "tag": "human",
+      "target_city": "苏州",
+      "uid": "h20241029143900796443"
+    }
+  },
+  "result": {
+    "task_uid": "h20241029143900796443",
+    "method": "b1",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.0328388749622
+  },
+  "ledger": {
+    "request_attempts": 2,
+    "completed_attempts": 1,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793470914.9493709,
+        "attempt_id": "f52e0ec9230c4200a57005efbf2c6bc6",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793471094.994284,
+        "attempt_id": "f52e0ec9230c4200a57005efbf2c6bc6",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 180.04423229093663,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793471096.997857,
+        "attempt_id": "31cabae5331d4eaf97c0392bc38da8e4",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 1,
+    "returned_tokens": 0,
+    "tool_calls": 188,
+    "exhausted": ""
+  }
+}

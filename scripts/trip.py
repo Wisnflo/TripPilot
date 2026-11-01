@@ -27,6 +27,7 @@ def worker(path):
     from trippilot.repair.negotiation import begin_revision,resolve_revision,state_event
     from trippilot.repair.agent import repair_incremental
     from trippilot.repair.transaction import revision
+    from trippilot.repair.events import apply_event_to_task
     from trippilot.tools.agent_tools import ToolBox
     job=json.loads(path.read_text());folder=path.parent;clock=time.monotonic();deadline=clock+job['seconds']
     budget=ResourceBudget(token_limit=job.get('tokens',500000),tool_limit=job.get('tool_limit',400));budget_token=activate(budget)
@@ -55,6 +56,8 @@ def worker(path):
                     trajectory=repair_incremental(task,state['seed_plan'],state_event(state),config,ToolBox(),
                         max_steps=16-len(state.get('intent_usage',{}).get('requests',[])),max_seconds=remaining)
                     result.update(status=trajectory.terminal_state,result=trajectory.as_dict(),plan=trajectory.plan)
+                    if trajectory.terminal_state=='checked_ok' and trajectory.plan is not None:
+                        result['task']=apply_event_to_task(task,state_event(state))
         result['worker_wall_seconds']=time.monotonic()-clock
     except BudgetExceeded:
         result={'status':'budget_exhausted','plan':None,'worker_wall_seconds':time.monotonic()-clock}
@@ -122,15 +125,23 @@ def main():
     os.environ['CHINATRAVEL_OPENAI_API_KEY']=config.api_key
     if config.base_url:os.environ['CHINATRAVEL_OPENAI_BASE_URL']=config.base_url
     reset_cancellation();outcomes=[];errors=[];clock=time.monotonic()
+    finished=threading.Event();cancel_requested=False
     def execute():
         try:outcomes.append(supervise([sys.executable,str(Path(__file__).resolve()),'--worker-job',str((folder/'job.json').resolve())],folder,a.seconds,cwd=ROOT,restricted=True))
         except Exception as exc:errors.append(type(exc).__name__)
-    thread=threading.Thread(target=execute);thread.start()
+        finally:finished.set()
+    thread=threading.Thread(target=execute)
     try:
-        while thread.is_alive():thread.join(timeout=0.2)
+        thread.start()
+        while not finished.wait(timeout=0.2):pass
     except KeyboardInterrupt:
-        terminate_all();thread.join()
-    supervision=outcomes[0] if outcomes else {'hard_timeout':False,'cancelled':False,'wall_seconds':time.monotonic()-clock,'errors':errors}
+        cancel_requested=True
+        terminate_all()
+        # Interrupted Thread.join can report a stopped thread before it has
+        # finished. Wait on the completion event before reading its journals.
+        if thread.ident is not None:finished.wait()
+    supervision=outcomes[0] if outcomes else {'hard_timeout':False,'cancelled':cancel_requested,'wall_seconds':time.monotonic()-clock,'errors':errors}
+    if cancel_requested:supervision['cancelled']=True
     if supervision.get('cancelled'):result={'status':'cancelled','plan':None}
     elif supervision['hard_timeout']:result={'status':'hard_timeout','plan':None}
     elif (folder/'worker-result.json').exists():result=json.loads((folder/'worker-result.json').read_text())

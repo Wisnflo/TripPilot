@@ -1,0 +1,98 @@
+{
+  "job": {
+    "uid": "h20241029143526214076",
+    "split": "human",
+    "model": "glm-5.3-flash",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "b2",
+    "kind": "static",
+    "task": {
+      "days": 3,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "[当前位置北京,目标位置苏州,旅行人数3,旅行天数3] 我和两个同学想从北京出发去苏州旅行，3天左右，想要多去一些当地著名的景点，并且品尝特色美食，不知道有哪些地方可以去",
+      "nature_language_en": "[Current location: Beijing, Destination: Suzhou, Number of travelers: 3, Duration of travel: 3 days] My two classmates and I want to travel from Beijing to Suzhou for about 3 days. We would like to visit many famous local attractions and taste the local specialties. We are not sure which places we should visit.",
+      "people_number": 3,
+      "start_city": "北京",
+      "tag": "human",
+      "target_city": "苏州",
+      "uid": "h20241029143526214076"
+    }
+  },
+  "result": {
+    "task_uid": "h20241029143526214076",
+    "method": "b2",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.0234500420047
+  },
+  "ledger": {
+    "request_attempts": 2,
+    "completed_attempts": 1,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793501666.686235,
+        "attempt_id": "f3aa8527cc134963bf9df768ace367b3",
+        "model": "glm-5.3-flash",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793501846.735459,
+        "attempt_id": "f3aa8527cc134963bf9df768ace367b3",
+        "model": "glm-5.3-flash",
+        "elapsed": 180.04919666599017,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "backoff",
+        "time": 1793501846.736831,
+        "attempt_id": "f3aa8527cc134963bf9df768ace367b3",
+        "model": "glm-5.3-flash",
+        "seconds": 2.0,
+        "reason": "transient"
+      },
+      {
+        "kind": "start",
+        "time": 1793501848.741909,
+        "attempt_id": "e2077b9d91384c5a99565dad08983d06",
+        "model": "glm-5.3-flash",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 1,
+    "returned_tokens": 0,
+    "tool_calls": 188,
+    "exhausted": ""
+  }
+}

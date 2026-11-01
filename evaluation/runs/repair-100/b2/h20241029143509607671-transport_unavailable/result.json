@@ -1,0 +1,721 @@
+{
+  "task_uid": "h20241029143509607671",
+  "method": "b2",
+  "model": "qwen3.8-reasoner",
+  "terminal_state": "checked_ok",
+  "plan": {
+    "people_number": 1,
+    "start_city": "Suzhou",
+    "target_city": "Shanghai",
+    "itinerary": [
+      {
+        "day": 1,
+        "activities": [
+          {
+            "type": "train",
+            "start": "Suzhou Station",
+            "end": "Shanghai South Railway Station",
+            "start_time": "04:00",
+            "end_time": "06:26",
+            "price": 33.99,
+            "cost": 33.99,
+            "tickets": 1,
+            "transports": [],
+            "TrainID": "K5837"
+          },
+          {
+            "type": "attraction",
+            "position": "Shanghai World Expo Exhibition and Convention Center",
+            "price": 0.0,
+            "cost": 0.0,
+            "tickets": 1,
+            "start_time": "09:00",
+            "end_time": "09:30",
+            "transports": [
+              {
+                "start": "Shanghai South Railway Station",
+                "end": "Shanghai World Expo Exhibition and Convention Center",
+                "mode": "taxi",
+                "start_time": "06:26",
+                "end_time": "06:37",
+                "cost": 31.01,
+                "distance": 7.52,
+                "price": 31.01,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Shanghai Museum of Contemporary Art",
+            "price": 0.0,
+            "cost": 0.0,
+            "tickets": 1,
+            "start_time": "11:00",
+            "end_time": "12:30",
+            "transports": [
+              {
+                "start": "Shanghai World Expo Exhibition and Convention Center",
+                "end": "Shanghai Museum of Contemporary Art",
+                "mode": "taxi",
+                "start_time": "09:30",
+                "end_time": "09:38",
+                "cost": 24.53,
+                "distance": 5.67,
+                "price": 24.53,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "position": "Huxi Old Alley Noodle House (Guangdong Road Branch)",
+            "price": 44.0,
+            "cost": 44.0,
+            "start_time": "12:30",
+            "end_time": "13:15",
+            "transports": [
+              {
+                "start": "Shanghai Museum of Contemporary Art",
+                "end": "Huxi Old Alley Noodle House (Guangdong Road Branch)",
+                "mode": "taxi",
+                "start_time": "12:30",
+                "end_time": "12:30",
+                "cost": 11.0,
+                "distance": 0.56,
+                "price": 11.0,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "accommodation",
+            "position": "Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )",
+            "price": 399.0,
+            "cost": 399.0,
+            "rooms": 1,
+            "room_type": 1,
+            "start_time": "18:00",
+            "end_time": "23:59",
+            "transports": [
+              {
+                "start": "Huxi Old Alley Noodle House (Guangdong Road Branch)",
+                "end": "Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )",
+                "mode": "taxi",
+                "start_time": "13:15",
+                "end_time": "13:22",
+                "cost": 21.89,
+                "distance": 4.91,
+                "price": 21.89,
+                "cars": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "activities": [
+          {
+            "type": "attraction",
+            "position": "263-meter Main Observation Deck",
+            "price": 0.0,
+            "cost": 0.0,
+            "tickets": 1,
+            "start_time": "09:00",
+            "end_time": "10:00",
+            "transports": [
+              {
+                "start": "Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )",
+                "end": "263-meter Main Observation Deck",
+                "mode": "taxi",
+                "start_time": "08:00",
+                "end_time": "08:05",
+                "cost": 18.28,
+                "distance": 3.88,
+                "price": 18.28,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "position": "Le Xin Dynasty (Shanghai Tower Branch)",
+            "price": 116.0,
+            "cost": 116.0,
+            "start_time": "11:00",
+            "end_time": "11:45",
+            "transports": [
+              {
+                "start": "263-meter Main Observation Deck",
+                "end": "Le Xin Dynasty (Shanghai Tower Branch)",
+                "mode": "taxi",
+                "start_time": "10:00",
+                "end_time": "10:01",
+                "cost": 11.0,
+                "distance": 1.24,
+                "price": 11.0,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "train",
+            "start": "Shanghai South Railway Station",
+            "end": "Suzhou Station",
+            "start_time": "16:29",
+            "end_time": "17:54",
+            "price": 33.99,
+            "cost": 33.99,
+            "tickets": 1,
+            "transports": [
+              {
+                "start": "Le Xin Dynasty (Shanghai Tower Branch)",
+                "end": "Shanghai South Railway Station",
+                "mode": "taxi",
+                "start_time": "11:45",
+                "end_time": "12:02",
+                "cost": 46.65,
+                "distance": 11.54,
+                "price": 46.65,
+                "cars": 1
+              }
+            ],
+            "TrainID": "K48"
+          }
+        ]
+      }
+    ]
+  },
+  "steps": [
+    {
+      "step": 1,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Suzhou",
+            "end_city": "Shanghai",
+            "intercity_type": "train",
+            "earliest_leave_time": "00:00"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "intercity_transport_select",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"earliest_leave_time\\\": \\\"00:00\\\", \\\"end_city\\\": \\\"Shanghai\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Suzhou\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['K1808' 'Express' 'Suzhou Station' 'Shanghai South Railway Station'\\n '02:29' '04:00' 1.57 33.99]\\n['K1805' 'Express' 'Suzhou Station' 'Shanghai South Railway Station'\\n '02:29' '04:00' 1.57 33.99]\\n['T135' 'Express' 'Suzhou Stat"
+        }
+      ],
+      "latency_seconds": 2.268972791964188,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-6526ac7d-d6d2-4ede-8f5f-2fedc0b7e507",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 5394,
+      "completion_tokens": 119,
+      "reasoning_tokens": 40,
+      "attempts": 1,
+      "request_latencies": [
+        2.268972791964188
+      ]
+    },
+    {
+      "step": 2,
+      "content": "\n\n{\"people_number\": 1, \"start_city\": \"Suzhou\", \"target_city\": \"Shanghai\", \"itinerary\": [{\"day\": 1, \"activities\": [{\"type\": \"train\", \"start\": \"Suzhou Station\", \"end\": \"Shanghai South Railway Station\", \"start_time\": \"04:00\", \"end_time\": \"06:26\", \"price\": 33.99, \"cost\": 33.99, \"tickets\": 1, \"transports\": [], \"TrainID\": \"K5837\"}, {\"type\": \"attraction\", \"position\": \"Shanghai World Expo Exhibition and Convention Center\", \"price\": 0.0, \"cost\": 0.0, \"tickets\": 1, \"start_time\": \"09:00\", \"end_time\": \"09:30\", \"transports\": [{\"start\": \"Shanghai South Railway Station\", \"end\": \"Shanghai World Expo Exhibition and Convention Center\", \"mode\": \"taxi\", \"start_time\": \"06:26\", \"end_time\": \"06:37\", \"cost\": 31.01, \"distance\": 7.52, \"price\": 31.01, \"cars\": 1}]}, {\"type\": \"attraction\", \"position\": \"Shanghai Museum of Contemporary Art\", \"price\": 0.0, \"cost\": 0.0, \"tickets\": 1, \"start_time\": \"11:00\", \"end_time\": \"12:30\", \"transports\": [{\"start\": \"Shanghai World Expo Exhibition and Convention Center\", \"end\": \"Shanghai Museum of Contemporary Art\", \"mode\": \"taxi\", \"start_time\": \"09:30\", \"end_time\": \"09:38\", \"cost\": 24.53, \"distance\": 5.67, \"price\": 24.53, \"cars\": 1}]}, {\"type\": \"lunch\", \"position\": \"Huxi Old Alley Noodle House (Guangdong Road Branch)\", \"price\": 44.0, \"cost\": 44.0, \"start_time\": \"12:30\", \"end_time\": \"13:15\", \"transports\": [{\"start\": \"Shanghai Museum of Contemporary Art\", \"end\": \"Huxi Old Alley Noodle House (Guangdong Road Branch)\", \"mode\": \"taxi\", \"start_time\": \"12:30\", \"end_time\": \"12:30\", \"cost\": 11.0, \"distance\": 0.56, \"price\": 11.0, \"cars\": 1}]}, {\"type\": \"accommodation\", \"position\": \"Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )\", \"price\": 399.0, \"cost\": 399.0, \"rooms\": 1, \"room_type\": 1, \"start_time\": \"18:00\", \"end_time\": \"23:59\", \"transports\": [{\"start\": \"Huxi Old Alley Noodle House (Guangdong Road Branch)\", \"end\": \"Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )\", \"mode\": \"taxi\", \"start_time\": \"13:15\", \"end_time\": \"13:22\", \"cost\": 21.89, \"distance\": 4.91, \"price\": 21.89, \"cars\": 1}]}]}, {\"day\": 2, \"activities\": [{\"type\": \"attraction\", \"position\": \"263-meter Main Observation Deck\", \"price\": 0.0, \"cost\": 0.0, \"tickets\": 1, \"start_time\": \"09:00\", \"end_time\": \"10:00\", \"transports\": [{\"start\": \"Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )\", \"end\": \"263-meter Main Observation Deck\", \"mode\": \"taxi\", \"start_time\": \"08:00\", \"end_time\": \"08:05\", \"cost\": 18.28, \"distance\": 3.88, \"price\": 18.28, \"cars\": 1}]}, {\"type\": \"lunch\", \"position\": \"Le Xin Dynasty (Shanghai Tower Branch)\", \"price\": 116.0, \"cost\": 116.0, \"start_time\": \"11:00\", \"end_time\": \"11:45\", \"transports\": [{\"start\": \"263-meter Main Observation Deck\", \"end\": \"Le Xin Dynasty (Shanghai Tower Branch)\", \"mode\": \"taxi\", \"start_time\": \"10:00\", \"end_time\": \"10:01\", \"cost\": 11.0, \"distance\": 1.24, \"price\": 11.0, \"cars\": 1}]}, {\"type\": \"train\", \"start\": \"Shanghai South Railway Station\", \"end\": \"Suzhou Station\", \"start_time\": \"16:29\", \"end_time\": \"17:54\", \"price\": 33.99, \"cost\": 33.99, \"tickets\": 1, \"transports\": [{\"start\": \"Le Xin Dynasty (Shanghai Tower Branch)\", \"end\": \"Shanghai South Railway Station\", \"mode\": \"taxi\", \"start_time\": \"11:45\", \"end_time\": \"12:02\", \"cost\": 46.65, \"distance\": 11.54, \"price\": 46.65, \"cars\": 1}], \"TrainID\": \"K48\"}]}]}",
+      "tool_calls": [],
+      "tool_results": [],
+      "latency_seconds": 13.616038416977972,
+      "finish_reason": "stop",
+      "request_id": "chatcmpl-659670c4-c420-482b-9534-7e78c2fc4350",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 6943,
+      "completion_tokens": 1361,
+      "reasoning_tokens": 58,
+      "attempts": 1,
+      "request_latencies": [
+        13.616038416977972
+      ]
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 12337,
+    "completion_tokens": 1480,
+    "total_tokens": 13817,
+    "reasoning_tokens": 98
+  },
+  "checker": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours",
+      "budget_not_found_in_text"
+    ]
+  },
+  "error": null,
+  "metadata": {
+    "event_text": "This transport is no longer available: K1091. Replace it and keep the rest feasible.",
+    "usage_complete": true,
+    "request_count": 2,
+    "retry_count": 0,
+    "request_latency_seconds": 15.88501120894216
+  },
+  "started_at": "2026-11-01T01:20:22.490913+00:00",
+  "finished_at": "2026-11-01T01:20:38.767072+00:00",
+  "duration_seconds": 16.27621799998451,
+  "wall_seconds": 16.27657233295031,
+  "resources": {
+    "limits": {
+      "feedback": 4,
+      "model_calls": 16,
+      "tokens": 500000,
+      "tools": 400,
+      "output_tokens_per_call": 10000
+    },
+    "model_calls": 2,
+    "returned_tokens": 13817,
+    "feedback_calls": 0,
+    "tool_calls": 16,
+    "exhausted": "",
+    "tool_receipts": [
+      {
+        "index": 1,
+        "name": "intercity_transport_select",
+        "arguments": {
+          "start_city": "Suzhou",
+          "end_city": "Shanghai",
+          "intercity_type": "train",
+          "earliest_leave_time": "00:00"
+        }
+      },
+      {
+        "index": 2,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Shanghai",
+          "key": "name",
+          "op": "eq",
+          "value": "Shanghai World Expo Exhibition and Convention Center"
+        }
+      },
+      {
+        "index": 3,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Shanghai",
+          "key": "name",
+          "op": "eq",
+          "value": "Shanghai Museum of Contemporary Art"
+        }
+      },
+      {
+        "index": 4,
+        "name": "restaurants_select",
+        "arguments": {
+          "city": "Shanghai",
+          "key": "name",
+          "op": "eq",
+          "value": "Huxi Old Alley Noodle House (Guangdong Road Branch)"
+        }
+      },
+      {
+        "index": 5,
+        "name": "accommodations_select",
+        "arguments": {
+          "city": "Shanghai",
+          "key": "name",
+          "op": "eq",
+          "value": "Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )"
+        }
+      },
+      {
+        "index": 6,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Shanghai",
+          "key": "name",
+          "op": "eq",
+          "value": "263-meter Main Observation Deck"
+        }
+      },
+      {
+        "index": 7,
+        "name": "restaurants_select",
+        "arguments": {
+          "city": "Shanghai",
+          "key": "name",
+          "op": "eq",
+          "value": "Le Xin Dynasty (Shanghai Tower Branch)"
+        }
+      },
+      {
+        "index": 8,
+        "name": "goto",
+        "arguments": {
+          "city": "Shanghai",
+          "start": "Shanghai South Railway Station",
+          "end": "Shanghai World Expo Exhibition and Convention Center",
+          "start_time": "06:26",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 9,
+        "name": "goto",
+        "arguments": {
+          "city": "Shanghai",
+          "start": "Shanghai World Expo Exhibition and Convention Center",
+          "end": "Shanghai Museum of Contemporary Art",
+          "start_time": "09:30",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 10,
+        "name": "goto",
+        "arguments": {
+          "city": "Shanghai",
+          "start": "Shanghai Museum of Contemporary Art",
+          "end": "Huxi Old Alley Noodle House (Guangdong Road Branch)",
+          "start_time": "12:30",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 11,
+        "name": "goto",
+        "arguments": {
+          "city": "Shanghai",
+          "start": "Huxi Old Alley Noodle House (Guangdong Road Branch)",
+          "end": "Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )",
+          "start_time": "13:15",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 12,
+        "name": "goto",
+        "arguments": {
+          "city": "Shanghai",
+          "start": "Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )",
+          "end": "263-meter Main Observation Deck",
+          "start_time": "08:00",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 13,
+        "name": "goto",
+        "arguments": {
+          "city": "Shanghai",
+          "start": "263-meter Main Observation Deck",
+          "end": "Le Xin Dynasty (Shanghai Tower Branch)",
+          "start_time": "10:00",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 14,
+        "name": "goto",
+        "arguments": {
+          "city": "Shanghai",
+          "start": "Le Xin Dynasty (Shanghai Tower Branch)",
+          "end": "Shanghai South Railway Station",
+          "start_time": "11:45",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 15,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Suzhou",
+          "end_city": "Shanghai",
+          "type": "train"
+        }
+      },
+      {
+        "index": 16,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Shanghai",
+          "end_city": "Suzhou",
+          "type": "train"
+        }
+      }
+    ],
+    "input_accounting": "conservative UTF-8 preflight; actual provider usage recorded; missing remote usage remains unknown"
+  },
+  "clarification": {
+    "status": "ready",
+    "base_revision": "ac1b026edcbdebcfd5b4edd51e528804f1929854395bb30807131ec6cc02648c",
+    "task": {
+      "uid": "h20241029143509607671",
+      "tag": "human",
+      "start_city": "苏州",
+      "target_city": "上海",
+      "days": 2,
+      "people_number": 1,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "[当前位置苏州,目标位置上海,旅行人数1,旅行天数2] 我想1个人去上海参加漫展在上海世博展览馆，住附近，2天左右，怎么规划行程",
+      "nature_language_en": "[Current location: Suzhou, Destination: Shanghai, Number of travelers: 1, Number of travel days: 2] I want to go to Shanghai alone to attend a comic convention at the Shanghai World Expo Exhibition & Convention Center, stay nearby for about 2 days. How should I plan the itinerary?"
+    },
+    "seed_plan": {
+      "people_number": 1,
+      "start_city": "Suzhou",
+      "target_city": "Shanghai",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "train",
+              "start": "Suzhou Station",
+              "end": "Shanghai South Railway Station",
+              "start_time": "04:00",
+              "end_time": "06:26",
+              "price": 33.99,
+              "cost": 33.99,
+              "tickets": 1,
+              "transports": [],
+              "TrainID": "K1091"
+            },
+            {
+              "type": "attraction",
+              "position": "Shanghai World Expo Exhibition and Convention Center",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 1,
+              "start_time": "09:00",
+              "end_time": "09:30",
+              "transports": [
+                {
+                  "start": "Shanghai South Railway Station",
+                  "end": "Shanghai World Expo Exhibition and Convention Center",
+                  "mode": "taxi",
+                  "start_time": "06:26",
+                  "end_time": "06:37",
+                  "cost": 31.01,
+                  "distance": 7.52,
+                  "price": 31.01,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Shanghai Museum of Contemporary Art",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 1,
+              "start_time": "11:00",
+              "end_time": "12:30",
+              "transports": [
+                {
+                  "start": "Shanghai World Expo Exhibition and Convention Center",
+                  "end": "Shanghai Museum of Contemporary Art",
+                  "mode": "taxi",
+                  "start_time": "09:30",
+                  "end_time": "09:38",
+                  "cost": 24.53,
+                  "distance": 5.67,
+                  "price": 24.53,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Huxi Old Alley Noodle House (Guangdong Road Branch)",
+              "price": 44.0,
+              "cost": 44.0,
+              "start_time": "12:30",
+              "end_time": "13:15",
+              "transports": [
+                {
+                  "start": "Shanghai Museum of Contemporary Art",
+                  "end": "Huxi Old Alley Noodle House (Guangdong Road Branch)",
+                  "mode": "taxi",
+                  "start_time": "12:30",
+                  "end_time": "12:30",
+                  "cost": 11.0,
+                  "distance": 0.56,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )",
+              "price": 399.0,
+              "cost": 399.0,
+              "rooms": 1,
+              "room_type": 1,
+              "start_time": "18:00",
+              "end_time": "23:59",
+              "transports": [
+                {
+                  "start": "Huxi Old Alley Noodle House (Guangdong Road Branch)",
+                  "end": "Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )",
+                  "mode": "taxi",
+                  "start_time": "13:15",
+                  "end_time": "13:22",
+                  "cost": 21.89,
+                  "distance": 4.91,
+                  "price": 21.89,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "attraction",
+              "position": "263-meter Main Observation Deck",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 1,
+              "start_time": "09:00",
+              "end_time": "10:00",
+              "transports": [
+                {
+                  "start": "Yitel Hotel (Pudian Road Subway Station, Lujiazui, Shanghai )",
+                  "end": "263-meter Main Observation Deck",
+                  "mode": "taxi",
+                  "start_time": "08:00",
+                  "end_time": "08:05",
+                  "cost": 18.28,
+                  "distance": 3.88,
+                  "price": 18.28,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Le Xin Dynasty (Shanghai Tower Branch)",
+              "price": 116.0,
+              "cost": 116.0,
+              "start_time": "11:00",
+              "end_time": "11:45",
+              "transports": [
+                {
+                  "start": "263-meter Main Observation Deck",
+                  "end": "Le Xin Dynasty (Shanghai Tower Branch)",
+                  "mode": "taxi",
+                  "start_time": "10:00",
+                  "end_time": "10:01",
+                  "cost": 11.0,
+                  "distance": 1.24,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "train",
+              "start": "Shanghai South Railway Station",
+              "end": "Suzhou Station",
+              "start_time": "16:29",
+              "end_time": "17:54",
+              "price": 33.99,
+              "cost": 33.99,
+              "tickets": 1,
+              "transports": [
+                {
+                  "start": "Le Xin Dynasty (Shanghai Tower Branch)",
+                  "end": "Shanghai South Railway Station",
+                  "mode": "taxi",
+                  "start_time": "11:45",
+                  "end_time": "12:02",
+                  "cost": 46.65,
+                  "distance": 11.54,
+                  "price": 46.65,
+                  "cars": 1
+                }
+              ],
+              "TrainID": "K48"
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "kind": "transport_unavailable",
+      "day": null,
+      "new_days": null,
+      "new_budget": null,
+      "target": "K1091",
+      "description": ""
+    },
+    "state_revision": "80745771523a005741213910aac6dacd287652450934946e4a53c2115ef35036"
+  },
+  "event": {
+    "kind": "transport_unavailable",
+    "target": "K1091",
+    "description": ""
+  },
+  "event_check": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours",
+      "budget_not_found_in_text"
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "job": {
+    "uid": "m20241028164724408368",
+    "split": "easy",
+    "model": "glm-5.3-flash",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "b2",
+    "kind": "static",
+    "task": {
+      "days": 2,
+      "limit_rooms": true,
+      "limits_room_type": true,
+      "nature_language": "当前位置南京。我一个人想去重庆玩2天，住一间大床房，酒店要可以打牌，请给我一个旅行规划。",
+      "nature_language_en": "Current location: Nanjing. I want to travel to Chongqing alone for 2 days and stay in a hotel with a king-size bed. The hotel should have facilities for playing cards. Please provide me with a travel plan.",
+      "people_number": 1,
+      "start_city": "南京",
+      "tag": "easy",
+      "target_city": "重庆",
+      "uid": "m20241028164724408368"
+    }
+  },
+  "result": {
+    "task_uid": "m20241028164724408368",
+    "method": "b2",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.04481099999975
+  },
+  "ledger": {
+    "request_attempts": 2,
+    "completed_attempts": 1,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793496866.514664,
+        "attempt_id": "beb2b5a7e4584414bfe62cbf4dbfe225",
+        "model": "glm-5.3-flash",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793497046.570034,
+        "attempt_id": "beb2b5a7e4584414bfe62cbf4dbfe225",
+        "model": "glm-5.3-flash",
+        "elapsed": 180.05541720800102,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "backoff",
+        "time": 1793497046.572682,
+        "attempt_id": "beb2b5a7e4584414bfe62cbf4dbfe225",
+        "model": "glm-5.3-flash",
+        "seconds": 2.0,
+        "reason": "transient"
+      },
+      {
+        "kind": "start",
+        "time": 1793497048.5762181,
+        "attempt_id": "53717d012afd49a08b7c5c6b1240a563",
+        "model": "glm-5.3-flash",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 1,
+    "returned_tokens": 0,
+    "tool_calls": 189,
+    "exhausted": ""
+  }
+}

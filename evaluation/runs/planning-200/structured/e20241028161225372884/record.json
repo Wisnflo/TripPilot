@@ -1,0 +1,3826 @@
+{
+  "job": {
+    "uid": "e20241028161225372884",
+    "split": "medium",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "structured",
+    "kind": "static",
+    "task": {
+      "days": 2,
+      "limit_rooms": true,
+      "limits_room_type": false,
+      "nature_language": "当前位置广州。我三个人想去深圳玩2天，预算2000人民币，住两间房，期间坐地铁，想去深圳市儿童乐园，请给我一个旅行规划。",
+      "nature_language_en": "Current location: Guangzhou. Three of us want to visit Shenzhen for 2 days with a budget of 2000 RMB. We need two rooms for accommodation, plan to use the metro for transportation, and would like to visit Shenzhen Children's Park. Please provide a travel plan.",
+      "people_number": 3,
+      "start_city": "广州",
+      "tag": "medium",
+      "target_city": "深圳",
+      "uid": "e20241028161225372884"
+    }
+  },
+  "result": {
+    "task_uid": "e20241028161225372884",
+    "method": "structured",
+    "model": "qwen3.8-reasoner",
+    "terminal_state": "checked_ok",
+    "plan": {
+      "people_number": 3,
+      "start_city": "Guangzhou",
+      "target_city": "Shenzhen",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "train",
+              "start": "Guangzhou North Railway Station",
+              "end": "Shenzhen East Station",
+              "start_time": "05:03",
+              "end_time": "06:55",
+              "price": 41.68,
+              "cost": 125.04,
+              "tickets": 3,
+              "transports": [],
+              "TrainID": "K9259"
+            },
+            {
+              "type": "attraction",
+              "position": "Shenzhen Children's Park",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "10:00",
+              "end_time": "12:00",
+              "transports": [
+                {
+                  "start": "Shenzhen East Station",
+                  "end": "Buji-Metro Station",
+                  "mode": "walk",
+                  "start_time": "06:55",
+                  "end_time": "06:58",
+                  "cost": 0,
+                  "distance": 0.28,
+                  "price": 0
+                },
+                {
+                  "start": "Buji-Metro Station",
+                  "end": "Qiaoxiang-Metro Station",
+                  "mode": "metro",
+                  "start_time": "06:58",
+                  "end_time": "07:22",
+                  "cost": 12.0,
+                  "distance": 12.43,
+                  "price": 4,
+                  "tickets": 3
+                },
+                {
+                  "start": "Qiaoxiang-Metro Station",
+                  "end": "Shenzhen Children's Park",
+                  "mode": "walk",
+                  "start_time": "07:22",
+                  "end_time": "07:25",
+                  "cost": 0,
+                  "distance": 0.27,
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Huang's Wellness Dessert Experts (Meilin Joy Park Branch)",
+              "price": 22.0,
+              "cost": 66.0,
+              "start_time": "12:16",
+              "end_time": "13:01",
+              "transports": [
+                {
+                  "start": "Shenzhen Children's Park",
+                  "end": "Qiaoxiang-Metro Station",
+                  "mode": "walk",
+                  "start_time": "12:00",
+                  "end_time": "12:03",
+                  "cost": 0,
+                  "distance": 0.27,
+                  "price": 0
+                },
+                {
+                  "start": "Qiaoxiang-Metro Station",
+                  "end": "Shangmeilin-Metro Station",
+                  "mode": "metro",
+                  "start_time": "12:03",
+                  "end_time": "12:13",
+                  "cost": 9.0,
+                  "distance": 5.17,
+                  "price": 3,
+                  "tickets": 3
+                },
+                {
+                  "start": "Shangmeilin-Metro Station",
+                  "end": "Huang's Wellness Dessert Experts (Meilin Joy Park Branch)",
+                  "mode": "walk",
+                  "start_time": "12:13",
+                  "end_time": "12:16",
+                  "cost": 0,
+                  "distance": 0.27,
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "East Gate Old Street",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "13:18",
+              "end_time": "15:18",
+              "transports": [
+                {
+                  "start": "Huang's Wellness Dessert Experts (Meilin Joy Park Branch)",
+                  "end": "Shangmeilin-Metro Station",
+                  "mode": "walk",
+                  "start_time": "13:01",
+                  "end_time": "13:04",
+                  "cost": 0,
+                  "distance": 0.27,
+                  "price": 0
+                },
+                {
+                  "start": "Shangmeilin-Metro Station",
+                  "end": "Shaibu-Metro Station",
+                  "mode": "metro",
+                  "start_time": "13:04",
+                  "end_time": "13:17",
+                  "cost": 9.0,
+                  "distance": 6.91,
+                  "price": 3,
+                  "tickets": 3
+                },
+                {
+                  "start": "Shaibu-Metro Station",
+                  "end": "East Gate Old Street",
+                  "mode": "walk",
+                  "start_time": "13:17",
+                  "end_time": "13:18",
+                  "cost": 0,
+                  "distance": 0.14,
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "type": "dinner",
+              "position": "Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)",
+              "price": 16.0,
+              "cost": 48.0,
+              "start_time": "17:00",
+              "end_time": "17:45",
+              "transports": [
+                {
+                  "start": "East Gate Old Street",
+                  "end": "Shaibu-Metro Station",
+                  "mode": "walk",
+                  "start_time": "15:18",
+                  "end_time": "15:19",
+                  "cost": 0,
+                  "distance": 0.14,
+                  "price": 0
+                },
+                {
+                  "start": "Shaibu-Metro Station",
+                  "end": "Huangbeiling-Metro Station",
+                  "mode": "metro",
+                  "start_time": "15:19",
+                  "end_time": "15:21",
+                  "cost": 6.0,
+                  "distance": 1.45,
+                  "price": 2,
+                  "tickets": 3
+                },
+                {
+                  "start": "Huangbeiling-Metro Station",
+                  "end": "Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)",
+                  "mode": "walk",
+                  "start_time": "15:21",
+                  "end_time": "15:23",
+                  "cost": 0,
+                  "distance": 0.2,
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "Fei Hotel",
+              "price": 279.0,
+              "cost": 558.0,
+              "rooms": 2,
+              "room_type": 1,
+              "start_time": "18:32",
+              "end_time": "23:59",
+              "transports": [
+                {
+                  "start": "Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)",
+                  "end": "Huangbeiling-Metro Station",
+                  "mode": "walk",
+                  "start_time": "17:45",
+                  "end_time": "17:47",
+                  "cost": 0,
+                  "distance": 0.2,
+                  "price": 0
+                },
+                {
+                  "start": "Huangbeiling-Metro Station",
+                  "end": "Shangfen-Metro Station",
+                  "mode": "metro",
+                  "start_time": "17:47",
+                  "end_time": "18:19",
+                  "cost": 15.0,
+                  "distance": 16.14,
+                  "price": 5,
+                  "tickets": 3
+                },
+                {
+                  "start": "Shangfen-Metro Station",
+                  "end": "Fei Hotel",
+                  "mode": "walk",
+                  "start_time": "18:19",
+                  "end_time": "18:32",
+                  "cost": 0,
+                  "distance": 1.08,
+                  "price": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "attraction",
+              "position": "East River Guerrilla Force Command Post Memorial Hall",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "09:30",
+              "end_time": "10:30",
+              "transports": [
+                {
+                  "start": "Fei Hotel",
+                  "end": "Shangfen-Metro Station",
+                  "mode": "walk",
+                  "start_time": "08:00",
+                  "end_time": "08:13",
+                  "cost": 0,
+                  "distance": 1.08,
+                  "price": 0
+                },
+                {
+                  "start": "Shangfen-Metro Station",
+                  "end": "Shaibu-Metro Station",
+                  "mode": "metro",
+                  "start_time": "08:13",
+                  "end_time": "08:42",
+                  "cost": 15.0,
+                  "distance": 14.86,
+                  "price": 5,
+                  "tickets": 3
+                },
+                {
+                  "start": "Shaibu-Metro Station",
+                  "end": "East River Guerrilla Force Command Post Memorial Hall",
+                  "mode": "walk",
+                  "start_time": "08:42",
+                  "end_time": "08:44",
+                  "cost": 0,
+                  "distance": 0.24,
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)",
+              "price": 24.0,
+              "cost": 72.0,
+              "start_time": "11:00",
+              "end_time": "11:45",
+              "transports": [
+                {
+                  "start": "East River Guerrilla Force Command Post Memorial Hall",
+                  "end": "Shaibu-Metro Station",
+                  "mode": "walk",
+                  "start_time": "10:30",
+                  "end_time": "10:32",
+                  "cost": 0,
+                  "distance": 0.24,
+                  "price": 0
+                },
+                {
+                  "start": "Shaibu-Metro Station",
+                  "end": "Meicun-Metro Station",
+                  "mode": "metro",
+                  "start_time": "10:32",
+                  "end_time": "10:47",
+                  "cost": 9.0,
+                  "distance": 7.53,
+                  "price": 3,
+                  "tickets": 3
+                },
+                {
+                  "start": "Meicun-Metro Station",
+                  "end": "Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)",
+                  "mode": "walk",
+                  "start_time": "10:47",
+                  "end_time": "10:53",
+                  "cost": 0,
+                  "distance": 0.53,
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Huaqiangbei Museum",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "12:03",
+              "end_time": "14:03",
+              "transports": [
+                {
+                  "start": "Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)",
+                  "end": "Meicun-Metro Station",
+                  "mode": "walk",
+                  "start_time": "11:45",
+                  "end_time": "11:51",
+                  "cost": 0,
+                  "distance": 0.53,
+                  "price": 0
+                },
+                {
+                  "start": "Meicun-Metro Station",
+                  "end": "Tongxinling-Metro Station",
+                  "mode": "metro",
+                  "start_time": "11:51",
+                  "end_time": "12:00",
+                  "cost": 9.0,
+                  "distance": 4.99,
+                  "price": 3,
+                  "tickets": 3
+                },
+                {
+                  "start": "Tongxinling-Metro Station",
+                  "end": "Huaqiangbei Museum",
+                  "mode": "walk",
+                  "start_time": "12:00",
+                  "end_time": "12:03",
+                  "cost": 0,
+                  "distance": 0.29,
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "type": "train",
+              "start": "Shenzhen Station",
+              "end": "Guangzhou East Station",
+              "start_time": "17:03",
+              "end_time": "18:30",
+              "price": 46.89,
+              "cost": 140.67,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Huaqiangbei Museum",
+                  "end": "Tongxinling-Metro Station",
+                  "mode": "walk",
+                  "start_time": "14:03",
+                  "end_time": "14:06",
+                  "cost": 0,
+                  "distance": 0.29,
+                  "price": 0
+                },
+                {
+                  "start": "Tongxinling-Metro Station",
+                  "end": "Luohu-Metro Station",
+                  "mode": "metro",
+                  "start_time": "14:06",
+                  "end_time": "14:11",
+                  "cost": 6.0,
+                  "distance": 2.98,
+                  "price": 2,
+                  "tickets": 3
+                },
+                {
+                  "start": "Luohu-Metro Station",
+                  "end": "Shenzhen Station",
+                  "mode": "walk",
+                  "start_time": "14:11",
+                  "end_time": "14:13",
+                  "cost": 0,
+                  "distance": 0.17,
+                  "price": 0
+                }
+              ],
+              "TrainID": "C7086"
+            }
+          ]
+        }
+      ]
+    },
+    "steps": [
+      {
+        "phase": "extract_requirements",
+        "content": "\n\n{\n  \"attraction_names\": [\"深圳市儿童乐园\"],\n  \"local_modes\": [\"metro\"],\n  \"rooms\": 2,\n  \"budget\": 2000,\n  \"evidence\": {\n    \"attraction_names\": \"深圳市儿童乐园\",\n    \"local_modes\": \"坐地铁\",\n    \"rooms\": \"住两间房\",\n    \"budget\": \"预算2000人民币\"\n  }\n}",
+        "attempts": 1,
+        "request_latencies": [
+          13.215115833969321
+        ],
+        "request_id": "chatcmpl-483cf9b3-ab93-44cf-a0a7-0d6a602a835a",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 480,
+        "completion_tokens": 802
+      },
+      {
+        "phase": "select_sketch",
+        "content": "\n\n{\"outbound\":\"K9259\",\"inbound\":\"C7086\",\"hotel\":\"h240\",\"days\":[[{\"kind\":\"attraction\",\"id\":\"a133\"},{\"kind\":\"lunch\",\"id\":\"r175\"},{\"kind\":\"attraction\",\"id\":\"a17\"},{\"kind\":\"dinner\",\"id\":\"r270\"}],[{\"kind\":\"attraction\",\"id\":\"a287\"},{\"kind\":\"lunch\",\"id\":\"r105\"},{\"kind\":\"attraction\",\"id\":\"a116\"}]]}",
+        "attempts": 1,
+        "request_latencies": [
+          112.87415883300127
+        ],
+        "request_id": "chatcmpl-bc03859f-31ab-4bf4-94f7-d5e3c3f4a064",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 11058,
+        "completion_tokens": 8898
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 11538,
+      "completion_tokens": 9700,
+      "total_tokens": 21238,
+      "reasoning_tokens": 9478
+    },
+    "checker": {
+      "ok": true,
+      "violations": [],
+      "supported": [
+        "schema",
+        "day_count",
+        "people_number",
+        "start_target_city",
+        "activity_time_order",
+        "transport_time_order",
+        "transport_structure",
+        "activity_cost_rules",
+        "meal_time_windows",
+        "space_chain",
+        "accommodation_nights",
+        "intercity_transport_presence",
+        "ticket_fields",
+        "budget_if_in_text",
+        "entity_grounding",
+        "opening_hours",
+        "duplicate_activities",
+        "meal_type_once",
+        "transport_matches_goto",
+        "intercity_transport_values"
+      ],
+      "unsupported": [
+        "room_rules",
+        "overnight_hours"
+      ]
+    },
+    "error": null,
+    "metadata": {
+      "usage_complete": true,
+      "fallback": false,
+      "predicted_requirements": {
+        "attraction_names": [
+          "深圳市儿童乐园"
+        ],
+        "local_modes": [
+          "metro"
+        ],
+        "rooms": 2,
+        "budget": 2000.0,
+        "literal_corrections": [],
+        "evidence": {
+          "attraction_names": "深圳市儿童乐园",
+          "local_modes": "坐地铁",
+          "rooms": "住两间房",
+          "budget": "预算2000人民币"
+        },
+        "unsupported": [],
+        "rejected_fields": [],
+        "entity_aliases": {
+          "深圳市儿童乐园": [
+            "Shenzhen Children's Park"
+          ]
+        }
+      },
+      "fact_catalog": {
+        "attraction": {
+          "a133": {
+            "id": 133,
+            "name": "Shenzhen Children's Park",
+            "type": "park",
+            "lat": 22.559966,
+            "lon": 114.130772,
+            "opentime": "10:00",
+            "endtime": "18:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a139": {
+            "id": 139,
+            "name": "Shenzhen Children's Park",
+            "type": "Amusement Park/Sports Entertainment",
+            "lat": 22.549651,
+            "lon": 114.017029,
+            "opentime": "06:00",
+            "endtime": "23:00",
+            "price": 0.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 1.5
+          },
+          "a218": {
+            "id": 218,
+            "name": "Baguang Beach",
+            "type": "natural scenery",
+            "lat": 22.650494,
+            "lon": 114.507872,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a182": {
+            "id": 182,
+            "name": "Baishilong Music Theme Park",
+            "type": "park",
+            "lat": 22.602637,
+            "lon": 114.044815,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 2.5
+          },
+          "a134": {
+            "id": 134,
+            "name": "Balcony Mountain Forest Park",
+            "type": "park",
+            "lat": 22.657618,
+            "lon": 113.97127,
+            "opentime": "06:00",
+            "endtime": "22:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.5
+          },
+          "a288": {
+            "id": 288,
+            "name": "Bao'an Jesus the King Church",
+            "type": "Cultural Landscape",
+            "lat": 22.590244,
+            "lon": 113.917481,
+            "opentime": "08:00",
+            "endtime": "12:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a297": {
+            "id": 297,
+            "name": "Bao'an Park",
+            "type": "park",
+            "lat": 22.592152,
+            "lon": 113.909323,
+            "opentime": "00:00",
+            "endtime": "22:00",
+            "price": 0.0,
+            "recommendmintime": 2.5,
+            "recommendmaxtime": 4.0
+          },
+          "a143": {
+            "id": 143,
+            "name": "Bao'an Science and Technology Museum",
+            "type": "Museum/Memorial Hall",
+            "lat": 22.564157,
+            "lon": 113.918087,
+            "opentime": "10:00",
+            "endtime": "17:00",
+            "price": 0.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 2.0
+          },
+          "a239": {
+            "id": 239,
+            "name": "Bao'an Stadium",
+            "type": "Amusement Park/Sports Entertainment",
+            "lat": 22.56813,
+            "lon": 113.892265,
+            "opentime": "08:00",
+            "endtime": "12:00",
+            "price": 0.0,
+            "recommendmintime": 0.5,
+            "recommendmaxtime": 1.0
+          },
+          "a90": {
+            "id": 90,
+            "name": "Bao'an Xibay Mangrove Park",
+            "type": "park",
+            "lat": 22.593597,
+            "lon": 113.843305,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.5
+          },
+          "a282": {
+            "id": 282,
+            "name": "Bauhinia Lane Hong Kong International Style Street",
+            "type": "commercial district",
+            "lat": 22.515623,
+            "lon": 114.067433,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.5,
+            "recommendmaxtime": 4.0
+          },
+          "a58": {
+            "id": 58,
+            "name": "Bay Area Cruise",
+            "type": "Amusement Park/Sports Entertainment",
+            "lat": 22.474317,
+            "lon": 113.920446,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 3.0,
+            "recommendmaxtime": 3.5
+          },
+          "a10": {
+            "id": 10,
+            "name": "Greater Bay Area No. 1 (Hong Kong-Zhuhai-Macao Bridge Route)",
+            "type": "Amusement Park/Sports Entertainment",
+            "lat": 22.474665,
+            "lon": 113.919967,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a104": {
+            "id": 104,
+            "name": "Karu Ice and Snow World",
+            "type": "Amusement Park/Sports Entertainment",
+            "lat": 22.723564,
+            "lon": 114.08611,
+            "opentime": "10:00",
+            "endtime": "22:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 2.5
+          },
+          "a111": {
+            "id": 111,
+            "name": "Hua Art Museum",
+            "type": "Art museum",
+            "lat": 22.53914,
+            "lon": 113.989372,
+            "opentime": "10:00",
+            "endtime": "17:30",
+            "price": 0.0,
+            "recommendmintime": 2.5,
+            "recommendmaxtime": 3.0
+          },
+          "a118": {
+            "id": 118,
+            "name": "Dafen Art Museum",
+            "type": "Art museum",
+            "lat": 22.616079,
+            "lon": 114.144869,
+            "opentime": "09:30",
+            "endtime": "17:30",
+            "price": 0.0,
+            "recommendmintime": 1.5,
+            "recommendmaxtime": 3.0
+          },
+          "a102": {
+            "id": 102,
+            "name": "Houhai",
+            "type": "Cultural Landscape",
+            "lat": 22.512803,
+            "lon": 113.941981,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a112": {
+            "id": 112,
+            "name": "Shenzhen Bay Bridge",
+            "type": "Cultural Landscape",
+            "lat": 22.493012,
+            "lon": 113.957048,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 2.5
+          },
+          "a128": {
+            "id": 128,
+            "name": "Qingping Ancient Market Film and Television Cultural Park",
+            "type": "Cultural Tourism Area",
+            "lat": 22.744132,
+            "lon": 113.835218,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 0.5,
+            "recommendmaxtime": 1.5
+          },
+          "a156": {
+            "id": 156,
+            "name": "Tea Sage Ancient Town",
+            "type": "Cultural Tourism Area",
+            "lat": 22.639788,
+            "lon": 114.280971,
+            "opentime": "10:00",
+            "endtime": "17:00",
+            "price": 0.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 1.5
+          },
+          "a183": {
+            "id": 183,
+            "name": "Lighthouse Library",
+            "type": "Library/Memorial Hall",
+            "lat": 22.558537,
+            "lon": 114.248125,
+            "opentime": "12:00",
+            "endtime": "19:00",
+            "price": 0.0,
+            "recommendmintime": 0.5,
+            "recommendmaxtime": 1.0
+          },
+          "a107": {
+            "id": 107,
+            "name": "Shenzhen Museum - Ancient Art Gallery",
+            "type": "Museum/Memorial Hall",
+            "lat": 22.548602,
+            "lon": 114.108022,
+            "opentime": "10:00",
+            "endtime": "18:17",
+            "price": 0.0,
+            "recommendmintime": 3.0,
+            "recommendmaxtime": 3.5
+          },
+          "a116": {
+            "id": 116,
+            "name": "Huaqiangbei Museum",
+            "type": "Museum/Memorial Hall",
+            "lat": 22.550102,
+            "lon": 114.093668,
+            "opentime": "10:00",
+            "endtime": "18:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a287": {
+            "id": 287,
+            "name": "East River Guerrilla Force Command Post Memorial Hall",
+            "type": "Red tourism sites",
+            "lat": 22.550945,
+            "lon": 114.124056,
+            "opentime": "09:30",
+            "endtime": "20:00",
+            "price": 0.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 2.5
+          },
+          "a152": {
+            "id": 152,
+            "name": "Shayuchong",
+            "type": "Red tourism sites",
+            "lat": 22.619315,
+            "lon": 114.410777,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 20.0,
+            "recommendmintime": 3.0,
+            "recommendmaxtime": 4.0
+          },
+          "a117": {
+            "id": 117,
+            "name": "Shenzhen University Town",
+            "type": "University campus",
+            "lat": 22.590581,
+            "lon": 113.982769,
+            "opentime": "07:30",
+            "endtime": "21:30",
+            "price": 0.0,
+            "recommendmintime": 1.5,
+            "recommendmaxtime": 2.0
+          },
+          "a153": {
+            "id": 153,
+            "name": "Shenzhen Book City (Central City Branch)",
+            "type": "commercial district",
+            "lat": 22.552693,
+            "lon": 114.066282,
+            "opentime": "10:00",
+            "endtime": "22:00",
+            "price": 0.0,
+            "recommendmintime": 0.5,
+            "recommendmaxtime": 1.0
+          },
+          "a17": {
+            "id": 17,
+            "name": "East Gate Old Street",
+            "type": "commercial district",
+            "lat": 22.550461,
+            "lon": 114.122671,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a113": {
+            "id": 113,
+            "name": "Dongshan Temple",
+            "type": "historical site",
+            "lat": 22.602493,
+            "lon": 114.5263,
+            "opentime": "08:00",
+            "endtime": "17:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 2.5
+          },
+          "a155": {
+            "id": 155,
+            "name": "Shajing Ancient Market",
+            "type": "historical site",
+            "lat": 22.744132,
+            "lon": 113.835218,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 1.5,
+            "recommendmaxtime": 2.0
+          },
+          "a101": {
+            "id": 101,
+            "name": "Guanhu Beach",
+            "type": "natural scenery",
+            "lat": 22.607996,
+            "lon": 114.42919,
+            "opentime": "07:00",
+            "endtime": "21:00",
+            "price": 0.0,
+            "recommendmintime": 1.5,
+            "recommendmaxtime": 3.0
+          },
+          "a105": {
+            "id": 105,
+            "name": "Nan'ao Sapphire Beach",
+            "type": "natural scenery",
+            "lat": 22.543927,
+            "lon": 114.490429,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.5,
+            "recommendmaxtime": 4.0
+          }
+        },
+        "hotel": {
+          "h261": {
+            "id": 261,
+            "name": "Astor International Hotel Shenzhen Bao'an International Airport",
+            "hotelname_en": "Astor International Hotel Shenzhen Bao'an International Airport",
+            "featurehoteltype": "Free parking",
+            "lat": 22.613827,
+            "lon": 113.841877,
+            "price": 257,
+            "numbed": 1
+          },
+          "h240": {
+            "id": 240,
+            "name": "Fei Hotel",
+            "hotelname_en": "Fei Hotel",
+            "featurehoteltype": "Charging station",
+            "lat": 22.635814,
+            "lon": 114.025951,
+            "price": 279,
+            "numbed": 1
+          },
+          "h79": {
+            "id": 79,
+            "name": "Hanhao Hotel Shenzhen Nanshan Daxin Metro Station",
+            "hotelname_en": "Hanhao Hotel Shenzhen Nanshan Daxin Metro Station",
+            "featurehoteltype": "Media Room",
+            "lat": 22.532639,
+            "lon": 113.916449,
+            "price": 293,
+            "numbed": 1
+          },
+          "h295": {
+            "id": 295,
+            "name": "Orange Fruit Hotel (Qianhai Bao'an Center)",
+            "hotelname_en": "Orange Fruit Hotel (Qianhai Bao'an Center)",
+            "featurehoteltype": "Family Room",
+            "lat": 22.556861,
+            "lon": 113.898294,
+            "price": 303,
+            "numbed": 1
+          },
+          "h84": {
+            "id": 84,
+            "name": "CNHOL RADIENT HOTEL(Shenzhen Bao'an Center Xixiang Branch)",
+            "hotelname_en": "CNHOL RADIENT HOTEL(Shenzhen Bao'an Center Xixiang Branch)",
+            "featurehoteltype": "Free parking",
+            "lat": 22.582756,
+            "lon": 113.874119,
+            "price": 310,
+            "numbed": 2
+          },
+          "h234": {
+            "id": 234,
+            "name": "Qiuguo Hotel, Bao'an, Shenzhen",
+            "hotelname_en": "Qiuguo Hotel, Bao'an, Shenzhen",
+            "featurehoteltype": "Free parking",
+            "lat": 22.556326,
+            "lon": 113.900691,
+            "price": 312,
+            "numbed": 1
+          },
+          "h7": {
+            "id": 7,
+            "name": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "hotelname_en": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "featurehoteltype": "Fitness Room",
+            "lat": 22.534199,
+            "lon": 113.964544,
+            "price": 325,
+            "numbed": 1
+          },
+          "h121": {
+            "id": 121,
+            "name": "Nanxianglou Art Hotel",
+            "hotelname_en": "Nanxianglou Art Hotel",
+            "featurehoteltype": "Multifunction Hall",
+            "lat": 22.657457,
+            "lon": 114.103391,
+            "price": 328,
+            "numbed": 1
+          },
+          "h0": {
+            "id": 0,
+            "name": "Dalden Meijin Hotel",
+            "hotelname_en": "Dalden Meijin Hotel",
+            "featurehoteltype": "Parking lot",
+            "lat": 22.581022,
+            "lon": 113.953854,
+            "price": 331,
+            "numbed": 1
+          },
+          "h25": {
+            "id": 25,
+            "name": "Dalden Meijin Hotel",
+            "hotelname_en": "Dalden Meijin Hotel",
+            "featurehoteltype": "Parking lot",
+            "lat": 22.581022,
+            "lon": 113.953854,
+            "price": 331,
+            "numbed": 1
+          },
+          "h92": {
+            "id": 92,
+            "name": "Mehood Lestie Hotel (Shenzhen Bao'an Airport Huaide Metro Station Branch)",
+            "hotelname_en": "Mehood Lestie Hotel (Shenzhen Bao'an Airport Huaide Metro Station Branch)",
+            "featurehoteltype": "Free parking",
+            "lat": 22.672004,
+            "lon": 113.826334,
+            "price": 384,
+            "numbed": 2
+          }
+        },
+        "restaurant": {
+          "r270": {
+            "id": 270,
+            "name": "Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)",
+            "lat": 22.5479082,
+            "lon": 114.1367249,
+            "price": 16.0,
+            "cuisine": "Bakery and Desserts",
+            "opentime": "13:00",
+            "endtime": "23:00",
+            "recommendedfood": "Special Herbal Turtle Jelly, Mixed Fruit Grass Jelly, Purple Sweet Potato Mung Bean Soup, Coconut Sago Dessert, Water Chestnut and Aloe Vera Sweet Soup"
+          },
+          "r175": {
+            "id": 175,
+            "name": "Huang's Wellness Dessert Experts (Meilin Joy Park Branch)",
+            "lat": 22.5680738,
+            "lon": 114.0589924,
+            "price": 22.0,
+            "cuisine": "Bakery and Desserts",
+            "opentime": "10:30",
+            "endtime": "23:30",
+            "recommendedfood": "Milk with Peach Gum, Handmade Taro Balls, Signature Ginger Milk Curd, Signature Double-Layer Steamed Milk Custard, Red Bean Taro Ball Tofu Pudding, Milk Cubes"
+          },
+          "r105": {
+            "id": 105,
+            "name": "Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)",
+            "lat": 22.5648013,
+            "lon": 114.0558103,
+            "price": 24.0,
+            "cuisine": "Snacks",
+            "opentime": "07:00",
+            "endtime": "21:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r281": {
+            "id": 281,
+            "name": "Delicious Noodle House (Taoyuan Branch)",
+            "lat": 22.5329985,
+            "lon": 113.9208161,
+            "price": 26.0,
+            "cuisine": "Snacks",
+            "opentime": "07:00",
+            "endtime": "22:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r95": {
+            "id": 95,
+            "name": "Hundred Herbs Hall Ancestral Herbal Tea Shop (Shekou Branch)",
+            "lat": 22.4877353,
+            "lon": 113.9285322,
+            "price": 27.0,
+            "cuisine": "Bakery and Desserts",
+            "opentime": "11:00",
+            "endtime": "02:00",
+            "recommendedfood": "Mango Pomelo Sago, Red Bean Double Skin Milk, Taro Coconut Milk with Peach Gum, Mango Herbal Jelly with Sago, Mango Fresh Milk with Sago, Taro Balls with Herbal Jelly and Taro"
+          },
+          "r282": {
+            "id": 282,
+            "name": "Jiajun Eight-Treasure Beef Offal",
+            "lat": 22.4865036,
+            "lon": 113.9296182,
+            "price": 29.0,
+            "cuisine": "Snacks",
+            "opentime": "11:00",
+            "endtime": "01:00",
+            "recommendedfood": "Beef tendon only, beef offal with radish, beef ball and offal rice noodles, beef brisket only, tofu skewers, radish only"
+          },
+          "r239": {
+            "id": 239,
+            "name": "Jiahua Snacks (Shekou Branch)",
+            "lat": 22.4858338,
+            "lon": 113.9281196,
+            "price": 30.0,
+            "cuisine": "Snacks",
+            "opentime": "07:00",
+            "endtime": "21:00",
+            "recommendedfood": "Dried Scallop Zongzi, Chestnut and Salted Pork Zongzi, Beef Offal Noodles, Clay Pot Rice with Cured Duck and Assorted Cured Meats, Beef Brisket Wonton, Beef Clay Pot Rice"
+          },
+          "r191": {
+            "id": 191,
+            "name": "KUDDO COFFEE (G&G Creative Community Store)",
+            "lat": 22.4916845,
+            "lon": 113.9185851,
+            "price": 31.0,
+            "cuisine": "coffee shop",
+            "opentime": "08:30",
+            "endtime": "19:30",
+            "recommendedfood": "Kuddo Soy Milk Cup, Milk Brick Dirty Coffee, Oat Milk Latte, Flat White, Tofu Pudding Latte, Grapefruit Soda"
+          },
+          "r135": {
+            "id": 135,
+            "name": "Dianpin Collection (Xinyang Branch)",
+            "lat": 22.7385954,
+            "lon": 113.8105192,
+            "price": 35.0,
+            "cuisine": "Bakery and Desserts",
+            "opentime": "12:30",
+            "endtime": "22:30",
+            "recommendedfood": "Herbal Chicken Feet, Mango Pudding, Sweet Glutinous Rice Balls, Durian Pudding, Taro Sago with Coconut Milk, Fried Wontons, Fried Chicken Mid-Wings"
+          },
+          "r168": {
+            "id": 168,
+            "name": "New West Garden Restaurant (Jinshuo Road Branch)",
+            "lat": 22.5717358,
+            "lon": 113.8772434,
+            "price": 40.0,
+            "cuisine": "Fast food and casual dining",
+            "opentime": "07:00",
+            "endtime": "14:00",
+            "recommendedfood": "Dry Wonton, Fried Wonton, Pork Tongue with Pork Intestines, Char Siu with Lai Fun Noodles, Wonton with Meatballs, Sliced Pork Fried Rice Noodles"
+          },
+          "r22": {
+            "id": 22,
+            "name": "Shenzhen Mandarin Oriental Hotel · Bazaar",
+            "lat": 22.5574757,
+            "lon": 114.0715313,
+            "price": 519.0,
+            "cuisine": "Asian cuisine",
+            "opentime": "06:30",
+            "endtime": "10:30",
+            "recommendedfood": "Ribeye steak, lobster salad, crispy roasted salted chicken, spicy beef shank, avocado soba noodles, Iberian ham"
+          },
+          "r271": {
+            "id": 271,
+            "name": "Wooden House Barbecue (Buji Old Street Branch)",
+            "lat": 22.601038,
+            "lon": 114.117186,
+            "price": 78.0,
+            "cuisine": "Barbecue",
+            "opentime": "10:00",
+            "endtime": "05:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r174": {
+            "id": 174,
+            "name": "Brother Hu's Grilled Fatty Beef (Meilin Main Store)",
+            "lat": 22.5630152,
+            "lon": 114.0531368,
+            "price": 114.0,
+            "cuisine": "Barbecue",
+            "opentime": "11:00",
+            "endtime": "02:30",
+            "recommendedfood": "Premium Grilled Fatty Beef, Secret Recipe Grilled Oysters, Fresh Shrimp Paste, Grilled Chicken Cartilage, Premium S-Rib Strips, Selected Pork Belly"
+          },
+          "r110": {
+            "id": 110,
+            "name": "Jingwei Zhang Beijing Roast Duck Restaurant (Luohu Branch)",
+            "lat": 22.5502741,
+            "lon": 114.1077374,
+            "price": 113.0,
+            "cuisine": "Beijing cuisine",
+            "opentime": "11:00",
+            "endtime": "21:00",
+            "recommendedfood": "Imperial Premium Roast Duck, Imperial Consort's Buddha Jumps Over the Wall, Prince's Roasted Lamb, Salt and Pepper Duck Carcass, Jingwei Zhang's Homemade Tender Tofu, Prince's Mansion Cabbage"
+          },
+          "r278": {
+            "id": 278,
+            "name": "Nine Blades · Beijing Roast Duck (Tian'an Cloud Valley Branch)",
+            "lat": 22.6600284,
+            "lon": 114.0683055,
+            "price": 119.0,
+            "cuisine": "Beijing cuisine",
+            "opentime": "10:00",
+            "endtime": "22:00",
+            "recommendedfood": "Nine Handle Ruyi Roast Duck, Rising Higher Step by Step, Beijing Fragrant Tripe, Golden Ingot Crispy Shrimp, Nine Handle Fried Sauce Noodles, Griddle Grilled Meat"
+          },
+          "r107": {
+            "id": 107,
+            "name": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "lat": 22.51836,
+            "lon": 114.0639289,
+            "price": 55.0,
+            "cuisine": "Cantonese cuisine",
+            "opentime": "07:30",
+            "endtime": "21:00",
+            "recommendedfood": "Crispy Pork Knuckle with Sand Ginger, Chicken Wings and Wingtips with Garlic, Fortune Chicken Chop with Golden Brick Baked Rice, Heartbroken Rice, Wealthy Milk Toast, Lucky Mixed Sauce Rice Noodle Rolls"
+          },
+          "r131": {
+            "id": 131,
+            "name": "New World Restaurant (Wanda Branch)",
+            "lat": 22.5711549,
+            "lon": 113.8929228,
+            "price": 55.0,
+            "cuisine": "Cantonese cuisine",
+            "opentime": "07:30",
+            "endtime": "22:00",
+            "recommendedfood": "Dry-fried rice noodles with beef, Brand roast goose rice, Chilled pineapple bun, Fresh shrimp wonton noodles, Club sandwich, Honey-glazed char siu"
+          },
+          "r104": {
+            "id": 104,
+            "name": "First Floor and a Half KNOCKCUP Charcoal Grill and Wine Bar (Joyce Center Branch)",
+            "lat": 22.5357328,
+            "lon": 114.0670591,
+            "price": 210.0,
+            "cuisine": "Creative Cuisine",
+            "opentime": "10:00",
+            "endtime": "24:00",
+            "recommendedfood": "Whiskey-steamed conch, Wagyu sukiyaki, lobster poached in kimchi broth, homemade Sichuan pepper sausage, beef tartare, pickled mustard green fried rice"
+          },
+          "r43": {
+            "id": 43,
+            "name": "Fumée",
+            "lat": 22.5404375,
+            "lon": 113.9358878,
+            "price": 1703.0,
+            "cuisine": "Creative Cuisine",
+            "opentime": "18:00",
+            "endtime": "23:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r289": {
+            "id": 289,
+            "name": "Great Eagle Eco-Park Farmhouse",
+            "lat": 22.5811581,
+            "lon": 114.479728,
+            "price": 75.0,
+            "cuisine": "Farmhouse cuisine",
+            "opentime": "08:00",
+            "endtime": "22:00",
+            "recommendedfood": "Firewood Roasted Goose, Lychee Wood Roasted Duck, Half Portion of Sand Ginger Stir-fried Chicken, Clay Pot Roasted Chicken, Scallion Oil Noodles, Hakka Stuffed Tofu"
+          },
+          "r243": {
+            "id": 243,
+            "name": "Xiange Mountain and Water Villa (Jiuwei Branch)",
+            "lat": 22.646464,
+            "lon": 113.8591625,
+            "price": 143.0,
+            "cuisine": "Farmhouse cuisine",
+            "opentime": "11:30",
+            "endtime": "22:00",
+            "recommendedfood": "Pan-fried Bama pork, Scallion oil chicken, Cumin lamb chops, Lychee wood roasted goose, Abalone sauce handmade tofu"
+          },
+          "r117": {
+            "id": 117,
+            "name": "Always Home Hakka Cuisine (Minkang Road Branch)",
+            "lat": 22.6141332,
+            "lon": 114.0406289,
+            "price": 66.0,
+            "cuisine": "Hakka cuisine",
+            "opentime": "11:00",
+            "endtime": "21:30",
+            "recommendedfood": "Hakka Stuffed Tofu, Hakka Braised Pork, Mom's Hand-Shredded Chicken, Milk-Scented Pork Ribs, Secret Recipe Three-Cup Duck, Garlic Vermicelli with Baby Bok Choy"
+          },
+          "r283": {
+            "id": 283,
+            "name": "Hakka Cuisine Restaurant (Bao'an Haiya Branch)",
+            "lat": 22.5597537,
+            "lon": 113.9057788,
+            "price": 81.0,
+            "cuisine": "Hakka cuisine",
+            "opentime": "11:00",
+            "endtime": "21:00",
+            "recommendedfood": "Hakka Stuffed Tofu, Traditional Hand-Shredded Salt-Baked Chicken, Stir-Fried Yellow Beef, Extraordinary Dried Tofu Skin, Perilla Clam Stir-Fry, Tender Pork Blood Curd"
+          },
+          "r138": {
+            "id": 138,
+            "name": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "lat": 22.5353288,
+            "lon": 114.0604334,
+            "price": 81.0,
+            "cuisine": "Hot pot",
+            "opentime": "11:00",
+            "endtime": "22:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r177": {
+            "id": 177,
+            "name": "Fragrant Fire Intestine (Futian Branch)",
+            "lat": 22.5215916,
+            "lon": 114.0342867,
+            "price": 86.0,
+            "cuisine": "Hot pot",
+            "opentime": "11:00",
+            "endtime": "01:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r164": {
+            "id": 164,
+            "name": "Love Bowl Pavilion · Freshly Stir-fried Hunan Cuisine (Yueshang Center Branch)",
+            "lat": 22.6565819,
+            "lon": 114.0371476,
+            "price": 71.0,
+            "cuisine": "Hunan cuisine",
+            "opentime": "11:00",
+            "endtime": "21:00",
+            "recommendedfood": "Signature Stir-fried Chicken, Stir-fried Yellow Beef, Braised Prawns in Oil, Stir-fried Pork with Chili, Two-color Fish Head, Stir-fried Pork Tripe with Pickled Radish"
+          },
+          "r142": {
+            "id": 142,
+            "name": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "lat": 22.5317135,
+            "lon": 114.0653587,
+            "price": 78.0,
+            "cuisine": "Hunan cuisine",
+            "opentime": "11:00",
+            "endtime": "21:00",
+            "recommendedfood": "Stir-fried Yellow Beef, Pozi Street Braised Pork Trotter, Taro with Spare Ribs, Lotus Root and Pork Bone Soup, White Chili Pork Intestines, Mashed Chili with Century Egg"
+          },
+          "r192": {
+            "id": 192,
+            "name": "More Than Cuisine (Seaworld Branch)",
+            "lat": 22.4863285,
+            "lon": 113.9167368,
+            "price": 68.0,
+            "cuisine": "Japanese cuisine",
+            "opentime": "11:30",
+            "endtime": "21:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r114": {
+            "id": 114,
+            "name": "Mountain Field Creative Cuisine (Luohu Branch)",
+            "lat": 22.5410949,
+            "lon": 114.1205678,
+            "price": 118.0,
+            "cuisine": "Japanese cuisine",
+            "opentime": "11:30",
+            "endtime": "21:30",
+            "recommendedfood": "Devil Oysters, Japanese Fried Chicken, Tuna Avocado Rice Bowl, Eel Tamagoyaki, Beef Bowl, Freshly Baked Soufflé"
+          },
+          "r133": {
+            "id": 133,
+            "name": "Wu Zhuang (Longgang COCO Park Branch)",
+            "lat": 22.6910344,
+            "lon": 114.2289469,
+            "price": 73.0,
+            "cuisine": "Jiangsu-Zhejiang cuisine",
+            "opentime": "11:00",
+            "endtime": "21:00",
+            "recommendedfood": "Beijing Wood-fired Roast Duck Three Ways, Heavenly Drunken Chicken, Poached Sea Bass in Chili Oil, Duck Blood and Tripe in Spicy Broth, Stone Pot Tofu, Sweet and Sour Pork Tenderloin"
+          },
+          "r295": {
+            "id": 295,
+            "name": "Qiantang Tide · Refined Jiangzhe Cuisine (Futian COCO Park Branch)",
+            "lat": 22.5331522,
+            "lon": 114.054573,
+            "price": 156.0,
+            "cuisine": "Jiangsu-Zhejiang cuisine",
+            "opentime": "11:00",
+            "endtime": "22:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r72": {
+            "id": 72,
+            "name": "Latina Brazilian Steakhouse (Seaworld Branch)",
+            "lat": 22.4828963,
+            "lon": 113.9175606,
+            "price": 309.0,
+            "cuisine": "Latin American cuisine",
+            "opentime": "11:00",
+            "endtime": "22:00",
+            "recommendedfood": "grilled shrimp, beef tri-tip, grilled pineapple, Iberian ham, cheese bread"
+          }
+        },
+        "outbound": {
+          "K9259": {
+            "TrainID": "K9259",
+            "TrainType": "Express",
+            "From": "Guangzhou North Railway Station",
+            "To": "Shenzhen East Station",
+            "BeginTime": "05:03",
+            "EndTime": "06:55",
+            "Duration": 1.95,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "K9262": {
+            "TrainID": "K9262",
+            "TrainType": "Express",
+            "From": "Guangzhou North Railway Station",
+            "To": "Shenzhen East Station",
+            "BeginTime": "05:03",
+            "EndTime": "06:55",
+            "Duration": 1.95,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "K1234": {
+            "TrainID": "K1234",
+            "TrainType": "Express",
+            "From": "Guangzhou Station",
+            "To": "Shenzhen East Station",
+            "BeginTime": "06:12",
+            "EndTime": "08:30",
+            "Duration": 2.75,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "K9275": {
+            "TrainID": "K9275",
+            "TrainType": "Express",
+            "From": "Guangzhou North Railway Station",
+            "To": "Shenzhen Station",
+            "BeginTime": "06:38",
+            "EndTime": "08:40",
+            "Duration": 2.1,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "K951": {
+            "TrainID": "K951",
+            "TrainType": "Express",
+            "From": "Guangzhou Station",
+            "To": "Shenzhen East Station",
+            "BeginTime": "07:00",
+            "EndTime": "09:08",
+            "Duration": 2.58,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "K4851": {
+            "TrainID": "K4851",
+            "TrainType": "Express",
+            "From": "Guangzhou Station",
+            "To": "Shenzhen East Station",
+            "BeginTime": "07:00",
+            "EndTime": "09:08",
+            "Duration": 2.58,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "K4850": {
+            "TrainID": "K4850",
+            "TrainType": "Express",
+            "From": "Guangzhou Station",
+            "To": "Shenzhen East Station",
+            "BeginTime": "07:00",
+            "EndTime": "09:08",
+            "Duration": 2.58,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "K950": {
+            "TrainID": "K950",
+            "TrainType": "Express",
+            "From": "Guangzhou Station",
+            "To": "Shenzhen East Station",
+            "BeginTime": "07:00",
+            "EndTime": "09:08",
+            "Duration": 2.58,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "FL264": {
+            "FlightID": "FL264",
+            "From": "Guangzhou Baiyun International Airport",
+            "To": "Shenzhen Bao'an International Airport",
+            "BeginTime": "02:36",
+            "EndTime": "02:43",
+            "Duration": 0.13,
+            "Cost": 101.77,
+            "_mode": "airplane"
+          },
+          "FL263": {
+            "FlightID": "FL263",
+            "From": "Guangzhou Baiyun International Airport",
+            "To": "Shenzhen Bao'an International Airport",
+            "BeginTime": "05:16",
+            "EndTime": "05:23",
+            "Duration": 0.13,
+            "Cost": 111.69,
+            "_mode": "airplane"
+          },
+          "FL268": {
+            "FlightID": "FL268",
+            "From": "Guangzhou Baiyun International Airport",
+            "To": "Shenzhen Bao'an International Airport",
+            "BeginTime": "06:04",
+            "EndTime": "06:11",
+            "Duration": 0.13,
+            "Cost": 149.18,
+            "_mode": "airplane"
+          },
+          "D903": {
+            "TrainID": "D903",
+            "TrainType": "EMU (Electric Multiple Unit)",
+            "From": "Guangzhou South Railway Station",
+            "To": "Shenzhen North Railway Station",
+            "BeginTime": "06:36",
+            "EndTime": "07:08",
+            "Duration": 0.58,
+            "Cost": 62.52,
+            "_mode": "train"
+          },
+          "D901": {
+            "TrainID": "D901",
+            "TrainType": "EMU (Electric Multiple Unit)",
+            "From": "Guangzhou South Railway Station",
+            "To": "Shenzhen North Railway Station",
+            "BeginTime": "06:43",
+            "EndTime": "07:15",
+            "Duration": 0.62,
+            "Cost": 62.52,
+            "_mode": "train"
+          },
+          "G6349": {
+            "TrainID": "G6349",
+            "TrainType": "High-speed rail",
+            "From": "Guangzhou South Railway Station",
+            "To": "Shenzhen North Railway Station",
+            "BeginTime": "06:48",
+            "EndTime": "07:20",
+            "Duration": 0.53,
+            "Cost": 67.73,
+            "_mode": "train"
+          }
+        },
+        "inbound": {
+          "K1348": {
+            "TrainID": "K1348",
+            "TrainType": "Express",
+            "From": "Shenzhen Station",
+            "To": "Guangzhou North Railway Station",
+            "BeginTime": "08:00",
+            "EndTime": "10:00",
+            "Duration": 2.0,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "K487": {
+            "TrainID": "K487",
+            "TrainType": "Express",
+            "From": "Shenzhen Station",
+            "To": "Guangzhou North Railway Station",
+            "BeginTime": "09:48",
+            "EndTime": "11:37",
+            "Duration": 1.82,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "K486": {
+            "TrainID": "K486",
+            "TrainType": "Express",
+            "From": "Shenzhen Station",
+            "To": "Guangzhou North Railway Station",
+            "BeginTime": "09:48",
+            "EndTime": "11:37",
+            "Duration": 1.82,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "K356": {
+            "TrainID": "K356",
+            "TrainType": "Express",
+            "From": "Shenzhen East Station",
+            "To": "Guangzhou North Railway Station",
+            "BeginTime": "11:38",
+            "EndTime": "13:16",
+            "Duration": 1.6300000000000001,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "K932": {
+            "TrainID": "K932",
+            "TrainType": "Express",
+            "From": "Shenzhen East Station",
+            "To": "Guangzhou North Railway Station",
+            "BeginTime": "11:52",
+            "EndTime": "13:30",
+            "Duration": 1.6300000000000001,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "K1657": {
+            "TrainID": "K1657",
+            "TrainType": "Express",
+            "From": "Shenzhen East Station",
+            "To": "Guangzhou North Railway Station",
+            "BeginTime": "13:31",
+            "EndTime": "15:17",
+            "Duration": 1.77,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "K1656": {
+            "TrainID": "K1656",
+            "TrainType": "Express",
+            "From": "Shenzhen East Station",
+            "To": "Guangzhou North Railway Station",
+            "BeginTime": "13:31",
+            "EndTime": "15:17",
+            "Duration": 1.77,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "K4852": {
+            "TrainID": "K4852",
+            "TrainType": "Express",
+            "From": "Shenzhen East Station",
+            "To": "Guangzhou Station",
+            "BeginTime": "13:56",
+            "EndTime": "15:34",
+            "Duration": 1.6300000000000001,
+            "Cost": 41.68,
+            "_mode": "train"
+          },
+          "FL185": {
+            "FlightID": "FL185",
+            "From": "Shenzhen Bao'an International Airport",
+            "To": "Guangzhou Baiyun International Airport",
+            "BeginTime": "23:22",
+            "EndTime": "23:29",
+            "Duration": 0.13,
+            "Cost": 95.91,
+            "_mode": "airplane"
+          },
+          "G9710": {
+            "TrainID": "G9710",
+            "TrainType": "High-speed rail",
+            "From": "Shenzhen North Railway Station",
+            "To": "Guangzhou South Railway Station",
+            "BeginTime": "17:09",
+            "EndTime": "17:45",
+            "Duration": 0.6000000000000001,
+            "Cost": 67.73,
+            "_mode": "train"
+          },
+          "G1016": {
+            "TrainID": "G1016",
+            "TrainType": "High-speed rail",
+            "From": "Shenzhen North Railway Station",
+            "To": "Guangzhou South Railway Station",
+            "BeginTime": "17:04",
+            "EndTime": "17:40",
+            "Duration": 0.6000000000000001,
+            "Cost": 67.73,
+            "_mode": "train"
+          },
+          "C7086": {
+            "TrainID": "C7086",
+            "TrainType": "Intercity EMU",
+            "From": "Shenzhen Station",
+            "To": "Guangzhou East Station",
+            "BeginTime": "17:03",
+            "EndTime": "18:30",
+            "Duration": 1.45,
+            "Cost": 46.89,
+            "_mode": "train"
+          },
+          "G6009": {
+            "TrainID": "G6009",
+            "TrainType": "High-speed rail",
+            "From": "Shenzhen North Railway Station",
+            "To": "Guangzhou South Railway Station",
+            "BeginTime": "16:58",
+            "EndTime": "17:28",
+            "Duration": 0.5700000000000001,
+            "Cost": 67.73,
+            "_mode": "train"
+          },
+          "G6008": {
+            "TrainID": "G6008",
+            "TrainType": "High-speed rail",
+            "From": "Shenzhen North Railway Station",
+            "To": "Guangzhou South Railway Station",
+            "BeginTime": "16:58",
+            "EndTime": "17:28",
+            "Duration": 0.5700000000000001,
+            "Cost": 67.73,
+            "_mode": "train"
+          },
+          "C7080": {
+            "TrainID": "C7080",
+            "TrainType": "Intercity EMU",
+            "From": "Shenzhen Station",
+            "To": "Guangzhou East Station",
+            "BeginTime": "16:58",
+            "EndTime": "18:17",
+            "Duration": 1.32,
+            "Cost": 46.89,
+            "_mode": "train"
+          },
+          "D7179": {
+            "TrainID": "D7179",
+            "TrainType": "EMU (Electric Multiple Unit)",
+            "From": "Shenzhen North Railway Station",
+            "To": "Guangzhou East Station",
+            "BeginTime": "16:55",
+            "EndTime": "18:09",
+            "Duration": 1.33,
+            "Cost": 62.52,
+            "_mode": "train"
+          }
+        }
+      },
+      "components": {
+        "feedback": true,
+        "compiler": true,
+        "shared_context": true
+      },
+      "tool_trace": [
+        {
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "contains",
+            "value": "深圳市儿童乐园"
+          },
+          "response": {
+            "success": true,
+            "command": "attractions_select",
+            "resolved_from_language": "zh",
+            "data": {
+              "type": "dataframe",
+              "rows": [
+                {
+                  "id": 139,
+                  "name": "Shenzhen Children's Park",
+                  "type": "Amusement Park/Sports Entertainment",
+                  "lat": 22.549651,
+                  "lon": 114.017029,
+                  "opentime": "06:00",
+                  "endtime": "23:00",
+                  "price": 0.0,
+                  "recommendmintime": 1.0,
+                  "recommendmaxtime": 1.5
+                }
+              ],
+              "row_count": 1,
+              "returned_rows": 1
+            },
+            "text": "[{'id': 139, 'name': \"Shenzhen Children's Park\", 'type': 'Amusement Park/Sports Entertainment', 'lat': 22.549651, 'lon': 114.017029, 'opentime': '06:00', 'endtime': '23:00', 'price': 0.0, 'recommendmintime': 1.0, 'recommendmaxtime': 1.5}]"
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen East Station",
+            "end": "Shenzhen Children's Park",
+            "start_time": "06:55",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen Children's Park\", \"start\": \"Shenzhen East Station\", \"start_time\": \"06:55\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Shenzhen East Station', 'end': 'Buji-Metro Station', 'mode': 'walk', 'start_time': '06:55', 'end_time': '06:58', 'cost': 0, 'distance': 0.28}, {'start': 'Buji-Metro Station', 'end': 'Qiaoxiang-Metro Station', 'mode': 'metro', 'start_time': '06:58', 'end_time': '07:22', 'cost': 4, 'distance': 12.43}, {'start': 'Qiaoxiang-Metro Station', 'end': \"Shenzhen Children's Park\", 'mode': 'walk', 'start_time': '07:22', 'end_time': '07:25', 'cost': 0, 'distance': 0.27}]",
+            "data": [
+              {
+                "start": "Shenzhen East Station",
+                "end": "Buji-Metro Station",
+                "mode": "walk",
+                "start_time": "06:55",
+                "end_time": "06:58",
+                "cost": 0,
+                "distance": 0.28
+              },
+              {
+                "start": "Buji-Metro Station",
+                "end": "Qiaoxiang-Metro Station",
+                "mode": "metro",
+                "start_time": "06:58",
+                "end_time": "07:22",
+                "cost": 4,
+                "distance": 12.43
+              },
+              {
+                "start": "Qiaoxiang-Metro Station",
+                "end": "Shenzhen Children's Park",
+                "mode": "walk",
+                "start_time": "07:22",
+                "end_time": "07:25",
+                "cost": 0,
+                "distance": 0.27
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Children's Park",
+            "end": "Huang's Wellness Dessert Experts (Meilin Joy Park Branch)",
+            "start_time": "12:00",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Huang's Wellness Dessert Experts (Meilin Joy Park Branch)\", \"start\": \"Shenzhen Children's Park\", \"start_time\": \"12:00\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': \"Shenzhen Children's Park\", 'end': 'Qiaoxiang-Metro Station', 'mode': 'walk', 'start_time': '12:00', 'end_time': '12:03', 'cost': 0, 'distance': 0.27}, {'start': 'Qiaoxiang-Metro Station', 'end': 'Shangmeilin-Metro Station', 'mode': 'metro', 'start_time': '12:03', 'end_time': '12:13', 'cost': 3, 'distance': 5.17}, {'start': 'Shangmeilin-Metro Station', 'end': \"Huang's Wellness Dessert Experts (Meilin Joy Park Branch)\", 'mode': 'walk', 'start_time': '12:13', 'end_time': '12:16', 'cost': 0, 'distance': 0.27}]",
+            "data": [
+              {
+                "start": "Shenzhen Children's Park",
+                "end": "Qiaoxiang-Metro Station",
+                "mode": "walk",
+                "start_time": "12:00",
+                "end_time": "12:03",
+                "cost": 0,
+                "distance": 0.27
+              },
+              {
+                "start": "Qiaoxiang-Metro Station",
+                "end": "Shangmeilin-Metro Station",
+                "mode": "metro",
+                "start_time": "12:03",
+                "end_time": "12:13",
+                "cost": 3,
+                "distance": 5.17
+              },
+              {
+                "start": "Shangmeilin-Metro Station",
+                "end": "Huang's Wellness Dessert Experts (Meilin Joy Park Branch)",
+                "mode": "walk",
+                "start_time": "12:13",
+                "end_time": "12:16",
+                "cost": 0,
+                "distance": 0.27
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Huang's Wellness Dessert Experts (Meilin Joy Park Branch)",
+            "end": "East Gate Old Street",
+            "start_time": "13:01",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"East Gate Old Street\", \"start\": \"Huang's Wellness Dessert Experts (Meilin Joy Park Branch)\", \"start_time\": \"13:01\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': \"Huang's Wellness Dessert Experts (Meilin Joy Park Branch)\", 'end': 'Shangmeilin-Metro Station', 'mode': 'walk', 'start_time': '13:01', 'end_time': '13:04', 'cost': 0, 'distance': 0.27}, {'start': 'Shangmeilin-Metro Station', 'end': 'Shaibu-Metro Station', 'mode': 'metro', 'start_time': '13:04', 'end_time': '13:17', 'cost': 3, 'distance': 6.91}, {'start': 'Shaibu-Metro Station', 'end': 'East Gate Old Street', 'mode': 'walk', 'start_time': '13:17', 'end_time': '13:18', 'cost': 0, 'distance': 0.14}]",
+            "data": [
+              {
+                "start": "Huang's Wellness Dessert Experts (Meilin Joy Park Branch)",
+                "end": "Shangmeilin-Metro Station",
+                "mode": "walk",
+                "start_time": "13:01",
+                "end_time": "13:04",
+                "cost": 0,
+                "distance": 0.27
+              },
+              {
+                "start": "Shangmeilin-Metro Station",
+                "end": "Shaibu-Metro Station",
+                "mode": "metro",
+                "start_time": "13:04",
+                "end_time": "13:17",
+                "cost": 3,
+                "distance": 6.91
+              },
+              {
+                "start": "Shaibu-Metro Station",
+                "end": "East Gate Old Street",
+                "mode": "walk",
+                "start_time": "13:17",
+                "end_time": "13:18",
+                "cost": 0,
+                "distance": 0.14
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "East Gate Old Street",
+            "end": "Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)",
+            "start_time": "15:18",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)\", \"start\": \"East Gate Old Street\", \"start_time\": \"15:18\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'East Gate Old Street', 'end': 'Shaibu-Metro Station', 'mode': 'walk', 'start_time': '15:18', 'end_time': '15:19', 'cost': 0, 'distance': 0.14}, {'start': 'Shaibu-Metro Station', 'end': 'Huangbeiling-Metro Station', 'mode': 'metro', 'start_time': '15:19', 'end_time': '15:21', 'cost': 2, 'distance': 1.45}, {'start': 'Huangbeiling-Metro Station', 'end': 'Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)', 'mode': 'walk', 'start_time': '15:21', 'end_time': '15:23', 'cost': 0, 'distance': 0.2}]",
+            "data": [
+              {
+                "start": "East Gate Old Street",
+                "end": "Shaibu-Metro Station",
+                "mode": "walk",
+                "start_time": "15:18",
+                "end_time": "15:19",
+                "cost": 0,
+                "distance": 0.14
+              },
+              {
+                "start": "Shaibu-Metro Station",
+                "end": "Huangbeiling-Metro Station",
+                "mode": "metro",
+                "start_time": "15:19",
+                "end_time": "15:21",
+                "cost": 2,
+                "distance": 1.45
+              },
+              {
+                "start": "Huangbeiling-Metro Station",
+                "end": "Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)",
+                "mode": "walk",
+                "start_time": "15:21",
+                "end_time": "15:23",
+                "cost": 0,
+                "distance": 0.2
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)",
+            "end": "Fei Hotel",
+            "start_time": "17:45",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Fei Hotel\", \"start\": \"Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)\", \"start_time\": \"17:45\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)', 'end': 'Huangbeiling-Metro Station', 'mode': 'walk', 'start_time': '17:45', 'end_time': '17:47', 'cost': 0, 'distance': 0.2}, {'start': 'Huangbeiling-Metro Station', 'end': 'Shangfen-Metro Station', 'mode': 'metro', 'start_time': '17:47', 'end_time': '18:19', 'cost': 5, 'distance': 16.14}, {'start': 'Shangfen-Metro Station', 'end': 'Fei Hotel', 'mode': 'walk', 'start_time': '18:19', 'end_time': '18:32', 'cost': 0, 'distance': 1.08}]",
+            "data": [
+              {
+                "start": "Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)",
+                "end": "Huangbeiling-Metro Station",
+                "mode": "walk",
+                "start_time": "17:45",
+                "end_time": "17:47",
+                "cost": 0,
+                "distance": 0.2
+              },
+              {
+                "start": "Huangbeiling-Metro Station",
+                "end": "Shangfen-Metro Station",
+                "mode": "metro",
+                "start_time": "17:47",
+                "end_time": "18:19",
+                "cost": 5,
+                "distance": 16.14
+              },
+              {
+                "start": "Shangfen-Metro Station",
+                "end": "Fei Hotel",
+                "mode": "walk",
+                "start_time": "18:19",
+                "end_time": "18:32",
+                "cost": 0,
+                "distance": 1.08
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Fei Hotel",
+            "end": "East River Guerrilla Force Command Post Memorial Hall",
+            "start_time": "08:00",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"East River Guerrilla Force Command Post Memorial Hall\", \"start\": \"Fei Hotel\", \"start_time\": \"08:00\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Fei Hotel', 'end': 'Shangfen-Metro Station', 'mode': 'walk', 'start_time': '08:00', 'end_time': '08:13', 'cost': 0, 'distance': 1.08}, {'start': 'Shangfen-Metro Station', 'end': 'Shaibu-Metro Station', 'mode': 'metro', 'start_time': '08:13', 'end_time': '08:42', 'cost': 5, 'distance': 14.86}, {'start': 'Shaibu-Metro Station', 'end': 'East River Guerrilla Force Command Post Memorial Hall', 'mode': 'walk', 'start_time': '08:42', 'end_time': '08:44', 'cost': 0, 'distance': 0.24}]",
+            "data": [
+              {
+                "start": "Fei Hotel",
+                "end": "Shangfen-Metro Station",
+                "mode": "walk",
+                "start_time": "08:00",
+                "end_time": "08:13",
+                "cost": 0,
+                "distance": 1.08
+              },
+              {
+                "start": "Shangfen-Metro Station",
+                "end": "Shaibu-Metro Station",
+                "mode": "metro",
+                "start_time": "08:13",
+                "end_time": "08:42",
+                "cost": 5,
+                "distance": 14.86
+              },
+              {
+                "start": "Shaibu-Metro Station",
+                "end": "East River Guerrilla Force Command Post Memorial Hall",
+                "mode": "walk",
+                "start_time": "08:42",
+                "end_time": "08:44",
+                "cost": 0,
+                "distance": 0.24
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "East River Guerrilla Force Command Post Memorial Hall",
+            "end": "Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)",
+            "start_time": "10:30",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)\", \"start\": \"East River Guerrilla Force Command Post Memorial Hall\", \"start_time\": \"10:30\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'East River Guerrilla Force Command Post Memorial Hall', 'end': 'Shaibu-Metro Station', 'mode': 'walk', 'start_time': '10:30', 'end_time': '10:32', 'cost': 0, 'distance': 0.24}, {'start': 'Shaibu-Metro Station', 'end': 'Meicun-Metro Station', 'mode': 'metro', 'start_time': '10:32', 'end_time': '10:47', 'cost': 3, 'distance': 7.53}, {'start': 'Meicun-Metro Station', 'end': 'Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)', 'mode': 'walk', 'start_time': '10:47', 'end_time': '10:53', 'cost': 0, 'distance': 0.53}]",
+            "data": [
+              {
+                "start": "East River Guerrilla Force Command Post Memorial Hall",
+                "end": "Shaibu-Metro Station",
+                "mode": "walk",
+                "start_time": "10:30",
+                "end_time": "10:32",
+                "cost": 0,
+                "distance": 0.24
+              },
+              {
+                "start": "Shaibu-Metro Station",
+                "end": "Meicun-Metro Station",
+                "mode": "metro",
+                "start_time": "10:32",
+                "end_time": "10:47",
+                "cost": 3,
+                "distance": 7.53
+              },
+              {
+                "start": "Meicun-Metro Station",
+                "end": "Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)",
+                "mode": "walk",
+                "start_time": "10:47",
+                "end_time": "10:53",
+                "cost": 0,
+                "distance": 0.53
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)",
+            "end": "Huaqiangbei Museum",
+            "start_time": "11:45",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Huaqiangbei Museum\", \"start\": \"Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)\", \"start_time\": \"11:45\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)', 'end': 'Meicun-Metro Station', 'mode': 'walk', 'start_time': '11:45', 'end_time': '11:51', 'cost': 0, 'distance': 0.53}, {'start': 'Meicun-Metro Station', 'end': 'Tongxinling-Metro Station', 'mode': 'metro', 'start_time': '11:51', 'end_time': '12:00', 'cost': 3, 'distance': 4.99}, {'start': 'Tongxinling-Metro Station', 'end': 'Huaqiangbei Museum', 'mode': 'walk', 'start_time': '12:00', 'end_time': '12:03', 'cost': 0, 'distance': 0.29}]",
+            "data": [
+              {
+                "start": "Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)",
+                "end": "Meicun-Metro Station",
+                "mode": "walk",
+                "start_time": "11:45",
+                "end_time": "11:51",
+                "cost": 0,
+                "distance": 0.53
+              },
+              {
+                "start": "Meicun-Metro Station",
+                "end": "Tongxinling-Metro Station",
+                "mode": "metro",
+                "start_time": "11:51",
+                "end_time": "12:00",
+                "cost": 3,
+                "distance": 4.99
+              },
+              {
+                "start": "Tongxinling-Metro Station",
+                "end": "Huaqiangbei Museum",
+                "mode": "walk",
+                "start_time": "12:00",
+                "end_time": "12:03",
+                "cost": 0,
+                "distance": 0.29
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Huaqiangbei Museum",
+            "end": "Shenzhen Station",
+            "start_time": "14:03",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen Station\", \"start\": \"Huaqiangbei Museum\", \"start_time\": \"14:03\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Huaqiangbei Museum', 'end': 'Tongxinling-Metro Station', 'mode': 'walk', 'start_time': '14:03', 'end_time': '14:06', 'cost': 0, 'distance': 0.29}, {'start': 'Tongxinling-Metro Station', 'end': 'Luohu-Metro Station', 'mode': 'metro', 'start_time': '14:06', 'end_time': '14:11', 'cost': 2, 'distance': 2.98}, {'start': 'Luohu-Metro Station', 'end': 'Shenzhen Station', 'mode': 'walk', 'start_time': '14:11', 'end_time': '14:13', 'cost': 0, 'distance': 0.17}]",
+            "data": [
+              {
+                "start": "Huaqiangbei Museum",
+                "end": "Tongxinling-Metro Station",
+                "mode": "walk",
+                "start_time": "14:03",
+                "end_time": "14:06",
+                "cost": 0,
+                "distance": 0.29
+              },
+              {
+                "start": "Tongxinling-Metro Station",
+                "end": "Luohu-Metro Station",
+                "mode": "metro",
+                "start_time": "14:06",
+                "end_time": "14:11",
+                "cost": 2,
+                "distance": 2.98
+              },
+              {
+                "start": "Luohu-Metro Station",
+                "end": "Shenzhen Station",
+                "mode": "walk",
+                "start_time": "14:11",
+                "end_time": "14:13",
+                "cost": 0,
+                "distance": 0.17
+              }
+            ]
+          }
+        }
+      ],
+      "request_count": 2
+    },
+    "started_at": "",
+    "finished_at": "2026-10-31T16:09:20.387164+00:00",
+    "duration_seconds": 126.40601362497546,
+    "wall_seconds": 127.07967333297711,
+    "resources": {
+      "limits": {
+        "feedback": 4,
+        "model_calls": 16,
+        "tokens": 500000,
+        "tools": 400,
+        "output_tokens_per_call": 10000
+      },
+      "model_calls": 2,
+      "returned_tokens": 21238,
+      "feedback_calls": 0,
+      "tool_calls": 263,
+      "exhausted": "",
+      "tool_receipts": [
+        {
+          "index": 1,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 2,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 3,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 4,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 5,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 6,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 7,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 8,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 9,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 10,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 11,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 12,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 13,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 14,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 15,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 16,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 17,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 18,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 19,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 20,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 21,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 22,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 23,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 24,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 25,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 26,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 27,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 28,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 29,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 30,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 31,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 32,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 33,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 34,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 35,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 36,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 37,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 38,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 39,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 40,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 41,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 42,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 43,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 44,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 45,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 46,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 47,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 48,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 49,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 50,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 51,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 52,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 53,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 54,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 55,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 56,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 57,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 58,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 59,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 60,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 61,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 62,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 63,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 64,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 65,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 66,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 67,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 68,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 69,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 70,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 71,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 72,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 73,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 74,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 75,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 76,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 77,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 78,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 79,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 80,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 81,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 82,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 83,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 84,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 85,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 86,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 87,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 88,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 89,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 90,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 91,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Guangzhou",
+            "end_city": "Shenzhen",
+            "intercity_type": "train",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 92,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 93,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 94,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 95,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 96,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 97,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 98,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 99,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 100,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 101,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 102,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 103,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 104,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 105,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 106,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 107,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 108,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 109,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 110,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 111,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 112,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Guangzhou",
+            "end_city": "Shenzhen",
+            "intercity_type": "airplane",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 113,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Shenzhen",
+            "end_city": "Guangzhou",
+            "intercity_type": "train",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 114,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 115,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 116,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 117,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 118,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 119,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 120,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 121,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 122,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 123,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 124,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 125,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 126,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 127,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 128,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 129,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 130,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 131,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 132,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 133,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 134,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Shenzhen",
+            "end_city": "Guangzhou",
+            "intercity_type": "airplane",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 135,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "深圳",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 136,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 137,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 138,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 139,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 140,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 141,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 142,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 143,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 144,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 145,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 146,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 147,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 148,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 149,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 150,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 151,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 152,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 153,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 154,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 155,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 156,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 157,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 158,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 159,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 160,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 161,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 162,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 163,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 164,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 165,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "深圳",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 166,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 167,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 168,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 169,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 170,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 171,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 172,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 173,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 174,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 175,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 176,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 177,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 178,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 179,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 180,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 181,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 182,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 183,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 184,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 185,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 186,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 187,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 188,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 189,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 190,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 191,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 192,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 193,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 194,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 195,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "深圳",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 196,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 197,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 198,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 199,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 200,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 201,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 202,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 203,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 204,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 205,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 206,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 207,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 208,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 209,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 210,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 211,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 212,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 213,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 214,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 215,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 216,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 217,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 218,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 219,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 220,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 221,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 222,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 223,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 224,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 225,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "contains",
+            "value": "深圳市儿童乐园"
+          }
+        },
+        {
+          "index": 226,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "深圳",
+            "key": "name",
+            "op": "contains",
+            "value": "深圳市儿童乐园"
+          }
+        },
+        {
+          "index": 227,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "id",
+            "op": "eq",
+            "value": 139
+          }
+        },
+        {
+          "index": 228,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen East Station",
+            "end": "Shenzhen Children's Park",
+            "start_time": "06:55",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 229,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Children's Park",
+            "end": "Huang's Wellness Dessert Experts (Meilin Joy Park Branch)",
+            "start_time": "12:00",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 230,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Huang's Wellness Dessert Experts (Meilin Joy Park Branch)",
+            "end": "East Gate Old Street",
+            "start_time": "13:01",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 231,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "East Gate Old Street",
+            "end": "Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)",
+            "start_time": "15:18",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 232,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)",
+            "end": "Fei Hotel",
+            "start_time": "17:45",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 233,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Fei Hotel",
+            "end": "East River Guerrilla Force Command Post Memorial Hall",
+            "start_time": "08:00",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 234,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "East River Guerrilla Force Command Post Memorial Hall",
+            "end": "Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)",
+            "start_time": "10:30",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 235,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)",
+            "end": "Huaqiangbei Museum",
+            "start_time": "11:45",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 236,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Huaqiangbei Museum",
+            "end": "Shenzhen Station",
+            "start_time": "14:03",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 237,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Shenzhen Children's Park"
+          }
+        },
+        {
+          "index": 238,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Huang's Wellness Dessert Experts (Meilin Joy Park Branch)"
+          }
+        },
+        {
+          "index": 239,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "East Gate Old Street"
+          }
+        },
+        {
+          "index": 240,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)"
+          }
+        },
+        {
+          "index": 241,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Fei Hotel"
+          }
+        },
+        {
+          "index": 242,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "East River Guerrilla Force Command Post Memorial Hall"
+          }
+        },
+        {
+          "index": 243,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)"
+          }
+        },
+        {
+          "index": 244,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Huaqiangbei Museum"
+          }
+        },
+        {
+          "index": 245,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen East Station",
+            "end": "Shenzhen Children's Park",
+            "start_time": "06:55",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 246,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Children's Park",
+            "end": "Huang's Wellness Dessert Experts (Meilin Joy Park Branch)",
+            "start_time": "12:00",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 247,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Huang's Wellness Dessert Experts (Meilin Joy Park Branch)",
+            "end": "East Gate Old Street",
+            "start_time": "13:01",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 248,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "East Gate Old Street",
+            "end": "Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)",
+            "start_time": "15:18",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 249,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)",
+            "end": "Fei Hotel",
+            "start_time": "17:45",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 250,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Fei Hotel",
+            "end": "East River Guerrilla Force Command Post Memorial Hall",
+            "start_time": "08:00",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 251,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "East River Guerrilla Force Command Post Memorial Hall",
+            "end": "Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)",
+            "start_time": "10:30",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 252,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)",
+            "end": "Huaqiangbei Museum",
+            "start_time": "11:45",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 253,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Huaqiangbei Museum",
+            "end": "Shenzhen Station",
+            "start_time": "14:03",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 254,
+          "name": "intercity_validation_rows",
+          "arguments": {
+            "start_city": "Guangzhou",
+            "end_city": "Shenzhen",
+            "type": "train"
+          }
+        },
+        {
+          "index": 255,
+          "name": "intercity_validation_rows",
+          "arguments": {
+            "start_city": "Shenzhen",
+            "end_city": "Guangzhou",
+            "type": "train"
+          }
+        },
+        {
+          "index": 256,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Shenzhen Children's Park"
+          }
+        },
+        {
+          "index": 257,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Huang's Wellness Dessert Experts (Meilin Joy Park Branch)"
+          }
+        },
+        {
+          "index": 258,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "East Gate Old Street"
+          }
+        },
+        {
+          "index": 259,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)"
+          }
+        },
+        {
+          "index": 260,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Fei Hotel"
+          }
+        },
+        {
+          "index": 261,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "East River Guerrilla Force Command Post Memorial Hall"
+          }
+        },
+        {
+          "index": 262,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)"
+          }
+        },
+        {
+          "index": 263,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Huaqiangbei Museum"
+          }
+        }
+      ],
+      "input_accounting": "conservative UTF-8 preflight; actual provider usage recorded; missing remote usage remains unknown"
+    }
+  },
+  "supervision": {
+    "returncode": 0,
+    "hard_timeout": false,
+    "cancelled": false,
+    "wall_seconds": 127.45608991698828
+  },
+  "ledger": {
+    "request_attempts": 2,
+    "completed_attempts": 2,
+    "pending_attempts": 0,
+    "observed_usage": {
+      "prompt_tokens": 11538,
+      "completion_tokens": 9700,
+      "total_tokens": 21238
+    },
+    "unobserved_billing_possible": false,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.021238,
+      "upper": 0.021238
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793462833.993664,
+        "attempt_id": "1be80f24c7e34bb1a4bb754744dfd00b",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793462847.209294,
+        "attempt_id": "1be80f24c7e34bb1a4bb754744dfd00b",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 13.215115833969321,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-483cf9b3-ab93-44cf-a0a7-0d6a602a835a",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 480,
+        "completion_tokens": 802,
+        "total_tokens": 1282,
+        "reasoning_tokens": 700
+      },
+      {
+        "kind": "start",
+        "time": 1793462847.401088,
+        "attempt_id": "7a4bbbadb4ea4a3f9a6c33355553b749",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793462960.275532,
+        "attempt_id": "7a4bbbadb4ea4a3f9a6c33355553b749",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 112.87415883300127,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-bc03859f-31ab-4bf4-94f7-d5e3c3f4a064",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 11058,
+        "completion_tokens": 8898,
+        "total_tokens": 19956,
+        "reasoning_tokens": 8778
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 2,
+    "returned_tokens": 21238,
+    "tool_calls": 263,
+    "exhausted": ""
+  }
+}

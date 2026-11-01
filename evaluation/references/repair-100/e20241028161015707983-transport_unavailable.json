@@ -1,0 +1,1092 @@
+{
+  "task_uid": "e20241028161015707983",
+  "event": {
+    "kind": "transport_unavailable",
+    "target": "K360",
+    "description": ""
+  },
+  "plan": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "people_number": {
+        "type": "integer"
+      },
+      "start_city": {
+        "type": "string"
+      },
+      "target_city": {
+        "type": "string"
+      },
+      "itinerary": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "activities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "airplane",
+                      "attraction",
+                      "lunch",
+                      "dinner",
+                      "breakfast",
+                      "accommodation",
+                      "train"
+                    ]
+                  },
+                  "start_time": {
+                    "type": "string",
+                    "pattern": "^\\d{2}:\\d{2}$"
+                  },
+                  "end_time": {
+                    "type": "string",
+                    "pattern": "^\\d{2}:\\d{2}$"
+                  },
+                  "cost": {
+                    "type": "number"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "tickets": {
+                    "type": "integer"
+                  },
+                  "position": {
+                    "type": "string"
+                  },
+                  "transports": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "start": {
+                          "type": "string"
+                        },
+                        "end": {
+                          "type": "string"
+                        },
+                        "mode": {
+                          "type": "string",
+                          "enum": [
+                            "walk",
+                            "metro",
+                            "taxi"
+                          ]
+                        },
+                        "start_time": {
+                          "type": "string",
+                          "pattern": "^\\d{2}:\\d{2}$"
+                        },
+                        "end_time": {
+                          "type": "string",
+                          "pattern": "^\\d{2}:\\d{2}$"
+                        },
+                        "cost": {
+                          "type": "number"
+                        },
+                        "price": {
+                          "type": "number"
+                        },
+                        "distance": {
+                          "type": "number"
+                        },
+                        "tickets": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "start",
+                        "end",
+                        "mode",
+                        "start_time",
+                        "end_time",
+                        "price",
+                        "cost",
+                        "distance"
+                      ]
+                    }
+                  },
+                  "room_type": {
+                    "type": "integer"
+                  },
+                  "rooms": {
+                    "type": "integer"
+                  },
+                  "FlightID": {
+                    "type": "string"
+                  },
+                  "TrainID": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "type",
+                  "start_time",
+                  "end_time",
+                  "cost",
+                  "price",
+                  "transports"
+                ],
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "type": {
+                          "enum": [
+                            "airplane",
+                            "train"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "type"
+                      ]
+                    },
+                    "then": {
+                      "required": [
+                        "start",
+                        "end"
+                      ],
+                      "not": {
+                        "required": [
+                          "position"
+                        ]
+                      }
+                    },
+                    "else": {
+                      "required": [
+                        "position"
+                      ],
+                      "not": {
+                        "anyOf": [
+                          {
+                            "required": [
+                              "start"
+                            ]
+                          },
+                          {
+                            "required": [
+                              "end"
+                            ]
+                          },
+                          {
+                            "required": [
+                              "FlightID"
+                            ]
+                          },
+                          {
+                            "required": [
+                              "TrainID"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "if": {
+                      "properties": {
+                        "type": {
+                          "const": "airplane"
+                        }
+                      }
+                    },
+                    "then": {
+                      "required": [
+                        "FlightID"
+                      ]
+                    }
+                  },
+                  {
+                    "if": {
+                      "properties": {
+                        "type": {
+                          "const": "train"
+                        }
+                      }
+                    },
+                    "then": {
+                      "required": [
+                        "TrainID"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "required": [
+            "day",
+            "activities"
+          ]
+        }
+      }
+    },
+    "required": [
+      "people_number",
+      "start_city",
+      "target_city",
+      "itinerary"
+    ],
+    "people_number": 3,
+    "start_city": "上海",
+    "target_city": "苏州",
+    "itinerary": [
+      {
+        "day": 1,
+        "activities": [
+          {
+            "type": "train",
+            "start": "Shanghai Station",
+            "end": "Suzhou Station",
+            "TrainID": "K2186",
+            "start_time": "08:57",
+            "end_time": "10:00",
+            "price": 33.99,
+            "cost": 101.97,
+            "tickets": 3,
+            "transports": []
+          },
+          {
+            "type": "attraction",
+            "position": "Changmen Gate",
+            "start_time": "10:34",
+            "end_time": "12:45",
+            "price": 0,
+            "cost": 0.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Suzhou Station",
+                "end": "Changmen Gate",
+                "mode": "walk",
+                "start_time": "10:23",
+                "end_time": "10:34",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 0.9231455428240082,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "position": "Willow Lane (Jianxin Alley Branch)",
+            "start_time": "13:15",
+            "end_time": "13:45",
+            "price": 18,
+            "cost": 54.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Changmen Gate",
+                "end": "Willow Lane (Jianxin Alley Branch)",
+                "mode": "walk",
+                "start_time": "12:45",
+                "end_time": "13:12",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 2.3172411729485645,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Pingjiang Road Historic District",
+            "start_time": "14:05",
+            "end_time": "16:15",
+            "price": 0,
+            "cost": 0.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Willow Lane (Jianxin Alley Branch)",
+                "end": "Pingjiang Road Historic District",
+                "mode": "walk",
+                "start_time": "13:45",
+                "end_time": "14:02",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 1.453774262028893,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Suzhou Water Tour",
+            "start_time": "17:00",
+            "end_time": "18:30",
+            "price": 0,
+            "cost": 0.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Pingjiang Road Historic District",
+                "end": "Suzhou Water Tour",
+                "mode": "walk",
+                "start_time": "16:15",
+                "end_time": "16:55",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 3.340866546308282,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "dinner",
+            "position": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+            "start_time": "19:00",
+            "end_time": "19:30",
+            "price": 40,
+            "cost": 120.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Suzhou Water Tour",
+                "end": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+                "mode": "walk",
+                "start_time": "18:30",
+                "end_time": "18:52",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 1.8551809405808195,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Ancient Canal Night Cruise",
+            "start_time": "19:55",
+            "end_time": "20:30",
+            "price": 0,
+            "cost": 0.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+                "end": "Ancient Canal Night Cruise",
+                "mode": "walk",
+                "start_time": "19:30",
+                "end_time": "19:51",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 1.78238327302097,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "accommodation",
+            "position": "Garbo Hotel (Suzhou Guanqian Street Shiquan Street Branch)",
+            "start_time": "21:00",
+            "end_time": "23:59",
+            "price": 277,
+            "cost": 831.0,
+            "tickets": 3,
+            "rooms": 3,
+            "room_type": 1,
+            "transports": [
+              {
+                "start": "Ancient Canal Night Cruise",
+                "end": "Garbo Hotel (Suzhou Guanqian Street Shiquan Street Branch)",
+                "mode": "walk",
+                "start_time": "20:30",
+                "end_time": "20:51",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 1.8060912794907606,
+                "tickets": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "activities": [
+          {
+            "type": "breakfast",
+            "position": "Old Patron's Egg Pancake",
+            "start_time": "07:50",
+            "end_time": "08:30",
+            "price": 11,
+            "cost": 33.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Garbo Hotel (Suzhou Guanqian Street Shiquan Street Branch)",
+                "end": "Old Patron's Egg Pancake",
+                "mode": "walk",
+                "start_time": "07:30",
+                "end_time": "07:48",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 1.5725741378522258,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Arhat Hall",
+            "start_time": "09:30",
+            "end_time": "11:00",
+            "price": 0,
+            "cost": 0.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Old Patron's Egg Pancake",
+                "end": "Arhat Hall",
+                "mode": "walk",
+                "start_time": "08:30",
+                "end_time": "09:21",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 4.280734817424915,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "position": "Catch Fish to Eat (Moye Road Branch)",
+            "start_time": "12:10",
+            "end_time": "13:00",
+            "price": 62,
+            "cost": 186.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Arhat Hall",
+                "end": "Catch Fish to Eat (Moye Road Branch)",
+                "mode": "walk",
+                "start_time": "11:00",
+                "end_time": "12:07",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 5.647881211112495,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+            "start_time": "13:50",
+            "end_time": "14:30",
+            "price": 0,
+            "cost": 0.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Catch Fish to Eat (Moye Road Branch)",
+                "end": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+                "mode": "walk",
+                "start_time": "13:00",
+                "end_time": "13:45",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 3.819968033735107,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "train",
+            "start": "Suzhou Station",
+            "end": "Shanghai Station",
+            "TrainID": "G3122",
+            "start_time": "15:43",
+            "end_time": "16:16",
+            "price": 55.23,
+            "cost": 165.69,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+                "end": "Suzhou Station",
+                "mode": "walk",
+                "start_time": "14:30",
+                "end_time": "14:57",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 2.300708066227201,
+                "tickets": 3
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "complete_constraint_check": true,
+  "construction": "independent public-tool constructor and previously valid alternative initial plans; repair methods not executed",
+  "seed_method": "b2",
+  "clarification": {
+    "status": "ready",
+    "base_revision": "f221da825ccf4630adb7379199c7ededb3daca7a28fe5fcd2970b73ff18d8e08",
+    "task": {
+      "days": 2,
+      "limit_rooms": true,
+      "limits_room_type": true,
+      "nature_language": "当前位置上海。我和两位朋友打算去苏州玩两天，选择火车出行，预算2300元，开三间单床房。请给我一个旅行规划。",
+      "nature_language_en": "Current location: Shanghai. My two friends and I are planning to visit Suzhou for two days, and we plan to travel by train. Our budget is 2300 RMB, and we need three single-bed rooms. Could you please provide a travel itinerary for us?",
+      "people_number": 3,
+      "start_city": "上海",
+      "tag": "medium",
+      "target_city": "苏州",
+      "uid": "e20241028161015707983"
+    },
+    "seed_plan": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "properties": {
+        "people_number": {
+          "type": "integer"
+        },
+        "start_city": {
+          "type": "string"
+        },
+        "target_city": {
+          "type": "string"
+        },
+        "itinerary": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "day": {
+                "type": "integer"
+              },
+              "activities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "airplane",
+                        "attraction",
+                        "lunch",
+                        "dinner",
+                        "breakfast",
+                        "accommodation",
+                        "train"
+                      ]
+                    },
+                    "start_time": {
+                      "type": "string",
+                      "pattern": "^\\d{2}:\\d{2}$"
+                    },
+                    "end_time": {
+                      "type": "string",
+                      "pattern": "^\\d{2}:\\d{2}$"
+                    },
+                    "cost": {
+                      "type": "number"
+                    },
+                    "price": {
+                      "type": "number"
+                    },
+                    "tickets": {
+                      "type": "integer"
+                    },
+                    "position": {
+                      "type": "string"
+                    },
+                    "transports": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "start": {
+                            "type": "string"
+                          },
+                          "end": {
+                            "type": "string"
+                          },
+                          "mode": {
+                            "type": "string",
+                            "enum": [
+                              "walk",
+                              "metro",
+                              "taxi"
+                            ]
+                          },
+                          "start_time": {
+                            "type": "string",
+                            "pattern": "^\\d{2}:\\d{2}$"
+                          },
+                          "end_time": {
+                            "type": "string",
+                            "pattern": "^\\d{2}:\\d{2}$"
+                          },
+                          "cost": {
+                            "type": "number"
+                          },
+                          "price": {
+                            "type": "number"
+                          },
+                          "distance": {
+                            "type": "number"
+                          },
+                          "tickets": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "start",
+                          "end",
+                          "mode",
+                          "start_time",
+                          "end_time",
+                          "price",
+                          "cost",
+                          "distance"
+                        ]
+                      }
+                    },
+                    "room_type": {
+                      "type": "integer"
+                    },
+                    "rooms": {
+                      "type": "integer"
+                    },
+                    "FlightID": {
+                      "type": "string"
+                    },
+                    "TrainID": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "start_time",
+                    "end_time",
+                    "cost",
+                    "price",
+                    "transports"
+                  ],
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "airplane",
+                              "train"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ]
+                      },
+                      "then": {
+                        "required": [
+                          "start",
+                          "end"
+                        ],
+                        "not": {
+                          "required": [
+                            "position"
+                          ]
+                        }
+                      },
+                      "else": {
+                        "required": [
+                          "position"
+                        ],
+                        "not": {
+                          "anyOf": [
+                            {
+                              "required": [
+                                "start"
+                              ]
+                            },
+                            {
+                              "required": [
+                                "end"
+                              ]
+                            },
+                            {
+                              "required": [
+                                "FlightID"
+                              ]
+                            },
+                            {
+                              "required": [
+                                "TrainID"
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "if": {
+                        "properties": {
+                          "type": {
+                            "const": "airplane"
+                          }
+                        }
+                      },
+                      "then": {
+                        "required": [
+                          "FlightID"
+                        ]
+                      }
+                    },
+                    {
+                      "if": {
+                        "properties": {
+                          "type": {
+                            "const": "train"
+                          }
+                        }
+                      },
+                      "then": {
+                        "required": [
+                          "TrainID"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "day",
+              "activities"
+            ]
+          }
+        }
+      },
+      "required": [
+        "people_number",
+        "start_city",
+        "target_city",
+        "itinerary"
+      ],
+      "people_number": 3,
+      "start_city": "上海",
+      "target_city": "苏州",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "train",
+              "start": "Shanghai Station",
+              "end": "Suzhou Station",
+              "TrainID": "K360",
+              "start_time": "09:29",
+              "end_time": "10:23",
+              "price": 33.99,
+              "cost": 101.97,
+              "tickets": 3,
+              "transports": []
+            },
+            {
+              "type": "attraction",
+              "position": "Changmen Gate",
+              "start_time": "10:34",
+              "end_time": "12:45",
+              "price": 0,
+              "cost": 0.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Suzhou Station",
+                  "end": "Changmen Gate",
+                  "mode": "walk",
+                  "start_time": "10:23",
+                  "end_time": "10:34",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 0.9231455428240082,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Willow Lane (Jianxin Alley Branch)",
+              "start_time": "13:15",
+              "end_time": "13:45",
+              "price": 18,
+              "cost": 54.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Changmen Gate",
+                  "end": "Willow Lane (Jianxin Alley Branch)",
+                  "mode": "walk",
+                  "start_time": "12:45",
+                  "end_time": "13:12",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 2.3172411729485645,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Pingjiang Road Historic District",
+              "start_time": "14:05",
+              "end_time": "16:15",
+              "price": 0,
+              "cost": 0.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Willow Lane (Jianxin Alley Branch)",
+                  "end": "Pingjiang Road Historic District",
+                  "mode": "walk",
+                  "start_time": "13:45",
+                  "end_time": "14:02",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 1.453774262028893,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Suzhou Water Tour",
+              "start_time": "17:00",
+              "end_time": "18:30",
+              "price": 0,
+              "cost": 0.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Pingjiang Road Historic District",
+                  "end": "Suzhou Water Tour",
+                  "mode": "walk",
+                  "start_time": "16:15",
+                  "end_time": "16:55",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 3.340866546308282,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "dinner",
+              "position": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+              "start_time": "19:00",
+              "end_time": "19:30",
+              "price": 40,
+              "cost": 120.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Suzhou Water Tour",
+                  "end": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+                  "mode": "walk",
+                  "start_time": "18:30",
+                  "end_time": "18:52",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 1.8551809405808195,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Ancient Canal Night Cruise",
+              "start_time": "19:55",
+              "end_time": "20:30",
+              "price": 0,
+              "cost": 0.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+                  "end": "Ancient Canal Night Cruise",
+                  "mode": "walk",
+                  "start_time": "19:30",
+                  "end_time": "19:51",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 1.78238327302097,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "Garbo Hotel (Suzhou Guanqian Street Shiquan Street Branch)",
+              "start_time": "21:00",
+              "end_time": "23:59",
+              "price": 277,
+              "cost": 831.0,
+              "tickets": 3,
+              "rooms": 3,
+              "room_type": 1,
+              "transports": [
+                {
+                  "start": "Ancient Canal Night Cruise",
+                  "end": "Garbo Hotel (Suzhou Guanqian Street Shiquan Street Branch)",
+                  "mode": "walk",
+                  "start_time": "20:30",
+                  "end_time": "20:51",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 1.8060912794907606,
+                  "tickets": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "breakfast",
+              "position": "Old Patron's Egg Pancake",
+              "start_time": "07:50",
+              "end_time": "08:30",
+              "price": 11,
+              "cost": 33.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Garbo Hotel (Suzhou Guanqian Street Shiquan Street Branch)",
+                  "end": "Old Patron's Egg Pancake",
+                  "mode": "walk",
+                  "start_time": "07:30",
+                  "end_time": "07:48",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 1.5725741378522258,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Arhat Hall",
+              "start_time": "09:30",
+              "end_time": "11:00",
+              "price": 0,
+              "cost": 0.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Old Patron's Egg Pancake",
+                  "end": "Arhat Hall",
+                  "mode": "walk",
+                  "start_time": "08:30",
+                  "end_time": "09:21",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 4.280734817424915,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Catch Fish to Eat (Moye Road Branch)",
+              "start_time": "12:10",
+              "end_time": "13:00",
+              "price": 62,
+              "cost": 186.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Arhat Hall",
+                  "end": "Catch Fish to Eat (Moye Road Branch)",
+                  "mode": "walk",
+                  "start_time": "11:00",
+                  "end_time": "12:07",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 5.647881211112495,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+              "start_time": "13:50",
+              "end_time": "14:30",
+              "price": 0,
+              "cost": 0.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Catch Fish to Eat (Moye Road Branch)",
+                  "end": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+                  "mode": "walk",
+                  "start_time": "13:00",
+                  "end_time": "13:45",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 3.819968033735107,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "train",
+              "start": "Suzhou Station",
+              "end": "Shanghai Station",
+              "TrainID": "G3122",
+              "start_time": "15:43",
+              "end_time": "16:16",
+              "price": 55.23,
+              "cost": 165.69,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+                  "end": "Suzhou Station",
+                  "mode": "walk",
+                  "start_time": "14:30",
+                  "end_time": "14:57",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 2.300708066227201,
+                  "tickets": 3
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "kind": "transport_unavailable",
+      "day": null,
+      "new_days": null,
+      "new_budget": null,
+      "target": "K360",
+      "description": ""
+    },
+    "state_revision": "8e442b50105fe149d94948391287fa11ab52b050b96437b982b639bcfa4a01d4"
+  }
+}

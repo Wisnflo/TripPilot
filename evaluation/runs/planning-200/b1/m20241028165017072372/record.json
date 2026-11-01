@@ -1,0 +1,111 @@
+{
+  "job": {
+    "uid": "m20241028165017072372",
+    "split": "easy",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "b1",
+    "kind": "static",
+    "task": {
+      "days": 2,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "我目前在武汉，计划独自前往南京游玩两天，酒店选择南京夫子庙老门东附近的花筑·僖堂民宿，请帮我制定一个旅行计划。",
+      "nature_language_en": "Sure! Here is the translation of your request into English:",
+      "people_number": 1,
+      "start_city": "武汉",
+      "tag": "easy",
+      "target_city": "南京",
+      "uid": "m20241028165017072372"
+    }
+  },
+  "result": {
+    "task_uid": "m20241028165017072372",
+    "method": "b1",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.02908050001133
+  },
+  "ledger": {
+    "request_attempts": 3,
+    "completed_attempts": 2,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 15837,
+      "completion_tokens": 715,
+      "total_tokens": 16552
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0137872,
+      "upper": 0.0137872
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793441538.166386,
+        "attempt_id": "ca7c616db535444f99f45c232f0e6316",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793441718.318717,
+        "attempt_id": "ca7c616db535444f99f45c232f0e6316",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 180.15183595800772,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793441720.3287628,
+        "attempt_id": "9672932e938b4a938c6afc15a712fa4e",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      },
+      {
+        "kind": "success",
+        "time": 1793441740.496562,
+        "attempt_id": "9672932e938b4a938c6afc15a712fa4e",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 20.16694958298467,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-4d4ff780-0456-4a92-b5a4-12c0904c7916",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 15837,
+        "completion_tokens": 715,
+        "total_tokens": 16552,
+        "reasoning_tokens": 580
+      },
+      {
+        "kind": "start",
+        "time": 1793441740.677856,
+        "attempt_id": "5e4fad15ccfe4f4cb0f989b7f7f676d8",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 2,
+    "returned_tokens": 16552,
+    "tool_calls": 206,
+    "exhausted": ""
+  }
+}

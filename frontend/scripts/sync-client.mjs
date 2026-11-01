@@ -1,0 +1,11 @@
+import { cpSync, mkdirSync, copyFileSync, rmSync, existsSync } from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const target=path.resolve(root,'../src/trippilot/web');
+if(!existsSync(path.join(root,'dist/client/index.html'))||!existsSync(path.join(root,'dist/client/assets')))throw new Error('Build the client before syncing');
+rmSync(path.join(target,'assets'),{recursive:true,force:true});
+mkdirSync(path.join(target,'assets'),{recursive:true});
+copyFileSync(path.join(root,'dist/client/index.html'),path.join(target,'index.html'));
+cpSync(path.join(root,'dist/client/assets'),path.join(target,'assets'),{recursive:true});
+console.log('Updated bundled TripPilot frontend');

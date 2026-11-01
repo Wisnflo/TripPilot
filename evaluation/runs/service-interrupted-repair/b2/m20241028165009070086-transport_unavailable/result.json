@@ -1,0 +1,690 @@
+{
+  "task_uid": "m20241028165009070086",
+  "method": "b2",
+  "model": "qwen3.8-reasoner",
+  "terminal_state": "request_error",
+  "plan": null,
+  "steps": [
+    {
+      "step": 1,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "北京",
+            "end_city": "深圳",
+            "intercity_type": "airplane",
+            "earliest_leave_time": "08:00"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "intercity_transport_select",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"earliest_leave_time\\\": \\\"08:00\\\", \\\"end_city\\\": \\\"Shenzhen\\\", \\\"intercity_type\\\": \\\"airplane\\\", \\\"start_city\\\": \\\"Beijing\\\"})\", \"text\": \"['FlightID' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['FL096' 'Beijing Capital International Airport'\\n \\\"Shenzhen Bao'an International Airport\\\" '12:07' '14:32' 2.43 949.32]\\n['FL092' 'Beijing Capital International Airport'\\n \\\"Shenzhen Bao'an International Airport\\\" '12:45' '15:10' 2.43 "
+        }
+      ],
+      "latency_seconds": 4.338111374992877,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-5a06e204-cbf4-429d-baec-dde8cc62a966",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 5197,
+      "completion_tokens": 316,
+      "reasoning_tokens": 239,
+      "attempts": 1,
+      "request_latencies": [
+        4.338111374992877
+      ]
+    },
+    {
+      "step": 2,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "深圳",
+            "start": "Shenzhen Bao'an International Airport",
+            "end": "Shenzhen Central Park",
+            "start_time": "15:10",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Shenzhen\\\", \\\"end\\\": \\\"Shenzhen Central Park\\\", \\\"start\\\": \\\"Shenzhen Bao'an International Airport\\\", \\\"start_time\\\": \\\"15:10\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': \\\"Shenzhen Bao'an International Airport\\\", 'end': 'Shenzhen Central Park', 'mode': 'taxi', 'start_time': '15:10', 'end_time': '15:53', 'cost': 126.55, 'distance': 29.3}]\", \"data\": [{\"start\": \"Shenzhen Bao'an International Airport\", \"end\": \"Shenzhen Central Park\", \"mode\""
+        }
+      ],
+      "latency_seconds": 5.071216957992874,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-c784e915-646e-4825-8e42-8f7c4731454a",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 6555,
+      "completion_tokens": 313,
+      "reasoning_tokens": 225,
+      "attempts": 1,
+      "request_latencies": [
+        5.071216957992874
+      ]
+    },
+    {
+      "step": 3,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "深圳",
+            "start": "Shenzhen Central Park",
+            "end": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+            "start_time": "17:30",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Shenzhen\\\", \\\"end\\\": \\\"Jun Ting Chinese Restaurant (Hua Qiang Road Branch)\\\", \\\"start\\\": \\\"Shenzhen Central Park\\\", \\\"start_time\\\": \\\"17:30\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Shenzhen Central Park', 'end': 'Jun Ting Chinese Restaurant (Hua Qiang Road Branch)', 'mode': 'taxi', 'start_time': '17:30', 'end_time': '17:30', 'cost': 11.0, 'distance': 0.25}]\", \"data\": [{\"start\": \"Shenzhen Central Park\", \"end\": \"Jun Ting Chinese Resta"
+        }
+      ],
+      "latency_seconds": 3.066919207922183,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-1a609093-9688-4255-9fda-d1eee53a2b1b",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 6863,
+      "completion_tokens": 201,
+      "reasoning_tokens": 107,
+      "attempts": 1,
+      "request_latencies": [
+        3.066919207922183
+      ]
+    },
+    {
+      "step": 4,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "attractions_keys",
+          "arguments": {
+            "city": "深圳"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "attractions_keys",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"attractions_keys({\\\"city\\\": \\\"Shenzhen\\\"})\", \"text\": \"[('id', <class 'numpy.int64'>), ('name', <class 'str'>), ('type', <class 'str'>), ('lat', <class 'numpy.float64'>), ('lon', <class 'numpy.float64'>), ('opentime', <class 'str'>), ('endtime', <class 'str'>), ('price', <class 'numpy.float64'>), ('recommendmintime', <class 'numpy.float64'>), ('recommendmaxtime', <class 'numpy.float64'>)]\", \"data\": [[\"id\", \"<class 'numpy.int64'>\"], [\"name\", \"<class 'str'>\"], [\"type\","
+        }
+      ],
+      "latency_seconds": 2.95370054198429,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-8394c25d-3d18-4575-ac51-c4cfb2a508c4",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 7189,
+      "completion_tokens": 98,
+      "reasoning_tokens": 68,
+      "attempts": 1,
+      "request_latencies": [
+        2.95370054198429
+      ]
+    },
+    {
+      "step": 5,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "attractions_id_is_open",
+          "arguments": {
+            "city": "深圳",
+            "id": 1,
+            "time": "16:00"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "attractions_id_is_open",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"attractions_id_is_open({\\\"city\\\": \\\"Shenzhen\\\", \\\"id\\\": 1, \\\"time\\\": \\\"16:00\\\"})\", \"text\": \"True\", \"data\": true}"
+        }
+      ],
+      "latency_seconds": 2.634141999995336,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-18f9ca68-bb22-465d-bc5f-506d90fbc9cf",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 7492,
+      "completion_tokens": 122,
+      "reasoning_tokens": 64,
+      "attempts": 1,
+      "request_latencies": [
+        2.634141999995336
+      ]
+    },
+    {
+      "step": 6,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "attractions_select",
+          "arguments": {
+            "city": "深圳",
+            "key": "name",
+            "op": "eq",
+            "value": "Shenzhen Central Park"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "attractions_select",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"attractions_select({\\\"city\\\": \\\"Shenzhen\\\", \\\"key\\\": \\\"name\\\", \\\"op\\\": \\\"eq\\\", \\\"value\\\": \\\"Shenzhen Central Park\\\"})\", \"text\": \"['id' 'name' 'type' 'lat' 'lon' 'opentime' 'endtime' 'price'\\n 'recommendmintime' 'recommendmaxtime']\\n[161 'Shenzhen Central Park' 'park' 22.558082 114.084904 '00:00' '24:00'\\n 0.0 3.0 3.5]\\n[216 'Shenzhen Central Park' 'park' 22.538145 114.082039 '00:00' '24:00'\\n 0.0 1.0 1.5]\\nPage/Total: 1/1\", \"data\": {\"type\": \"dataframe\", \"columns\": ["
+        }
+      ],
+      "latency_seconds": 2.2449479999486357,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-0dccb65f-e167-48f1-8b63-26c2162c2026",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 7615,
+      "completion_tokens": 134,
+      "reasoning_tokens": 67,
+      "attempts": 1,
+      "request_latencies": [
+        2.2449479999486357
+      ]
+    },
+    {
+      "step": 7,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "attractions_id_is_open",
+          "arguments": {
+            "city": "深圳",
+            "id": 161,
+            "time": "16:30"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "attractions_id_is_open",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"attractions_id_is_open({\\\"city\\\": \\\"Shenzhen\\\", \\\"id\\\": 161, \\\"time\\\": \\\"16:30\\\"})\", \"text\": \"True\", \"data\": true}"
+        }
+      ],
+      "latency_seconds": 3.7475877919932827,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-cc5140f4-ea0c-4aba-9c00-b0946ae4504f",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 8199,
+      "completion_tokens": 137,
+      "reasoning_tokens": 77,
+      "attempts": 1,
+      "request_latencies": [
+        3.7475877919932827
+      ]
+    },
+    {
+      "step": 8,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "深圳",
+            "start": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+            "end": "Rezen Dong Hotel (Shenzhen Huaqiangbei)",
+            "start_time": "19:30",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Shenzhen\\\", \\\"end\\\": \\\"Rezen Dong Hotel (Shenzhen Huaqiangbei)\\\", \\\"start\\\": \\\"Jun Ting Chinese Restaurant (Hua Qiang Road Branch)\\\", \\\"start_time\\\": \\\"19:30\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Jun Ting Chinese Restaurant (Hua Qiang Road Branch)', 'end': 'Rezen Dong Hotel (Shenzhen Huaqiangbei)', 'mode': 'taxi', 'start_time': '19:30', 'end_time': '19:30', 'cost': 11.0, 'distance': 0.18}]\", \"data\": [{\"start\": \"Jun Ting Chinese R"
+        }
+      ],
+      "latency_seconds": 2.7633895829785615,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-ed0c40e0-d952-4393-a0bc-1af0841f95d7",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 8326,
+      "completion_tokens": 182,
+      "reasoning_tokens": 80,
+      "attempts": 1,
+      "request_latencies": [
+        2.7633895829785615
+      ]
+    },
+    {
+      "step": 9,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "attractions_id_is_open",
+          "arguments": {
+            "city": "深圳",
+            "id": 161,
+            "time": "16:00"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "attractions_id_is_open",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"attractions_id_is_open({\\\"city\\\": \\\"Shenzhen\\\", \\\"id\\\": 161, \\\"time\\\": \\\"16:00\\\"})\", \"text\": \"True\", \"data\": true}"
+        }
+      ],
+      "latency_seconds": 7.903400916955434,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-5e31ce61-609f-4b7d-ba78-c3f9d9304e94",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 8682,
+      "completion_tokens": 570,
+      "reasoning_tokens": 510,
+      "attempts": 1,
+      "request_latencies": [
+        7.903400916955434
+      ]
+    },
+    {
+      "step": 10,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "深圳",
+            "start": "Shenzhen Central Park",
+            "end": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+            "start_time": "17:30",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Shenzhen\\\", \\\"end\\\": \\\"Jun Ting Chinese Restaurant (Hua Qiang Road Branch)\\\", \\\"start\\\": \\\"Shenzhen Central Park\\\", \\\"start_time\\\": \\\"17:30\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Shenzhen Central Park', 'end': 'Jun Ting Chinese Restaurant (Hua Qiang Road Branch)', 'mode': 'taxi', 'start_time': '17:30', 'end_time': '17:30', 'cost': 11.0, 'distance': 0.25}]\", \"data\": [{\"start\": \"Shenzhen Central Park\", \"end\": \"Jun Ting Chinese Resta"
+        }
+      ],
+      "latency_seconds": 4.467877999995835,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-6f265e42-183f-4a40-a5e6-7f1bd4e2c415",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 8809,
+      "completion_tokens": 347,
+      "reasoning_tokens": 253,
+      "attempts": 1,
+      "request_latencies": [
+        4.467877999995835
+      ]
+    },
+    {
+      "step": 11,
+      "attempts": 2,
+      "request_latencies": [
+        0.15904375002719462,
+        0.06686570798046887
+      ],
+      "error": "RateLimitError"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 74927,
+    "completion_tokens": 2420,
+    "total_tokens": 77347,
+    "reasoning_tokens": 1690
+  },
+  "checker": null,
+  "error": null,
+  "metadata": {
+    "event_text": "This transport is no longer available: FL096. Replace it and keep the rest feasible.",
+    "usage_complete": false,
+    "request_error": "model request failed after 2 attempts: Error code: 429 - {'error': {'message': 'Rate limit exceeded for api_key: [REDACTED] Limit type: requests. Current limit: 20, Remaining: 0. Limit resets at: 2026-11-01 00:17:27 UTC', 'type': 'throttling_error', 'param': None, 'code': '429'}}",
+    "request_attempts": 2,
+    "request_latencies": [
+      0.15904375002719462,
+      0.06686570798046887
+    ],
+    "request_count": 12,
+    "retry_count": 1,
+    "request_latency_seconds": 39.41720383276697
+  },
+  "started_at": "2026-11-01T00:15:45.985333+00:00",
+  "finished_at": "2026-11-01T00:16:27.819569+00:00",
+  "duration_seconds": 41.83437837508973,
+  "wall_seconds": 41.83475074998569,
+  "resources": {
+    "limits": {
+      "feedback": 4,
+      "model_calls": 16,
+      "tokens": 500000,
+      "tools": 400,
+      "output_tokens_per_call": 10000
+    },
+    "model_calls": 11,
+    "returned_tokens": 77347,
+    "feedback_calls": 0,
+    "tool_calls": 10,
+    "exhausted": "",
+    "tool_receipts": [
+      {
+        "index": 1,
+        "name": "intercity_transport_select",
+        "arguments": {
+          "start_city": "Beijing",
+          "end_city": "Shenzhen",
+          "intercity_type": "airplane",
+          "earliest_leave_time": "08:00"
+        }
+      },
+      {
+        "index": 2,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Shenzhen Bao'an International Airport",
+          "end": "Shenzhen Central Park",
+          "start_time": "15:10",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 3,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Shenzhen Central Park",
+          "end": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+          "start_time": "17:30",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 4,
+        "name": "attractions_keys",
+        "arguments": {
+          "city": "Shenzhen"
+        }
+      },
+      {
+        "index": 5,
+        "name": "attractions_id_is_open",
+        "arguments": {
+          "city": "Shenzhen",
+          "id": 1,
+          "time": "16:00"
+        }
+      },
+      {
+        "index": 6,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Shenzhen",
+          "key": "name",
+          "op": "eq",
+          "value": "Shenzhen Central Park"
+        }
+      },
+      {
+        "index": 7,
+        "name": "attractions_id_is_open",
+        "arguments": {
+          "city": "Shenzhen",
+          "id": 161,
+          "time": "16:30"
+        }
+      },
+      {
+        "index": 8,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+          "end": "Rezen Dong Hotel (Shenzhen Huaqiangbei)",
+          "start_time": "19:30",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 9,
+        "name": "attractions_id_is_open",
+        "arguments": {
+          "city": "Shenzhen",
+          "id": 161,
+          "time": "16:00"
+        }
+      },
+      {
+        "index": 10,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Shenzhen Central Park",
+          "end": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+          "start_time": "17:30",
+          "transport_type": "taxi"
+        }
+      }
+    ],
+    "input_accounting": "conservative UTF-8 preflight; actual provider usage recorded; missing remote usage remains unknown"
+  },
+  "clarification": {
+    "status": "ready",
+    "base_revision": "da5076ddefcae96dd6473ea182cd532485252c666051716a8a3c67736dc4d7c0",
+    "task": {
+      "uid": "m20241028165009070086",
+      "tag": "easy",
+      "start_city": "北京",
+      "target_city": "深圳",
+      "days": 2,
+      "people_number": 1,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置北京。我一个人想去深圳玩2天，住丽呈東谷酒店(深圳华强北店)，请给我一个旅行规划。",
+      "nature_language_en": "Current location: Beijing. I want to travel alone to Shenzhen for 2 days and stay at the Rezen Dong Hotel (Shenzhen Huaqiangbei). Please provide me with a travel plan."
+    },
+    "seed_plan": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "people_number": 1,
+      "start_city": "北京",
+      "target_city": "深圳",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "airplane",
+              "start_time": "12:07",
+              "end_time": "14:32",
+              "cost": 949.32,
+              "price": 949.32,
+              "tickets": 1,
+              "FlightID": "FL096",
+              "start": "Beijing Capital International Airport",
+              "end": "Shenzhen Bao'an International Airport",
+              "transports": []
+            },
+            {
+              "type": "attraction",
+              "start_time": "15:30",
+              "end_time": "17:00",
+              "cost": 0.0,
+              "price": 0.0,
+              "tickets": 1,
+              "position": "Shenzhen Central Park",
+              "transports": [
+                {
+                  "start": "Shenzhen Bao'an International Airport",
+                  "end": "Shenzhen Central Park",
+                  "mode": "taxi",
+                  "start_time": "14:32",
+                  "end_time": "15:15",
+                  "cost": 126.55,
+                  "price": 126.55,
+                  "distance": 29.3,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "dinner",
+              "start_time": "17:00",
+              "end_time": "19:00",
+              "cost": 241.0,
+              "price": 241.0,
+              "position": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+              "transports": [
+                {
+                  "start": "Shenzhen Central Park",
+                  "end": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+                  "mode": "taxi",
+                  "start_time": "17:00",
+                  "end_time": "17:00",
+                  "cost": 11.0,
+                  "price": 11.0,
+                  "distance": 0.25,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "start_time": "19:00",
+              "end_time": "21:00",
+              "cost": 420.0,
+              "price": 420.0,
+              "rooms": 1,
+              "room_type": 2,
+              "position": "Rezen Dong Hotel (Shenzhen Huaqiangbei)",
+              "transports": [
+                {
+                  "start": "Jun Ting Chinese Restaurant (Hua Qiang Road Branch)",
+                  "end": "Rezen Dong Hotel (Shenzhen Huaqiangbei)",
+                  "mode": "taxi",
+                  "start_time": "19:00",
+                  "end_time": "19:00",
+                  "cost": 11.0,
+                  "price": 11.0,
+                  "distance": 0.18,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "breakfast",
+              "start_time": "08:30",
+              "end_time": "09:00",
+              "cost": 89.0,
+              "price": 89.0,
+              "position": "Diandude (Huaqiang South Branch)",
+              "transports": [
+                {
+                  "start": "Rezen Dong Hotel (Shenzhen Huaqiangbei)",
+                  "end": "Diandude (Huaqiang South Branch)",
+                  "mode": "taxi",
+                  "start_time": "08:00",
+                  "end_time": "08:00",
+                  "cost": 11.0,
+                  "price": 11.0,
+                  "distance": 0.47,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "start_time": "10:00",
+              "end_time": "12:00",
+              "cost": 0.0,
+              "price": 0.0,
+              "tickets": 1,
+              "position": "Huaqiangbei Museum",
+              "transports": [
+                {
+                  "start": "Diandude (Huaqiang South Branch)",
+                  "end": "Huaqiangbei Museum",
+                  "mode": "taxi",
+                  "start_time": "09:30",
+                  "end_time": "09:32",
+                  "cost": 11.0,
+                  "price": 11.0,
+                  "distance": 1.71,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "airplane",
+              "start_time": "16:34",
+              "end_time": "18:59",
+              "cost": 927.7,
+              "price": 927.7,
+              "tickets": 1,
+              "FlightID": "FL175",
+              "start": "Shenzhen Bao'an International Airport",
+              "end": "Beijing Capital International Airport",
+              "transports": [
+                {
+                  "start": "Huaqiangbei Museum",
+                  "end": "Shenzhen Bao'an International Airport",
+                  "mode": "taxi",
+                  "start_time": "13:00",
+                  "end_time": "13:44",
+                  "cost": 129.32,
+                  "price": 129.32,
+                  "distance": 29.92,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "kind": "transport_unavailable",
+      "day": null,
+      "new_days": null,
+      "new_budget": null,
+      "target": "FL096",
+      "description": ""
+    },
+    "state_revision": "c6295958e039a208e5c460e0cf23d9827a53050bed80ac64d7fb39f8f574473a"
+  },
+  "event": {
+    "kind": "transport_unavailable",
+    "target": "FL096",
+    "description": ""
+  },
+  "event_check": null
+}

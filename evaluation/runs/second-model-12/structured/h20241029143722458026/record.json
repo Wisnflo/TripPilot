@@ -1,0 +1,119 @@
+{
+  "job": {
+    "uid": "h20241029143722458026",
+    "split": "human",
+    "model": "glm-5.3-flash",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "structured",
+    "kind": "static",
+    "task": {
+      "days": 3,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "[当前位置武汉,目标位置上海,旅行人数2,旅行天数3] 坐标武汉，两个人想去上海玩三天，必须高铁往返，想逛外滩、游玩上海迪士尼乐园、陆家嘴，并参观一些人文历史景观，同时享受上海特色美食，酒店价格不能超过¥450一晚，可以帮我做一个行程规划吗预算4000",
+      "nature_language_en": "[Current location: Wuhan, Destination: Shanghai, Number of travelers: 2, Duration of trip: 3 days] Two people in Wuhan want to travel to Shanghai for three days. They must travel round-trip by high-speed train. They want to visit the Bund, enjoy Shanghai Disneyland, explore Lujiazui, and visit some cultural and historical sites, while also enjoying Shanghai's local cuisine. The hotel price should not exceed ¥450 per night. Can you help me create an itinerary with a budget of ¥4000?",
+      "people_number": 2,
+      "start_city": "武汉",
+      "tag": "human",
+      "target_city": "上海",
+      "uid": "h20241029143722458026"
+    }
+  },
+  "result": {
+    "task_uid": "h20241029143722458026",
+    "method": "structured",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.0245761660626
+  },
+  "ledger": {
+    "request_attempts": 3,
+    "completed_attempts": 2,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 562,
+      "completion_tokens": 2958,
+      "total_tokens": 3520
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.01408,
+      "upper": 0.01408
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793501319.9695702,
+        "attempt_id": "61a4845e5d9f493b86ee8d8d4b034481",
+        "model": "glm-5.3-flash",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793501461.6502972,
+        "attempt_id": "61a4845e5d9f493b86ee8d8d4b034481",
+        "model": "glm-5.3-flash",
+        "elapsed": 141.68056154204533,
+        "response_model": "glm-5.3-flash",
+        "request_id": "chatcmpl-7f527da2-f0c2-4c9f-91e1-0ea08dcc211f",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 562,
+        "completion_tokens": 2958,
+        "total_tokens": 3520,
+        "reasoning_tokens": null
+      },
+      {
+        "kind": "start",
+        "time": 1793501461.845013,
+        "attempt_id": "12751c1f15d34bb6822122c3fd2fc399",
+        "model": "glm-5.3-flash",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793501641.867299,
+        "attempt_id": "12751c1f15d34bb6822122c3fd2fc399",
+        "model": "glm-5.3-flash",
+        "elapsed": 180.02210237504914,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "backoff",
+        "time": 1793501641.8679879,
+        "attempt_id": "12751c1f15d34bb6822122c3fd2fc399",
+        "model": "glm-5.3-flash",
+        "seconds": 2.0,
+        "reason": "transient"
+      },
+      {
+        "kind": "start",
+        "time": 1793501643.873923,
+        "attempt_id": "c2cc29d4857c42b0976b4857a506c2ad",
+        "model": "glm-5.3-flash",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 2,
+    "returned_tokens": 3520,
+    "tool_calls": 221,
+    "exhausted": ""
+  }
+}

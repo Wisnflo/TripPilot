@@ -43,6 +43,32 @@ class FinalReviewTest(unittest.TestCase):
                 self.assertEqual(cli.main(),0)
             self.assertTrue((output/'record.json').exists());self.assertTrue((output/'plan.json').exists())
 
+    def test_interrupt_waits_for_supervision_before_recording_cancellation(self):
+        import os
+        import signal
+        import threading
+        import time
+        from trippilot.models.config import ModelConfig
+        cli=module('trip')
+        with tempfile.TemporaryDirectory() as directory:
+            output=Path(directory)/'out'
+            def delayed(command,folder,seconds,**kwargs):
+                timer=threading.Timer(0.02,lambda:os.kill(os.getpid(),signal.SIGINT))
+                timer.start()
+                time.sleep(0.12)
+                timer.join()
+                (folder/'requests.jsonl').write_text('')
+                return {'hard_timeout':False,'cancelled':True,'wall_seconds':0.12,'returncode':-15}
+            with patch.object(sys,'argv',['trip.py','plan','--from-city','杭州','--to-city','杭州','--days','1','--request','去公园','--output-dir',str(output)]), \
+                 patch('trippilot.execution.supervisor.supervise',side_effect=delayed), \
+                 patch('trippilot.models.config.resolve_model_config',return_value=ModelConfig('test','unused')), \
+                 patch.dict('os.environ'),contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(cli.main(),0)
+            record=json.loads((output/'record.json').read_text())
+            self.assertEqual(record['result']['status'],'cancelled')
+            self.assertEqual(record['supervision']['returncode'],-15)
+            self.assertTrue((output/'requests.jsonl').exists())
+
     def test_existing_output_does_not_start_paid_worker(self):
         cli=module('trip')
         with tempfile.TemporaryDirectory() as directory:

@@ -1,0 +1,119 @@
+{
+  "job": {
+    "uid": "e20241028161406841505",
+    "split": "medium",
+    "model": "glm-5.3-flash",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "structured",
+    "kind": "static",
+    "task": {
+      "days": 3,
+      "limit_rooms": true,
+      "limits_room_type": false,
+      "nature_language": "当前位置上海。我和我的朋友想去北京玩3天，预算8000人民币，坐火车去，想吃北京菜，想去故宫博物院看看，住的酒店最好有管家服务。",
+      "nature_language_en": "Current location: Shanghai. My friend and I are planning to visit Beijing for 3 days with a budget of 8,000 RMB. We plan to take the train, want to try Beijing cuisine, and would like to visit the Palace Museum (Forbidden City). As for accommodation, we prefer a hotel with butler service.",
+      "people_number": 2,
+      "start_city": "上海",
+      "tag": "medium",
+      "target_city": "北京",
+      "uid": "e20241028161406841505"
+    }
+  },
+  "result": {
+    "task_uid": "e20241028161406841505",
+    "method": "structured",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.0235709589906
+  },
+  "ledger": {
+    "request_attempts": 3,
+    "completed_attempts": 2,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 357,
+      "completion_tokens": 1128,
+      "total_tokens": 1485
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.00594,
+      "upper": 0.00594
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793500960.004055,
+        "attempt_id": "157e5da2c4af49a4bb4be78f475523c9",
+        "model": "glm-5.3-flash",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793501012.085409,
+        "attempt_id": "157e5da2c4af49a4bb4be78f475523c9",
+        "model": "glm-5.3-flash",
+        "elapsed": 52.08007454208564,
+        "response_model": "glm-5.3-flash",
+        "request_id": "chatcmpl-8d3e254c-882a-47d5-b9a8-8e85bc328fed",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 357,
+        "completion_tokens": 1128,
+        "total_tokens": 1485,
+        "reasoning_tokens": null
+      },
+      {
+        "kind": "start",
+        "time": 1793501012.3038578,
+        "attempt_id": "95b6ff3844554e2eb28470e572b114f3",
+        "model": "glm-5.3-flash",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793501192.330085,
+        "attempt_id": "95b6ff3844554e2eb28470e572b114f3",
+        "model": "glm-5.3-flash",
+        "elapsed": 180.02581524988636,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "backoff",
+        "time": 1793501192.3316932,
+        "attempt_id": "95b6ff3844554e2eb28470e572b114f3",
+        "model": "glm-5.3-flash",
+        "seconds": 2.0,
+        "reason": "transient"
+      },
+      {
+        "kind": "start",
+        "time": 1793501194.33719,
+        "attempt_id": "cb1ccaeb519a4f78bcb2d407f96988c1",
+        "model": "glm-5.3-flash",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 2,
+    "returned_tokens": 1485,
+    "tool_calls": 209,
+    "exhausted": ""
+  }
+}

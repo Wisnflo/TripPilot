@@ -1,0 +1,98 @@
+{
+  "job": {
+    "uid": "m20241028164622142080",
+    "split": "easy",
+    "model": "glm-5.3-flash",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "b2",
+    "kind": "static",
+    "task": {
+      "days": 2,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置成都。我们三个人想去深圳玩2天，想去历史感比较重的景点，请给我们一个旅行规划。",
+      "nature_language_en": "Current location: Chengdu. The three of us want to visit Shenzhen for 2 days and are interested in historical sites. Could you please provide us with a travel itinerary?",
+      "people_number": 3,
+      "start_city": "成都",
+      "tag": "easy",
+      "target_city": "深圳",
+      "uid": "m20241028164622142080"
+    }
+  },
+  "result": {
+    "task_uid": "m20241028164622142080",
+    "method": "b2",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.0230450000381
+  },
+  "ledger": {
+    "request_attempts": 2,
+    "completed_attempts": 1,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793497226.854342,
+        "attempt_id": "8e73be288a6e4ccd9257b555191849b1",
+        "model": "glm-5.3-flash",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793497406.912117,
+        "attempt_id": "8e73be288a6e4ccd9257b555191849b1",
+        "model": "glm-5.3-flash",
+        "elapsed": 180.05777662503533,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "backoff",
+        "time": 1793497406.913453,
+        "attempt_id": "8e73be288a6e4ccd9257b555191849b1",
+        "model": "glm-5.3-flash",
+        "seconds": 2.0,
+        "reason": "transient"
+      },
+      {
+        "kind": "start",
+        "time": 1793497408.919112,
+        "attempt_id": "d8b6fd9e98414b089b6ee47f9b2346c2",
+        "model": "glm-5.3-flash",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 1,
+    "returned_tokens": 0,
+    "tool_calls": 184,
+    "exhausted": ""
+  }
+}

@@ -53,6 +53,7 @@ class ProtocolIntegrityTest(unittest.TestCase):
         initial=commands['static'];self.assertEqual(initial[initial.index('--methods')+1:initial.index('--model')],['b0','b1','b2','structured'])
         self.assertEqual(commands['second-model'][commands['second-model'].index('--model')+1],'glm-5.3-flash')
         self.assertLess([n for n,_ in recipe].index('construct-dynamic'),[n for n,_ in recipe].index('dynamic'))
+        component=commands['components'];self.assertEqual(component[component.index('--methods')+1:component.index('--model')],['structured','no_feedback','direct_plan'])
 
     def test_mac_policy_covers_projects_outside_the_home_directory(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -1,0 +1,776 @@
+{
+  "task_uid": "e20241028161029502862",
+  "method": "b2",
+  "model": "qwen3.8-reasoner",
+  "terminal_state": "checked_ok",
+  "plan": {
+    "people_number": 2,
+    "start_city": "Guangzhou",
+    "target_city": "Nanjing",
+    "itinerary": [
+      {
+        "day": 1,
+        "activities": [
+          {
+            "type": "airplane",
+            "start": "Guangzhou Baiyun International Airport",
+            "end": "Nanjing Lukou International Airport",
+            "start_time": "06:43",
+            "end_time": "08:08",
+            "price": 547.38,
+            "cost": 1094.76,
+            "tickets": 2,
+            "transports": [],
+            "FlightID": "FL320"
+          },
+          {
+            "type": "attraction",
+            "position": "Black Clothes Lane",
+            "price": 0.0,
+            "cost": 0.0,
+            "tickets": 2,
+            "start_time": "08:57",
+            "end_time": "09:27",
+            "transports": [
+              {
+                "start": "Nanjing Lukou International Airport",
+                "end": "Black Clothes Lane",
+                "mode": "taxi",
+                "start_time": "08:08",
+                "end_time": "08:57",
+                "cost": 144.63,
+                "price": 144.63,
+                "distance": 33.32,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Confucius Temple",
+            "price": 0.0,
+            "cost": 0.0,
+            "tickets": 2,
+            "start_time": "09:27",
+            "end_time": "10:27",
+            "transports": [
+              {
+                "start": "Black Clothes Lane",
+                "end": "Confucius Temple",
+                "mode": "taxi",
+                "start_time": "09:27",
+                "end_time": "09:27",
+                "cost": 11.0,
+                "price": 11.0,
+                "distance": 0.23,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "position": "Hong Kong Ming Fa Tea and Ice Cafe (Zhongshan South Road Branch)",
+            "price": 75.0,
+            "cost": 150.0,
+            "start_time": "11:00",
+            "end_time": "11:45",
+            "transports": [
+              {
+                "start": "Confucius Temple",
+                "end": "Hong Kong Ming Fa Tea and Ice Cafe (Zhongshan South Road Branch)",
+                "mode": "taxi",
+                "start_time": "10:27",
+                "end_time": "10:29",
+                "cost": 11.0,
+                "price": 11.0,
+                "distance": 1.52,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Dream of the Red Chamber Immersive Exhibition and Performance",
+            "price": 0.0,
+            "cost": 0.0,
+            "tickets": 2,
+            "start_time": "11:46",
+            "end_time": "12:46",
+            "transports": [
+              {
+                "start": "Hong Kong Ming Fa Tea and Ice Cafe (Zhongshan South Road Branch)",
+                "end": "Dream of the Red Chamber Immersive Exhibition and Performance",
+                "mode": "taxi",
+                "start_time": "11:45",
+                "end_time": "11:46",
+                "cost": 11.0,
+                "price": 11.0,
+                "distance": 1.08,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "airplane",
+            "start": "Nanjing Lukou International Airport",
+            "end": "Guangzhou Baiyun International Airport",
+            "start_time": "21:17",
+            "end_time": "22:42",
+            "price": 538.77,
+            "cost": 1077.54,
+            "tickets": 2,
+            "transports": [
+              {
+                "start": "Dream of the Red Chamber Immersive Exhibition and Performance",
+                "end": "Nanjing Lukou International Airport",
+                "mode": "taxi",
+                "start_time": "12:46",
+                "end_time": "13:38",
+                "cost": 153.14,
+                "price": 153.14,
+                "distance": 35.21,
+                "cars": 1
+              }
+            ],
+            "FlightID": "FL680"
+          }
+        ]
+      }
+    ]
+  },
+  "steps": [
+    {
+      "step": 1,
+      "content": "\n\n\n",
+      "tool_calls": [
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Nanjing",
+            "start": "Dream of the Red Chamber Immersive Exhibition and Performance",
+            "end": "Nanjing Lukou International Airport",
+            "start_time": "14:17",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Nanjing",
+            "start": "Nanjing Lukou International Airport",
+            "end": "Black Clothes Lane",
+            "start_time": "08:08",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Nanjing\\\", \\\"end\\\": \\\"Nanjing Lukou International Airport\\\", \\\"start\\\": \\\"Dream of the Red Chamber Immersive Exhibition and Performance\\\", \\\"start_time\\\": \\\"14:17\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Dream of the Red Chamber Immersive Exhibition and Performance', 'end': 'Nanjing Lukou International Airport', 'mode': 'taxi', 'start_time': '14:17', 'end_time': '15:09', 'cost': 153.14, 'distance': 35.21}]\", \"data\": [{\"start\": \"Drea"
+        },
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Nanjing\\\", \\\"end\\\": \\\"Black Clothes Lane\\\", \\\"start\\\": \\\"Nanjing Lukou International Airport\\\", \\\"start_time\\\": \\\"08:08\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Nanjing Lukou International Airport', 'end': 'Black Clothes Lane', 'mode': 'taxi', 'start_time': '08:08', 'end_time': '08:57', 'cost': 144.63, 'distance': 33.32}]\", \"data\": [{\"start\": \"Nanjing Lukou International Airport\", \"end\": \"Black Clothes Lane\", \"mode\": \"taxi\", \"start_"
+        }
+      ],
+      "latency_seconds": 47.237258042092435,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-1524ed70-a1e7-495d-8a9e-42f36b680231",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 5925,
+      "completion_tokens": 3627,
+      "reasoning_tokens": 3442,
+      "attempts": 1,
+      "request_latencies": [
+        47.237258042092435
+      ]
+    },
+    {
+      "step": 2,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Nanjing",
+            "start": "Dream of the Red Chamber Immersive Exhibition and Performance",
+            "end": "Nanjing Lukou International Airport",
+            "start_time": "12:46",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Nanjing\\\", \\\"end\\\": \\\"Nanjing Lukou International Airport\\\", \\\"start\\\": \\\"Dream of the Red Chamber Immersive Exhibition and Performance\\\", \\\"start_time\\\": \\\"12:46\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Dream of the Red Chamber Immersive Exhibition and Performance', 'end': 'Nanjing Lukou International Airport', 'mode': 'taxi', 'start_time': '12:46', 'end_time': '13:38', 'cost': 153.14, 'distance': 35.21}]\", \"data\": [{\"start\": \"Drea"
+        }
+      ],
+      "latency_seconds": 9.880824541905895,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-58964b3d-7592-4a9e-a1aa-ef599f8c1425",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 6567,
+      "completion_tokens": 601,
+      "reasoning_tokens": 504,
+      "attempts": 1,
+      "request_latencies": [
+        9.880824541905895
+      ]
+    },
+    {
+      "step": 3,
+      "content": "\n\n{\"people_number\":2,\"start_city\":\"Guangzhou\",\"target_city\":\"Nanjing\",\"itinerary\":[{\"day\":1,\"activities\":[{\"type\":\"airplane\",\"start\":\"Guangzhou Baiyun International Airport\",\"end\":\"Nanjing Lukou International Airport\",\"start_time\":\"06:43\",\"end_time\":\"08:08\",\"price\":547.38,\"cost\":1094.76,\"tickets\":2,\"transports\":[],\"FlightID\":\"FL320\"},{\"type\":\"attraction\",\"position\":\"Black Clothes Lane\",\"price\":0.0,\"cost\":0.0,\"tickets\":2,\"start_time\":\"08:57\",\"end_time\":\"09:27\",\"transports\":[{\"start\":\"Nanjing Lukou International Airport\",\"end\":\"Black Clothes Lane\",\"mode\":\"taxi\",\"start_time\":\"08:08\",\"end_time\":\"08:57\",\"cost\":144.63,\"price\":144.63,\"distance\":33.32,\"cars\":1}]},{\"type\":\"attraction\",\"position\":\"Confucius Temple\",\"price\":0.0,\"cost\":0.0,\"tickets\":2,\"start_time\":\"09:27\",\"end_time\":\"10:27\",\"transports\":[{\"start\":\"Black Clothes Lane\",\"end\":\"Confucius Temple\",\"mode\":\"taxi\",\"start_time\":\"09:27\",\"end_time\":\"09:27\",\"cost\":11.0,\"price\":11.0,\"distance\":0.23,\"cars\":1}]},{\"type\":\"lunch\",\"position\":\"Hong Kong Ming Fa Tea and Ice Cafe (Zhongshan South Road Branch)\",\"price\":75.0,\"cost\":150.0,\"start_time\":\"11:00\",\"end_time\":\"11:45\",\"transports\":[{\"start\":\"Confucius Temple\",\"end\":\"Hong Kong Ming Fa Tea and Ice Cafe (Zhongshan South Road Branch)\",\"mode\":\"taxi\",\"start_time\":\"10:27\",\"end_time\":\"10:29\",\"cost\":11.0,\"price\":11.0,\"distance\":1.52,\"cars\":1}]},{\"type\":\"attraction\",\"position\":\"Dream of the Red Chamber Immersive Exhibition and Performance\",\"price\":0.0,\"cost\":0.0,\"tickets\":2,\"start_time\":\"11:46\",\"end_time\":\"12:46\",\"transports\":[{\"start\":\"Hong Kong Ming Fa Tea and Ice Cafe (Zhongshan South Road Branch)\",\"end\":\"Dream of the Red Chamber Immersive Exhibition and Performance\",\"mode\":\"taxi\",\"start_time\":\"11:45\",\"end_time\":\"11:46\",\"cost\":11.0,\"price\":11.0,\"distance\":1.08,\"cars\":1}]},{\"type\":\"airplane\",\"start\":\"Nanjing Lukou International Airport\",\"end\":\"Guangzhou Baiyun International Airport\",\"start_time\":\"21:17\",\"end_time\":\"22:42\",\"price\":538.77,\"cost\":1077.54,\"tickets\":2,\"transports\":[{\"start\":\"Dream of the Red Chamber Immersive Exhibition and Performance\",\"end\":\"Nanjing Lukou International Airport\",\"mode\":\"taxi\",\"start_time\":\"12:46\",\"end_time\":\"13:38\",\"cost\":153.14,\"price\":153.14,\"distance\":35.21,\"cars\":1}],\"FlightID\":\"FL680\"}]}]}",
+      "tool_calls": [],
+      "tool_results": [],
+      "latency_seconds": 9.619381958968006,
+      "finish_reason": "stop",
+      "request_id": "chatcmpl-538065db-57c0-4c3e-89c6-0d91e90b6879",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 6908,
+      "completion_tokens": 1013,
+      "reasoning_tokens": 250,
+      "attempts": 1,
+      "request_latencies": [
+        9.619381958968006
+      ]
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 19400,
+    "completion_tokens": 5241,
+    "total_tokens": 24641,
+    "reasoning_tokens": 4196
+  },
+  "checker": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours"
+    ]
+  },
+  "error": null,
+  "metadata": {
+    "event_text": "The user must return earlier: the trip is now 1 days instead of the original length.",
+    "usage_complete": true,
+    "request_count": 3,
+    "retry_count": 0,
+    "request_latency_seconds": 66.73746454296634
+  },
+  "started_at": "2026-11-01T01:17:22.983066+00:00",
+  "finished_at": "2026-11-01T01:18:30.096947+00:00",
+  "duration_seconds": 67.11410254088696,
+  "wall_seconds": 67.114591791993,
+  "resources": {
+    "limits": {
+      "feedback": 4,
+      "model_calls": 16,
+      "tokens": 500000,
+      "tools": 400,
+      "output_tokens_per_call": 10000
+    },
+    "model_calls": 3,
+    "returned_tokens": 24641,
+    "feedback_calls": 0,
+    "tool_calls": 14,
+    "exhausted": "",
+    "tool_receipts": [
+      {
+        "index": 1,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Dream of the Red Chamber Immersive Exhibition and Performance",
+          "end": "Nanjing Lukou International Airport",
+          "start_time": "14:17",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 2,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Nanjing Lukou International Airport",
+          "end": "Black Clothes Lane",
+          "start_time": "08:08",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 3,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Dream of the Red Chamber Immersive Exhibition and Performance",
+          "end": "Nanjing Lukou International Airport",
+          "start_time": "12:46",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 4,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Nanjing",
+          "key": "name",
+          "op": "eq",
+          "value": "Black Clothes Lane"
+        }
+      },
+      {
+        "index": 5,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Nanjing",
+          "key": "name",
+          "op": "eq",
+          "value": "Confucius Temple"
+        }
+      },
+      {
+        "index": 6,
+        "name": "restaurants_select",
+        "arguments": {
+          "city": "Nanjing",
+          "key": "name",
+          "op": "eq",
+          "value": "Hong Kong Ming Fa Tea and Ice Cafe (Zhongshan South Road Branch)"
+        }
+      },
+      {
+        "index": 7,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Nanjing",
+          "key": "name",
+          "op": "eq",
+          "value": "Dream of the Red Chamber Immersive Exhibition and Performance"
+        }
+      },
+      {
+        "index": 8,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Nanjing Lukou International Airport",
+          "end": "Black Clothes Lane",
+          "start_time": "08:08",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 9,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Black Clothes Lane",
+          "end": "Confucius Temple",
+          "start_time": "09:27",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 10,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Confucius Temple",
+          "end": "Hong Kong Ming Fa Tea and Ice Cafe (Zhongshan South Road Branch)",
+          "start_time": "10:27",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 11,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Hong Kong Ming Fa Tea and Ice Cafe (Zhongshan South Road Branch)",
+          "end": "Dream of the Red Chamber Immersive Exhibition and Performance",
+          "start_time": "11:45",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 12,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Dream of the Red Chamber Immersive Exhibition and Performance",
+          "end": "Nanjing Lukou International Airport",
+          "start_time": "12:46",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 13,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Guangzhou",
+          "end_city": "Nanjing",
+          "type": "airplane"
+        }
+      },
+      {
+        "index": 14,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Nanjing",
+          "end_city": "Guangzhou",
+          "type": "airplane"
+        }
+      }
+    ],
+    "input_accounting": "conservative UTF-8 preflight; actual provider usage recorded; missing remote usage remains unknown"
+  },
+  "clarification": {
+    "status": "ready",
+    "base_revision": "57afc0ed397919ef62ea2d29f49ab8b4acfaa4760098652f3a5cbc20cbb7a524",
+    "task": {
+      "uid": "e20241028161029502862",
+      "tag": "medium",
+      "start_city": "广州",
+      "target_city": "南京",
+      "days": 2,
+      "people_number": 2,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置广州。我和朋友打算去南京玩两天，想吃粤菜，预算3700元，开一间双床房。请给我一个旅行规划。\n用户已明确确认：本次一日修订取消住宿、酒店设施、房型和房间数要求，其它需求保持。",
+      "nature_language_en": "Current location: Guangzhou. My friend and I plan to visit Nanjing for two days. We want to eat Cantonese cuisine and have a budget of 3700 RMB, including a twin room. Please provide a travel plan.\nUser explicitly confirmed: cancel all lodging, hotel, room-type and room-count requirements for this one-day revision. All non-lodging requirements remain."
+    },
+    "seed_plan": {
+      "people_number": 2,
+      "start_city": "Guangzhou",
+      "target_city": "Nanjing",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "airplane",
+              "start": "Guangzhou Baiyun International Airport",
+              "end": "Nanjing Lukou International Airport",
+              "start_time": "06:43",
+              "end_time": "08:08",
+              "price": 547.38,
+              "cost": 1094.76,
+              "tickets": 2,
+              "transports": [],
+              "FlightID": "FL320"
+            },
+            {
+              "type": "attraction",
+              "position": "Black Clothes Lane",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "08:57",
+              "end_time": "09:27",
+              "transports": [
+                {
+                  "start": "Nanjing Lukou International Airport",
+                  "end": "Black Clothes Lane",
+                  "mode": "taxi",
+                  "start_time": "08:08",
+                  "end_time": "08:57",
+                  "cost": 144.63,
+                  "distance": 33.32,
+                  "price": 144.63,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Confucius Temple",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "09:27",
+              "end_time": "10:27",
+              "transports": [
+                {
+                  "start": "Black Clothes Lane",
+                  "end": "Confucius Temple",
+                  "mode": "taxi",
+                  "start_time": "09:27",
+                  "end_time": "09:27",
+                  "cost": 11.0,
+                  "distance": 0.23,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Hong Kong Ming Fa Tea and Ice Cafe (Zhongshan South Road Branch)",
+              "price": 75.0,
+              "cost": 150.0,
+              "start_time": "11:00",
+              "end_time": "11:45",
+              "transports": [
+                {
+                  "start": "Confucius Temple",
+                  "end": "Hong Kong Ming Fa Tea and Ice Cafe (Zhongshan South Road Branch)",
+                  "mode": "taxi",
+                  "start_time": "10:27",
+                  "end_time": "10:29",
+                  "cost": 11.0,
+                  "distance": 1.52,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Dream of the Red Chamber Immersive Exhibition and Performance",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "11:46",
+              "end_time": "12:46",
+              "transports": [
+                {
+                  "start": "Hong Kong Ming Fa Tea and Ice Cafe (Zhongshan South Road Branch)",
+                  "end": "Dream of the Red Chamber Immersive Exhibition and Performance",
+                  "mode": "taxi",
+                  "start_time": "11:45",
+                  "end_time": "11:46",
+                  "cost": 11.0,
+                  "distance": 1.08,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+              "price": 102.0,
+              "cost": 102.0,
+              "rooms": 1,
+              "room_type": 2,
+              "start_time": "18:00",
+              "end_time": "23:59",
+              "transports": [
+                {
+                  "start": "Dream of the Red Chamber Immersive Exhibition and Performance",
+                  "end": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+                  "mode": "taxi",
+                  "start_time": "12:46",
+                  "end_time": "12:47",
+                  "cost": 11.0,
+                  "distance": 0.92,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "attraction",
+              "position": "Beiqiu Museum of Contemporary Art",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "10:00",
+              "end_time": "10:30",
+              "transports": [
+                {
+                  "start": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+                  "end": "Beiqiu Museum of Contemporary Art",
+                  "mode": "taxi",
+                  "start_time": "08:00",
+                  "end_time": "08:03",
+                  "cost": 12.45,
+                  "distance": 2.21,
+                  "price": 12.45,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Pioneer Bookstore (Xuanwu Lake Branch)",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "10:32",
+              "end_time": "11:32",
+              "transports": [
+                {
+                  "start": "Beiqiu Museum of Contemporary Art",
+                  "end": "Pioneer Bookstore (Xuanwu Lake Branch)",
+                  "mode": "taxi",
+                  "start_time": "10:30",
+                  "end_time": "10:32",
+                  "cost": 11.0,
+                  "distance": 1.68,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Tung Fat Road Tea Ice House LAB (Xinjiekou Branch)",
+              "price": 92.0,
+              "cost": 184.0,
+              "start_time": "11:39",
+              "end_time": "12:24",
+              "transports": [
+                {
+                  "start": "Pioneer Bookstore (Xuanwu Lake Branch)",
+                  "end": "Tung Fat Road Tea Ice House LAB (Xinjiekou Branch)",
+                  "mode": "taxi",
+                  "start_time": "11:32",
+                  "end_time": "11:39",
+                  "cost": 21.92,
+                  "distance": 4.92,
+                  "price": 21.92,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Nanjing Library",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 2,
+              "start_time": "12:27",
+              "end_time": "13:57",
+              "transports": [
+                {
+                  "start": "Tung Fat Road Tea Ice House LAB (Xinjiekou Branch)",
+                  "end": "Nanjing Library",
+                  "mode": "taxi",
+                  "start_time": "12:24",
+                  "end_time": "12:27",
+                  "cost": 11.94,
+                  "distance": 2.07,
+                  "price": 11.94,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "airplane",
+              "start": "Nanjing Lukou International Airport",
+              "end": "Guangzhou Baiyun International Airport",
+              "start_time": "21:17",
+              "end_time": "22:42",
+              "price": 538.77,
+              "cost": 1077.54,
+              "tickets": 2,
+              "transports": [
+                {
+                  "start": "Nanjing Library",
+                  "end": "Nanjing Lukou International Airport",
+                  "mode": "taxi",
+                  "start_time": "13:57",
+                  "end_time": "14:50",
+                  "cost": 155.5,
+                  "distance": 35.73,
+                  "price": 155.5,
+                  "cars": 1
+                }
+              ],
+              "FlightID": "FL680"
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "kind": "return_earlier",
+      "day": null,
+      "new_days": 1,
+      "new_budget": null,
+      "target": null,
+      "description": ""
+    },
+    "question": "行程改为当天返回后，原来的住宿要求如何处理？",
+    "choices": {
+      "cancel_overnight": "取消住宿要求，继续安排一日行程",
+      "keep_original": "保留原住宿和原行程，暂不执行提前返程"
+    },
+    "answer": "cancel_overnight",
+    "explicit_lodging_waiver": true,
+    "state_revision": "8e6d23dd5cacc880311979634a1f157218af5666f3043e87803bcdf1100ae9b8"
+  },
+  "event": {
+    "kind": "return_earlier",
+    "new_days": 1,
+    "description": ""
+  },
+  "event_check": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours"
+    ]
+  }
+}

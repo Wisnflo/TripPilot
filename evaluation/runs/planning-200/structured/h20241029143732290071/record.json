@@ -1,0 +1,4465 @@
+{
+  "job": {
+    "uid": "h20241029143732290071",
+    "split": "human",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "structured",
+    "kind": "static",
+    "task": {
+      "days": 3,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "[当前位置武汉,目标位置深圳,旅行人数4,旅行天数3] 我和4个同学打算一起从武汉坐高铁去深圳世界之窗景点玩3天，想问问附近有没有好吃的餐厅推荐。",
+      "nature_language_en": "[Current location: Wuhan, Destination: Shenzhen, Number of travelers: 4, Number of travel days: 3] My four classmates and I are planning to take the high-speed train from Wuhan to visit the Window of the World attraction in Shenzhen for three days. I would like to ask if there are any good restaurant recommendations nearby.",
+      "people_number": 4,
+      "start_city": "武汉",
+      "tag": "human",
+      "target_city": "深圳",
+      "uid": "h20241029143732290071"
+    }
+  },
+  "result": {
+    "task_uid": "h20241029143732290071",
+    "method": "structured",
+    "model": "qwen3.8-reasoner",
+    "terminal_state": "checked_ok",
+    "plan": {
+      "people_number": 4,
+      "start_city": "Wuhan",
+      "target_city": "Shenzhen",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "train",
+              "start": "Wuhan Station",
+              "end": "Shenzhen North Railway Station",
+              "start_time": "07:25",
+              "end_time": "12:14",
+              "price": 582.03,
+              "cost": 2328.12,
+              "tickets": 4,
+              "transports": [],
+              "TrainID": "G1001"
+            },
+            {
+              "type": "lunch",
+              "position": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+              "price": 55.0,
+              "cost": 220.0,
+              "start_time": "12:30",
+              "end_time": "13:15",
+              "transports": [
+                {
+                  "start": "Shenzhen North Railway Station",
+                  "end": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+                  "mode": "taxi",
+                  "start_time": "12:14",
+                  "end_time": "12:30",
+                  "cost": 42.99,
+                  "distance": 10.73,
+                  "price": 42.99,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Window of the World",
+              "price": 115.0,
+              "cost": 460.0,
+              "tickets": 4,
+              "start_time": "13:28",
+              "end_time": "15:28",
+              "transports": [
+                {
+                  "start": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+                  "end": "Window of the World",
+                  "mode": "taxi",
+                  "start_time": "13:15",
+                  "end_time": "13:28",
+                  "cost": 36.35,
+                  "distance": 9.04,
+                  "price": 36.35,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+              "price": 325.0,
+              "cost": 650.0,
+              "rooms": 2,
+              "room_type": 1,
+              "start_time": "18:00",
+              "end_time": "23:59",
+              "transports": [
+                {
+                  "start": "Window of the World",
+                  "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                  "mode": "taxi",
+                  "start_time": "15:28",
+                  "end_time": "15:30",
+                  "cost": 11.0,
+                  "distance": 1.69,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "attraction",
+              "position": "Hua Art Museum",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 4,
+              "start_time": "10:00",
+              "end_time": "12:30",
+              "transports": [
+                {
+                  "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                  "end": "Hua Art Museum",
+                  "mode": "taxi",
+                  "start_time": "08:00",
+                  "end_time": "08:03",
+                  "cost": 13.84,
+                  "distance": 2.61,
+                  "price": 13.84,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+              "price": 81.0,
+              "cost": 324.0,
+              "start_time": "12:40",
+              "end_time": "13:25",
+              "transports": [
+                {
+                  "start": "Hua Art Museum",
+                  "end": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+                  "mode": "taxi",
+                  "start_time": "12:30",
+                  "end_time": "12:40",
+                  "cost": 30.33,
+                  "distance": 7.32,
+                  "price": 30.33,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Shenzhen University Town",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 4,
+              "start_time": "13:40",
+              "end_time": "15:10",
+              "transports": [
+                {
+                  "start": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+                  "end": "Shenzhen University Town",
+                  "mode": "taxi",
+                  "start_time": "13:25",
+                  "end_time": "13:40",
+                  "cost": 39.98,
+                  "distance": 10.06,
+                  "price": 39.98,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "dinner",
+              "position": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+              "price": 78.0,
+              "cost": 312.0,
+              "start_time": "17:00",
+              "end_time": "17:45",
+              "transports": [
+                {
+                  "start": "Shenzhen University Town",
+                  "end": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+                  "mode": "taxi",
+                  "start_time": "15:10",
+                  "end_time": "15:26",
+                  "cost": 42.88,
+                  "distance": 10.71,
+                  "price": 42.88,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+              "price": 325.0,
+              "cost": 650.0,
+              "rooms": 2,
+              "room_type": 1,
+              "start_time": "18:00",
+              "end_time": "23:59",
+              "transports": [
+                {
+                  "start": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+                  "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                  "mode": "taxi",
+                  "start_time": "17:45",
+                  "end_time": "18:00",
+                  "cost": 41.39,
+                  "distance": 10.37,
+                  "price": 41.39,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {
+              "type": "attraction",
+              "position": "Shenzhen Bay Bridge",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 4,
+              "start_time": "08:06",
+              "end_time": "09:06",
+              "transports": [
+                {
+                  "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                  "end": "Shenzhen Bay Bridge",
+                  "mode": "taxi",
+                  "start_time": "08:00",
+                  "end_time": "08:06",
+                  "cost": 20.89,
+                  "distance": 4.63,
+                  "price": 20.89,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Delicious Noodle House (Taoyuan Branch)",
+              "price": 26.0,
+              "cost": 104.0,
+              "start_time": "11:00",
+              "end_time": "11:45",
+              "transports": [
+                {
+                  "start": "Shenzhen Bay Bridge",
+                  "end": "Delicious Noodle House (Taoyuan Branch)",
+                  "mode": "taxi",
+                  "start_time": "09:06",
+                  "end_time": "09:14",
+                  "cost": 24.96,
+                  "distance": 5.79,
+                  "price": 24.96,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "train",
+              "start": "Shenzhen North Railway Station",
+              "end": "Wuhan Station",
+              "start_time": "17:50",
+              "end_time": "23:23",
+              "price": 582.03,
+              "cost": 2328.12,
+              "tickets": 4,
+              "transports": [
+                {
+                  "start": "Delicious Noodle House (Taoyuan Branch)",
+                  "end": "Shenzhen North Railway Station",
+                  "mode": "taxi",
+                  "start_time": "11:45",
+                  "end_time": "12:06",
+                  "cost": 57.74,
+                  "distance": 14.01,
+                  "price": 57.74,
+                  "cars": 1
+                }
+              ],
+              "TrainID": "G2708"
+            }
+          ]
+        }
+      ]
+    },
+    "steps": [
+      {
+        "phase": "extract_requirements",
+        "content": "\n\n{\n  \"attraction_names\": [\"世界之窗\"],\n  \"intercity_mode\": \"train\",\n  \"evidence\": {\n    \"attraction_names\": \"深圳世界之窗景点\",\n    \"intercity_mode\": \"坐高铁\"\n  }\n}",
+        "attempts": 1,
+        "request_latencies": [
+          19.513411750027444
+        ],
+        "request_id": "chatcmpl-bdd52cec-5234-4483-9417-7f694fd84432",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 496,
+        "completion_tokens": 1308
+      },
+      {
+        "phase": "select_sketch",
+        "content": "\n\n{\"outbound\":\"G1001\",\"inbound\":\"G2708\",\"hotel\":\"h7\",\"days\":[[{\"kind\":\"lunch\",\"id\":\"r107\"},{\"kind\":\"attraction\",\"id\":\"a0\"}],[{\"kind\":\"attraction\",\"id\":\"a111\"},{\"kind\":\"lunch\",\"id\":\"r138\"},{\"kind\":\"attraction\",\"id\":\"a117\"},{\"kind\":\"dinner\",\"id\":\"r142\"}],[{\"kind\":\"attraction\",\"id\":\"a112\"},{\"kind\":\"lunch\",\"id\":\"r281\"}]]}",
+        "attempts": 1,
+        "request_latencies": [
+          98.62787229201058
+        ],
+        "request_id": "chatcmpl-fedc76a2-8ecf-4aee-9346-2bcc87f6de9b",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 10682,
+        "completion_tokens": 7683
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 11178,
+      "completion_tokens": 8991,
+      "total_tokens": 20169,
+      "reasoning_tokens": 8799
+    },
+    "checker": {
+      "ok": true,
+      "violations": [],
+      "supported": [
+        "schema",
+        "day_count",
+        "people_number",
+        "start_target_city",
+        "activity_time_order",
+        "transport_time_order",
+        "transport_structure",
+        "activity_cost_rules",
+        "meal_time_windows",
+        "space_chain",
+        "accommodation_nights",
+        "intercity_transport_presence",
+        "ticket_fields",
+        "budget_if_in_text",
+        "entity_grounding",
+        "opening_hours",
+        "duplicate_activities",
+        "meal_type_once",
+        "transport_matches_goto",
+        "intercity_transport_values"
+      ],
+      "unsupported": [
+        "room_rules",
+        "overnight_hours",
+        "budget_not_found_in_text"
+      ]
+    },
+    "error": null,
+    "metadata": {
+      "usage_complete": true,
+      "fallback": false,
+      "predicted_requirements": {
+        "attraction_names": [
+          "世界之窗"
+        ],
+        "intercity_mode": "train",
+        "literal_corrections": [],
+        "evidence": {
+          "attraction_names": "深圳世界之窗景点",
+          "intercity_mode": "坐高铁"
+        },
+        "unsupported": [],
+        "rejected_fields": [],
+        "entity_aliases": {
+          "世界之窗": [
+            "Window of the World"
+          ]
+        }
+      },
+      "fact_catalog": {
+        "attraction": {
+          "a0": {
+            "id": 0,
+            "name": "Window of the World",
+            "type": "Amusement Park/Sports Entertainment",
+            "lat": 22.540746,
+            "lon": 113.979399,
+            "opentime": "09:30",
+            "endtime": "21:30",
+            "price": 115.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a218": {
+            "id": 218,
+            "name": "Baguang Beach",
+            "type": "natural scenery",
+            "lat": 22.650494,
+            "lon": 114.507872,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a182": {
+            "id": 182,
+            "name": "Baishilong Music Theme Park",
+            "type": "park",
+            "lat": 22.602637,
+            "lon": 114.044815,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 2.5
+          },
+          "a134": {
+            "id": 134,
+            "name": "Balcony Mountain Forest Park",
+            "type": "park",
+            "lat": 22.657618,
+            "lon": 113.97127,
+            "opentime": "06:00",
+            "endtime": "22:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.5
+          },
+          "a288": {
+            "id": 288,
+            "name": "Bao'an Jesus the King Church",
+            "type": "Cultural Landscape",
+            "lat": 22.590244,
+            "lon": 113.917481,
+            "opentime": "08:00",
+            "endtime": "12:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a297": {
+            "id": 297,
+            "name": "Bao'an Park",
+            "type": "park",
+            "lat": 22.592152,
+            "lon": 113.909323,
+            "opentime": "00:00",
+            "endtime": "22:00",
+            "price": 0.0,
+            "recommendmintime": 2.5,
+            "recommendmaxtime": 4.0
+          },
+          "a143": {
+            "id": 143,
+            "name": "Bao'an Science and Technology Museum",
+            "type": "Museum/Memorial Hall",
+            "lat": 22.564157,
+            "lon": 113.918087,
+            "opentime": "10:00",
+            "endtime": "17:00",
+            "price": 0.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 2.0
+          },
+          "a239": {
+            "id": 239,
+            "name": "Bao'an Stadium",
+            "type": "Amusement Park/Sports Entertainment",
+            "lat": 22.56813,
+            "lon": 113.892265,
+            "opentime": "08:00",
+            "endtime": "12:00",
+            "price": 0.0,
+            "recommendmintime": 0.5,
+            "recommendmaxtime": 1.0
+          },
+          "a90": {
+            "id": 90,
+            "name": "Bao'an Xibay Mangrove Park",
+            "type": "park",
+            "lat": 22.593597,
+            "lon": 113.843305,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.5
+          },
+          "a282": {
+            "id": 282,
+            "name": "Bauhinia Lane Hong Kong International Style Street",
+            "type": "commercial district",
+            "lat": 22.515623,
+            "lon": 114.067433,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.5,
+            "recommendmaxtime": 4.0
+          },
+          "a58": {
+            "id": 58,
+            "name": "Bay Area Cruise",
+            "type": "Amusement Park/Sports Entertainment",
+            "lat": 22.474317,
+            "lon": 113.920446,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 3.0,
+            "recommendmaxtime": 3.5
+          },
+          "a10": {
+            "id": 10,
+            "name": "Greater Bay Area No. 1 (Hong Kong-Zhuhai-Macao Bridge Route)",
+            "type": "Amusement Park/Sports Entertainment",
+            "lat": 22.474665,
+            "lon": 113.919967,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a104": {
+            "id": 104,
+            "name": "Karu Ice and Snow World",
+            "type": "Amusement Park/Sports Entertainment",
+            "lat": 22.723564,
+            "lon": 114.08611,
+            "opentime": "10:00",
+            "endtime": "22:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 2.5
+          },
+          "a111": {
+            "id": 111,
+            "name": "Hua Art Museum",
+            "type": "Art museum",
+            "lat": 22.53914,
+            "lon": 113.989372,
+            "opentime": "10:00",
+            "endtime": "17:30",
+            "price": 0.0,
+            "recommendmintime": 2.5,
+            "recommendmaxtime": 3.0
+          },
+          "a118": {
+            "id": 118,
+            "name": "Dafen Art Museum",
+            "type": "Art museum",
+            "lat": 22.616079,
+            "lon": 114.144869,
+            "opentime": "09:30",
+            "endtime": "17:30",
+            "price": 0.0,
+            "recommendmintime": 1.5,
+            "recommendmaxtime": 3.0
+          },
+          "a102": {
+            "id": 102,
+            "name": "Houhai",
+            "type": "Cultural Landscape",
+            "lat": 22.512803,
+            "lon": 113.941981,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a112": {
+            "id": 112,
+            "name": "Shenzhen Bay Bridge",
+            "type": "Cultural Landscape",
+            "lat": 22.493012,
+            "lon": 113.957048,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 2.5
+          },
+          "a128": {
+            "id": 128,
+            "name": "Qingping Ancient Market Film and Television Cultural Park",
+            "type": "Cultural Tourism Area",
+            "lat": 22.744132,
+            "lon": 113.835218,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 0.5,
+            "recommendmaxtime": 1.5
+          },
+          "a156": {
+            "id": 156,
+            "name": "Tea Sage Ancient Town",
+            "type": "Cultural Tourism Area",
+            "lat": 22.639788,
+            "lon": 114.280971,
+            "opentime": "10:00",
+            "endtime": "17:00",
+            "price": 0.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 1.5
+          },
+          "a183": {
+            "id": 183,
+            "name": "Lighthouse Library",
+            "type": "Library/Memorial Hall",
+            "lat": 22.558537,
+            "lon": 114.248125,
+            "opentime": "12:00",
+            "endtime": "19:00",
+            "price": 0.0,
+            "recommendmintime": 0.5,
+            "recommendmaxtime": 1.0
+          },
+          "a107": {
+            "id": 107,
+            "name": "Shenzhen Museum - Ancient Art Gallery",
+            "type": "Museum/Memorial Hall",
+            "lat": 22.548602,
+            "lon": 114.108022,
+            "opentime": "10:00",
+            "endtime": "18:17",
+            "price": 0.0,
+            "recommendmintime": 3.0,
+            "recommendmaxtime": 3.5
+          },
+          "a116": {
+            "id": 116,
+            "name": "Huaqiangbei Museum",
+            "type": "Museum/Memorial Hall",
+            "lat": 22.550102,
+            "lon": 114.093668,
+            "opentime": "10:00",
+            "endtime": "18:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a287": {
+            "id": 287,
+            "name": "East River Guerrilla Force Command Post Memorial Hall",
+            "type": "Red tourism sites",
+            "lat": 22.550945,
+            "lon": 114.124056,
+            "opentime": "09:30",
+            "endtime": "20:00",
+            "price": 0.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 2.5
+          },
+          "a152": {
+            "id": 152,
+            "name": "Shayuchong",
+            "type": "Red tourism sites",
+            "lat": 22.619315,
+            "lon": 114.410777,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 20.0,
+            "recommendmintime": 3.0,
+            "recommendmaxtime": 4.0
+          },
+          "a117": {
+            "id": 117,
+            "name": "Shenzhen University Town",
+            "type": "University campus",
+            "lat": 22.590581,
+            "lon": 113.982769,
+            "opentime": "07:30",
+            "endtime": "21:30",
+            "price": 0.0,
+            "recommendmintime": 1.5,
+            "recommendmaxtime": 2.0
+          },
+          "a153": {
+            "id": 153,
+            "name": "Shenzhen Book City (Central City Branch)",
+            "type": "commercial district",
+            "lat": 22.552693,
+            "lon": 114.066282,
+            "opentime": "10:00",
+            "endtime": "22:00",
+            "price": 0.0,
+            "recommendmintime": 0.5,
+            "recommendmaxtime": 1.0
+          },
+          "a17": {
+            "id": 17,
+            "name": "East Gate Old Street",
+            "type": "commercial district",
+            "lat": 22.550461,
+            "lon": 114.122671,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a113": {
+            "id": 113,
+            "name": "Dongshan Temple",
+            "type": "historical site",
+            "lat": 22.602493,
+            "lon": 114.5263,
+            "opentime": "08:00",
+            "endtime": "17:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 2.5
+          },
+          "a155": {
+            "id": 155,
+            "name": "Shajing Ancient Market",
+            "type": "historical site",
+            "lat": 22.744132,
+            "lon": 113.835218,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 1.5,
+            "recommendmaxtime": 2.0
+          },
+          "a101": {
+            "id": 101,
+            "name": "Guanhu Beach",
+            "type": "natural scenery",
+            "lat": 22.607996,
+            "lon": 114.42919,
+            "opentime": "07:00",
+            "endtime": "21:00",
+            "price": 0.0,
+            "recommendmintime": 1.5,
+            "recommendmaxtime": 3.0
+          },
+          "a105": {
+            "id": 105,
+            "name": "Nan'ao Sapphire Beach",
+            "type": "natural scenery",
+            "lat": 22.543927,
+            "lon": 114.490429,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.5,
+            "recommendmaxtime": 4.0
+          },
+          "a103": {
+            "id": 103,
+            "name": "Qianhai Stone Park",
+            "type": "park",
+            "lat": 22.532339,
+            "lon": 113.895748,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 2.5
+          }
+        },
+        "hotel": {
+          "h261": {
+            "id": 261,
+            "name": "Astor International Hotel Shenzhen Bao'an International Airport",
+            "hotelname_en": "Astor International Hotel Shenzhen Bao'an International Airport",
+            "featurehoteltype": "Free parking",
+            "lat": 22.613827,
+            "lon": 113.841877,
+            "price": 257,
+            "numbed": 1
+          },
+          "h240": {
+            "id": 240,
+            "name": "Fei Hotel",
+            "hotelname_en": "Fei Hotel",
+            "featurehoteltype": "Charging station",
+            "lat": 22.635814,
+            "lon": 114.025951,
+            "price": 279,
+            "numbed": 1
+          },
+          "h79": {
+            "id": 79,
+            "name": "Hanhao Hotel Shenzhen Nanshan Daxin Metro Station",
+            "hotelname_en": "Hanhao Hotel Shenzhen Nanshan Daxin Metro Station",
+            "featurehoteltype": "Media Room",
+            "lat": 22.532639,
+            "lon": 113.916449,
+            "price": 293,
+            "numbed": 1
+          },
+          "h295": {
+            "id": 295,
+            "name": "Orange Fruit Hotel (Qianhai Bao'an Center)",
+            "hotelname_en": "Orange Fruit Hotel (Qianhai Bao'an Center)",
+            "featurehoteltype": "Family Room",
+            "lat": 22.556861,
+            "lon": 113.898294,
+            "price": 303,
+            "numbed": 1
+          },
+          "h84": {
+            "id": 84,
+            "name": "CNHOL RADIENT HOTEL(Shenzhen Bao'an Center Xixiang Branch)",
+            "hotelname_en": "CNHOL RADIENT HOTEL(Shenzhen Bao'an Center Xixiang Branch)",
+            "featurehoteltype": "Free parking",
+            "lat": 22.582756,
+            "lon": 113.874119,
+            "price": 310,
+            "numbed": 2
+          },
+          "h234": {
+            "id": 234,
+            "name": "Qiuguo Hotel, Bao'an, Shenzhen",
+            "hotelname_en": "Qiuguo Hotel, Bao'an, Shenzhen",
+            "featurehoteltype": "Free parking",
+            "lat": 22.556326,
+            "lon": 113.900691,
+            "price": 312,
+            "numbed": 1
+          },
+          "h7": {
+            "id": 7,
+            "name": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "hotelname_en": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "featurehoteltype": "Fitness Room",
+            "lat": 22.534199,
+            "lon": 113.964544,
+            "price": 325,
+            "numbed": 1
+          },
+          "h121": {
+            "id": 121,
+            "name": "Nanxianglou Art Hotel",
+            "hotelname_en": "Nanxianglou Art Hotel",
+            "featurehoteltype": "Multifunction Hall",
+            "lat": 22.657457,
+            "lon": 114.103391,
+            "price": 328,
+            "numbed": 1
+          },
+          "h0": {
+            "id": 0,
+            "name": "Dalden Meijin Hotel",
+            "hotelname_en": "Dalden Meijin Hotel",
+            "featurehoteltype": "Parking lot",
+            "lat": 22.581022,
+            "lon": 113.953854,
+            "price": 331,
+            "numbed": 1
+          },
+          "h25": {
+            "id": 25,
+            "name": "Dalden Meijin Hotel",
+            "hotelname_en": "Dalden Meijin Hotel",
+            "featurehoteltype": "Parking lot",
+            "lat": 22.581022,
+            "lon": 113.953854,
+            "price": 331,
+            "numbed": 1
+          },
+          "h92": {
+            "id": 92,
+            "name": "Mehood Lestie Hotel (Shenzhen Bao'an Airport Huaide Metro Station Branch)",
+            "hotelname_en": "Mehood Lestie Hotel (Shenzhen Bao'an Airport Huaide Metro Station Branch)",
+            "featurehoteltype": "Free parking",
+            "lat": 22.672004,
+            "lon": 113.826334,
+            "price": 384,
+            "numbed": 2
+          }
+        },
+        "restaurant": {
+          "r270": {
+            "id": 270,
+            "name": "Turtle Old Lucky Herbal Tea Shop (Fenghuang Road Branch)",
+            "lat": 22.5479082,
+            "lon": 114.1367249,
+            "price": 16.0,
+            "cuisine": "Bakery and Desserts",
+            "opentime": "13:00",
+            "endtime": "23:00",
+            "recommendedfood": "Special Herbal Turtle Jelly, Mixed Fruit Grass Jelly, Purple Sweet Potato Mung Bean Soup, Coconut Sago Dessert, Water Chestnut and Aloe Vera Sweet Soup"
+          },
+          "r175": {
+            "id": 175,
+            "name": "Huang's Wellness Dessert Experts (Meilin Joy Park Branch)",
+            "lat": 22.5680738,
+            "lon": 114.0589924,
+            "price": 22.0,
+            "cuisine": "Bakery and Desserts",
+            "opentime": "10:30",
+            "endtime": "23:30",
+            "recommendedfood": "Milk with Peach Gum, Handmade Taro Balls, Signature Ginger Milk Curd, Signature Double-Layer Steamed Milk Custard, Red Bean Taro Ball Tofu Pudding, Milk Cubes"
+          },
+          "r105": {
+            "id": 105,
+            "name": "Xinyiwei Chaoshan Rice Noodle King (Meilin Branch)",
+            "lat": 22.5648013,
+            "lon": 114.0558103,
+            "price": 24.0,
+            "cuisine": "Snacks",
+            "opentime": "07:00",
+            "endtime": "21:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r281": {
+            "id": 281,
+            "name": "Delicious Noodle House (Taoyuan Branch)",
+            "lat": 22.5329985,
+            "lon": 113.9208161,
+            "price": 26.0,
+            "cuisine": "Snacks",
+            "opentime": "07:00",
+            "endtime": "22:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r95": {
+            "id": 95,
+            "name": "Hundred Herbs Hall Ancestral Herbal Tea Shop (Shekou Branch)",
+            "lat": 22.4877353,
+            "lon": 113.9285322,
+            "price": 27.0,
+            "cuisine": "Bakery and Desserts",
+            "opentime": "11:00",
+            "endtime": "02:00",
+            "recommendedfood": "Mango Pomelo Sago, Red Bean Double Skin Milk, Taro Coconut Milk with Peach Gum, Mango Herbal Jelly with Sago, Mango Fresh Milk with Sago, Taro Balls with Herbal Jelly and Taro"
+          },
+          "r282": {
+            "id": 282,
+            "name": "Jiajun Eight-Treasure Beef Offal",
+            "lat": 22.4865036,
+            "lon": 113.9296182,
+            "price": 29.0,
+            "cuisine": "Snacks",
+            "opentime": "11:00",
+            "endtime": "01:00",
+            "recommendedfood": "Beef tendon only, beef offal with radish, beef ball and offal rice noodles, beef brisket only, tofu skewers, radish only"
+          },
+          "r239": {
+            "id": 239,
+            "name": "Jiahua Snacks (Shekou Branch)",
+            "lat": 22.4858338,
+            "lon": 113.9281196,
+            "price": 30.0,
+            "cuisine": "Snacks",
+            "opentime": "07:00",
+            "endtime": "21:00",
+            "recommendedfood": "Dried Scallop Zongzi, Chestnut and Salted Pork Zongzi, Beef Offal Noodles, Clay Pot Rice with Cured Duck and Assorted Cured Meats, Beef Brisket Wonton, Beef Clay Pot Rice"
+          },
+          "r191": {
+            "id": 191,
+            "name": "KUDDO COFFEE (G&G Creative Community Store)",
+            "lat": 22.4916845,
+            "lon": 113.9185851,
+            "price": 31.0,
+            "cuisine": "coffee shop",
+            "opentime": "08:30",
+            "endtime": "19:30",
+            "recommendedfood": "Kuddo Soy Milk Cup, Milk Brick Dirty Coffee, Oat Milk Latte, Flat White, Tofu Pudding Latte, Grapefruit Soda"
+          },
+          "r135": {
+            "id": 135,
+            "name": "Dianpin Collection (Xinyang Branch)",
+            "lat": 22.7385954,
+            "lon": 113.8105192,
+            "price": 35.0,
+            "cuisine": "Bakery and Desserts",
+            "opentime": "12:30",
+            "endtime": "22:30",
+            "recommendedfood": "Herbal Chicken Feet, Mango Pudding, Sweet Glutinous Rice Balls, Durian Pudding, Taro Sago with Coconut Milk, Fried Wontons, Fried Chicken Mid-Wings"
+          },
+          "r168": {
+            "id": 168,
+            "name": "New West Garden Restaurant (Jinshuo Road Branch)",
+            "lat": 22.5717358,
+            "lon": 113.8772434,
+            "price": 40.0,
+            "cuisine": "Fast food and casual dining",
+            "opentime": "07:00",
+            "endtime": "14:00",
+            "recommendedfood": "Dry Wonton, Fried Wonton, Pork Tongue with Pork Intestines, Char Siu with Lai Fun Noodles, Wonton with Meatballs, Sliced Pork Fried Rice Noodles"
+          },
+          "r22": {
+            "id": 22,
+            "name": "Shenzhen Mandarin Oriental Hotel · Bazaar",
+            "lat": 22.5574757,
+            "lon": 114.0715313,
+            "price": 519.0,
+            "cuisine": "Asian cuisine",
+            "opentime": "06:30",
+            "endtime": "10:30",
+            "recommendedfood": "Ribeye steak, lobster salad, crispy roasted salted chicken, spicy beef shank, avocado soba noodles, Iberian ham"
+          },
+          "r271": {
+            "id": 271,
+            "name": "Wooden House Barbecue (Buji Old Street Branch)",
+            "lat": 22.601038,
+            "lon": 114.117186,
+            "price": 78.0,
+            "cuisine": "Barbecue",
+            "opentime": "10:00",
+            "endtime": "05:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r174": {
+            "id": 174,
+            "name": "Brother Hu's Grilled Fatty Beef (Meilin Main Store)",
+            "lat": 22.5630152,
+            "lon": 114.0531368,
+            "price": 114.0,
+            "cuisine": "Barbecue",
+            "opentime": "11:00",
+            "endtime": "02:30",
+            "recommendedfood": "Premium Grilled Fatty Beef, Secret Recipe Grilled Oysters, Fresh Shrimp Paste, Grilled Chicken Cartilage, Premium S-Rib Strips, Selected Pork Belly"
+          },
+          "r110": {
+            "id": 110,
+            "name": "Jingwei Zhang Beijing Roast Duck Restaurant (Luohu Branch)",
+            "lat": 22.5502741,
+            "lon": 114.1077374,
+            "price": 113.0,
+            "cuisine": "Beijing cuisine",
+            "opentime": "11:00",
+            "endtime": "21:00",
+            "recommendedfood": "Imperial Premium Roast Duck, Imperial Consort's Buddha Jumps Over the Wall, Prince's Roasted Lamb, Salt and Pepper Duck Carcass, Jingwei Zhang's Homemade Tender Tofu, Prince's Mansion Cabbage"
+          },
+          "r278": {
+            "id": 278,
+            "name": "Nine Blades · Beijing Roast Duck (Tian'an Cloud Valley Branch)",
+            "lat": 22.6600284,
+            "lon": 114.0683055,
+            "price": 119.0,
+            "cuisine": "Beijing cuisine",
+            "opentime": "10:00",
+            "endtime": "22:00",
+            "recommendedfood": "Nine Handle Ruyi Roast Duck, Rising Higher Step by Step, Beijing Fragrant Tripe, Golden Ingot Crispy Shrimp, Nine Handle Fried Sauce Noodles, Griddle Grilled Meat"
+          },
+          "r107": {
+            "id": 107,
+            "name": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "lat": 22.51836,
+            "lon": 114.0639289,
+            "price": 55.0,
+            "cuisine": "Cantonese cuisine",
+            "opentime": "07:30",
+            "endtime": "21:00",
+            "recommendedfood": "Crispy Pork Knuckle with Sand Ginger, Chicken Wings and Wingtips with Garlic, Fortune Chicken Chop with Golden Brick Baked Rice, Heartbroken Rice, Wealthy Milk Toast, Lucky Mixed Sauce Rice Noodle Rolls"
+          },
+          "r131": {
+            "id": 131,
+            "name": "New World Restaurant (Wanda Branch)",
+            "lat": 22.5711549,
+            "lon": 113.8929228,
+            "price": 55.0,
+            "cuisine": "Cantonese cuisine",
+            "opentime": "07:30",
+            "endtime": "22:00",
+            "recommendedfood": "Dry-fried rice noodles with beef, Brand roast goose rice, Chilled pineapple bun, Fresh shrimp wonton noodles, Club sandwich, Honey-glazed char siu"
+          },
+          "r104": {
+            "id": 104,
+            "name": "First Floor and a Half KNOCKCUP Charcoal Grill and Wine Bar (Joyce Center Branch)",
+            "lat": 22.5357328,
+            "lon": 114.0670591,
+            "price": 210.0,
+            "cuisine": "Creative Cuisine",
+            "opentime": "10:00",
+            "endtime": "24:00",
+            "recommendedfood": "Whiskey-steamed conch, Wagyu sukiyaki, lobster poached in kimchi broth, homemade Sichuan pepper sausage, beef tartare, pickled mustard green fried rice"
+          },
+          "r43": {
+            "id": 43,
+            "name": "Fumée",
+            "lat": 22.5404375,
+            "lon": 113.9358878,
+            "price": 1703.0,
+            "cuisine": "Creative Cuisine",
+            "opentime": "18:00",
+            "endtime": "23:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r289": {
+            "id": 289,
+            "name": "Great Eagle Eco-Park Farmhouse",
+            "lat": 22.5811581,
+            "lon": 114.479728,
+            "price": 75.0,
+            "cuisine": "Farmhouse cuisine",
+            "opentime": "08:00",
+            "endtime": "22:00",
+            "recommendedfood": "Firewood Roasted Goose, Lychee Wood Roasted Duck, Half Portion of Sand Ginger Stir-fried Chicken, Clay Pot Roasted Chicken, Scallion Oil Noodles, Hakka Stuffed Tofu"
+          },
+          "r243": {
+            "id": 243,
+            "name": "Xiange Mountain and Water Villa (Jiuwei Branch)",
+            "lat": 22.646464,
+            "lon": 113.8591625,
+            "price": 143.0,
+            "cuisine": "Farmhouse cuisine",
+            "opentime": "11:30",
+            "endtime": "22:00",
+            "recommendedfood": "Pan-fried Bama pork, Scallion oil chicken, Cumin lamb chops, Lychee wood roasted goose, Abalone sauce handmade tofu"
+          },
+          "r117": {
+            "id": 117,
+            "name": "Always Home Hakka Cuisine (Minkang Road Branch)",
+            "lat": 22.6141332,
+            "lon": 114.0406289,
+            "price": 66.0,
+            "cuisine": "Hakka cuisine",
+            "opentime": "11:00",
+            "endtime": "21:30",
+            "recommendedfood": "Hakka Stuffed Tofu, Hakka Braised Pork, Mom's Hand-Shredded Chicken, Milk-Scented Pork Ribs, Secret Recipe Three-Cup Duck, Garlic Vermicelli with Baby Bok Choy"
+          },
+          "r283": {
+            "id": 283,
+            "name": "Hakka Cuisine Restaurant (Bao'an Haiya Branch)",
+            "lat": 22.5597537,
+            "lon": 113.9057788,
+            "price": 81.0,
+            "cuisine": "Hakka cuisine",
+            "opentime": "11:00",
+            "endtime": "21:00",
+            "recommendedfood": "Hakka Stuffed Tofu, Traditional Hand-Shredded Salt-Baked Chicken, Stir-Fried Yellow Beef, Extraordinary Dried Tofu Skin, Perilla Clam Stir-Fry, Tender Pork Blood Curd"
+          },
+          "r138": {
+            "id": 138,
+            "name": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "lat": 22.5353288,
+            "lon": 114.0604334,
+            "price": 81.0,
+            "cuisine": "Hot pot",
+            "opentime": "11:00",
+            "endtime": "22:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r177": {
+            "id": 177,
+            "name": "Fragrant Fire Intestine (Futian Branch)",
+            "lat": 22.5215916,
+            "lon": 114.0342867,
+            "price": 86.0,
+            "cuisine": "Hot pot",
+            "opentime": "11:00",
+            "endtime": "01:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r164": {
+            "id": 164,
+            "name": "Love Bowl Pavilion · Freshly Stir-fried Hunan Cuisine (Yueshang Center Branch)",
+            "lat": 22.6565819,
+            "lon": 114.0371476,
+            "price": 71.0,
+            "cuisine": "Hunan cuisine",
+            "opentime": "11:00",
+            "endtime": "21:00",
+            "recommendedfood": "Signature Stir-fried Chicken, Stir-fried Yellow Beef, Braised Prawns in Oil, Stir-fried Pork with Chili, Two-color Fish Head, Stir-fried Pork Tripe with Pickled Radish"
+          },
+          "r142": {
+            "id": 142,
+            "name": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "lat": 22.5317135,
+            "lon": 114.0653587,
+            "price": 78.0,
+            "cuisine": "Hunan cuisine",
+            "opentime": "11:00",
+            "endtime": "21:00",
+            "recommendedfood": "Stir-fried Yellow Beef, Pozi Street Braised Pork Trotter, Taro with Spare Ribs, Lotus Root and Pork Bone Soup, White Chili Pork Intestines, Mashed Chili with Century Egg"
+          },
+          "r192": {
+            "id": 192,
+            "name": "More Than Cuisine (Seaworld Branch)",
+            "lat": 22.4863285,
+            "lon": 113.9167368,
+            "price": 68.0,
+            "cuisine": "Japanese cuisine",
+            "opentime": "11:30",
+            "endtime": "21:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r114": {
+            "id": 114,
+            "name": "Mountain Field Creative Cuisine (Luohu Branch)",
+            "lat": 22.5410949,
+            "lon": 114.1205678,
+            "price": 118.0,
+            "cuisine": "Japanese cuisine",
+            "opentime": "11:30",
+            "endtime": "21:30",
+            "recommendedfood": "Devil Oysters, Japanese Fried Chicken, Tuna Avocado Rice Bowl, Eel Tamagoyaki, Beef Bowl, Freshly Baked Soufflé"
+          },
+          "r133": {
+            "id": 133,
+            "name": "Wu Zhuang (Longgang COCO Park Branch)",
+            "lat": 22.6910344,
+            "lon": 114.2289469,
+            "price": 73.0,
+            "cuisine": "Jiangsu-Zhejiang cuisine",
+            "opentime": "11:00",
+            "endtime": "21:00",
+            "recommendedfood": "Beijing Wood-fired Roast Duck Three Ways, Heavenly Drunken Chicken, Poached Sea Bass in Chili Oil, Duck Blood and Tripe in Spicy Broth, Stone Pot Tofu, Sweet and Sour Pork Tenderloin"
+          },
+          "r295": {
+            "id": 295,
+            "name": "Qiantang Tide · Refined Jiangzhe Cuisine (Futian COCO Park Branch)",
+            "lat": 22.5331522,
+            "lon": 114.054573,
+            "price": 156.0,
+            "cuisine": "Jiangsu-Zhejiang cuisine",
+            "opentime": "11:00",
+            "endtime": "22:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r72": {
+            "id": 72,
+            "name": "Latina Brazilian Steakhouse (Seaworld Branch)",
+            "lat": 22.4828963,
+            "lon": 113.9175606,
+            "price": 309.0,
+            "cuisine": "Latin American cuisine",
+            "opentime": "11:00",
+            "endtime": "22:00",
+            "recommendedfood": "grilled shrimp, beef tri-tip, grilled pineapple, Iberian ham, cheese bread"
+          }
+        },
+        "outbound": {
+          "FL584": {
+            "FlightID": "FL584",
+            "From": "Wuhan Tianhe International Airport",
+            "To": "Shenzhen Bao'an International Airport",
+            "BeginTime": "13:40",
+            "EndTime": "14:47",
+            "Duration": 1.12,
+            "Cost": 408.95,
+            "_mode": "airplane"
+          },
+          "FL590": {
+            "FlightID": "FL590",
+            "From": "Wuhan Tianhe International Airport",
+            "To": "Shenzhen Bao'an International Airport",
+            "BeginTime": "02:39",
+            "EndTime": "03:46",
+            "Duration": 1.12,
+            "Cost": 410.74,
+            "_mode": "airplane"
+          },
+          "FL585": {
+            "FlightID": "FL585",
+            "From": "Wuhan Tianhe International Airport",
+            "To": "Shenzhen Bao'an International Airport",
+            "BeginTime": "03:55",
+            "EndTime": "05:02",
+            "Duration": 1.12,
+            "Cost": 425.28,
+            "_mode": "airplane"
+          },
+          "FL587": {
+            "FlightID": "FL587",
+            "From": "Wuhan Tianhe International Airport",
+            "To": "Shenzhen Bao'an International Airport",
+            "BeginTime": "13:45",
+            "EndTime": "14:52",
+            "Duration": 1.12,
+            "Cost": 426.2,
+            "_mode": "airplane"
+          },
+          "FL581": {
+            "FlightID": "FL581",
+            "From": "Wuhan Tianhe International Airport",
+            "To": "Shenzhen Bao'an International Airport",
+            "BeginTime": "12:56",
+            "EndTime": "14:03",
+            "Duration": 1.12,
+            "Cost": 427.83,
+            "_mode": "airplane"
+          },
+          "FL589": {
+            "FlightID": "FL589",
+            "From": "Wuhan Tianhe International Airport",
+            "To": "Shenzhen Bao'an International Airport",
+            "BeginTime": "12:31",
+            "EndTime": "13:38",
+            "Duration": 1.12,
+            "Cost": 441.17,
+            "_mode": "airplane"
+          },
+          "FL582": {
+            "FlightID": "FL582",
+            "From": "Wuhan Tianhe International Airport",
+            "To": "Shenzhen Bao'an International Airport",
+            "BeginTime": "12:39",
+            "EndTime": "13:46",
+            "Duration": 1.12,
+            "Cost": 475.03,
+            "_mode": "airplane"
+          },
+          "FL583": {
+            "FlightID": "FL583",
+            "From": "Wuhan Tianhe International Airport",
+            "To": "Shenzhen Bao'an International Airport",
+            "BeginTime": "09:55",
+            "EndTime": "11:02",
+            "Duration": 1.12,
+            "Cost": 475.5,
+            "_mode": "airplane"
+          },
+          "FL588": {
+            "FlightID": "FL588",
+            "From": "Wuhan Tianhe International Airport",
+            "To": "Shenzhen Bao'an International Airport",
+            "BeginTime": "05:05",
+            "EndTime": "06:12",
+            "Duration": 1.12,
+            "Cost": 481.86,
+            "_mode": "airplane"
+          },
+          "FL586": {
+            "FlightID": "FL586",
+            "From": "Wuhan Tianhe International Airport",
+            "To": "Shenzhen Bao'an International Airport",
+            "BeginTime": "09:39",
+            "EndTime": "10:46",
+            "Duration": 1.12,
+            "Cost": 478.27,
+            "_mode": "airplane"
+          },
+          "G1001": {
+            "TrainID": "G1001",
+            "TrainType": "High-speed rail",
+            "From": "Wuhan Station",
+            "To": "Shenzhen North Railway Station",
+            "BeginTime": "07:25",
+            "EndTime": "12:14",
+            "Duration": 4.82,
+            "Cost": 582.03,
+            "_mode": "train"
+          },
+          "G1003": {
+            "TrainID": "G1003",
+            "TrainType": "High-speed rail",
+            "From": "Wuhan Station",
+            "To": "Shenzhen North Railway Station",
+            "BeginTime": "07:55",
+            "EndTime": "12:47",
+            "Duration": 4.87,
+            "Cost": 582.03,
+            "_mode": "train"
+          },
+          "G1005": {
+            "TrainID": "G1005",
+            "TrainType": "High-speed rail",
+            "From": "Wuhan Station",
+            "To": "Shenzhen North Railway Station",
+            "BeginTime": "08:12",
+            "EndTime": "13:08",
+            "Duration": 4.93,
+            "Cost": 582.03,
+            "_mode": "train"
+          }
+        },
+        "inbound": {
+          "FL230": {
+            "FlightID": "FL230",
+            "From": "Shenzhen Bao'an International Airport",
+            "To": "Wuhan Tianhe International Airport",
+            "BeginTime": "10:48",
+            "EndTime": "11:55",
+            "Duration": 1.12,
+            "Cost": 410.79,
+            "_mode": "airplane"
+          },
+          "FL222": {
+            "FlightID": "FL222",
+            "From": "Shenzhen Bao'an International Airport",
+            "To": "Wuhan Tianhe International Airport",
+            "BeginTime": "01:39",
+            "EndTime": "02:46",
+            "Duration": 1.12,
+            "Cost": 419.39,
+            "_mode": "airplane"
+          },
+          "FL224": {
+            "FlightID": "FL224",
+            "From": "Shenzhen Bao'an International Airport",
+            "To": "Wuhan Tianhe International Airport",
+            "BeginTime": "17:50",
+            "EndTime": "18:57",
+            "Duration": 1.12,
+            "Cost": 420.45,
+            "_mode": "airplane"
+          },
+          "FL225": {
+            "FlightID": "FL225",
+            "From": "Shenzhen Bao'an International Airport",
+            "To": "Wuhan Tianhe International Airport",
+            "BeginTime": "03:51",
+            "EndTime": "04:58",
+            "Duration": 1.12,
+            "Cost": 435.1,
+            "_mode": "airplane"
+          },
+          "FL223": {
+            "FlightID": "FL223",
+            "From": "Shenzhen Bao'an International Airport",
+            "To": "Wuhan Tianhe International Airport",
+            "BeginTime": "09:00",
+            "EndTime": "10:07",
+            "Duration": 1.12,
+            "Cost": 440.74,
+            "_mode": "airplane"
+          },
+          "FL228": {
+            "FlightID": "FL228",
+            "From": "Shenzhen Bao'an International Airport",
+            "To": "Wuhan Tianhe International Airport",
+            "BeginTime": "07:21",
+            "EndTime": "08:28",
+            "Duration": 1.12,
+            "Cost": 445.8,
+            "_mode": "airplane"
+          },
+          "FL221": {
+            "FlightID": "FL221",
+            "From": "Shenzhen Bao'an International Airport",
+            "To": "Wuhan Tianhe International Airport",
+            "BeginTime": "11:19",
+            "EndTime": "12:26",
+            "Duration": 1.12,
+            "Cost": 451.9,
+            "_mode": "airplane"
+          },
+          "FL226": {
+            "FlightID": "FL226",
+            "From": "Shenzhen Bao'an International Airport",
+            "To": "Wuhan Tianhe International Airport",
+            "BeginTime": "02:19",
+            "EndTime": "03:26",
+            "Duration": 1.12,
+            "Cost": 464.6,
+            "_mode": "airplane"
+          },
+          "G2708": {
+            "TrainID": "G2708",
+            "TrainType": "High-speed rail",
+            "From": "Shenzhen North Railway Station",
+            "To": "Wuhan Station",
+            "BeginTime": "17:50",
+            "EndTime": "23:23",
+            "Duration": 5.55,
+            "Cost": 582.03,
+            "_mode": "train"
+          },
+          "G1016": {
+            "TrainID": "G1016",
+            "TrainType": "High-speed rail",
+            "From": "Shenzhen North Railway Station",
+            "To": "Wuhan Station",
+            "BeginTime": "17:04",
+            "EndTime": "22:22",
+            "Duration": 5.3,
+            "Cost": 582.03,
+            "_mode": "train"
+          },
+          "G1192": {
+            "TrainID": "G1192",
+            "TrainType": "High-speed rail",
+            "From": "Shenzhen North Railway Station",
+            "To": "Wuhan Station",
+            "BeginTime": "16:31",
+            "EndTime": "21:28",
+            "Duration": 4.95,
+            "Cost": 582.03,
+            "_mode": "train"
+          },
+          "G1014": {
+            "TrainID": "G1014",
+            "TrainType": "High-speed rail",
+            "From": "Shenzhen North Railway Station",
+            "To": "Wuhan Station",
+            "BeginTime": "16:25",
+            "EndTime": "21:17",
+            "Duration": 4.87,
+            "Cost": 582.03,
+            "_mode": "train"
+          },
+          "G2706": {
+            "TrainID": "G2706",
+            "TrainType": "High-speed rail",
+            "From": "Shenzhen Station",
+            "To": "Wuhan Station",
+            "BeginTime": "16:02",
+            "EndTime": "23:48",
+            "Duration": 7.77,
+            "Cost": 582.03,
+            "_mode": "train"
+          },
+          "G1190": {
+            "TrainID": "G1190",
+            "TrainType": "High-speed rail",
+            "From": "Shenzhen North Railway Station",
+            "To": "Wuhan Station",
+            "BeginTime": "15:48",
+            "EndTime": "20:43",
+            "Duration": 4.92,
+            "Cost": 582.03,
+            "_mode": "train"
+          },
+          "G1012": {
+            "TrainID": "G1012",
+            "TrainType": "High-speed rail",
+            "From": "Shenzhen North Railway Station",
+            "To": "Wuhan Station",
+            "BeginTime": "15:20",
+            "EndTime": "20:19",
+            "Duration": 4.98,
+            "Cost": 582.03,
+            "_mode": "train"
+          }
+        }
+      },
+      "components": {
+        "feedback": true,
+        "compiler": true,
+        "shared_context": true
+      },
+      "tool_trace": [
+        {
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "contains",
+            "value": "世界之窗"
+          },
+          "response": {
+            "success": true,
+            "command": "attractions_select",
+            "resolved_from_language": "zh",
+            "data": {
+              "type": "dataframe",
+              "rows": [
+                {
+                  "id": 0,
+                  "name": "Window of the World",
+                  "type": "Amusement Park/Sports Entertainment",
+                  "lat": 22.540746,
+                  "lon": 113.979399,
+                  "opentime": "09:30",
+                  "endtime": "21:30",
+                  "price": 115.0,
+                  "recommendmintime": 2.0,
+                  "recommendmaxtime": 3.0
+                }
+              ],
+              "row_count": 1,
+              "returned_rows": 1
+            },
+            "text": "[{'id': 0, 'name': 'Window of the World', 'type': 'Amusement Park/Sports Entertainment', 'lat': 22.540746, 'lon': 113.979399, 'opentime': '09:30', 'endtime': '21:30', 'price': 115.0, 'recommendmintime': 2.0, 'recommendmaxtime': 3.0}]"
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen North Railway Station",
+            "end": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "start_time": "12:14",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)\", \"start\": \"Shenzhen North Railway Station\", \"start_time\": \"12:14\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Shenzhen North Railway Station', 'end': 'Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)', 'mode': 'taxi', 'start_time': '12:14', 'end_time': '12:30', 'cost': 42.99, 'distance': 10.73}]",
+            "data": [
+              {
+                "start": "Shenzhen North Railway Station",
+                "end": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+                "mode": "taxi",
+                "start_time": "12:14",
+                "end_time": "12:30",
+                "cost": 42.99,
+                "distance": 10.73
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen North Railway Station",
+            "end": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "start_time": "12:14",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)\", \"start\": \"Shenzhen North Railway Station\", \"start_time\": \"12:14\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Shenzhen North Railway Station', 'end': 'Shenzhen North Railway Station-Metro Station', 'mode': 'walk', 'start_time': '12:14', 'end_time': '12:15', 'cost': 0, 'distance': 0.15}, {'start': 'Shenzhen North Railway Station-Metro Station', 'end': 'Futian Port-Metro Station', 'mode': 'metro', 'start_time': '12:15', 'end_time': '12:37', 'cost': 4, 'distance': 11.04}, {'start': 'Futian Port-Metro Station', 'end': 'Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)', 'mode': 'walk', 'start_time': '12:37', 'end_time': '12:41', 'cost': 0, 'distance': 0.39}]",
+            "data": [
+              {
+                "start": "Shenzhen North Railway Station",
+                "end": "Shenzhen North Railway Station-Metro Station",
+                "mode": "walk",
+                "start_time": "12:14",
+                "end_time": "12:15",
+                "cost": 0,
+                "distance": 0.15
+              },
+              {
+                "start": "Shenzhen North Railway Station-Metro Station",
+                "end": "Futian Port-Metro Station",
+                "mode": "metro",
+                "start_time": "12:15",
+                "end_time": "12:37",
+                "cost": 4,
+                "distance": 11.04
+              },
+              {
+                "start": "Futian Port-Metro Station",
+                "end": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+                "mode": "walk",
+                "start_time": "12:37",
+                "end_time": "12:41",
+                "cost": 0,
+                "distance": 0.39
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen North Railway Station",
+            "end": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "start_time": "12:14",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)\", \"start\": \"Shenzhen North Railway Station\", \"start_time\": \"12:14\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Shenzhen North Railway Station', 'end': 'Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)', 'mode': 'walk', 'start_time': '12:14', 'end_time': '14:22', 'cost': 0.0, 'distance': 10.732009929212328}]",
+            "data": [
+              {
+                "start": "Shenzhen North Railway Station",
+                "end": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+                "mode": "walk",
+                "start_time": "12:14",
+                "end_time": "14:22",
+                "cost": 0.0,
+                "distance": 10.732009929212328
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "end": "Window of the World",
+            "start_time": "13:15",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Window of the World\", \"start\": \"Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)\", \"start_time\": \"13:15\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)', 'end': 'Window of the World', 'mode': 'taxi', 'start_time': '13:15', 'end_time': '13:28', 'cost': 36.35, 'distance': 9.04}]",
+            "data": [
+              {
+                "start": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+                "end": "Window of the World",
+                "mode": "taxi",
+                "start_time": "13:15",
+                "end_time": "13:28",
+                "cost": 36.35,
+                "distance": 9.04
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "end": "Window of the World",
+            "start_time": "13:15",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Window of the World\", \"start\": \"Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)\", \"start_time\": \"13:15\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)', 'end': 'Futian Port-Metro Station', 'mode': 'walk', 'start_time': '13:15', 'end_time': '13:19', 'cost': 0, 'distance': 0.39}, {'start': 'Futian Port-Metro Station', 'end': 'Window of the World-Metro Station', 'mode': 'metro', 'start_time': '13:19', 'end_time': '13:38', 'cost': 4, 'distance': 9.83}, {'start': 'Window of the World-Metro Station', 'end': 'Window of the World', 'mode': 'walk', 'start_time': '13:38', 'end_time': '13:46', 'cost': 0, 'distance': 0.68}]",
+            "data": [
+              {
+                "start": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+                "end": "Futian Port-Metro Station",
+                "mode": "walk",
+                "start_time": "13:15",
+                "end_time": "13:19",
+                "cost": 0,
+                "distance": 0.39
+              },
+              {
+                "start": "Futian Port-Metro Station",
+                "end": "Window of the World-Metro Station",
+                "mode": "metro",
+                "start_time": "13:19",
+                "end_time": "13:38",
+                "cost": 4,
+                "distance": 9.83
+              },
+              {
+                "start": "Window of the World-Metro Station",
+                "end": "Window of the World",
+                "mode": "walk",
+                "start_time": "13:38",
+                "end_time": "13:46",
+                "cost": 0,
+                "distance": 0.68
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "end": "Window of the World",
+            "start_time": "13:15",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Window of the World\", \"start\": \"Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)\", \"start_time\": \"13:15\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)', 'end': 'Window of the World', 'mode': 'walk', 'start_time': '13:15', 'end_time': '15:03', 'cost': 0.0, 'distance': 9.042401303730527}]",
+            "data": [
+              {
+                "start": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+                "end": "Window of the World",
+                "mode": "walk",
+                "start_time": "13:15",
+                "end_time": "15:03",
+                "cost": 0.0,
+                "distance": 9.042401303730527
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Window of the World",
+            "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "start_time": "15:28",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)\", \"start\": \"Window of the World\", \"start_time\": \"15:28\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Window of the World', 'end': 'Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)', 'mode': 'taxi', 'start_time': '15:28', 'end_time': '15:30', 'cost': 11.0, 'distance': 1.69}]",
+            "data": [
+              {
+                "start": "Window of the World",
+                "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                "mode": "taxi",
+                "start_time": "15:28",
+                "end_time": "15:30",
+                "cost": 11.0,
+                "distance": 1.69
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Window of the World",
+            "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "start_time": "15:28",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)\", \"start\": \"Window of the World\", \"start_time\": \"15:28\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Window of the World', 'end': 'Window of the World-Metro Station', 'mode': 'walk', 'start_time': '15:28', 'end_time': '15:36', 'cost': 0, 'distance': 0.68}, {'start': 'Window of the World-Metro Station', 'end': 'Baishizhou-Metro Station', 'mode': 'metro', 'start_time': '15:36', 'end_time': '15:37', 'cost': 2, 'distance': 0.8}, {'start': 'Baishizhou-Metro Station', 'end': 'Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)', 'mode': 'walk', 'start_time': '15:37', 'end_time': '15:44', 'cost': 0, 'distance': 0.65}]",
+            "data": [
+              {
+                "start": "Window of the World",
+                "end": "Window of the World-Metro Station",
+                "mode": "walk",
+                "start_time": "15:28",
+                "end_time": "15:36",
+                "cost": 0,
+                "distance": 0.68
+              },
+              {
+                "start": "Window of the World-Metro Station",
+                "end": "Baishizhou-Metro Station",
+                "mode": "metro",
+                "start_time": "15:36",
+                "end_time": "15:37",
+                "cost": 2,
+                "distance": 0.8
+              },
+              {
+                "start": "Baishizhou-Metro Station",
+                "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                "mode": "walk",
+                "start_time": "15:37",
+                "end_time": "15:44",
+                "cost": 0,
+                "distance": 0.65
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Window of the World",
+            "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "start_time": "15:28",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)\", \"start\": \"Window of the World\", \"start_time\": \"15:28\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Window of the World', 'end': 'Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)', 'mode': 'walk', 'start_time': '15:28', 'end_time': '15:48', 'cost': 0.0, 'distance': 1.6913749195587615}]",
+            "data": [
+              {
+                "start": "Window of the World",
+                "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                "mode": "walk",
+                "start_time": "15:28",
+                "end_time": "15:48",
+                "cost": 0.0,
+                "distance": 1.6913749195587615
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "end": "Hua Art Museum",
+            "start_time": "08:00",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Hua Art Museum\", \"start\": \"Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)\", \"start_time\": \"08:00\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)', 'end': 'Hua Art Museum', 'mode': 'taxi', 'start_time': '08:00', 'end_time': '08:03', 'cost': 13.84, 'distance': 2.61}]",
+            "data": [
+              {
+                "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                "end": "Hua Art Museum",
+                "mode": "taxi",
+                "start_time": "08:00",
+                "end_time": "08:03",
+                "cost": 13.84,
+                "distance": 2.61
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "end": "Hua Art Museum",
+            "start_time": "08:00",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Hua Art Museum\", \"start\": \"Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)\", \"start_time\": \"08:00\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)', 'end': 'Baishizhou-Metro Station', 'mode': 'walk', 'start_time': '08:00', 'end_time': '08:07', 'cost': 0, 'distance': 0.65}, {'start': 'Baishizhou-Metro Station', 'end': 'Qiaocheng North-Metro Station', 'mode': 'metro', 'start_time': '08:07', 'end_time': '08:11', 'cost': 2, 'distance': 2.32}, {'start': 'Qiaocheng North-Metro Station', 'end': 'Hua Art Museum', 'mode': 'walk', 'start_time': '08:11', 'end_time': '08:17', 'cost': 0, 'distance': 0.54}]",
+            "data": [
+              {
+                "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                "end": "Baishizhou-Metro Station",
+                "mode": "walk",
+                "start_time": "08:00",
+                "end_time": "08:07",
+                "cost": 0,
+                "distance": 0.65
+              },
+              {
+                "start": "Baishizhou-Metro Station",
+                "end": "Qiaocheng North-Metro Station",
+                "mode": "metro",
+                "start_time": "08:07",
+                "end_time": "08:11",
+                "cost": 2,
+                "distance": 2.32
+              },
+              {
+                "start": "Qiaocheng North-Metro Station",
+                "end": "Hua Art Museum",
+                "mode": "walk",
+                "start_time": "08:11",
+                "end_time": "08:17",
+                "cost": 0,
+                "distance": 0.54
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "end": "Hua Art Museum",
+            "start_time": "08:00",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Hua Art Museum\", \"start\": \"Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)\", \"start_time\": \"08:00\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)', 'end': 'Hua Art Museum', 'mode': 'walk', 'start_time': '08:00', 'end_time': '08:31', 'cost': 0.0, 'distance': 2.611985559922199}]",
+            "data": [
+              {
+                "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                "end": "Hua Art Museum",
+                "mode": "walk",
+                "start_time": "08:00",
+                "end_time": "08:31",
+                "cost": 0.0,
+                "distance": 2.611985559922199
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Hua Art Museum",
+            "end": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "start_time": "12:30",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)\", \"start\": \"Hua Art Museum\", \"start_time\": \"12:30\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Hua Art Museum', 'end': 'Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)', 'mode': 'taxi', 'start_time': '12:30', 'end_time': '12:40', 'cost': 30.33, 'distance': 7.32}]",
+            "data": [
+              {
+                "start": "Hua Art Museum",
+                "end": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+                "mode": "taxi",
+                "start_time": "12:30",
+                "end_time": "12:40",
+                "cost": 30.33,
+                "distance": 7.32
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Hua Art Museum",
+            "end": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "start_time": "12:30",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)\", \"start\": \"Hua Art Museum\", \"start_time\": \"12:30\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Hua Art Museum', 'end': 'Qiaocheng North-Metro Station', 'mode': 'walk', 'start_time': '12:30', 'end_time': '12:36', 'cost': 0, 'distance': 0.54}, {'start': 'Qiaocheng North-Metro Station', 'end': 'Convention and Exhibition Center-Metro Station', 'mode': 'metro', 'start_time': '12:36', 'end_time': '12:50', 'cost': 3, 'distance': 7.47}, {'start': 'Convention and Exhibition Center-Metro Station', 'end': 'Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)', 'mode': 'walk', 'start_time': '12:50', 'end_time': '12:51', 'cost': 0, 'distance': 0.09}]",
+            "data": [
+              {
+                "start": "Hua Art Museum",
+                "end": "Qiaocheng North-Metro Station",
+                "mode": "walk",
+                "start_time": "12:30",
+                "end_time": "12:36",
+                "cost": 0,
+                "distance": 0.54
+              },
+              {
+                "start": "Qiaocheng North-Metro Station",
+                "end": "Convention and Exhibition Center-Metro Station",
+                "mode": "metro",
+                "start_time": "12:36",
+                "end_time": "12:50",
+                "cost": 3,
+                "distance": 7.47
+              },
+              {
+                "start": "Convention and Exhibition Center-Metro Station",
+                "end": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+                "mode": "walk",
+                "start_time": "12:50",
+                "end_time": "12:51",
+                "cost": 0,
+                "distance": 0.09
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Hua Art Museum",
+            "end": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "start_time": "12:30",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)\", \"start\": \"Hua Art Museum\", \"start_time\": \"12:30\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Hua Art Museum', 'end': 'Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)', 'mode': 'walk', 'start_time': '12:30', 'end_time': '13:57', 'cost': 0.0, 'distance': 7.322166168533748}]",
+            "data": [
+              {
+                "start": "Hua Art Museum",
+                "end": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+                "mode": "walk",
+                "start_time": "12:30",
+                "end_time": "13:57",
+                "cost": 0.0,
+                "distance": 7.322166168533748
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "end": "Shenzhen University Town",
+            "start_time": "13:25",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen University Town\", \"start\": \"Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)\", \"start_time\": \"13:25\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)', 'end': 'Shenzhen University Town', 'mode': 'taxi', 'start_time': '13:25', 'end_time': '13:40', 'cost': 39.98, 'distance': 10.06}]",
+            "data": [
+              {
+                "start": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+                "end": "Shenzhen University Town",
+                "mode": "taxi",
+                "start_time": "13:25",
+                "end_time": "13:40",
+                "cost": 39.98,
+                "distance": 10.06
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "end": "Shenzhen University Town",
+            "start_time": "13:25",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen University Town\", \"start\": \"Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)\", \"start_time\": \"13:25\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)', 'end': 'Convention and Exhibition Center-Metro Station', 'mode': 'walk', 'start_time': '13:25', 'end_time': '13:26', 'cost': 0, 'distance': 0.09}, {'start': 'Convention and Exhibition Center-Metro Station', 'end': 'Tanglang-Metro Station', 'mode': 'metro', 'start_time': '13:26', 'end_time': '13:43', 'cost': 3, 'distance': 8.8}, {'start': 'Tanglang-Metro Station', 'end': 'Shenzhen University Town', 'mode': 'walk', 'start_time': '13:43', 'end_time': '14:03', 'cost': 0, 'distance': 1.74}]",
+            "data": [
+              {
+                "start": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+                "end": "Convention and Exhibition Center-Metro Station",
+                "mode": "walk",
+                "start_time": "13:25",
+                "end_time": "13:26",
+                "cost": 0,
+                "distance": 0.09
+              },
+              {
+                "start": "Convention and Exhibition Center-Metro Station",
+                "end": "Tanglang-Metro Station",
+                "mode": "metro",
+                "start_time": "13:26",
+                "end_time": "13:43",
+                "cost": 3,
+                "distance": 8.8
+              },
+              {
+                "start": "Tanglang-Metro Station",
+                "end": "Shenzhen University Town",
+                "mode": "walk",
+                "start_time": "13:43",
+                "end_time": "14:03",
+                "cost": 0,
+                "distance": 1.74
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "end": "Shenzhen University Town",
+            "start_time": "13:25",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen University Town\", \"start\": \"Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)\", \"start_time\": \"13:25\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)', 'end': 'Shenzhen University Town', 'mode': 'walk', 'start_time': '13:25', 'end_time': '15:25', 'cost': 0.0, 'distance': 10.06183081692722}]",
+            "data": [
+              {
+                "start": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+                "end": "Shenzhen University Town",
+                "mode": "walk",
+                "start_time": "13:25",
+                "end_time": "15:25",
+                "cost": 0.0,
+                "distance": 10.06183081692722
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen University Town",
+            "end": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "start_time": "15:10",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)\", \"start\": \"Shenzhen University Town\", \"start_time\": \"15:10\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Shenzhen University Town', 'end': 'Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)', 'mode': 'taxi', 'start_time': '15:10', 'end_time': '15:26', 'cost': 42.88, 'distance': 10.71}]",
+            "data": [
+              {
+                "start": "Shenzhen University Town",
+                "end": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+                "mode": "taxi",
+                "start_time": "15:10",
+                "end_time": "15:26",
+                "cost": 42.88,
+                "distance": 10.71
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen University Town",
+            "end": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "start_time": "15:10",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)\", \"start\": \"Shenzhen University Town\", \"start_time\": \"15:10\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Shenzhen University Town', 'end': 'Tanglang-Metro Station', 'mode': 'walk', 'start_time': '15:10', 'end_time': '15:30', 'cost': 0, 'distance': 1.74}, {'start': 'Tanglang-Metro Station', 'end': 'Gangxia-Metro Station', 'mode': 'metro', 'start_time': '15:30', 'end_time': '15:48', 'cost': 4, 'distance': 9.33}, {'start': 'Gangxia-Metro Station', 'end': 'Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)', 'mode': 'walk', 'start_time': '15:48', 'end_time': '15:53', 'cost': 0, 'distance': 0.45}]",
+            "data": [
+              {
+                "start": "Shenzhen University Town",
+                "end": "Tanglang-Metro Station",
+                "mode": "walk",
+                "start_time": "15:10",
+                "end_time": "15:30",
+                "cost": 0,
+                "distance": 1.74
+              },
+              {
+                "start": "Tanglang-Metro Station",
+                "end": "Gangxia-Metro Station",
+                "mode": "metro",
+                "start_time": "15:30",
+                "end_time": "15:48",
+                "cost": 4,
+                "distance": 9.33
+              },
+              {
+                "start": "Gangxia-Metro Station",
+                "end": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+                "mode": "walk",
+                "start_time": "15:48",
+                "end_time": "15:53",
+                "cost": 0,
+                "distance": 0.45
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen University Town",
+            "end": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "start_time": "15:10",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)\", \"start\": \"Shenzhen University Town\", \"start_time\": \"15:10\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Shenzhen University Town', 'end': 'Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)', 'mode': 'walk', 'start_time': '15:10', 'end_time': '17:18', 'cost': 0.0, 'distance': 10.707517528191962}]",
+            "data": [
+              {
+                "start": "Shenzhen University Town",
+                "end": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+                "mode": "walk",
+                "start_time": "15:10",
+                "end_time": "17:18",
+                "cost": 0.0,
+                "distance": 10.707517528191962
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "start_time": "17:45",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)\", \"start\": \"Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)\", \"start_time\": \"17:45\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)', 'end': 'Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)', 'mode': 'taxi', 'start_time': '17:45', 'end_time': '18:00', 'cost': 41.39, 'distance': 10.37}]",
+            "data": [
+              {
+                "start": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+                "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                "mode": "taxi",
+                "start_time": "17:45",
+                "end_time": "18:00",
+                "cost": 41.39,
+                "distance": 10.37
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "start_time": "17:45",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)\", \"start\": \"Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)\", \"start_time\": \"17:45\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)', 'end': 'Gangxia-Metro Station', 'mode': 'walk', 'start_time': '17:45', 'end_time': '17:50', 'cost': 0, 'distance': 0.45}, {'start': 'Gangxia-Metro Station', 'end': 'Baishizhou-Metro Station', 'mode': 'metro', 'start_time': '17:50', 'end_time': '18:10', 'cost': 4, 'distance': 10.42}, {'start': 'Baishizhou-Metro Station', 'end': 'Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)', 'mode': 'walk', 'start_time': '18:10', 'end_time': '18:17', 'cost': 0, 'distance': 0.65}]",
+            "data": [
+              {
+                "start": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+                "end": "Gangxia-Metro Station",
+                "mode": "walk",
+                "start_time": "17:45",
+                "end_time": "17:50",
+                "cost": 0,
+                "distance": 0.45
+              },
+              {
+                "start": "Gangxia-Metro Station",
+                "end": "Baishizhou-Metro Station",
+                "mode": "metro",
+                "start_time": "17:50",
+                "end_time": "18:10",
+                "cost": 4,
+                "distance": 10.42
+              },
+              {
+                "start": "Baishizhou-Metro Station",
+                "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                "mode": "walk",
+                "start_time": "18:10",
+                "end_time": "18:17",
+                "cost": 0,
+                "distance": 0.65
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "start_time": "17:45",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)\", \"start\": \"Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)\", \"start_time\": \"17:45\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)', 'end': 'Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)', 'mode': 'walk', 'start_time': '17:45', 'end_time': '19:49', 'cost': 0.0, 'distance': 10.374646913220172}]",
+            "data": [
+              {
+                "start": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+                "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                "mode": "walk",
+                "start_time": "17:45",
+                "end_time": "19:49",
+                "cost": 0.0,
+                "distance": 10.374646913220172
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "end": "Shenzhen Bay Bridge",
+            "start_time": "08:00",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen Bay Bridge\", \"start\": \"Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)\", \"start_time\": \"08:00\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)', 'end': 'Shenzhen Bay Bridge', 'mode': 'taxi', 'start_time': '08:00', 'end_time': '08:06', 'cost': 20.89, 'distance': 4.63}]",
+            "data": [
+              {
+                "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                "end": "Shenzhen Bay Bridge",
+                "mode": "taxi",
+                "start_time": "08:00",
+                "end_time": "08:06",
+                "cost": 20.89,
+                "distance": 4.63
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "end": "Shenzhen Bay Bridge",
+            "start_time": "08:00",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen Bay Bridge\", \"start\": \"Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)\", \"start_time\": \"08:00\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)', 'end': 'Baishizhou-Metro Station', 'mode': 'walk', 'start_time': '08:00', 'end_time': '08:07', 'cost': 0, 'distance': 0.65}, {'start': 'Baishizhou-Metro Station', 'end': 'Wanxia-Metro Station', 'mode': 'metro', 'start_time': '08:07', 'end_time': '08:18', 'cost': 3, 'distance': 5.9}, {'start': 'Wanxia-Metro Station', 'end': 'Shenzhen Bay Bridge', 'mode': 'walk', 'start_time': '08:18', 'end_time': '08:40', 'cost': 0, 'distance': 1.9}]",
+            "data": [
+              {
+                "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                "end": "Baishizhou-Metro Station",
+                "mode": "walk",
+                "start_time": "08:00",
+                "end_time": "08:07",
+                "cost": 0,
+                "distance": 0.65
+              },
+              {
+                "start": "Baishizhou-Metro Station",
+                "end": "Wanxia-Metro Station",
+                "mode": "metro",
+                "start_time": "08:07",
+                "end_time": "08:18",
+                "cost": 3,
+                "distance": 5.9
+              },
+              {
+                "start": "Wanxia-Metro Station",
+                "end": "Shenzhen Bay Bridge",
+                "mode": "walk",
+                "start_time": "08:18",
+                "end_time": "08:40",
+                "cost": 0,
+                "distance": 1.9
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "end": "Shenzhen Bay Bridge",
+            "start_time": "08:00",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen Bay Bridge\", \"start\": \"Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)\", \"start_time\": \"08:00\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)', 'end': 'Shenzhen Bay Bridge', 'mode': 'walk', 'start_time': '08:00', 'end_time': '08:55', 'cost': 0.0, 'distance': 4.625682535336609}]",
+            "data": [
+              {
+                "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+                "end": "Shenzhen Bay Bridge",
+                "mode": "walk",
+                "start_time": "08:00",
+                "end_time": "08:55",
+                "cost": 0.0,
+                "distance": 4.625682535336609
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Bay Bridge",
+            "end": "Delicious Noodle House (Taoyuan Branch)",
+            "start_time": "09:06",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Delicious Noodle House (Taoyuan Branch)\", \"start\": \"Shenzhen Bay Bridge\", \"start_time\": \"09:06\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Shenzhen Bay Bridge', 'end': 'Delicious Noodle House (Taoyuan Branch)', 'mode': 'taxi', 'start_time': '09:06', 'end_time': '09:14', 'cost': 24.96, 'distance': 5.79}]",
+            "data": [
+              {
+                "start": "Shenzhen Bay Bridge",
+                "end": "Delicious Noodle House (Taoyuan Branch)",
+                "mode": "taxi",
+                "start_time": "09:06",
+                "end_time": "09:14",
+                "cost": 24.96,
+                "distance": 5.79
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Bay Bridge",
+            "end": "Delicious Noodle House (Taoyuan Branch)",
+            "start_time": "09:06",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Delicious Noodle House (Taoyuan Branch)\", \"start\": \"Shenzhen Bay Bridge\", \"start_time\": \"09:06\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Shenzhen Bay Bridge', 'end': 'Wanxia-Metro Station', 'mode': 'walk', 'start_time': '09:06', 'end_time': '09:28', 'cost': 0, 'distance': 1.9}, {'start': 'Wanxia-Metro Station', 'end': 'Taoyuan-Metro Station', 'mode': 'metro', 'start_time': '09:28', 'end_time': '09:36', 'cost': 3, 'distance': 4.46}, {'start': 'Taoyuan-Metro Station', 'end': 'Delicious Noodle House (Taoyuan Branch)', 'mode': 'walk', 'start_time': '09:36', 'end_time': '09:41', 'cost': 0, 'distance': 0.44}]",
+            "data": [
+              {
+                "start": "Shenzhen Bay Bridge",
+                "end": "Wanxia-Metro Station",
+                "mode": "walk",
+                "start_time": "09:06",
+                "end_time": "09:28",
+                "cost": 0,
+                "distance": 1.9
+              },
+              {
+                "start": "Wanxia-Metro Station",
+                "end": "Taoyuan-Metro Station",
+                "mode": "metro",
+                "start_time": "09:28",
+                "end_time": "09:36",
+                "cost": 3,
+                "distance": 4.46
+              },
+              {
+                "start": "Taoyuan-Metro Station",
+                "end": "Delicious Noodle House (Taoyuan Branch)",
+                "mode": "walk",
+                "start_time": "09:36",
+                "end_time": "09:41",
+                "cost": 0,
+                "distance": 0.44
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Bay Bridge",
+            "end": "Delicious Noodle House (Taoyuan Branch)",
+            "start_time": "09:06",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Delicious Noodle House (Taoyuan Branch)\", \"start\": \"Shenzhen Bay Bridge\", \"start_time\": \"09:06\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Shenzhen Bay Bridge', 'end': 'Delicious Noodle House (Taoyuan Branch)', 'mode': 'walk', 'start_time': '09:06', 'end_time': '10:15', 'cost': 0.0, 'distance': 5.788218337270125}]",
+            "data": [
+              {
+                "start": "Shenzhen Bay Bridge",
+                "end": "Delicious Noodle House (Taoyuan Branch)",
+                "mode": "walk",
+                "start_time": "09:06",
+                "end_time": "10:15",
+                "cost": 0.0,
+                "distance": 5.788218337270125
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Delicious Noodle House (Taoyuan Branch)",
+            "end": "Shenzhen North Railway Station",
+            "start_time": "11:45",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen North Railway Station\", \"start\": \"Delicious Noodle House (Taoyuan Branch)\", \"start_time\": \"11:45\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Delicious Noodle House (Taoyuan Branch)', 'end': 'Shenzhen North Railway Station', 'mode': 'taxi', 'start_time': '11:45', 'end_time': '12:06', 'cost': 57.74, 'distance': 14.01}]",
+            "data": [
+              {
+                "start": "Delicious Noodle House (Taoyuan Branch)",
+                "end": "Shenzhen North Railway Station",
+                "mode": "taxi",
+                "start_time": "11:45",
+                "end_time": "12:06",
+                "cost": 57.74,
+                "distance": 14.01
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Delicious Noodle House (Taoyuan Branch)",
+            "end": "Shenzhen North Railway Station",
+            "start_time": "11:45",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen North Railway Station\", \"start\": \"Delicious Noodle House (Taoyuan Branch)\", \"start_time\": \"11:45\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Delicious Noodle House (Taoyuan Branch)', 'end': 'Taoyuan-Metro Station', 'mode': 'walk', 'start_time': '11:45', 'end_time': '11:50', 'cost': 0, 'distance': 0.44}, {'start': 'Taoyuan-Metro Station', 'end': 'Shenzhen North Railway Station-Metro Station', 'mode': 'metro', 'start_time': '11:50', 'end_time': '12:17', 'cost': 4, 'distance': 13.94}, {'start': 'Shenzhen North Railway Station-Metro Station', 'end': 'Shenzhen North Railway Station', 'mode': 'walk', 'start_time': '12:17', 'end_time': '12:18', 'cost': 0, 'distance': 0.15}]",
+            "data": [
+              {
+                "start": "Delicious Noodle House (Taoyuan Branch)",
+                "end": "Taoyuan-Metro Station",
+                "mode": "walk",
+                "start_time": "11:45",
+                "end_time": "11:50",
+                "cost": 0,
+                "distance": 0.44
+              },
+              {
+                "start": "Taoyuan-Metro Station",
+                "end": "Shenzhen North Railway Station-Metro Station",
+                "mode": "metro",
+                "start_time": "11:50",
+                "end_time": "12:17",
+                "cost": 4,
+                "distance": 13.94
+              },
+              {
+                "start": "Shenzhen North Railway Station-Metro Station",
+                "end": "Shenzhen North Railway Station",
+                "mode": "walk",
+                "start_time": "12:17",
+                "end_time": "12:18",
+                "cost": 0,
+                "distance": 0.15
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Delicious Noodle House (Taoyuan Branch)",
+            "end": "Shenzhen North Railway Station",
+            "start_time": "11:45",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Shenzhen\", \"end\": \"Shenzhen North Railway Station\", \"start\": \"Delicious Noodle House (Taoyuan Branch)\", \"start_time\": \"11:45\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Delicious Noodle House (Taoyuan Branch)', 'end': 'Shenzhen North Railway Station', 'mode': 'walk', 'start_time': '11:45', 'end_time': '14:33', 'cost': 0.0, 'distance': 14.00815498380379}]",
+            "data": [
+              {
+                "start": "Delicious Noodle House (Taoyuan Branch)",
+                "end": "Shenzhen North Railway Station",
+                "mode": "walk",
+                "start_time": "11:45",
+                "end_time": "14:33",
+                "cost": 0.0,
+                "distance": 14.00815498380379
+              }
+            ]
+          }
+        }
+      ],
+      "request_count": 2
+    },
+    "started_at": "",
+    "finished_at": "2026-10-31T17:53:50.153296+00:00",
+    "duration_seconds": 118.45122654200532,
+    "wall_seconds": 119.05610312498175,
+    "resources": {
+      "limits": {
+        "feedback": 4,
+        "model_calls": 16,
+        "tokens": 500000,
+        "tools": 400,
+        "output_tokens_per_call": 10000
+      },
+      "model_calls": 2,
+      "returned_tokens": 20169,
+      "feedback_calls": 0,
+      "tool_calls": 259,
+      "exhausted": "",
+      "tool_receipts": [
+        {
+          "index": 1,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 2,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 3,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 4,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 5,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 6,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 7,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 8,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 9,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 10,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 11,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 12,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 13,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 14,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 15,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 16,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 17,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 18,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 19,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 20,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 21,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 22,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 23,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 24,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 25,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 26,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 27,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 28,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 29,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 30,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 31,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 32,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 33,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 34,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 35,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 36,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 37,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 38,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 39,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 40,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 41,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 42,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 43,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 44,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 45,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 46,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 47,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 48,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 49,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 50,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 51,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 52,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 53,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 54,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 55,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 56,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 57,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 58,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 59,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 60,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 61,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 62,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 63,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 64,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 65,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 66,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 67,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 68,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 69,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 70,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 71,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 72,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 73,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 74,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 75,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 76,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 77,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 78,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 79,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 80,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 81,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 82,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 83,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 84,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 85,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 86,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 87,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 88,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 89,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 90,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 91,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Wuhan",
+            "end_city": "Shenzhen",
+            "intercity_type": "train",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 92,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 93,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 94,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 95,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Wuhan",
+            "end_city": "Shenzhen",
+            "intercity_type": "airplane",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 96,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Shenzhen",
+            "end_city": "Wuhan",
+            "intercity_type": "train",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 97,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 98,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 99,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 100,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 101,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Shenzhen",
+            "end_city": "Wuhan",
+            "intercity_type": "airplane",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 102,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "深圳",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 103,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 104,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 105,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 106,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 107,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 108,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 109,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 110,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 111,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 112,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 113,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 114,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 115,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 116,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 117,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 118,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 119,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 120,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 121,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 122,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 123,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 124,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 125,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 126,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 127,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 128,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 129,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 130,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 131,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 132,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "深圳",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 133,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 134,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 135,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 136,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 137,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 138,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 139,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 140,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 141,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 142,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 143,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 144,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 145,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 146,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 147,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 148,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 149,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 150,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 151,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 152,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 153,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 154,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 155,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 156,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 157,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 158,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 159,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 160,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 161,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 162,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "深圳",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 163,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 164,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 165,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 166,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 167,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 168,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 169,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 170,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 171,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 172,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 173,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 174,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 175,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 176,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 177,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 178,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 179,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 180,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 181,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 182,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 183,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 184,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 185,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 186,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 187,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 188,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 189,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 190,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 191,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 192,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "contains",
+            "value": "世界之窗"
+          }
+        },
+        {
+          "index": 193,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "深圳",
+            "key": "name",
+            "op": "contains",
+            "value": "世界之窗"
+          }
+        },
+        {
+          "index": 194,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "id",
+            "op": "eq",
+            "value": 0
+          }
+        },
+        {
+          "index": 195,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen North Railway Station",
+            "end": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "start_time": "12:14",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 196,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen North Railway Station",
+            "end": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "start_time": "12:14",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 197,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen North Railway Station",
+            "end": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "start_time": "12:14",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 198,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "end": "Window of the World",
+            "start_time": "13:15",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 199,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "end": "Window of the World",
+            "start_time": "13:15",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 200,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "end": "Window of the World",
+            "start_time": "13:15",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 201,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Window of the World",
+            "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "start_time": "15:28",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 202,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Window of the World",
+            "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "start_time": "15:28",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 203,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Window of the World",
+            "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "start_time": "15:28",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 204,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "end": "Hua Art Museum",
+            "start_time": "08:00",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 205,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "end": "Hua Art Museum",
+            "start_time": "08:00",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 206,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "end": "Hua Art Museum",
+            "start_time": "08:00",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 207,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Hua Art Museum",
+            "end": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "start_time": "12:30",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 208,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Hua Art Museum",
+            "end": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "start_time": "12:30",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 209,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Hua Art Museum",
+            "end": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "start_time": "12:30",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 210,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "end": "Shenzhen University Town",
+            "start_time": "13:25",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 211,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "end": "Shenzhen University Town",
+            "start_time": "13:25",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 212,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "end": "Shenzhen University Town",
+            "start_time": "13:25",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 213,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen University Town",
+            "end": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "start_time": "15:10",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 214,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen University Town",
+            "end": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "start_time": "15:10",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 215,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen University Town",
+            "end": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "start_time": "15:10",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 216,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "start_time": "17:45",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 217,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "start_time": "17:45",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 218,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "start_time": "17:45",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 219,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "end": "Shenzhen Bay Bridge",
+            "start_time": "08:00",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 220,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "end": "Shenzhen Bay Bridge",
+            "start_time": "08:00",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 221,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "end": "Shenzhen Bay Bridge",
+            "start_time": "08:00",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 222,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Bay Bridge",
+            "end": "Delicious Noodle House (Taoyuan Branch)",
+            "start_time": "09:06",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 223,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Bay Bridge",
+            "end": "Delicious Noodle House (Taoyuan Branch)",
+            "start_time": "09:06",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 224,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Bay Bridge",
+            "end": "Delicious Noodle House (Taoyuan Branch)",
+            "start_time": "09:06",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 225,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Delicious Noodle House (Taoyuan Branch)",
+            "end": "Shenzhen North Railway Station",
+            "start_time": "11:45",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 226,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Delicious Noodle House (Taoyuan Branch)",
+            "end": "Shenzhen North Railway Station",
+            "start_time": "11:45",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 227,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Delicious Noodle House (Taoyuan Branch)",
+            "end": "Shenzhen North Railway Station",
+            "start_time": "11:45",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 228,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)"
+          }
+        },
+        {
+          "index": 229,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Window of the World"
+          }
+        },
+        {
+          "index": 230,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)"
+          }
+        },
+        {
+          "index": 231,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Hua Art Museum"
+          }
+        },
+        {
+          "index": 232,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)"
+          }
+        },
+        {
+          "index": 233,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Shenzhen University Town"
+          }
+        },
+        {
+          "index": 234,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)"
+          }
+        },
+        {
+          "index": 235,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Shenzhen Bay Bridge"
+          }
+        },
+        {
+          "index": 236,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Delicious Noodle House (Taoyuan Branch)"
+          }
+        },
+        {
+          "index": 237,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen North Railway Station",
+            "end": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "start_time": "12:14",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 238,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)",
+            "end": "Window of the World",
+            "start_time": "13:15",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 239,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Window of the World",
+            "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "start_time": "15:28",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 240,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "end": "Hua Art Museum",
+            "start_time": "08:00",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 241,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Hua Art Museum",
+            "end": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "start_time": "12:30",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 242,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)",
+            "end": "Shenzhen University Town",
+            "start_time": "13:25",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 243,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen University Town",
+            "end": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "start_time": "15:10",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 244,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)",
+            "end": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "start_time": "17:45",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 245,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)",
+            "end": "Shenzhen Bay Bridge",
+            "start_time": "08:00",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 246,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Shenzhen Bay Bridge",
+            "end": "Delicious Noodle House (Taoyuan Branch)",
+            "start_time": "09:06",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 247,
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Delicious Noodle House (Taoyuan Branch)",
+            "end": "Shenzhen North Railway Station",
+            "start_time": "11:45",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 248,
+          "name": "intercity_validation_rows",
+          "arguments": {
+            "start_city": "Wuhan",
+            "end_city": "Shenzhen",
+            "type": "train"
+          }
+        },
+        {
+          "index": 249,
+          "name": "intercity_validation_rows",
+          "arguments": {
+            "start_city": "Shenzhen",
+            "end_city": "Wuhan",
+            "type": "train"
+          }
+        },
+        {
+          "index": 250,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Hong Kong Mingxingfang Tea Restaurant (Shuiwei Branch)"
+          }
+        },
+        {
+          "index": 251,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Window of the World"
+          }
+        },
+        {
+          "index": 252,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)"
+          }
+        },
+        {
+          "index": 253,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Hua Art Museum"
+          }
+        },
+        {
+          "index": 254,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Niu Xiao Zao Beef Offal Hot Pot (Central City Branch)"
+          }
+        },
+        {
+          "index": 255,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Shenzhen University Town"
+          }
+        },
+        {
+          "index": 256,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Spicy Cocoa Freshly Stir-Fried Yellow Beef (Joy INTOWN Branch)"
+          }
+        },
+        {
+          "index": 257,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Shenzhen Century Garden Hotel (Nanshan Science and Technology Park)"
+          }
+        },
+        {
+          "index": 258,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Shenzhen Bay Bridge"
+          }
+        },
+        {
+          "index": 259,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Shenzhen",
+            "key": "name",
+            "op": "eq",
+            "value": "Delicious Noodle House (Taoyuan Branch)"
+          }
+        }
+      ],
+      "input_accounting": "conservative UTF-8 preflight; actual provider usage recorded; missing remote usage remains unknown"
+    }
+  },
+  "supervision": {
+    "returncode": 0,
+    "hard_timeout": false,
+    "cancelled": false,
+    "wall_seconds": 119.4826165420236
+  },
+  "ledger": {
+    "request_attempts": 2,
+    "completed_attempts": 2,
+    "pending_attempts": 0,
+    "observed_usage": {
+      "prompt_tokens": 11178,
+      "completion_tokens": 8991,
+      "total_tokens": 20169
+    },
+    "unobserved_billing_possible": false,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.020169,
+      "upper": 0.020169
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793469111.720017,
+        "attempt_id": "3b810d1e82004830a749b514e174a148",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793469131.233968,
+        "attempt_id": "3b810d1e82004830a749b514e174a148",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 19.513411750027444,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-bdd52cec-5234-4483-9417-7f694fd84432",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 496,
+        "completion_tokens": 1308,
+        "total_tokens": 1804,
+        "reasoning_tokens": 1247
+      },
+      {
+        "kind": "start",
+        "time": 1793469131.4132102,
+        "attempt_id": "bb32b77cce4347f78dc7645dd99f798f",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793469230.0415812,
+        "attempt_id": "bb32b77cce4347f78dc7645dd99f798f",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 98.62787229201058,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-fedc76a2-8ecf-4aee-9346-2bcc87f6de9b",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 10682,
+        "completion_tokens": 7683,
+        "total_tokens": 18365,
+        "reasoning_tokens": 7552
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 2,
+    "returned_tokens": 20169,
+    "tool_calls": 259,
+    "exhausted": ""
+  }
+}

@@ -1,0 +1,1835 @@
+{
+  "task_uid": "e20241028160946447653",
+  "method": "rules",
+  "model": "qwen3.8-reasoner",
+  "terminal_state": "checked_ok",
+  "plan": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "people_number": {
+        "type": "integer"
+      },
+      "start_city": {
+        "type": "string"
+      },
+      "target_city": {
+        "type": "string"
+      },
+      "itinerary": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "activities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "airplane",
+                      "attraction",
+                      "lunch",
+                      "dinner",
+                      "breakfast",
+                      "accommodation",
+                      "train"
+                    ]
+                  },
+                  "start_time": {
+                    "type": "string",
+                    "pattern": "^\\d{2}:\\d{2}$"
+                  },
+                  "end_time": {
+                    "type": "string",
+                    "pattern": "^\\d{2}:\\d{2}$"
+                  },
+                  "cost": {
+                    "type": "number"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "tickets": {
+                    "type": "integer"
+                  },
+                  "position": {
+                    "type": "string"
+                  },
+                  "transports": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "start": {
+                          "type": "string"
+                        },
+                        "end": {
+                          "type": "string"
+                        },
+                        "mode": {
+                          "type": "string",
+                          "enum": [
+                            "walk",
+                            "metro",
+                            "taxi"
+                          ]
+                        },
+                        "start_time": {
+                          "type": "string",
+                          "pattern": "^\\d{2}:\\d{2}$"
+                        },
+                        "end_time": {
+                          "type": "string",
+                          "pattern": "^\\d{2}:\\d{2}$"
+                        },
+                        "cost": {
+                          "type": "number"
+                        },
+                        "price": {
+                          "type": "number"
+                        },
+                        "distance": {
+                          "type": "number"
+                        },
+                        "tickets": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "start",
+                        "end",
+                        "mode",
+                        "start_time",
+                        "end_time",
+                        "price",
+                        "cost",
+                        "distance"
+                      ]
+                    }
+                  },
+                  "room_type": {
+                    "type": "integer"
+                  },
+                  "rooms": {
+                    "type": "integer"
+                  },
+                  "FlightID": {
+                    "type": "string"
+                  },
+                  "TrainID": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "type",
+                  "start_time",
+                  "end_time",
+                  "cost",
+                  "price",
+                  "transports"
+                ],
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "type": {
+                          "enum": [
+                            "airplane",
+                            "train"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "type"
+                      ]
+                    },
+                    "then": {
+                      "required": [
+                        "start",
+                        "end"
+                      ],
+                      "not": {
+                        "required": [
+                          "position"
+                        ]
+                      }
+                    },
+                    "else": {
+                      "required": [
+                        "position"
+                      ],
+                      "not": {
+                        "anyOf": [
+                          {
+                            "required": [
+                              "start"
+                            ]
+                          },
+                          {
+                            "required": [
+                              "end"
+                            ]
+                          },
+                          {
+                            "required": [
+                              "FlightID"
+                            ]
+                          },
+                          {
+                            "required": [
+                              "TrainID"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "if": {
+                      "properties": {
+                        "type": {
+                          "const": "airplane"
+                        }
+                      }
+                    },
+                    "then": {
+                      "required": [
+                        "FlightID"
+                      ]
+                    }
+                  },
+                  {
+                    "if": {
+                      "properties": {
+                        "type": {
+                          "const": "train"
+                        }
+                      }
+                    },
+                    "then": {
+                      "required": [
+                        "TrainID"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "required": [
+            "day",
+            "activities"
+          ]
+        }
+      }
+    },
+    "required": [
+      "people_number",
+      "start_city",
+      "target_city",
+      "itinerary"
+    ],
+    "people_number": 2,
+    "start_city": "Chengdu",
+    "target_city": "Nanjing",
+    "itinerary": [
+      {
+        "day": 1,
+        "activities": [
+          {
+            "type": "train",
+            "start_time": "07:50",
+            "end_time": "10:55",
+            "cost": 1126.32,
+            "price": 563.16,
+            "tickets": 2,
+            "TrainID": "K1158",
+            "start": "Chengdu West Railway Station",
+            "end": "Nanjing Station",
+            "transports": []
+          },
+          {
+            "type": "attraction",
+            "start_time": "11:17",
+            "end_time": "14:30",
+            "cost": 0.0,
+            "price": 0,
+            "tickets": 2,
+            "position": "Confucius Temple",
+            "transports": [
+              {
+                "start": "Nanjing Station",
+                "end": "Nanjing Station-Metro Station",
+                "mode": "walk",
+                "start_time": "10:55",
+                "end_time": "10:57",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 0.25,
+                "tickets": 2
+              },
+              {
+                "start": "Nanjing Station-Metro Station",
+                "end": "Confucius Temple-Metro Station",
+                "mode": "metro",
+                "start_time": "10:57",
+                "end_time": "11:11",
+                "price": 3,
+                "cost": 6.0,
+                "distance": 7.25,
+                "tickets": 2
+              },
+              {
+                "start": "Confucius Temple-Metro Station",
+                "end": "Confucius Temple",
+                "mode": "walk",
+                "start_time": "11:11",
+                "end_time": "11:17",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 0.52,
+                "tickets": 2
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "start_time": "14:32",
+            "end_time": "16:30",
+            "cost": 0.0,
+            "price": 0,
+            "tickets": 2,
+            "position": "Black Clothes Lane",
+            "transports": [
+              {
+                "start": "Confucius Temple",
+                "end": "Black Clothes Lane",
+                "mode": "walk",
+                "start_time": "14:30",
+                "end_time": "14:32",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 0.22629756894077455,
+                "tickets": 2
+              }
+            ]
+          },
+          {
+            "type": "dinner",
+            "start_time": "17:00",
+            "end_time": "18:30",
+            "cost": 144.0,
+            "price": 72,
+            "tickets": 2,
+            "position": "Yuhu Grilled Fish (Suning Plaza Branch)",
+            "transports": [
+              {
+                "start": "Black Clothes Lane",
+                "end": "Yuhu Grilled Fish (Suning Plaza Branch)",
+                "mode": "walk",
+                "start_time": "16:30",
+                "end_time": "16:49",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 1.6061321741269192,
+                "tickets": 2
+              }
+            ]
+          },
+          {
+            "type": "accommodation",
+            "start_time": "18:51",
+            "end_time": "23:59",
+            "cost": 102.0,
+            "price": 102,
+            "tickets": 1,
+            "position": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+            "rooms": 1,
+            "room_type": 2,
+            "transports": [
+              {
+                "start": "Yuhu Grilled Fish (Suning Plaza Branch)",
+                "end": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+                "mode": "walk",
+                "start_time": "18:30",
+                "end_time": "18:51",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 1.82221187495376,
+                "tickets": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "activities": [
+          {
+            "type": "breakfast",
+            "start_time": "07:56",
+            "end_time": "08:30",
+            "cost": 110.0,
+            "price": 55,
+            "tickets": 2,
+            "position": "Sichuan Restaurant (Taiping South Road Branch)",
+            "transports": [
+              {
+                "start": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+                "end": "Sichuan Restaurant (Taiping South Road Branch)",
+                "mode": "walk",
+                "start_time": "07:40",
+                "end_time": "07:56",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 1.3835469763329964,
+                "tickets": 2
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "start_time": "09:15",
+            "end_time": "12:00",
+            "cost": 0.0,
+            "price": 0,
+            "tickets": 2,
+            "position": "Jinling Art Museum",
+            "transports": [
+              {
+                "start": "Sichuan Restaurant (Taiping South Road Branch)",
+                "end": "Changfu Street-Metro Station",
+                "mode": "walk",
+                "start_time": "09:00",
+                "end_time": "09:04",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 0.38,
+                "tickets": 2
+              },
+              {
+                "start": "Changfu Street-Metro Station",
+                "end": "Wuding Gate-Metro Station",
+                "mode": "metro",
+                "start_time": "09:04",
+                "end_time": "09:08",
+                "price": 2,
+                "cost": 4.0,
+                "distance": 2.19,
+                "tickets": 2
+              },
+              {
+                "start": "Wuding Gate-Metro Station",
+                "end": "Jinling Art Museum",
+                "mode": "walk",
+                "start_time": "09:08",
+                "end_time": "09:15",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 0.6,
+                "tickets": 2
+              }
+            ]
+          },
+          {
+            "type": "train",
+            "start": "Nanjing Station",
+            "end": "Chengdu West Railway Station",
+            "start_time": "15:15",
+            "end_time": "17:55",
+            "price": 563.16,
+            "cost": 1126.32,
+            "tickets": 2,
+            "transports": [
+              {
+                "start": "Jinling Art Museum",
+                "end": "Nanjing Station",
+                "mode": "walk",
+                "start_time": "12:00",
+                "end_time": "13:30",
+                "cost": 0,
+                "distance": 7.5815509856573575,
+                "price": 0.0
+              }
+            ],
+            "TrainID": "K1157"
+          }
+        ]
+      }
+    ]
+  },
+  "steps": [],
+  "usage": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "checker": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours"
+    ]
+  },
+  "error": null,
+  "metadata": {
+    "policy": "rules",
+    "fallback": false,
+    "usage_complete": true,
+    "source_revision": "aa406140f283046857c0d8696f5abf8a4d994963d1220e18f6e02cdc01a3d7f1",
+    "budget_steps": 16,
+    "budget_seconds": 240.0,
+    "tool_trace": [
+      {
+        "name": "intercity_transport_select",
+        "arguments": {
+          "start_city": "Nanjing",
+          "end_city": "Chengdu",
+          "intercity_type": "train",
+          "earliest_leave_time": "00:00"
+        },
+        "response": {
+          "success": true,
+          "command": "intercity_transport_select({\"earliest_leave_time\": \"00:00\", \"end_city\": \"Chengdu\", \"intercity_type\": \"train\", \"start_city\": \"Nanjing\"})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['K283' 'Express' 'Nanjing Station' 'Chengdu West Railway Station' '00:52'\n '08:44' 31.97 563.16]\n['K282' 'Express' 'Nanjing Station' 'Chengdu West Railway Station' '00:52'\n '08:44' 31.97 563.16]\n['D2373' 'EMU (Electric Multiple Unit)' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '07:20' '19:16' 11.93 844.74]\n['G1887' 'High-speed rail' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '07:39' '17:51' 10.2 915.14]\n['D3076' 'EMU (Electric Multiple Unit)' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '08:02' '19:43' 11.75 844.74]\n['D3077' 'EMU (Electric Multiple Unit)' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '08:02' '19:43' 11.75 844.74]\n['D2255' 'EMU (Electric Multiple Unit)' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '08:32' '20:28' 12.07 844.74]\n['D2254' 'EMU (Electric Multiple Unit)' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '08:32' '20:28' 12.07 844.74]\n['D352' 'EMU (Electric Multiple Unit)' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '08:37' '20:34' 12.07 844.74]\n['D353' 'EMU (Electric Multiple Unit)' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '08:37' '20:34' 12.07 844.74]\nPage/Total: 1/3",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "K283",
+                "TrainType": "Express",
+                "From": "Nanjing Station",
+                "To": "Chengdu West Railway Station",
+                "BeginTime": "00:52",
+                "EndTime": "08:44",
+                "Duration": 31.97,
+                "Cost": 563.16
+              },
+              {
+                "TrainID": "K282",
+                "TrainType": "Express",
+                "From": "Nanjing Station",
+                "To": "Chengdu West Railway Station",
+                "BeginTime": "00:52",
+                "EndTime": "08:44",
+                "Duration": 31.97,
+                "Cost": 563.16
+              },
+              {
+                "TrainID": "D2373",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "07:20",
+                "EndTime": "19:16",
+                "Duration": 11.93,
+                "Cost": 844.74
+              },
+              {
+                "TrainID": "G1887",
+                "TrainType": "High-speed rail",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "07:39",
+                "EndTime": "17:51",
+                "Duration": 10.2,
+                "Cost": 915.14
+              },
+              {
+                "TrainID": "D3076",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "08:02",
+                "EndTime": "19:43",
+                "Duration": 11.75,
+                "Cost": 844.74
+              },
+              {
+                "TrainID": "D3077",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "08:02",
+                "EndTime": "19:43",
+                "Duration": 11.75,
+                "Cost": 844.74
+              },
+              {
+                "TrainID": "D2255",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "08:32",
+                "EndTime": "20:28",
+                "Duration": 12.07,
+                "Cost": 844.74
+              },
+              {
+                "TrainID": "D2254",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "08:32",
+                "EndTime": "20:28",
+                "Duration": 12.07,
+                "Cost": 844.74
+              },
+              {
+                "TrainID": "D352",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "08:37",
+                "EndTime": "20:34",
+                "Duration": 12.07,
+                "Cost": 844.74
+              },
+              {
+                "TrainID": "D353",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "08:37",
+                "EndTime": "20:34",
+                "Duration": 12.07,
+                "Cost": 844.74
+              }
+            ],
+            "row_count": 25,
+            "returned_rows": 10,
+            "page": 1,
+            "pages": 3
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G1975' 'High-speed rail' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '08:46' '18:28' 9.8 915.14]\n['G1974' 'High-speed rail' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '08:46' '18:28' 9.8 915.14]\n['D637' 'EMU (Electric Multiple Unit)' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '08:52' '20:40' 11.9 844.74]\n['D636' 'EMU (Electric Multiple Unit)' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '08:52' '20:40' 11.9 844.74]\n['D3057' 'EMU (Electric Multiple Unit)' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '09:43' '22:04' 12.45 844.74]\n['D3056' 'EMU (Electric Multiple Unit)' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '09:43' '22:04' 12.45 844.74]\n['D2223' 'EMU (Electric Multiple Unit)' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '09:49' '21:58' 12.22 844.74]\n['D2222' 'EMU (Electric Multiple Unit)' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '09:49' '21:58' 12.22 844.74]\n['D952' 'EMU (Electric Multiple Unit)' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '10:14' '20:52' 10.67 844.74]\n['D953' 'EMU (Electric Multiple Unit)' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '10:14' '20:52' 10.67 844.74]\nPage/Total: 2/3",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G1975",
+                "TrainType": "High-speed rail",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "08:46",
+                "EndTime": "18:28",
+                "Duration": 9.8,
+                "Cost": 915.14
+              },
+              {
+                "TrainID": "G1974",
+                "TrainType": "High-speed rail",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "08:46",
+                "EndTime": "18:28",
+                "Duration": 9.8,
+                "Cost": 915.14
+              },
+              {
+                "TrainID": "D637",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "08:52",
+                "EndTime": "20:40",
+                "Duration": 11.9,
+                "Cost": 844.74
+              },
+              {
+                "TrainID": "D636",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "08:52",
+                "EndTime": "20:40",
+                "Duration": 11.9,
+                "Cost": 844.74
+              },
+              {
+                "TrainID": "D3057",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "09:43",
+                "EndTime": "22:04",
+                "Duration": 12.45,
+                "Cost": 844.74
+              },
+              {
+                "TrainID": "D3056",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "09:43",
+                "EndTime": "22:04",
+                "Duration": 12.45,
+                "Cost": 844.74
+              },
+              {
+                "TrainID": "D2223",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "09:49",
+                "EndTime": "21:58",
+                "Duration": 12.22,
+                "Cost": 844.74
+              },
+              {
+                "TrainID": "D2222",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "09:49",
+                "EndTime": "21:58",
+                "Duration": 12.22,
+                "Cost": 844.74
+              },
+              {
+                "TrainID": "D952",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "10:14",
+                "EndTime": "20:52",
+                "Duration": 10.67,
+                "Cost": 844.74
+              },
+              {
+                "TrainID": "D953",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "10:14",
+                "EndTime": "20:52",
+                "Duration": 10.67,
+                "Cost": 844.74
+              }
+            ],
+            "row_count": 25,
+            "returned_rows": 10,
+            "page": 2,
+            "pages": 3
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G1476' 'High-speed rail' 'Nanjing South Railway Station'\n 'Chengdu East Railway Station' '11:32' '22:25' 10.93 915.14]\n['K291' 'Express' 'Nanjing Station' 'Chengdu West Railway Station' '12:59'\n '19:13' 30.45 563.16]\n['K290' 'Express' 'Nanjing Station' 'Chengdu West Railway Station' '12:59'\n '19:13' 30.45 563.16]\n['K1157' 'Express' 'Nanjing Station' 'Chengdu West Railway Station'\n '15:15' '17:55' 26.82 563.16]\n['K1156' 'Express' 'Nanjing Station' 'Chengdu West Railway Station'\n '15:15' '17:55' 26.82 563.16]\nPage/Total: 3/3",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G1476",
+                "TrainType": "High-speed rail",
+                "From": "Nanjing South Railway Station",
+                "To": "Chengdu East Railway Station",
+                "BeginTime": "11:32",
+                "EndTime": "22:25",
+                "Duration": 10.93,
+                "Cost": 915.14
+              },
+              {
+                "TrainID": "K291",
+                "TrainType": "Express",
+                "From": "Nanjing Station",
+                "To": "Chengdu West Railway Station",
+                "BeginTime": "12:59",
+                "EndTime": "19:13",
+                "Duration": 30.45,
+                "Cost": 563.16
+              },
+              {
+                "TrainID": "K290",
+                "TrainType": "Express",
+                "From": "Nanjing Station",
+                "To": "Chengdu West Railway Station",
+                "BeginTime": "12:59",
+                "EndTime": "19:13",
+                "Duration": 30.45,
+                "Cost": 563.16
+              },
+              {
+                "TrainID": "K1157",
+                "TrainType": "Express",
+                "From": "Nanjing Station",
+                "To": "Chengdu West Railway Station",
+                "BeginTime": "15:15",
+                "EndTime": "17:55",
+                "Duration": 26.82,
+                "Cost": 563.16
+              },
+              {
+                "TrainID": "K1156",
+                "TrainType": "Express",
+                "From": "Nanjing Station",
+                "To": "Chengdu West Railway Station",
+                "BeginTime": "15:15",
+                "EndTime": "17:55",
+                "Duration": 26.82,
+                "Cost": 563.16
+              }
+            ],
+            "row_count": 25,
+            "returned_rows": 5,
+            "page": 3,
+            "pages": 3
+          }
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Jinling Art Museum",
+          "end": "Nanjing Station",
+          "start_time": "12:00",
+          "transport_type": "metro"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Nanjing\", \"end\": \"Nanjing Station\", \"start\": \"Jinling Art Museum\", \"start_time\": \"12:00\", \"transport_type\": \"metro\"})",
+          "text": "[{'start': 'Jinling Art Museum', 'end': 'Wuding Gate-Metro Station', 'mode': 'walk', 'start_time': '12:00', 'end_time': '12:07', 'cost': 0, 'distance': 0.6}, {'start': 'Wuding Gate-Metro Station', 'end': 'Nanjing Station-Metro Station', 'mode': 'metro', 'start_time': '12:07', 'end_time': '12:23', 'cost': 3, 'distance': 8.38}, {'start': 'Nanjing Station-Metro Station', 'end': 'Nanjing Station', 'mode': 'walk', 'start_time': '12:23', 'end_time': '12:25', 'cost': 0, 'distance': 0.25}]",
+          "data": [
+            {
+              "start": "Jinling Art Museum",
+              "end": "Wuding Gate-Metro Station",
+              "mode": "walk",
+              "start_time": "12:00",
+              "end_time": "12:07",
+              "cost": 0,
+              "distance": 0.6
+            },
+            {
+              "start": "Wuding Gate-Metro Station",
+              "end": "Nanjing Station-Metro Station",
+              "mode": "metro",
+              "start_time": "12:07",
+              "end_time": "12:23",
+              "cost": 3,
+              "distance": 8.38
+            },
+            {
+              "start": "Nanjing Station-Metro Station",
+              "end": "Nanjing Station",
+              "mode": "walk",
+              "start_time": "12:23",
+              "end_time": "12:25",
+              "cost": 0,
+              "distance": 0.25
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Jinling Art Museum",
+          "end": "Nanjing Station",
+          "start_time": "12:00",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Nanjing\", \"end\": \"Nanjing Station\", \"start\": \"Jinling Art Museum\", \"start_time\": \"12:00\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Jinling Art Museum', 'end': 'Nanjing Station', 'mode': 'walk', 'start_time': '12:00', 'end_time': '13:30', 'cost': 0.0, 'distance': 7.5815509856573575}]",
+          "data": [
+            {
+              "start": "Jinling Art Museum",
+              "end": "Nanjing Station",
+              "mode": "walk",
+              "start_time": "12:00",
+              "end_time": "13:30",
+              "cost": 0.0,
+              "distance": 7.5815509856573575
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Jinling Art Museum",
+          "end": "Nanjing South Railway Station",
+          "start_time": "12:00",
+          "transport_type": "metro"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Nanjing\", \"end\": \"Nanjing South Railway Station\", \"start\": \"Jinling Art Museum\", \"start_time\": \"12:00\", \"transport_type\": \"metro\"})",
+          "text": "[{'start': 'Jinling Art Museum', 'end': 'Wuding Gate-Metro Station', 'mode': 'walk', 'start_time': '12:00', 'end_time': '12:07', 'cost': 0, 'distance': 0.6}, {'start': 'Wuding Gate-Metro Station', 'end': 'Nanjing South Railway Station-Metro Station', 'mode': 'metro', 'start_time': '12:07', 'end_time': '12:16', 'cost': 3, 'distance': 4.75}, {'start': 'Nanjing South Railway Station-Metro Station', 'end': 'Nanjing South Railway Station', 'mode': 'walk', 'start_time': '12:16', 'end_time': '12:19', 'cost': 0, 'distance': 0.29}]",
+          "data": [
+            {
+              "start": "Jinling Art Museum",
+              "end": "Wuding Gate-Metro Station",
+              "mode": "walk",
+              "start_time": "12:00",
+              "end_time": "12:07",
+              "cost": 0,
+              "distance": 0.6
+            },
+            {
+              "start": "Wuding Gate-Metro Station",
+              "end": "Nanjing South Railway Station-Metro Station",
+              "mode": "metro",
+              "start_time": "12:07",
+              "end_time": "12:16",
+              "cost": 3,
+              "distance": 4.75
+            },
+            {
+              "start": "Nanjing South Railway Station-Metro Station",
+              "end": "Nanjing South Railway Station",
+              "mode": "walk",
+              "start_time": "12:16",
+              "end_time": "12:19",
+              "cost": 0,
+              "distance": 0.29
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Jinling Art Museum",
+          "end": "Nanjing South Railway Station",
+          "start_time": "12:00",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Nanjing\", \"end\": \"Nanjing South Railway Station\", \"start\": \"Jinling Art Museum\", \"start_time\": \"12:00\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Jinling Art Museum', 'end': 'Nanjing South Railway Station', 'mode': 'walk', 'start_time': '12:00', 'end_time': '13:07', 'cost': 0.0, 'distance': 5.588490987722068}]",
+          "data": [
+            {
+              "start": "Jinling Art Museum",
+              "end": "Nanjing South Railway Station",
+              "mode": "walk",
+              "start_time": "12:00",
+              "end_time": "13:07",
+              "cost": 0.0,
+              "distance": 5.588490987722068
+            }
+          ]
+        }
+      }
+    ],
+    "candidates": 5,
+    "rejected_proposals": [],
+    "selected_candidate": "c2",
+    "edits": [
+      {
+        "op": "replace",
+        "id": "d2:a3",
+        "value": {
+          "type": "train",
+          "start": "Nanjing Station",
+          "end": "Chengdu West Railway Station",
+          "start_time": "15:15",
+          "end_time": "17:55",
+          "price": 563.16,
+          "cost": 1126.32,
+          "tickets": 2,
+          "transports": [
+            {
+              "start": "Jinling Art Museum",
+              "end": "Nanjing Station",
+              "mode": "walk",
+              "start_time": "12:00",
+              "end_time": "13:30",
+              "cost": 0,
+              "distance": 7.5815509856573575,
+              "price": 0.0
+            }
+          ],
+          "TrainID": "K1157"
+        }
+      }
+    ],
+    "edit_scope": [
+      "d2:a3"
+    ],
+    "preservation": {
+      "unchanged": 7,
+      "removed_or_modified": 1,
+      "added_or_modified": 1
+    },
+    "commit_revision": "777e18a92008fdceeaf9a0366919817b8fba613a86a99960db5a2fd08e1fc6a8",
+    "atomic_commit": true,
+    "request_count": 0,
+    "retry_count": 0,
+    "request_latency_seconds": 0
+  },
+  "started_at": "2026-11-01T01:04:08.595292+00:00",
+  "finished_at": "2026-11-01T01:04:08.938655+00:00",
+  "duration_seconds": 0.34336908301338553,
+  "wall_seconds": 0.3436215000692755,
+  "resources": {
+    "limits": {
+      "feedback": 4,
+      "model_calls": 16,
+      "tokens": 500000,
+      "tools": 400,
+      "output_tokens_per_call": 10000
+    },
+    "model_calls": 0,
+    "returned_tokens": 0,
+    "feedback_calls": 0,
+    "tool_calls": 23,
+    "exhausted": "",
+    "tool_receipts": [
+      {
+        "index": 1,
+        "name": "intercity_transport_select",
+        "arguments": {
+          "start_city": "Nanjing",
+          "end_city": "Chengdu",
+          "intercity_type": "train",
+          "earliest_leave_time": "00:00"
+        }
+      },
+      {
+        "index": 2,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 3,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 4,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Jinling Art Museum",
+          "end": "Nanjing Station",
+          "start_time": "12:00",
+          "transport_type": "metro"
+        }
+      },
+      {
+        "index": 5,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Nanjing",
+          "key": "name",
+          "op": "eq",
+          "value": "Confucius Temple"
+        }
+      },
+      {
+        "index": 6,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Nanjing",
+          "key": "name",
+          "op": "eq",
+          "value": "Black Clothes Lane"
+        }
+      },
+      {
+        "index": 7,
+        "name": "restaurants_select",
+        "arguments": {
+          "city": "Nanjing",
+          "key": "name",
+          "op": "eq",
+          "value": "Yuhu Grilled Fish (Suning Plaza Branch)"
+        }
+      },
+      {
+        "index": 8,
+        "name": "accommodations_select",
+        "arguments": {
+          "city": "Nanjing",
+          "key": "name",
+          "op": "eq",
+          "value": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)"
+        }
+      },
+      {
+        "index": 9,
+        "name": "restaurants_select",
+        "arguments": {
+          "city": "Nanjing",
+          "key": "name",
+          "op": "eq",
+          "value": "Sichuan Restaurant (Taiping South Road Branch)"
+        }
+      },
+      {
+        "index": 10,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Nanjing",
+          "key": "name",
+          "op": "eq",
+          "value": "Jinling Art Museum"
+        }
+      },
+      {
+        "index": 11,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Nanjing Station",
+          "end": "Confucius Temple",
+          "start_time": "10:55",
+          "transport_type": "metro"
+        }
+      },
+      {
+        "index": 12,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Confucius Temple",
+          "end": "Black Clothes Lane",
+          "start_time": "14:30",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 13,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Black Clothes Lane",
+          "end": "Yuhu Grilled Fish (Suning Plaza Branch)",
+          "start_time": "16:30",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 14,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Yuhu Grilled Fish (Suning Plaza Branch)",
+          "end": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+          "start_time": "18:30",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 15,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+          "end": "Sichuan Restaurant (Taiping South Road Branch)",
+          "start_time": "07:40",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 16,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Sichuan Restaurant (Taiping South Road Branch)",
+          "end": "Jinling Art Museum",
+          "start_time": "09:00",
+          "transport_type": "metro"
+        }
+      },
+      {
+        "index": 17,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Jinling Art Museum",
+          "end": "Nanjing Station",
+          "start_time": "12:00",
+          "transport_type": "metro"
+        }
+      },
+      {
+        "index": 18,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Chengdu",
+          "end_city": "Nanjing",
+          "type": "train"
+        }
+      },
+      {
+        "index": 19,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Nanjing",
+          "end_city": "Chengdu",
+          "type": "train"
+        }
+      },
+      {
+        "index": 20,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Jinling Art Museum",
+          "end": "Nanjing Station",
+          "start_time": "12:00",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 21,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Jinling Art Museum",
+          "end": "Nanjing South Railway Station",
+          "start_time": "12:00",
+          "transport_type": "metro"
+        }
+      },
+      {
+        "index": 22,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Jinling Art Museum",
+          "end": "Nanjing South Railway Station",
+          "start_time": "12:00",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 23,
+        "name": "goto",
+        "arguments": {
+          "city": "Nanjing",
+          "start": "Jinling Art Museum",
+          "end": "Nanjing Station",
+          "start_time": "12:00",
+          "transport_type": "walk"
+        }
+      }
+    ],
+    "input_accounting": "conservative UTF-8 preflight; actual provider usage recorded; missing remote usage remains unknown"
+  },
+  "clarification": {
+    "status": "ready",
+    "base_revision": "aa406140f283046857c0d8696f5abf8a4d994963d1220e18f6e02cdc01a3d7f1",
+    "task": {
+      "uid": "e20241028160946447653",
+      "tag": "medium",
+      "start_city": "成都",
+      "target_city": "南京",
+      "days": 2,
+      "people_number": 2,
+      "limit_rooms": true,
+      "limits_room_type": true,
+      "nature_language": "当前位置成都。我们两个人计划去南京玩两天，选择地铁作为市内交通，预算6000元，想品尝川菜，开一间双床房。请给我一个旅行规划。",
+      "nature_language_en": "Current location: Chengdu. Two of us are planning to visit Nanjing for two days. We will use the subway for transportation within the city, have a budget of 6000 yuan, want to try Sichuan cuisine, and need a twin room. Please provide a travel plan."
+    },
+    "seed_plan": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "properties": {
+        "people_number": {
+          "type": "integer"
+        },
+        "start_city": {
+          "type": "string"
+        },
+        "target_city": {
+          "type": "string"
+        },
+        "itinerary": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "day": {
+                "type": "integer"
+              },
+              "activities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "airplane",
+                        "attraction",
+                        "lunch",
+                        "dinner",
+                        "breakfast",
+                        "accommodation",
+                        "train"
+                      ]
+                    },
+                    "start_time": {
+                      "type": "string",
+                      "pattern": "^\\d{2}:\\d{2}$"
+                    },
+                    "end_time": {
+                      "type": "string",
+                      "pattern": "^\\d{2}:\\d{2}$"
+                    },
+                    "cost": {
+                      "type": "number"
+                    },
+                    "price": {
+                      "type": "number"
+                    },
+                    "tickets": {
+                      "type": "integer"
+                    },
+                    "position": {
+                      "type": "string"
+                    },
+                    "transports": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "start": {
+                            "type": "string"
+                          },
+                          "end": {
+                            "type": "string"
+                          },
+                          "mode": {
+                            "type": "string",
+                            "enum": [
+                              "walk",
+                              "metro",
+                              "taxi"
+                            ]
+                          },
+                          "start_time": {
+                            "type": "string",
+                            "pattern": "^\\d{2}:\\d{2}$"
+                          },
+                          "end_time": {
+                            "type": "string",
+                            "pattern": "^\\d{2}:\\d{2}$"
+                          },
+                          "cost": {
+                            "type": "number"
+                          },
+                          "price": {
+                            "type": "number"
+                          },
+                          "distance": {
+                            "type": "number"
+                          },
+                          "tickets": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "start",
+                          "end",
+                          "mode",
+                          "start_time",
+                          "end_time",
+                          "price",
+                          "cost",
+                          "distance"
+                        ]
+                      }
+                    },
+                    "room_type": {
+                      "type": "integer"
+                    },
+                    "rooms": {
+                      "type": "integer"
+                    },
+                    "FlightID": {
+                      "type": "string"
+                    },
+                    "TrainID": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "start_time",
+                    "end_time",
+                    "cost",
+                    "price",
+                    "transports"
+                  ],
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "airplane",
+                              "train"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ]
+                      },
+                      "then": {
+                        "required": [
+                          "start",
+                          "end"
+                        ],
+                        "not": {
+                          "required": [
+                            "position"
+                          ]
+                        }
+                      },
+                      "else": {
+                        "required": [
+                          "position"
+                        ],
+                        "not": {
+                          "anyOf": [
+                            {
+                              "required": [
+                                "start"
+                              ]
+                            },
+                            {
+                              "required": [
+                                "end"
+                              ]
+                            },
+                            {
+                              "required": [
+                                "FlightID"
+                              ]
+                            },
+                            {
+                              "required": [
+                                "TrainID"
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "if": {
+                        "properties": {
+                          "type": {
+                            "const": "airplane"
+                          }
+                        }
+                      },
+                      "then": {
+                        "required": [
+                          "FlightID"
+                        ]
+                      }
+                    },
+                    {
+                      "if": {
+                        "properties": {
+                          "type": {
+                            "const": "train"
+                          }
+                        }
+                      },
+                      "then": {
+                        "required": [
+                          "TrainID"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "day",
+              "activities"
+            ]
+          }
+        }
+      },
+      "required": [
+        "people_number",
+        "start_city",
+        "target_city",
+        "itinerary"
+      ],
+      "people_number": 2,
+      "start_city": "Chengdu",
+      "target_city": "Nanjing",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "train",
+              "start_time": "07:50",
+              "end_time": "10:55",
+              "cost": 1126.32,
+              "price": 563.16,
+              "tickets": 2,
+              "TrainID": "K1158",
+              "start": "Chengdu West Railway Station",
+              "end": "Nanjing Station",
+              "transports": []
+            },
+            {
+              "type": "attraction",
+              "start_time": "11:17",
+              "end_time": "14:30",
+              "cost": 0.0,
+              "price": 0,
+              "tickets": 2,
+              "position": "Confucius Temple",
+              "transports": [
+                {
+                  "start": "Nanjing Station",
+                  "end": "Nanjing Station-Metro Station",
+                  "mode": "walk",
+                  "start_time": "10:55",
+                  "end_time": "10:57",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 0.25,
+                  "tickets": 2
+                },
+                {
+                  "start": "Nanjing Station-Metro Station",
+                  "end": "Confucius Temple-Metro Station",
+                  "mode": "metro",
+                  "start_time": "10:57",
+                  "end_time": "11:11",
+                  "price": 3,
+                  "cost": 6.0,
+                  "distance": 7.25,
+                  "tickets": 2
+                },
+                {
+                  "start": "Confucius Temple-Metro Station",
+                  "end": "Confucius Temple",
+                  "mode": "walk",
+                  "start_time": "11:11",
+                  "end_time": "11:17",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 0.52,
+                  "tickets": 2
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "start_time": "14:32",
+              "end_time": "16:30",
+              "cost": 0.0,
+              "price": 0,
+              "tickets": 2,
+              "position": "Black Clothes Lane",
+              "transports": [
+                {
+                  "start": "Confucius Temple",
+                  "end": "Black Clothes Lane",
+                  "mode": "walk",
+                  "start_time": "14:30",
+                  "end_time": "14:32",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 0.22629756894077455,
+                  "tickets": 2
+                }
+              ]
+            },
+            {
+              "type": "dinner",
+              "start_time": "17:00",
+              "end_time": "18:30",
+              "cost": 144.0,
+              "price": 72,
+              "tickets": 2,
+              "position": "Yuhu Grilled Fish (Suning Plaza Branch)",
+              "transports": [
+                {
+                  "start": "Black Clothes Lane",
+                  "end": "Yuhu Grilled Fish (Suning Plaza Branch)",
+                  "mode": "walk",
+                  "start_time": "16:30",
+                  "end_time": "16:49",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 1.6061321741269192,
+                  "tickets": 2
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "start_time": "18:51",
+              "end_time": "23:59",
+              "cost": 102.0,
+              "price": 102,
+              "tickets": 1,
+              "position": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+              "rooms": 1,
+              "room_type": 2,
+              "transports": [
+                {
+                  "start": "Yuhu Grilled Fish (Suning Plaza Branch)",
+                  "end": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+                  "mode": "walk",
+                  "start_time": "18:30",
+                  "end_time": "18:51",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 1.82221187495376,
+                  "tickets": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "breakfast",
+              "start_time": "07:56",
+              "end_time": "08:30",
+              "cost": 110.0,
+              "price": 55,
+              "tickets": 2,
+              "position": "Sichuan Restaurant (Taiping South Road Branch)",
+              "transports": [
+                {
+                  "start": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+                  "end": "Sichuan Restaurant (Taiping South Road Branch)",
+                  "mode": "walk",
+                  "start_time": "07:40",
+                  "end_time": "07:56",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 1.3835469763329964,
+                  "tickets": 2
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "start_time": "09:15",
+              "end_time": "12:00",
+              "cost": 0.0,
+              "price": 0,
+              "tickets": 2,
+              "position": "Jinling Art Museum",
+              "transports": [
+                {
+                  "start": "Sichuan Restaurant (Taiping South Road Branch)",
+                  "end": "Changfu Street-Metro Station",
+                  "mode": "walk",
+                  "start_time": "09:00",
+                  "end_time": "09:04",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 0.38,
+                  "tickets": 2
+                },
+                {
+                  "start": "Changfu Street-Metro Station",
+                  "end": "Wuding Gate-Metro Station",
+                  "mode": "metro",
+                  "start_time": "09:04",
+                  "end_time": "09:08",
+                  "price": 2,
+                  "cost": 4.0,
+                  "distance": 2.19,
+                  "tickets": 2
+                },
+                {
+                  "start": "Wuding Gate-Metro Station",
+                  "end": "Jinling Art Museum",
+                  "mode": "walk",
+                  "start_time": "09:08",
+                  "end_time": "09:15",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 0.6,
+                  "tickets": 2
+                }
+              ]
+            },
+            {
+              "type": "train",
+              "start_time": "12:59",
+              "end_time": "19:13",
+              "cost": 1126.32,
+              "price": 563.16,
+              "tickets": 2,
+              "TrainID": "K291",
+              "start": "Nanjing Station",
+              "end": "Chengdu West Railway Station",
+              "transports": [
+                {
+                  "start": "Jinling Art Museum",
+                  "end": "Wuding Gate-Metro Station",
+                  "mode": "walk",
+                  "start_time": "12:00",
+                  "end_time": "12:07",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 0.6,
+                  "tickets": 2
+                },
+                {
+                  "start": "Wuding Gate-Metro Station",
+                  "end": "Nanjing Station-Metro Station",
+                  "mode": "metro",
+                  "start_time": "12:07",
+                  "end_time": "12:23",
+                  "price": 3,
+                  "cost": 6.0,
+                  "distance": 8.38,
+                  "tickets": 2
+                },
+                {
+                  "start": "Nanjing Station-Metro Station",
+                  "end": "Nanjing Station",
+                  "mode": "walk",
+                  "start_time": "12:23",
+                  "end_time": "12:25",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 0.25,
+                  "tickets": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "kind": "transport_unavailable",
+      "day": null,
+      "new_days": null,
+      "new_budget": null,
+      "target": "K291",
+      "description": ""
+    },
+    "state_revision": "9b12e6200325f619db472d4e8d9b07aa354eebb59e3e41a89d424acd5aff2925"
+  },
+  "event": {
+    "kind": "transport_unavailable",
+    "target": "K291",
+    "description": ""
+  },
+  "event_check": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours"
+    ]
+  }
+}

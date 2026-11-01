@@ -1,0 +1,98 @@
+{
+  "job": {
+    "uid": "e20241028161054093646",
+    "split": "medium",
+    "model": "glm-5.3-flash",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "b2",
+    "kind": "static",
+    "task": {
+      "days": 2,
+      "limit_rooms": true,
+      "limits_room_type": true,
+      "nature_language": "当前位置苏州。我们两个人计划去武汉玩两天，预算3000元，开一间双床房。请给我一个旅行规划。",
+      "nature_language_en": "Current location: Suzhou. Two of us are planning to visit Wuhan for two days with a budget of 3000 RMB, and we need a twin room. Please provide me with a travel plan.",
+      "people_number": 2,
+      "start_city": "苏州",
+      "tag": "medium",
+      "target_city": "武汉",
+      "uid": "e20241028161054093646"
+    }
+  },
+  "result": {
+    "task_uid": "e20241028161054093646",
+    "method": "b2",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.01460304204375
+  },
+  "ledger": {
+    "request_attempts": 2,
+    "completed_attempts": 1,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793497394.296222,
+        "attempt_id": "0ca7ab853d154968b3fe15afbec61f48",
+        "model": "glm-5.3-flash",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793497574.339197,
+        "attempt_id": "0ca7ab853d154968b3fe15afbec61f48",
+        "model": "glm-5.3-flash",
+        "elapsed": 180.04252516606357,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "backoff",
+        "time": 1793497574.341066,
+        "attempt_id": "0ca7ab853d154968b3fe15afbec61f48",
+        "model": "glm-5.3-flash",
+        "seconds": 2.0,
+        "reason": "transient"
+      },
+      {
+        "kind": "start",
+        "time": 1793497576.344587,
+        "attempt_id": "09df4e31e94c4f58bb9f3a4f4dc7658f",
+        "model": "glm-5.3-flash",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 1,
+    "returned_tokens": 0,
+    "tool_calls": 186,
+    "exhausted": ""
+  }
+}

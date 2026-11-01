@@ -1,0 +1,1779 @@
+{
+  "job": {
+    "uid": "e20241028160332826857",
+    "split": "easy",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "b1",
+    "kind": "static",
+    "task": {
+      "days": 1,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置北京。我一个人想去武汉玩一天，预算2000人民币，请给我一个旅行规划。",
+      "nature_language_en": "Current location: Beijing. I want to travel alone to Wuhan for a day with a budget of 2000 RMB. Please provide me with a travel plan.",
+      "people_number": 1,
+      "start_city": "北京",
+      "tag": "easy",
+      "target_city": "武汉",
+      "uid": "e20241028160332826857"
+    }
+  },
+  "result": {
+    "task_uid": "e20241028160332826857",
+    "method": "b1",
+    "model": "qwen3.8-reasoner",
+    "terminal_state": "answer",
+    "plan": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "people_number": 1,
+      "start_city": "Beijing",
+      "target_city": "Wuhan",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "train",
+              "start_time": "07:05",
+              "end_time": "11:01",
+              "cost": 684.27,
+              "price": 684.27,
+              "tickets": 1,
+              "TrainID": "G71",
+              "start": "Beijing West Railway Station",
+              "end": "Wuhan Station",
+              "transports": []
+            },
+            {
+              "type": "attraction",
+              "position": "Qingchuan Pavilion",
+              "start_time": "11:35",
+              "end_time": "13:00",
+              "cost": 0.0,
+              "price": 0.0,
+              "tickets": 1,
+              "transports": [
+                {
+                  "start": "Wuhan Station",
+                  "end": "Qingchuan Pavilion",
+                  "mode": "taxi",
+                  "start_time": "11:15",
+                  "end_time": "11:35",
+                  "cost": 57.51,
+                  "price": 57.51,
+                  "distance": 13.96,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Dayin Art Restaurant (Qingchuan Branch)",
+              "start_time": "13:00",
+              "end_time": "15:00",
+              "cost": 130.0,
+              "price": 130.0,
+              "tickets": 1,
+              "transports": [
+                {
+                  "start": "Qingchuan Pavilion",
+                  "end": "Dayin Art Restaurant (Qingchuan Branch)",
+                  "mode": "walk",
+                  "start_time": "13:00",
+                  "end_time": "13:10",
+                  "cost": 0.0,
+                  "price": 0.0,
+                  "distance": 0.878949544769437,
+                  "tickets": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Yangchun Lake",
+              "start_time": "15:30",
+              "end_time": "17:30",
+              "cost": 0.0,
+              "price": 0.0,
+              "tickets": 1,
+              "transports": [
+                {
+                  "start": "Dayin Art Restaurant (Qingchuan Branch)",
+                  "end": "Wuhan Station",
+                  "mode": "taxi",
+                  "start_time": "15:00",
+                  "end_time": "15:22",
+                  "cost": 61.23,
+                  "price": 61.23,
+                  "distance": 14.78,
+                  "tickets": 1,
+                  "cars": 1
+                },
+                {
+                  "start": "Wuhan Station",
+                  "end": "Yangchun Lake",
+                  "mode": "walk",
+                  "start_time": "15:25",
+                  "end_time": "15:30",
+                  "cost": 0.0,
+                  "price": 0.0,
+                  "distance": 0.44678753490578743,
+                  "tickets": 1
+                }
+              ]
+            },
+            {
+              "type": "train",
+              "start_time": "17:37",
+              "end_time": "21:49",
+              "cost": 684.27,
+              "price": 684.27,
+              "tickets": 1,
+              "TrainID": "G78",
+              "start": "Wuhan Station",
+              "end": "Beijing West Railway Station",
+              "transports": [
+                {
+                  "start": "Yangchun Lake",
+                  "end": "Wuhan Station",
+                  "mode": "walk",
+                  "start_time": "17:30",
+                  "end_time": "17:35",
+                  "cost": 0.0,
+                  "price": 0.0,
+                  "distance": 0.44678753490578743,
+                  "tickets": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step": 1,
+        "content": "\n\n\n\n",
+        "tool_calls": [
+          {
+            "name": "restaurants_nearby",
+            "arguments": {
+              "city": "Wuhan",
+              "point": "Wuhan Station",
+              "topk": 5,
+              "dist": 5
+            }
+          },
+          {
+            "name": "attractions_nearby",
+            "arguments": {
+              "city": "Wuhan",
+              "point": "Wuhan Station",
+              "topk": 5,
+              "dist": 5
+            }
+          },
+          {
+            "name": "restaurants_cuisine",
+            "arguments": {
+              "city": "Wuhan"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "restaurants_nearby",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"restaurants_nearby({\\\"city\\\": \\\"Wuhan\\\", \\\"dist\\\": 5, \\\"point\\\": \\\"Wuhan Station\\\", \\\"topk\\\": 5})\", \"text\": \"['id' 'name' 'lat' 'lon' 'price' 'cuisine' 'opentime' 'endtime'\\n 'recommendedfood' 'distance']\\n[340 'Chongqing Spicy Fish Home-style Cuisine (Branch 105)' 30.6214365\\n 114.4052914 63.0 'Sichuan cuisine' '11:00' '21:00' 'Recommended dishes'\\n 2.4796393715167944]\\n[70 \\\"Old Fang's Mianyang Three Steamed Dishes (Tongda Community Branch)\\\"\\n 30.6214739 114.3969"
+          },
+          {
+            "name": "attractions_nearby",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"attractions_nearby({\\\"city\\\": \\\"Wuhan\\\", \\\"dist\\\": 5, \\\"point\\\": \\\"Wuhan Station\\\", \\\"topk\\\": 5})\", \"text\": \"['id' 'name' 'type' 'lat' 'lon' 'opentime' 'endtime' 'price'\\n 'recommendmintime' 'recommendmaxtime' 'distance']\\n[289 'Yangchun Lake' 'park' 30.61097 114.42272 '00:00' '24:00' 0.0 2.5 3.0\\n 0.44678753490578743]\\n[253 'Wugang Cultural Tourism Area' 'Cultural Tourism Area' 30.624312\\n 114.447601 '09:00' '11:30' 0.0 1.0 2.5 2.702405943865056]\\n[3 'Wuhan Happy V"
+          },
+          {
+            "name": "restaurants_cuisine",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"restaurants_cuisine({\\\"city\\\": \\\"Wuhan\\\"})\", \"text\": \"['fusion cuisine' 'Hubei cuisine' 'Cantonese cuisine' 'Western cuisine'\\n 'Creative Cuisine' 'Snacks' 'Japanese cuisine' 'Southeast Asian cuisine'\\n 'Hunan cuisine' 'Bakery and Desserts' 'Barbecue' 'Hot pot' 'buffet'\\n 'Other Chinese Cuisine' 'Seafood' 'Beijing cuisine' 'Korean cuisine'\\n 'Fast food and casual dining' 'Jiangsu-Zhejiang cuisine' 'coffee shop'\\n 'Sichuan cuisine' 'Recommended dishes' 'Other'\\n 'Nor"
+          }
+        ],
+        "latency_seconds": 69.10992258298211,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-6b0df0e0-cab1-4d46-966c-fecc3a031e05",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 14740,
+        "completion_tokens": 1874,
+        "reasoning_tokens": 1708,
+        "attempts": 1,
+        "request_latencies": [
+          69.10992258298211
+        ]
+      },
+      {
+        "step": 2,
+        "content": "\n\n\n",
+        "tool_calls": [
+          {
+            "name": "restaurants_nearby",
+            "arguments": {
+              "city": "Wuhan",
+              "point": "Qingchuan Pavilion",
+              "topk": 6,
+              "dist": 3
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Wuhan",
+              "start": "Wuhan Station",
+              "end": "Qingchuan Pavilion",
+              "start_time": "11:15",
+              "transport_type": "taxi"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "restaurants_nearby",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"restaurants_nearby({\\\"city\\\": \\\"Wuhan\\\", \\\"dist\\\": 3, \\\"point\\\": \\\"Qingchuan Pavilion\\\", \\\"topk\\\": 6})\", \"text\": \"['id' 'name' 'lat' 'lon' 'price' 'cuisine' 'opentime' 'endtime'\\n 'recommendedfood' 'distance']\\n[14 'Dayin Art Restaurant (Qingchuan Branch)' 30.5559115 114.2845757 130.0\\n 'Hubei cuisine' '11:00' '21:00'\\n 'Signature Guanyin Duck, Prosperous Wuchang Fish, Mini Pan-Fried Buns, Jiangxue Sweet and Sour Pork Ribs, Kung Pao Meatballs, Fragrant Durian Pastry"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Qingchuan Pavilion\\\", \\\"start\\\": \\\"Wuhan Station\\\", \\\"start_time\\\": \\\"11:15\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Wuhan Station', 'end': 'Qingchuan Pavilion', 'mode': 'taxi', 'start_time': '11:15', 'end_time': '11:35', 'cost': 57.51, 'distance': 13.96}]\", \"data\": [{\"start\": \"Wuhan Station\", \"end\": \"Qingchuan Pavilion\", \"mode\": \"taxi\", \"start_time\": \"11:15\", \"end_time\": \"11:35\", \"cost\": 57.51, \"distance\": 13.96"
+          }
+        ],
+        "latency_seconds": 21.54092112503713,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-dc7d3109-46c0-44f0-8f9c-adb156f25088",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 17929,
+        "completion_tokens": 1168,
+        "reasoning_tokens": 1012,
+        "attempts": 1,
+        "request_latencies": [
+          21.54092112503713
+        ]
+      },
+      {
+        "step": 3,
+        "content": "\n\n\n",
+        "tool_calls": [
+          {
+            "name": "attractions_nearby",
+            "arguments": {
+              "city": "Wuhan",
+              "point": "Qingchuan Pavilion",
+              "topk": 8,
+              "dist": 3
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Wuhan",
+              "end": "Old Fang's Mianyang Three Steamed Dishes (Tongda Community Branch)",
+              "start_time": "15:00",
+              "transport_type": "taxi",
+              "start": "Qingchuan Pavilion"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "attractions_nearby",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"attractions_nearby({\\\"city\\\": \\\"Wuhan\\\", \\\"dist\\\": 3, \\\"point\\\": \\\"Qingchuan Pavilion\\\", \\\"topk\\\": 8})\", \"text\": \"['id' 'name' 'type' 'lat' 'lon' 'opentime' 'endtime' 'price'\\n 'recommendmintime' 'recommendmaxtime' 'distance']\\n[1 'Qingchuan Pavilion' 'historical site' 30.561283 114.291314 '09:00'\\n '21:30' 0.0 2.0 3.5 0.0]\\n[320 'Scenic Wonder of the Three Chu Regions' 'historical site' 30.561461\\n 114.291226 '08:00' '17:00' 0.0 2.0 3.0 0.02146358869517234]\\n[241 '"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Old Fang's Mianyang Three Steamed Dishes (Tongda Community Branch)\\\", \\\"start\\\": \\\"Qingchuan Pavilion\\\", \\\"start_time\\\": \\\"15:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Qingchuan Pavilion', 'end': \\\"Old Fang's Mianyang Three Steamed Dishes (Tongda Community Branch)\\\", 'mode': 'taxi', 'start_time': '15:00', 'end_time': '15:18', 'cost': 49.3, 'distance': 12.13}]\", \"data\": [{\"start\": \"Qingchuan Pavilion\", \"end\": \"O"
+          }
+        ],
+        "latency_seconds": 26.772073167026974,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-5934dc79-1109-41f4-850a-ca3ea2dc0754",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 20139,
+        "completion_tokens": 1507,
+        "reasoning_tokens": 1335,
+        "attempts": 1,
+        "request_latencies": [
+          26.772073167026974
+        ]
+      },
+      {
+        "step": 4,
+        "content": "\n\n\n",
+        "tool_calls": [
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Wuhan",
+              "end": "Dayin Art Restaurant (Qingchuan Branch)",
+              "start_time": "13:00",
+              "transport_type": "walk",
+              "start": "Qingchuan Pavilion"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Wuhan",
+              "end": "Wuhan Station",
+              "start_time": "14:00",
+              "transport_type": "taxi",
+              "start": "Dayin Art Restaurant (Qingchuan Branch)"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Dayin Art Restaurant (Qingchuan Branch)\\\", \\\"start\\\": \\\"Qingchuan Pavilion\\\", \\\"start_time\\\": \\\"13:00\\\", \\\"transport_type\\\": \\\"walk\\\"})\", \"text\": \"[{'start': 'Qingchuan Pavilion', 'end': 'Dayin Art Restaurant (Qingchuan Branch)', 'mode': 'walk', 'start_time': '13:00', 'end_time': '13:10', 'cost': 0.0, 'distance': 0.878949544769437}]\", \"data\": [{\"start\": \"Qingchuan Pavilion\", \"end\": \"Dayin Art Restaurant (Qingchuan Branch)\", \"mod"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Wuhan Station\\\", \\\"start\\\": \\\"Dayin Art Restaurant (Qingchuan Branch)\\\", \\\"start_time\\\": \\\"14:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Dayin Art Restaurant (Qingchuan Branch)', 'end': 'Wuhan Station', 'mode': 'taxi', 'start_time': '14:00', 'end_time': '14:22', 'cost': 61.23, 'distance': 14.78}]\", \"data\": [{\"start\": \"Dayin Art Restaurant (Qingchuan Branch)\", \"end\": \"Wuhan Station\", \"mode\": \"taxi\", \"start_time\":"
+          }
+        ],
+        "latency_seconds": 14.371422542026266,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-2ab9c7dc-a5a5-484b-9a99-f857e3cdea11",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 22509,
+        "completion_tokens": 567,
+        "reasoning_tokens": 382,
+        "attempts": 1,
+        "request_latencies": [
+          14.371422542026266
+        ]
+      },
+      {
+        "step": 5,
+        "content": "\n\n\n\n",
+        "tool_calls": [
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Wuhan",
+              "end": "Wuhan Station",
+              "start_time": "15:00",
+              "transport_type": "taxi",
+              "start": "Dayin Art Restaurant (Qingchuan Branch)"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Wuhan",
+              "end": "Yangchun Lake",
+              "start_time": "15:25",
+              "transport_type": "walk",
+              "start": "Wuhan Station"
+            }
+          },
+          {
+            "name": "goto",
+            "arguments": {
+              "city": "Wuhan",
+              "end": "Wuhan Station",
+              "start_time": "17:30",
+              "transport_type": "walk",
+              "start": "Yangchun Lake"
+            }
+          }
+        ],
+        "tool_results": [
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Wuhan Station\\\", \\\"start\\\": \\\"Dayin Art Restaurant (Qingchuan Branch)\\\", \\\"start_time\\\": \\\"15:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Dayin Art Restaurant (Qingchuan Branch)', 'end': 'Wuhan Station', 'mode': 'taxi', 'start_time': '15:00', 'end_time': '15:22', 'cost': 61.23, 'distance': 14.78}]\", \"data\": [{\"start\": \"Dayin Art Restaurant (Qingchuan Branch)\", \"end\": \"Wuhan Station\", \"mode\": \"taxi\", \"start_time\":"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Yangchun Lake\\\", \\\"start\\\": \\\"Wuhan Station\\\", \\\"start_time\\\": \\\"15:25\\\", \\\"transport_type\\\": \\\"walk\\\"})\", \"text\": \"[{'start': 'Wuhan Station', 'end': 'Yangchun Lake', 'mode': 'walk', 'start_time': '15:25', 'end_time': '15:30', 'cost': 0.0, 'distance': 0.44678753490578743}]\", \"data\": [{\"start\": \"Wuhan Station\", \"end\": \"Yangchun Lake\", \"mode\": \"walk\", \"start_time\": \"15:25\", \"end_time\": \"15:30\", \"cost\": 0.0, \"distance\": 0.44678753"
+          },
+          {
+            "name": "goto",
+            "success": true,
+            "error": null,
+            "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Wuhan\\\", \\\"end\\\": \\\"Wuhan Station\\\", \\\"start\\\": \\\"Yangchun Lake\\\", \\\"start_time\\\": \\\"17:30\\\", \\\"transport_type\\\": \\\"walk\\\"})\", \"text\": \"[{'start': 'Yangchun Lake', 'end': 'Wuhan Station', 'mode': 'walk', 'start_time': '17:30', 'end_time': '17:35', 'cost': 0.0, 'distance': 0.44678753490578743}]\", \"data\": [{\"start\": \"Yangchun Lake\", \"end\": \"Wuhan Station\", \"mode\": \"walk\", \"start_time\": \"17:30\", \"end_time\": \"17:35\", \"cost\": 0.0, \"distance\": 0.44678753"
+          }
+        ],
+        "latency_seconds": 36.494935458002146,
+        "finish_reason": "tool_calls",
+        "request_id": "chatcmpl-fba273ac-bfa5-460e-818c-59b6e662fcab",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 23167,
+        "completion_tokens": 2069,
+        "reasoning_tokens": 1810,
+        "attempts": 1,
+        "request_latencies": [
+          36.494935458002146
+        ]
+      },
+      {
+        "step": 6,
+        "content": "\n\n{\"$schema\": \"http://json-schema.org/draft-07/schema#\", \"people_number\": 1, \"start_city\": \"Beijing\", \"target_city\": \"Wuhan\", \"itinerary\": [{\"day\": 1, \"activities\": [{\"type\": \"train\", \"start_time\": \"07:05\", \"end_time\": \"11:01\", \"cost\": 684.27, \"price\": 684.27, \"tickets\": 1, \"TrainID\": \"G71\", \"start\": \"Beijing West Railway Station\", \"end\": \"Wuhan Station\", \"transports\": []}, {\"type\": \"attraction\", \"position\": \"Qingchuan Pavilion\", \"start_time\": \"11:35\", \"end_time\": \"13:00\", \"cost\": 0.0, \"price\": 0.0, \"tickets\": 1, \"transports\": [{\"start\": \"Wuhan Station\", \"end\": \"Qingchuan Pavilion\", \"mode\": \"taxi\", \"start_time\": \"11:15\", \"end_time\": \"11:35\", \"cost\": 57.51, \"price\": 57.51, \"distance\": 13.96, \"tickets\": 1}]}, {\"type\": \"lunch\", \"position\": \"Dayin Art Restaurant (Qingchuan Branch)\", \"start_time\": \"13:00\", \"end_time\": \"15:00\", \"cost\": 130.0, \"price\": 130.0, \"tickets\": 1, \"transports\": [{\"start\": \"Qingchuan Pavilion\", \"end\": \"Dayin Art Restaurant (Qingchuan Branch)\", \"mode\": \"walk\", \"start_time\": \"13:00\", \"end_time\": \"13:10\", \"cost\": 0.0, \"price\": 0.0, \"distance\": 0.878949544769437, \"tickets\": 1}]}, {\"type\": \"attraction\", \"position\": \"Yangchun Lake\", \"start_time\": \"15:30\", \"end_time\": \"17:30\", \"cost\": 0.0, \"price\": 0.0, \"tickets\": 1, \"transports\": [{\"start\": \"Dayin Art Restaurant (Qingchuan Branch)\", \"end\": \"Wuhan Station\", \"mode\": \"taxi\", \"start_time\": \"15:00\", \"end_time\": \"15:22\", \"cost\": 61.23, \"price\": 61.23, \"distance\": 14.78, \"tickets\": 1}, {\"start\": \"Wuhan Station\", \"end\": \"Yangchun Lake\", \"mode\": \"walk\", \"start_time\": \"15:25\", \"end_time\": \"15:30\", \"cost\": 0.0, \"price\": 0.0, \"distance\": 0.44678753490578743, \"tickets\": 1}]}, {\"type\": \"train\", \"start_time\": \"17:37\", \"end_time\": \"21:49\", \"cost\": 684.27, \"price\": 684.27, \"tickets\": 1, \"TrainID\": \"G78\", \"start\": \"Wuhan Station\", \"end\": \"Beijing West Railway Station\", \"transports\": [{\"start\": \"Yangchun Lake\", \"end\": \"Wuhan Station\", \"mode\": \"walk\", \"start_time\": \"17:30\", \"end_time\": \"17:35\", \"cost\": 0.0, \"price\": 0.0, \"distance\": 0.44678753490578743, \"tickets\": 1}]}]}]}",
+        "tool_calls": [],
+        "tool_results": [],
+        "latency_seconds": 22.377658665995114,
+        "finish_reason": "stop",
+        "request_id": "chatcmpl-c7ff8d4c-0409-44e8-8e87-3a534cf55fd6",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 24100,
+        "completion_tokens": 1268,
+        "reasoning_tokens": 377,
+        "attempts": 1,
+        "request_latencies": [
+          22.377658665995114
+        ]
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 122584,
+      "completion_tokens": 8453,
+      "total_tokens": 131037,
+      "reasoning_tokens": 6624
+    },
+    "checker": null,
+    "error": null,
+    "metadata": {
+      "event_text": null,
+      "usage_complete": true,
+      "request_count": 6,
+      "retry_count": 0,
+      "request_latency_seconds": 190.66693354106974
+    },
+    "started_at": "2026-10-31T11:49:44.778308+00:00",
+    "finished_at": "2026-10-31T11:52:55.593783+00:00",
+    "duration_seconds": 190.81577666604426,
+    "wall_seconds": 191.43924937502015,
+    "resources": {
+      "limits": {
+        "feedback": 4,
+        "model_calls": 16,
+        "tokens": 500000,
+        "tools": 400,
+        "output_tokens_per_call": 10000
+      },
+      "model_calls": 6,
+      "returned_tokens": 131037,
+      "feedback_calls": 0,
+      "tool_calls": 202,
+      "exhausted": "",
+      "tool_receipts": [
+        {
+          "index": 1,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Wuhan",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 2,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 3,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 4,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 5,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 6,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 7,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 8,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 9,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 10,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 11,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 12,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 13,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 14,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 15,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 16,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 17,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 18,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 19,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 20,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 21,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 22,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 23,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 24,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 25,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 26,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 27,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 28,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 29,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 30,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 31,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "Wuhan",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 32,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 33,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 34,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 35,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 36,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 37,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 38,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 39,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 40,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 41,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 42,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 43,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 44,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 45,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 46,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 47,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 48,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 49,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 50,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 51,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 52,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 53,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 54,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 55,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 56,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 57,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 58,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 59,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 60,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 61,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Wuhan",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 62,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 63,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 64,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 65,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 66,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 67,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 68,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 69,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 70,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 71,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 72,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 73,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 74,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 75,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 76,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 77,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 78,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 79,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 80,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 81,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 82,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 83,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 84,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 85,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 86,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 87,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 88,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 89,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 90,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 91,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Beijing",
+            "end_city": "Wuhan",
+            "intercity_type": "train",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 92,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 93,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 94,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 95,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Beijing",
+            "end_city": "Wuhan",
+            "intercity_type": "airplane",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 96,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Wuhan",
+            "end_city": "Beijing",
+            "intercity_type": "train",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 97,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 98,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 99,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 100,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Wuhan",
+            "end_city": "Beijing",
+            "intercity_type": "airplane",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 101,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "武汉",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 102,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 103,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 104,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 105,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 106,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 107,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 108,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 109,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 110,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 111,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 112,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 113,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 114,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 115,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 116,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 117,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 118,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 119,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 120,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 121,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 122,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 123,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 124,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 125,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 126,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 127,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 128,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 129,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 130,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 131,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "武汉",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 132,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 133,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 134,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 135,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 136,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 137,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 138,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 139,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 140,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 141,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 142,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 143,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 144,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 145,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 146,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 147,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 148,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 149,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 150,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 151,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 152,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 153,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 154,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 155,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 156,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 157,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 158,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 159,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 160,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 161,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "武汉",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 162,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 163,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 164,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 165,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 166,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 167,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 168,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 169,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 170,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 171,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 172,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 173,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 174,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 175,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 176,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 177,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 178,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 179,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 180,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 181,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 182,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 183,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 184,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 185,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 186,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 187,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 188,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 189,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 190,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 191,
+          "name": "restaurants_nearby",
+          "arguments": {
+            "city": "Wuhan",
+            "point": "Wuhan Station",
+            "topk": 5,
+            "dist": 5
+          }
+        },
+        {
+          "index": 192,
+          "name": "attractions_nearby",
+          "arguments": {
+            "city": "Wuhan",
+            "point": "Wuhan Station",
+            "topk": 5,
+            "dist": 5
+          }
+        },
+        {
+          "index": 193,
+          "name": "restaurants_cuisine",
+          "arguments": {
+            "city": "Wuhan"
+          }
+        },
+        {
+          "index": 194,
+          "name": "restaurants_nearby",
+          "arguments": {
+            "city": "Wuhan",
+            "point": "Qingchuan Pavilion",
+            "topk": 6,
+            "dist": 3
+          }
+        },
+        {
+          "index": 195,
+          "name": "goto",
+          "arguments": {
+            "city": "Wuhan",
+            "start": "Wuhan Station",
+            "end": "Qingchuan Pavilion",
+            "start_time": "11:15",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 196,
+          "name": "attractions_nearby",
+          "arguments": {
+            "city": "Wuhan",
+            "point": "Qingchuan Pavilion",
+            "topk": 8,
+            "dist": 3
+          }
+        },
+        {
+          "index": 197,
+          "name": "goto",
+          "arguments": {
+            "city": "Wuhan",
+            "end": "Old Fang's Mianyang Three Steamed Dishes (Tongda Community Branch)",
+            "start_time": "15:00",
+            "transport_type": "taxi",
+            "start": "Qingchuan Pavilion"
+          }
+        },
+        {
+          "index": 198,
+          "name": "goto",
+          "arguments": {
+            "city": "Wuhan",
+            "end": "Dayin Art Restaurant (Qingchuan Branch)",
+            "start_time": "13:00",
+            "transport_type": "walk",
+            "start": "Qingchuan Pavilion"
+          }
+        },
+        {
+          "index": 199,
+          "name": "goto",
+          "arguments": {
+            "city": "Wuhan",
+            "end": "Wuhan Station",
+            "start_time": "14:00",
+            "transport_type": "taxi",
+            "start": "Dayin Art Restaurant (Qingchuan Branch)"
+          }
+        },
+        {
+          "index": 200,
+          "name": "goto",
+          "arguments": {
+            "city": "Wuhan",
+            "end": "Wuhan Station",
+            "start_time": "15:00",
+            "transport_type": "taxi",
+            "start": "Dayin Art Restaurant (Qingchuan Branch)"
+          }
+        },
+        {
+          "index": 201,
+          "name": "goto",
+          "arguments": {
+            "city": "Wuhan",
+            "end": "Yangchun Lake",
+            "start_time": "15:25",
+            "transport_type": "walk",
+            "start": "Wuhan Station"
+          }
+        },
+        {
+          "index": 202,
+          "name": "goto",
+          "arguments": {
+            "city": "Wuhan",
+            "end": "Wuhan Station",
+            "start_time": "17:30",
+            "transport_type": "walk",
+            "start": "Yangchun Lake"
+          }
+        }
+      ],
+      "input_accounting": "conservative UTF-8 preflight; actual provider usage recorded; missing remote usage remains unknown"
+    }
+  },
+  "supervision": {
+    "returncode": 0,
+    "hard_timeout": false,
+    "cancelled": false,
+    "wall_seconds": 191.93187766702613
+  },
+  "ledger": {
+    "request_attempts": 6,
+    "completed_attempts": 6,
+    "pending_attempts": 0,
+    "observed_usage": {
+      "prompt_tokens": 122584,
+      "completion_tokens": 8453,
+      "total_tokens": 131037
+    },
+    "unobserved_billing_possible": false,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0439458,
+      "upper": 0.0439458
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793447384.7979689,
+        "attempt_id": "9cc1f8aad0554d48a98bd1f396f01593",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793447453.908191,
+        "attempt_id": "9cc1f8aad0554d48a98bd1f396f01593",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 69.10992258298211,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-6b0df0e0-cab1-4d46-966c-fecc3a031e05",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 14740,
+        "completion_tokens": 1874,
+        "total_tokens": 16614,
+        "reasoning_tokens": 1708
+      },
+      {
+        "kind": "start",
+        "time": 1793447453.949209,
+        "attempt_id": "46bd60dc73d64f33828632cb10ddc0f0",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793447475.4907022,
+        "attempt_id": "46bd60dc73d64f33828632cb10ddc0f0",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 21.54092112503713,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-dc7d3109-46c0-44f0-8f9c-adb156f25088",
+        "cached_prompt_tokens": 13824,
+        "prompt_tokens": 17929,
+        "completion_tokens": 1168,
+        "total_tokens": 19097,
+        "reasoning_tokens": 1012
+      },
+      {
+        "kind": "start",
+        "time": 1793447475.529481,
+        "attempt_id": "8b5021a0f50244ff8544d743025c94f6",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793447502.302051,
+        "attempt_id": "8b5021a0f50244ff8544d743025c94f6",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 26.772073167026974,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-5934dc79-1109-41f4-850a-ca3ea2dc0754",
+        "cached_prompt_tokens": 16896,
+        "prompt_tokens": 20139,
+        "completion_tokens": 1507,
+        "total_tokens": 21646,
+        "reasoning_tokens": 1335
+      },
+      {
+        "kind": "start",
+        "time": 1793447502.3332312,
+        "attempt_id": "234a8ea2c90b4fd2b2535e657dcf686a",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793447516.705326,
+        "attempt_id": "234a8ea2c90b4fd2b2535e657dcf686a",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 14.371422542026266,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-2ab9c7dc-a5a5-484b-9a99-f857e3cdea11",
+        "cached_prompt_tokens": 19200,
+        "prompt_tokens": 22509,
+        "completion_tokens": 567,
+        "total_tokens": 23076,
+        "reasoning_tokens": 382
+      },
+      {
+        "kind": "start",
+        "time": 1793447516.70991,
+        "attempt_id": "fae310f103d5450c986ad15e6cc81aa8",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793447553.2051232,
+        "attempt_id": "fae310f103d5450c986ad15e6cc81aa8",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 36.494935458002146,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-fba273ac-bfa5-460e-818c-59b6e662fcab",
+        "cached_prompt_tokens": 21504,
+        "prompt_tokens": 23167,
+        "completion_tokens": 2069,
+        "total_tokens": 25236,
+        "reasoning_tokens": 1810
+      },
+      {
+        "kind": "start",
+        "time": 1793447553.209478,
+        "attempt_id": "f95c9f302057422bad4dafd57f900169",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793447575.587685,
+        "attempt_id": "f95c9f302057422bad4dafd57f900169",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 22.377658665995114,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-c7ff8d4c-0409-44e8-8e87-3a534cf55fd6",
+        "cached_prompt_tokens": 22272,
+        "prompt_tokens": 24100,
+        "completion_tokens": 1268,
+        "total_tokens": 25368,
+        "reasoning_tokens": 377
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 6,
+    "returned_tokens": 131037,
+    "tool_calls": 202,
+    "exhausted": ""
+  }
+}

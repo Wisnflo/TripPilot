@@ -1,0 +1,132 @@
+{
+  "job": {
+    "uid": "t20241206211714064921",
+    "split": "easy",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "b2",
+    "kind": "static",
+    "task": {
+      "days": 2,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置武汉。我和两个朋友计划去成都玩两天，选择火车出行，市内交通方式为地铁。请给我一个旅行规划。",
+      "nature_language_en": "Current location: Wuhan. My two friends and I are planning to visit Chengdu for two days. We have chosen to travel by train and use subway for intra-city transportation. Please provide me with a travel itinerary.",
+      "people_number": 3,
+      "start_city": "武汉",
+      "tag": "easy",
+      "target_city": "成都",
+      "uid": "t20241206211714064921"
+    }
+  },
+  "result": {
+    "task_uid": "t20241206211714064921",
+    "method": "b2",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.03110566700343
+  },
+  "ledger": {
+    "request_attempts": 4,
+    "completed_attempts": 3,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 32387,
+      "completion_tokens": 8253,
+      "total_tokens": 40640
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0157568,
+      "upper": 0.0157568
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793440265.8805041,
+        "attempt_id": "76439d4a3ea84b99824849f046f96b85",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793440445.9221098,
+        "attempt_id": "76439d4a3ea84b99824849f046f96b85",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 180.04074724996462,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793440447.92384,
+        "attempt_id": "93513f67dba84171a1f6b79536cf3616",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      },
+      {
+        "kind": "success",
+        "time": 1793440487.114161,
+        "attempt_id": "93513f67dba84171a1f6b79536cf3616",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 39.18965654098429,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-fd4e6cbf-7afc-44b0-bf7c-89c632df7c07",
+        "cached_prompt_tokens": 13824,
+        "prompt_tokens": 14916,
+        "completion_tokens": 2078,
+        "total_tokens": 16994,
+        "reasoning_tokens": 1950
+      },
+      {
+        "kind": "start",
+        "time": 1793440487.122383,
+        "attempt_id": "61ac6f20dac24659b84104290b3c3678",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793440599.855669,
+        "attempt_id": "61ac6f20dac24659b84104290b3c3678",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 112.73756762500852,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-55c923b3-fed5-4d8b-9b13-e25068c98cf2",
+        "cached_prompt_tokens": 13824,
+        "prompt_tokens": 17471,
+        "completion_tokens": 6175,
+        "total_tokens": 23646,
+        "reasoning_tokens": 5750
+      },
+      {
+        "kind": "start",
+        "time": 1793440599.922024,
+        "attempt_id": "42cbb62cb4544414b3676efeb1651ccd",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 3,
+    "returned_tokens": 40640,
+    "tool_calls": 192,
+    "exhausted": ""
+  }
+}

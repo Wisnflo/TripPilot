@@ -1,0 +1,656 @@
+{
+  "task_uid": "h20241029143526214076",
+  "method": "b2",
+  "model": "qwen3.8-reasoner",
+  "terminal_state": "request_error",
+  "plan": null,
+  "steps": [
+    {
+      "step": 1,
+      "content": "\n\n\n",
+      "tool_calls": [
+        {
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Suzhou",
+            "end_city": "Beijing",
+            "intercity_type": "train",
+            "earliest_leave_time": "15:00"
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Suzhou",
+            "start": "Suzhou Water Tour",
+            "end": "Suzhou North Station",
+            "start_time": "14:00",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "intercity_transport_select",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"earliest_leave_time\\\": \\\"15:00\\\", \\\"end_city\\\": \\\"Beijing\\\", \\\"intercity_type\\\": \\\"train\\\", \\\"start_city\\\": \\\"Suzhou\\\"})\", \"text\": \"['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['G150' 'High-speed rail' 'Suzhou North Station'\\n 'Beijing South Railway Station' '16:29' '21:56' 5.48 668.44]\\n['G24' 'High-speed rail' 'Suzhou North Station'\\n 'Beijing South Railway Station' '17:23' '21:33' 4.2 668.44]\\n['T110'"
+        },
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Suzhou\\\", \\\"end\\\": \\\"Suzhou North Station\\\", \\\"start\\\": \\\"Suzhou Water Tour\\\", \\\"start_time\\\": \\\"14:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Suzhou Water Tour', 'end': 'Suzhou North Station', 'mode': 'taxi', 'start_time': '14:00', 'end_time': '14:21', 'cost': 57.79, 'distance': 14.02}]\", \"data\": [{\"start\": \"Suzhou Water Tour\", \"end\": \"Suzhou North Station\", \"mode\": \"taxi\", \"start_time\": \"14:00\", \"end_time\": \"14:21\", \"cost\": 57.79"
+        }
+      ],
+      "latency_seconds": 16.65794654097408,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-0486a84a-b084-4062-b8b8-4c3dd2c0550c",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 6874,
+      "completion_tokens": 1509,
+      "reasoning_tokens": 1342,
+      "attempts": 1,
+      "request_latencies": [
+        16.65794654097408
+      ]
+    },
+    {
+      "step": 2,
+      "content": "\n\n{\"$schema\": \"http://json-schema.org/draft-07/schema#\", \"type\": \"object\", \"properties\": {\"people_number\": {\"type\": \"integer\"}, \"start_city\": {\"type\": \"string\"}, \"target_city\": {\"type\": \"string\"}, \"itinerary\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"day\": {\"type\": \"integer\"}, \"activities\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"type\": {\"type\": \"string\", \"enum\": [\"airplane\", \"attraction\", \"lunch\", \"dinner\", \"breakfast\", \"accommodation\", \"train\"]}, \"start_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"end_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"cost\": {\"type\": \"number\"}, \"price\": {\"type\": \"number\"}, \"tickets\": {\"type\": \"integer\"}, \"position\": {\"type\": \"string\"}, \"transports\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"start\": {\"type\": \"string\"}, \"end\": {\"type\": \"string\"}, \"mode\": {\"type\": \"string\", \"enum\": [\"walk\", \"metro\", \"taxi\"]}, \"start_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"end_time\": {\"type\": \"string\", \"pattern\": \"^\\\\d{2}:\\\\d{2}$\"}, \"cost\": {\"type\": \"number\"}, \"price\": {\"type\": \"number\"}, \"distance\": {\"type\": \"number\"}, \"tickets\": {\"type\": \"integer\"}}, \"required\": [\"start\", \"end\", \"mode\", \"start_time\", \"end_time\", \"price\", \"cost\", \"distance\"]}}, \"room_type\": {\"type\": \"integer\"}, \"rooms\": {\"type\": \"integer\"}, \"FlightID\": {\"type\": \"string\"}, \"TrainID\": {\"type\": \"string\"}}, \"required\": [\"type\", \"start_time\", \"end_time\", \"cost\", \"price\", \"transports\"], \"allOf\": [{\"if\": {\"properties\": {\"type\": {\"enum\": [\"airplane\", \"train\"]}}, \"required\": [\"type\"]}, \"then\": {\"required\": [\"start\", \"end\"], \"not\": {\"required\": [\"position\"]}}, \"else\": {\"required\": [\"position\"], \"not\": {\"anyOf\": [{\"required\": [\"start\"]}, {\"required\": [\"end\"]}, {\"required\": [\"FlightID\"]}, {\"required\": [\"TrainID\"]}]}}}, {\"if\": {\"properties\": {\"type\": {\"const\": \"airplane\"}}}, \"then\": {\"required\": [\"FlightID\"]}}, {\"if\": {\"properties\": {\"type\": {\"const\": \"train\"}}}, \"then\": {\"required\": [\"TrainID\"]}}]}}}, \"required\": [\"day\", \"activities\"]}}}, \"required\": [\"people_number\", \"start_city\", \"target_city\", \"itinerary\"]}\n",
+      "tool_calls": [],
+      "tool_results": [],
+      "latency_seconds": 11.858483167015947,
+      "finish_reason": "stop",
+      "request_id": "chatcmpl-b0fecae4-4efe-42f9-ac83-c82fbe24374d",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 8757,
+      "completion_tokens": 1026,
+      "reasoning_tokens": 355,
+      "attempts": 1,
+      "request_latencies": [
+        11.858483167015947
+      ]
+    },
+    {
+      "step": 3,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Suzhou",
+            "start": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+            "end": "Suzhou North Station",
+            "start_time": "15:00",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Suzhou\\\", \\\"end\\\": \\\"Suzhou North Station\\\", \\\"start\\\": \\\"Loyal Prince's Mansion of the Taiping Heavenly Kingdom\\\", \\\"start_time\\\": \\\"15:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': \\\"Loyal Prince's Mansion of the Taiping Heavenly Kingdom\\\", 'end': 'Suzhou North Station', 'mode': 'taxi', 'start_time': '15:00', 'end_time': '15:15', 'cost': 40.98, 'distance': 10.28}]\", \"data\": [{\"start\": \"Loyal Prince's Mansion of the Taiping Heavenly K"
+        }
+      ],
+      "latency_seconds": 9.77164366596844,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-c991bdfc-6ca3-4955-8d9f-34d05947e84c",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 9520,
+      "completion_tokens": 705,
+      "reasoning_tokens": 609,
+      "attempts": 1,
+      "request_latencies": [
+        9.77164366596844
+      ]
+    },
+    {
+      "step": 4,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Suzhou",
+            "start": "Crab Treasure House: Crab Roe Rice (Suzhou Humble Administrator's Garden Branch)",
+            "end": "Suzhou North Station",
+            "start_time": "17:45",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Suzhou\\\", \\\"end\\\": \\\"Suzhou North Station\\\", \\\"start\\\": \\\"Crab Treasure House: Crab Roe Rice (Suzhou Humble Administrator's Garden Branch)\\\", \\\"start_time\\\": \\\"17:45\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': \\\"Crab Treasure House: Crab Roe Rice (Suzhou Humble Administrator's Garden Branch)\\\", 'end': 'Suzhou North Station', 'mode': 'taxi', 'start_time': '17:45', 'end_time': '18:02', 'cost': 45.73, 'distance': 11.34}]\", \"data\": [{\"start"
+        }
+      ],
+      "latency_seconds": 16.689344292040914,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-b76b89a7-aa67-48a8-b530-314807a3861b",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 9855,
+      "completion_tokens": 1578,
+      "reasoning_tokens": 1474,
+      "attempts": 1,
+      "request_latencies": [
+        16.689344292040914
+      ]
+    },
+    {
+      "step": 5,
+      "attempts": 2,
+      "request_latencies": [
+        0.10327383305411786,
+        0.10154354094993323
+      ],
+      "error": "RateLimitError"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 35006,
+    "completion_tokens": 4818,
+    "total_tokens": 39824,
+    "reasoning_tokens": 3780
+  },
+  "checker": null,
+  "error": null,
+  "metadata": {
+    "event_text": "The user must return earlier: the trip is now 2 days instead of the original length.",
+    "usage_complete": false,
+    "request_error": "model request failed after 2 attempts: Error code: 429 - {'error': {'message': 'Rate limit exceeded for api_key: [REDACTED] Limit type: requests. Current limit: 20, Remaining: 0. Limit resets at: 2026-11-01 00:17:41 UTC', 'type': 'throttling_error', 'param': None, 'code': '429'}}",
+    "request_attempts": 2,
+    "request_latencies": [
+      0.10327383305411786,
+      0.10154354094993323
+    ],
+    "request_count": 6,
+    "retry_count": 1,
+    "request_latency_seconds": 55.182235040003434
+  },
+  "started_at": "2026-11-01T00:15:44.092565+00:00",
+  "finished_at": "2026-11-01T00:16:41.747048+00:00",
+  "duration_seconds": 57.65466766594909,
+  "wall_seconds": 57.655180042027496,
+  "resources": {
+    "limits": {
+      "feedback": 4,
+      "model_calls": 16,
+      "tokens": 500000,
+      "tools": 400,
+      "output_tokens_per_call": 10000
+    },
+    "model_calls": 5,
+    "returned_tokens": 39824,
+    "feedback_calls": 1,
+    "tool_calls": 4,
+    "exhausted": "",
+    "tool_receipts": [
+      {
+        "index": 1,
+        "name": "intercity_transport_select",
+        "arguments": {
+          "start_city": "Suzhou",
+          "end_city": "Beijing",
+          "intercity_type": "train",
+          "earliest_leave_time": "15:00"
+        }
+      },
+      {
+        "index": 2,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Water Tour",
+          "end": "Suzhou North Station",
+          "start_time": "14:00",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 3,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+          "end": "Suzhou North Station",
+          "start_time": "15:00",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 4,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Crab Treasure House: Crab Roe Rice (Suzhou Humble Administrator's Garden Branch)",
+          "end": "Suzhou North Station",
+          "start_time": "17:45",
+          "transport_type": "taxi"
+        }
+      }
+    ],
+    "input_accounting": "conservative UTF-8 preflight; actual provider usage recorded; missing remote usage remains unknown"
+  },
+  "clarification": {
+    "status": "ready",
+    "base_revision": "43e36f2cc03c67febdf975ed6467d479c81c1b92c1f9aa2ea3f45276bfaa3489",
+    "task": {
+      "uid": "h20241029143526214076",
+      "tag": "human",
+      "start_city": "北京",
+      "target_city": "苏州",
+      "days": 3,
+      "people_number": 3,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "[当前位置北京,目标位置苏州,旅行人数3,旅行天数3] 我和两个同学想从北京出发去苏州旅行，3天左右，想要多去一些当地著名的景点，并且品尝特色美食，不知道有哪些地方可以去",
+      "nature_language_en": "[Current location: Beijing, Destination: Suzhou, Number of travelers: 3, Duration of travel: 3 days] My two classmates and I want to travel from Beijing to Suzhou for about 3 days. We would like to visit many famous local attractions and taste the local specialties. We are not sure which places we should visit."
+    },
+    "seed_plan": {
+      "people_number": 3,
+      "start_city": "Beijing",
+      "target_city": "Suzhou",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "train",
+              "start": "Beijing South Railway Station",
+              "end": "Suzhou North Station",
+              "start_time": "06:10",
+              "end_time": "11:43",
+              "price": 668.44,
+              "cost": 2005.32,
+              "tickets": 3,
+              "transports": [],
+              "TrainID": "G101"
+            },
+            {
+              "type": "lunch",
+              "position": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+              "price": 40.0,
+              "cost": 120.0,
+              "start_time": "12:01",
+              "end_time": "12:46",
+              "transports": [
+                {
+                  "start": "Suzhou North Station",
+                  "end": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+                  "mode": "taxi",
+                  "start_time": "11:43",
+                  "end_time": "12:01",
+                  "cost": 49.5,
+                  "distance": 12.18,
+                  "price": 49.5,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Pingjiang Road Historic District",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "12:48",
+              "end_time": "14:18",
+              "transports": [
+                {
+                  "start": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+                  "end": "Pingjiang Road Historic District",
+                  "mode": "taxi",
+                  "start_time": "12:46",
+                  "end_time": "12:48",
+                  "cost": 11.12,
+                  "distance": 1.84,
+                  "price": 11.12,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "China Kunqu Opera Museum",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "14:18",
+              "end_time": "14:48",
+              "transports": [
+                {
+                  "start": "Pingjiang Road Historic District",
+                  "end": "China Kunqu Opera Museum",
+                  "mode": "taxi",
+                  "start_time": "14:18",
+                  "end_time": "14:18",
+                  "cost": 11.0,
+                  "distance": 0.14,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "dinner",
+              "position": "Willow Lane (Jianxin Alley Branch)",
+              "price": 18.0,
+              "cost": 54.0,
+              "start_time": "17:00",
+              "end_time": "17:45",
+              "transports": [
+                {
+                  "start": "China Kunqu Opera Museum",
+                  "end": "Willow Lane (Jianxin Alley Branch)",
+                  "mode": "taxi",
+                  "start_time": "14:48",
+                  "end_time": "14:50",
+                  "cost": 11.0,
+                  "distance": 1.42,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Ancient Canal Night Cruise",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "18:00",
+              "end_time": "19:00",
+              "transports": [
+                {
+                  "start": "Willow Lane (Jianxin Alley Branch)",
+                  "end": "Ancient Canal Night Cruise",
+                  "mode": "taxi",
+                  "start_time": "17:45",
+                  "end_time": "17:47",
+                  "cost": 11.16,
+                  "distance": 1.84,
+                  "price": 11.16,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "Zeyiju Jingshe (Suzhou Guanqian Street Pingjiang Road)",
+              "price": 250.0,
+              "cost": 500.0,
+              "rooms": 2,
+              "room_type": 2,
+              "start_time": "19:02",
+              "end_time": "23:59",
+              "transports": [
+                {
+                  "start": "Ancient Canal Night Cruise",
+                  "end": "Zeyiju Jingshe (Suzhou Guanqian Street Pingjiang Road)",
+                  "mode": "taxi",
+                  "start_time": "19:00",
+                  "end_time": "19:02",
+                  "cost": 11.26,
+                  "distance": 1.87,
+                  "price": 11.26,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "attraction",
+              "position": "Changmen Gate",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "08:02",
+              "end_time": "10:02",
+              "transports": [
+                {
+                  "start": "Zeyiju Jingshe (Suzhou Guanqian Street Pingjiang Road)",
+                  "end": "Changmen Gate",
+                  "mode": "taxi",
+                  "start_time": "08:00",
+                  "end_time": "08:02",
+                  "cost": 11.0,
+                  "distance": 1.71,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Five Virtues Residence",
+              "price": 33.0,
+              "cost": 99.0,
+              "start_time": "11:00",
+              "end_time": "11:45",
+              "transports": [
+                {
+                  "start": "Changmen Gate",
+                  "end": "Five Virtues Residence",
+                  "mode": "taxi",
+                  "start_time": "10:02",
+                  "end_time": "10:03",
+                  "cost": 11.0,
+                  "distance": 0.88,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Suzhou Water Tour",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "11:48",
+              "end_time": "13:48",
+              "transports": [
+                {
+                  "start": "Five Virtues Residence",
+                  "end": "Suzhou Water Tour",
+                  "mode": "taxi",
+                  "start_time": "11:45",
+                  "end_time": "11:48",
+                  "cost": 12.59,
+                  "distance": 2.26,
+                  "price": 12.59,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "13:53",
+              "end_time": "14:23",
+              "transports": [
+                {
+                  "start": "Suzhou Water Tour",
+                  "end": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+                  "mode": "taxi",
+                  "start_time": "13:48",
+                  "end_time": "13:53",
+                  "cost": 18.37,
+                  "distance": 3.91,
+                  "price": 18.37,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "dinner",
+              "position": "Crab Treasure House: Crab Roe Rice (Suzhou Humble Administrator's Garden Branch)",
+              "price": 108.0,
+              "cost": 324.0,
+              "start_time": "17:00",
+              "end_time": "17:45",
+              "transports": [
+                {
+                  "start": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+                  "end": "Crab Treasure House: Crab Roe Rice (Suzhou Humble Administrator's Garden Branch)",
+                  "mode": "taxi",
+                  "start_time": "14:23",
+                  "end_time": "14:24",
+                  "cost": 11.0,
+                  "distance": 1.2,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "Zeyiju Jingshe (Suzhou Guanqian Street Pingjiang Road)",
+              "price": 250.0,
+              "cost": 500.0,
+              "rooms": 2,
+              "room_type": 2,
+              "start_time": "18:00",
+              "end_time": "23:59",
+              "transports": [
+                {
+                  "start": "Crab Treasure House: Crab Roe Rice (Suzhou Humble Administrator's Garden Branch)",
+                  "end": "Zeyiju Jingshe (Suzhou Guanqian Street Pingjiang Road)",
+                  "mode": "taxi",
+                  "start_time": "17:45",
+                  "end_time": "17:46",
+                  "cost": 11.0,
+                  "distance": 0.83,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            {
+              "type": "attraction",
+              "position": "Arhat Hall",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "08:04",
+              "end_time": "09:34",
+              "transports": [
+                {
+                  "start": "Zeyiju Jingshe (Suzhou Guanqian Street Pingjiang Road)",
+                  "end": "Arhat Hall",
+                  "mode": "taxi",
+                  "start_time": "08:00",
+                  "end_time": "08:04",
+                  "cost": 16.16,
+                  "distance": 3.27,
+                  "price": 16.16,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Old Wang's Egg Pancake (Shuyuan Alley Branch)",
+              "price": 10.0,
+              "cost": 30.0,
+              "start_time": "11:00",
+              "end_time": "11:45",
+              "transports": [
+                {
+                  "start": "Arhat Hall",
+                  "end": "Old Wang's Egg Pancake (Shuyuan Alley Branch)",
+                  "mode": "taxi",
+                  "start_time": "09:34",
+                  "end_time": "09:39",
+                  "cost": 17.42,
+                  "distance": 3.63,
+                  "price": 17.42,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Suzhou Pingtan",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "11:49",
+              "end_time": "12:19",
+              "transports": [
+                {
+                  "start": "Old Wang's Egg Pancake (Shuyuan Alley Branch)",
+                  "end": "Suzhou Pingtan",
+                  "mode": "taxi",
+                  "start_time": "11:45",
+                  "end_time": "11:49",
+                  "cost": 15.41,
+                  "distance": 3.06,
+                  "price": 15.41,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "train",
+              "start": "Suzhou North Station",
+              "end": "Beijing South Railway Station",
+              "start_time": "18:12",
+              "end_time": "23:51",
+              "price": 668.44,
+              "cost": 2005.32,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Suzhou Pingtan",
+                  "end": "Suzhou North Station",
+                  "mode": "taxi",
+                  "start_time": "12:19",
+                  "end_time": "12:36",
+                  "cost": 46.25,
+                  "distance": 11.46,
+                  "price": 46.25,
+                  "cars": 1
+                }
+              ],
+              "TrainID": "G162"
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "kind": "return_earlier",
+      "day": null,
+      "new_days": 2,
+      "new_budget": null,
+      "target": null,
+      "description": ""
+    },
+    "state_revision": "840aa17d357290b90df575805d21176733aa10fd9cf11242bb86b3c52310a86d"
+  },
+  "event": {
+    "kind": "return_earlier",
+    "new_days": 2,
+    "description": ""
+  },
+  "event_check": null
+}

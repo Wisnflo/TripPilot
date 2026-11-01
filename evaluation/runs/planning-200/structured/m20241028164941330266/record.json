@@ -1,0 +1,5345 @@
+{
+  "job": {
+    "uid": "m20241028164941330266",
+    "split": "easy",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "structured",
+    "kind": "static",
+    "task": {
+      "days": 2,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置上海。我一个人想去北京玩2天，想吃日坛公园附近的日坛涮肉，请给我一个旅行规划。",
+      "nature_language_en": "Current location: Shanghai. I want to travel alone to Beijing for 2 days and would like to eat at Ritan Shuanrou near Ritan Park. Please provide me with a travel plan.",
+      "people_number": 1,
+      "start_city": "上海",
+      "tag": "easy",
+      "target_city": "北京",
+      "uid": "m20241028164941330266"
+    }
+  },
+  "result": {
+    "task_uid": "m20241028164941330266",
+    "method": "structured",
+    "model": "qwen3.8-reasoner",
+    "terminal_state": "budget_exhausted",
+    "plan": null,
+    "steps": [
+      {
+        "phase": "extract_requirements",
+        "content": "\n\n{\n  \"restaurant_names\": [\"日坛涮肉\"],\n  \"cuisines\": [\"Hot pot\"],\n  \"rooms\": 1,\n  \"evidence\": {\n    \"restaurant_names\": \"日坛涮肉\",\n    \"cuisines\": \"涮肉\",\n    \"rooms\": \"我一个人\"\n  }\n}",
+        "attempts": 1,
+        "request_latencies": [
+          9.481725374993403
+        ],
+        "request_id": "chatcmpl-631dc103-7139-4db2-9c80-9e91ae1515bb",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 368,
+        "completion_tokens": 736
+      },
+      {
+        "phase": "select_sketch",
+        "content": "\n\n{\"outbound\":\"FL002\",\"inbound\":\"FL089\",\"hotel\":\"h15\",\"days\":[[{\"kind\":\"attraction\",\"id\":\"a270\"},{\"kind\":\"lunch\",\"id\":\"r205\"},{\"kind\":\"attraction\",\"id\":\"a31\"},{\"kind\":\"lunch\",\"id\":\"r203\"}],[{\"kind\":\"attraction\",\"id\":\"a28\"},{\"kind\":\"lunch\",\"id\":\"r157\"},{\"kind\":\"attraction\",\"id\":\"a19\"}]]}",
+        "attempts": 1,
+        "request_latencies": [
+          86.3214975829469
+        ],
+        "request_id": "chatcmpl-d6776007-4520-46b1-bfe1-5e34b51ef6be",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 10381,
+        "completion_tokens": 7098
+      },
+      {
+        "phase": "select_sketch",
+        "content": "\n\n{\"outbound\":\"FL002\",\"inbound\":\"FL089\",\"hotel\":\"h15\",\"days\":[[{\"kind\":\"attraction\",\"id\":\"a270\"},{\"kind\":\"lunch\",\"id\":\"r203\"},{\"kind\":\"attraction\",\"id\":\"a31\"},{\"kind\":\"dinner\",\"id\":\"r205\"}],[{\"kind\":\"attraction\",\"id\":\"a28\"},{\"kind\":\"lunch\",\"id\":\"r157\"},{\"kind\":\"attraction\",\"id\":\"a19\"}]]}",
+        "attempts": 1,
+        "request_latencies": [
+          40.32373316702433
+        ],
+        "request_id": "chatcmpl-cd60e42f-d8af-4f39-93e7-17e48cbb95ef",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 10530,
+        "completion_tokens": 3576
+      },
+      {
+        "phase": "select_sketch",
+        "content": "\n\n{\"outbound\":\"FL002\",\"inbound\":\"FL089\",\"hotel\":\"h15\",\"days\":[[{\"kind\":\"attraction\",\"id\":\"a270\"},{\"kind\":\"lunch\",\"id\":\"r203\"},{\"kind\":\"attraction\",\"id\":\"a31\"},{\"kind\":\"dinner\",\"id\":\"r205\"}],[{\"kind\":\"attraction\",\"id\":\"a28\"},{\"kind\":\"lunch\",\"id\":\"r157\"},{\"kind\":\"attraction\",\"id\":\"a19\"}]]}",
+        "attempts": 1,
+        "request_latencies": [
+          43.20631741697434
+        ],
+        "request_id": "chatcmpl-e8dad60c-4edf-4ca5-85cf-f294cdeae59a",
+        "response_model": "qwen3.8-reasoner",
+        "prompt_tokens": 10703,
+        "completion_tokens": 3841
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 31982,
+      "completion_tokens": 15251,
+      "total_tokens": 47233,
+      "reasoning_tokens": 14828
+    },
+    "checker": null,
+    "error": null,
+    "metadata": {
+      "usage_complete": true,
+      "fallback": true,
+      "predicted_requirements": {
+        "restaurant_names": [
+          "日坛涮肉"
+        ],
+        "cuisines": [
+          "Hot pot"
+        ],
+        "rooms": 1,
+        "literal_corrections": [],
+        "evidence": {
+          "restaurant_names": "日坛涮肉",
+          "cuisines": "涮肉",
+          "rooms": "我一个人"
+        },
+        "unsupported": [],
+        "rejected_fields": [],
+        "entity_aliases": {
+          "Hot pot": [
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot",
+            "Hot pot"
+          ],
+          "日坛涮肉": [
+            "Ritan Shuan Rou (Ritan Park Branch)"
+          ]
+        }
+      },
+      "fact_catalog": {
+        "attraction": {
+          "a270": {
+            "id": 270,
+            "name": "Ritan Park",
+            "type": "park",
+            "lat": 39.921337,
+            "lon": 116.45044,
+            "opentime": "06:00",
+            "endtime": "21:30",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.5
+          },
+          "a9": {
+            "id": 9,
+            "name": "Beijing Zoo",
+            "type": "park",
+            "lat": 39.947726,
+            "lon": 116.342331,
+            "opentime": "07:30",
+            "endtime": "19:00",
+            "price": 15.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 2.0
+          },
+          "a19": {
+            "id": 19,
+            "name": "Jingshan Park",
+            "type": "park",
+            "lat": 39.932136,
+            "lon": 116.402966,
+            "opentime": "06:00",
+            "endtime": "21:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a27": {
+            "id": 27,
+            "name": "Fragrant Hills Park",
+            "type": "park",
+            "lat": 39.995693,
+            "lon": 116.194051,
+            "opentime": "06:00",
+            "endtime": "19:30",
+            "price": 10.0,
+            "recommendmintime": 3.0,
+            "recommendmaxtime": 4.0
+          },
+          "a28": {
+            "id": 28,
+            "name": "Beihai Park",
+            "type": "park",
+            "lat": 39.934167,
+            "lon": 116.395006,
+            "opentime": "06:00",
+            "endtime": "21:00",
+            "price": 0.0,
+            "recommendmintime": 2.5,
+            "recommendmaxtime": 4.0
+          },
+          "a31": {
+            "id": 31,
+            "name": "Chaoyang Park",
+            "type": "park",
+            "lat": 39.950002,
+            "lon": 116.489114,
+            "opentime": "06:00",
+            "endtime": "22:00",
+            "price": 0.0,
+            "recommendmintime": 2.5,
+            "recommendmaxtime": 4.0
+          },
+          "a54": {
+            "id": 54,
+            "name": "Yanqi Lake",
+            "type": "park",
+            "lat": 40.403587,
+            "lon": 116.690837,
+            "opentime": "08:30",
+            "endtime": "17:30",
+            "price": 42.0,
+            "recommendmintime": 3.0,
+            "recommendmaxtime": 4.0
+          },
+          "a64": {
+            "id": 64,
+            "name": "Badachu Park",
+            "type": "park",
+            "lat": 39.968352,
+            "lon": 116.189212,
+            "opentime": "06:00",
+            "endtime": "18:00",
+            "price": 10.0,
+            "recommendmintime": 2.5,
+            "recommendmaxtime": 3.0
+          },
+          "a78": {
+            "id": 78,
+            "name": "Houhai",
+            "type": "park",
+            "lat": 39.948183,
+            "lon": 116.394776,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 0.0,
+            "recommendmintime": 2.5,
+            "recommendmaxtime": 3.0
+          },
+          "a88": {
+            "id": 88,
+            "name": "Beijing Expo Park",
+            "type": "park",
+            "lat": 40.450315,
+            "lon": 115.957449,
+            "opentime": "09:00",
+            "endtime": "17:00",
+            "price": 60.0,
+            "recommendmintime": 3.0,
+            "recommendmaxtime": 4.0
+          },
+          "a90": {
+            "id": 90,
+            "name": "World Flower Grand View Garden",
+            "type": "park",
+            "lat": 39.841376,
+            "lon": 116.359803,
+            "opentime": "00:00",
+            "endtime": "24:00",
+            "price": 50.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a100": {
+            "id": 100,
+            "name": "Liangma River International Waterfront",
+            "type": "park",
+            "lat": 39.955013,
+            "lon": 116.485426,
+            "opentime": "15:00",
+            "endtime": "18:30",
+            "price": 0.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 1.5
+          },
+          "a102": {
+            "id": 102,
+            "name": "Yuyuantan Park",
+            "type": "park",
+            "lat": 39.92195,
+            "lon": 116.329057,
+            "opentime": "06:00",
+            "endtime": "21:30",
+            "price": 0.0,
+            "recommendmintime": 2.5,
+            "recommendmaxtime": 3.0
+          },
+          "a110": {
+            "id": 110,
+            "name": "National Botanical Garden (formerly Beijing Botanical Garden)",
+            "type": "park",
+            "lat": 40.008872,
+            "lon": 116.216152,
+            "opentime": "06:00",
+            "endtime": "21:00",
+            "price": 0.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 1.5
+          },
+          "a115": {
+            "id": 115,
+            "name": "Kunming Lake",
+            "type": "park",
+            "lat": 39.999894,
+            "lon": 116.278314,
+            "opentime": "06:30",
+            "endtime": "18:00",
+            "price": 0.0,
+            "recommendmintime": 1.5,
+            "recommendmaxtime": 3.0
+          },
+          "a118": {
+            "id": 118,
+            "name": "Longtan Zhonghu Park",
+            "type": "park",
+            "lat": 39.882817,
+            "lon": 116.439721,
+            "opentime": "06:00",
+            "endtime": "22:00",
+            "price": 0.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 2.5
+          },
+          "a121": {
+            "id": 121,
+            "name": "Joyous Pavilion Park",
+            "type": "park",
+            "lat": 39.88066,
+            "lon": 116.388442,
+            "opentime": "06:00",
+            "endtime": "22:00",
+            "price": 0.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 2.0
+          },
+          "a128": {
+            "id": 128,
+            "name": "Olympic Forest Park",
+            "type": "park",
+            "lat": 40.025231,
+            "lon": 116.3968,
+            "opentime": "06:00",
+            "endtime": "21:00",
+            "price": 0.0,
+            "recommendmintime": 0.5,
+            "recommendmaxtime": 1.5
+          },
+          "a135": {
+            "id": 135,
+            "name": "Beijing Xishan National Forest Park",
+            "type": "park",
+            "lat": 39.982469,
+            "lon": 116.201277,
+            "opentime": "08:00",
+            "endtime": "18:00",
+            "price": 10.0,
+            "recommendmintime": 2.5,
+            "recommendmaxtime": 3.0
+          },
+          "a137": {
+            "id": 137,
+            "name": "Zhongshan Park",
+            "type": "park",
+            "lat": 39.916729,
+            "lon": 116.400516,
+            "opentime": "06:00",
+            "endtime": "21:00",
+            "price": 0.0,
+            "recommendmintime": 3.0,
+            "recommendmaxtime": 4.0
+          },
+          "a144": {
+            "id": 144,
+            "name": "Wild Duck Lake National Wetland Park",
+            "type": "park",
+            "lat": 40.414865,
+            "lon": 115.864833,
+            "opentime": "09:00",
+            "endtime": "17:00",
+            "price": 50.0,
+            "recommendmintime": 0.5,
+            "recommendmaxtime": 2.0
+          },
+          "a151": {
+            "id": 151,
+            "name": "Beijing International Flower Port",
+            "type": "park",
+            "lat": 40.187688,
+            "lon": 116.803564,
+            "opentime": "09:00",
+            "endtime": "17:00",
+            "price": 30.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 2.0
+          },
+          "a166": {
+            "id": 166,
+            "name": "Purple Bamboo Park",
+            "type": "park",
+            "lat": 39.948517,
+            "lon": 116.326003,
+            "opentime": "06:00",
+            "endtime": "21:30",
+            "price": 0.0,
+            "recommendmintime": 1.5,
+            "recommendmaxtime": 2.0
+          },
+          "a176": {
+            "id": 176,
+            "name": "Imperial Garden",
+            "type": "park",
+            "lat": 39.927608,
+            "lon": 116.403161,
+            "opentime": "08:30",
+            "endtime": "15:30",
+            "price": 0.0,
+            "recommendmintime": 1.5,
+            "recommendmaxtime": 2.0
+          },
+          "a177": {
+            "id": 177,
+            "name": "National Botanical Garden South Garden",
+            "type": "park",
+            "lat": 39.996967,
+            "lon": 116.217629,
+            "opentime": "08:00",
+            "endtime": "18:00",
+            "price": 0.0,
+            "recommendmintime": 1.5,
+            "recommendmaxtime": 3.0
+          },
+          "a178": {
+            "id": 178,
+            "name": "Tongzhou Canal Park",
+            "type": "park",
+            "lat": 39.8824,
+            "lon": 116.748887,
+            "opentime": "00:00",
+            "endtime": "21:00",
+            "price": 0.0,
+            "recommendmintime": 1.0,
+            "recommendmaxtime": 1.5
+          },
+          "a182": {
+            "id": 182,
+            "name": "Beijing Wenyu River Park",
+            "type": "park",
+            "lat": 40.081409,
+            "lon": 116.471027,
+            "opentime": "06:00",
+            "endtime": "21:00",
+            "price": 0.0,
+            "recommendmintime": 0.5,
+            "recommendmaxtime": 1.0
+          },
+          "a183": {
+            "id": 183,
+            "name": "Ming City Wall Ruins Park",
+            "type": "park",
+            "lat": 39.907202,
+            "lon": 116.434388,
+            "opentime": "08:30",
+            "endtime": "19:30",
+            "price": 0.0,
+            "recommendmintime": 1.5,
+            "recommendmaxtime": 2.0
+          },
+          "a192": {
+            "id": 192,
+            "name": "Dragon Pond Park",
+            "type": "park",
+            "lat": 39.884624,
+            "lon": 116.446425,
+            "opentime": "06:00",
+            "endtime": "22:00",
+            "price": 0.0,
+            "recommendmintime": 1.5,
+            "recommendmaxtime": 3.0
+          },
+          "a202": {
+            "id": 202,
+            "name": "Shougang Industrial Heritage Park",
+            "type": "park",
+            "lat": 39.915904,
+            "lon": 116.170035,
+            "opentime": "00:00",
+            "endtime": "20:00",
+            "price": 0.0,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 3.0
+          },
+          "a230": {
+            "id": 230,
+            "name": "Green Dragon Lake Park",
+            "type": "park",
+            "lat": 39.802592,
+            "lon": 116.094874,
+            "opentime": "09:00",
+            "endtime": "17:30",
+            "price": 39.9,
+            "recommendmintime": 2.0,
+            "recommendmaxtime": 2.5
+          },
+          "a258": {
+            "id": 258,
+            "name": "Beijing Yanqi Lake West Mountain Trail",
+            "type": "park",
+            "lat": 40.389306,
+            "lon": 116.653154,
+            "opentime": "08:00",
+            "endtime": "17:00",
+            "price": 0.0,
+            "recommendmintime": 0.5,
+            "recommendmaxtime": 2.0
+          }
+        },
+        "hotel": {
+          "h5": {
+            "id": 5,
+            "name": "Carnival Hotel (Beijing Yizhuang Economic Development Zone)",
+            "hotelname_en": "Carnival Hotel (Beijing Yizhuang Economic Development Zone)",
+            "featurehoteltype": "Family-themed room",
+            "lat": 39.807812,
+            "lon": 116.52796,
+            "price": 335,
+            "numbed": 1
+          },
+          "h15": {
+            "id": 15,
+            "name": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "hotelname_en": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "featurehoteltype": "Family Room",
+            "lat": 39.949285,
+            "lon": 116.55619,
+            "price": 379,
+            "numbed": 1
+          },
+          "h272": {
+            "id": 272,
+            "name": "VOYAGE INTERNATIONAL HOTEL",
+            "hotelname_en": "VOYAGE INTERNATIONAL HOTEL",
+            "featurehoteltype": "Free parking",
+            "lat": 40.062271,
+            "lon": 116.585986,
+            "price": 397,
+            "numbed": 1
+          },
+          "h280": {
+            "id": 280,
+            "name": "Vyluk Hotel (Beijing Tongzhou Global Resort Branch)",
+            "hotelname_en": "Vyluk Hotel (Beijing Tongzhou Global Resort Branch)",
+            "featurehoteltype": "Free parking",
+            "lat": 39.891668,
+            "lon": 116.663827,
+            "price": 411,
+            "numbed": 1
+          },
+          "h252": {
+            "id": 252,
+            "name": "Elong Hotel (Beijing Qinghe High-speed Railway Station Xiaomi Science Park Branch)",
+            "hotelname_en": "Elong Hotel (Beijing Qinghe High-speed Railway Station Xiaomi Science Park Branch)",
+            "featurehoteltype": "Family Room",
+            "lat": 40.056831,
+            "lon": 116.330971,
+            "price": 414,
+            "numbed": 1
+          },
+          "h143": {
+            "id": 143,
+            "name": "Guantong Jianhui Hotel",
+            "hotelname_en": "Guantong Jianhui Hotel",
+            "featurehoteltype": "Charging station",
+            "lat": 39.877243,
+            "lon": 116.347591,
+            "price": 428,
+            "numbed": 2
+          },
+          "h151": {
+            "id": 151,
+            "name": "Jingli Hotel (Beijing New National Exhibition Capital Airport)",
+            "hotelname_en": "Jingli Hotel (Beijing New National Exhibition Capital Airport)",
+            "featurehoteltype": "Free parking",
+            "lat": 40.093533,
+            "lon": 116.54369,
+            "price": 459,
+            "numbed": 2
+          },
+          "h62": {
+            "id": 62,
+            "name": "Yuantuo Hotel (Beijing Global Resort)",
+            "hotelname_en": "Yuantuo Hotel (Beijing Global Resort)",
+            "featurehoteltype": "Free parking",
+            "lat": 39.883874,
+            "lon": 116.666369,
+            "price": 459,
+            "numbed": 1
+          },
+          "h139": {
+            "id": 139,
+            "name": "Hampton by Hilton",
+            "hotelname_en": "Hampton by Hilton",
+            "featurehoteltype": "Fitness Room",
+            "lat": 39.720824,
+            "lon": 116.04478,
+            "price": 463,
+            "numbed": 1
+          },
+          "h91": {
+            "id": 91,
+            "name": "Beijing Beiqijia Wendu Shuicheng Manxin Hotel",
+            "hotelname_en": "Beijing Beiqijia Wendu Shuicheng Manxin Hotel",
+            "featurehoteltype": "Free parking",
+            "lat": 40.098793,
+            "lon": 116.366714,
+            "price": 466,
+            "numbed": 1
+          }
+        },
+        "restaurant": {
+          "r187": {
+            "id": 187,
+            "name": "Helude Candied Hawthorn Sticks",
+            "lat": 39.9246179,
+            "lon": 116.4178817,
+            "price": 7.0,
+            "cuisine": "Snacks",
+            "opentime": "08:00",
+            "endtime": "20:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r284": {
+            "id": 284,
+            "name": "Dahua Pancake (Jiaodaokou North Scissors Lane Branch)",
+            "lat": 39.9367995,
+            "lon": 116.4120199,
+            "price": 12.0,
+            "cuisine": "Fast food and casual dining",
+            "opentime": "06:00",
+            "endtime": "13:00",
+            "recommendedfood": "Signature Double Egg Pancake, Double Egg Pancake with Sausage, Pure Meat Sausage Pancake, Bacon Pancake, Dahua Aromatic Cheese Pancake"
+          },
+          "r240": {
+            "id": 240,
+            "name": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)",
+            "lat": 39.9409841,
+            "lon": 116.4026185,
+            "price": 16.0,
+            "cuisine": "Snacks",
+            "opentime": "07:30",
+            "endtime": "19:00",
+            "recommendedfood": "Steamed Red Bean Bun, Sugar Triangle, Glutinous Millet Cake, Milk Skin Crisp, Steamed Scallion Roll"
+          },
+          "r277": {
+            "id": 277,
+            "name": "Zengshengkui Snack Shop",
+            "lat": 39.9276647,
+            "lon": 116.4110306,
+            "price": 16.0,
+            "cuisine": "Snacks",
+            "opentime": "06:00",
+            "endtime": "21:00",
+            "recommendedfood": "Sugar-oil pancake, tofu pudding, lamb stewed noodles, beef buns, lamb offal stew, quick-fried tripe"
+          },
+          "r56": {
+            "id": 56,
+            "name": "Yin San Douzhi (Temple of Heaven Branch)",
+            "lat": 39.8904993,
+            "lon": 116.4128003,
+            "price": 17.0,
+            "cuisine": "Snacks",
+            "opentime": "05:30",
+            "endtime": "12:30",
+            "recommendedfood": "Douzhi (fermented mung bean drink), Shaobing (baked sesame flatbread), Jiaoquan (crispy fried dough rings), Miancha (millet flour porridge), Doumian Wanzi (mung bean flour meatballs), Tang Huoshao (sweet baked pastry)"
+          },
+          "r234": {
+            "id": 234,
+            "name": "Old Ciqikou Soybean Milk Shop (Temple of Heaven Branch)",
+            "lat": 39.88876,
+            "lon": 116.4128138,
+            "price": 19.0,
+            "cuisine": "Snacks",
+            "opentime": "06:00",
+            "endtime": "20:00",
+            "recommendedfood": "Douzhi (fermented mung bean drink), Jiaoquan (crispy fried dough rings), Tanghuoshao (sweet baked pastry), Roubing (meat pie), Lüdagun (glutinous rice rolls with sweet bean flour), and Chaomadoufu (stir-fried fermented mung bean paste)"
+          },
+          "r282": {
+            "id": 282,
+            "name": "Heiyaochang Sugar Oil Cake and Lamb Spine Hot Pot (Heiyaochang Street Branch)",
+            "lat": 39.8817048,
+            "lon": 116.3814971,
+            "price": 23.0,
+            "cuisine": "Snacks",
+            "opentime": "06:00",
+            "endtime": "21:30",
+            "recommendedfood": "Double Sugar Oil Cake, Ox Tongue Pastry, Beef-Stuffed Buns, Lamb Offal Soup, Fried Tofu, Tofu Pudding"
+          },
+          "r58": {
+            "id": 58,
+            "name": "Gongmenkou Steamed Bun Shop (Founder's Flagship Store)",
+            "lat": 39.8881178,
+            "lon": 116.3945529,
+            "price": 26.0,
+            "cuisine": "Snacks",
+            "opentime": "07:00",
+            "endtime": "19:00",
+            "recommendedfood": "Brown Sugar and Jujube Steamed Buns, Eight-Treasure Sticky Rice Dumplings, Red Bean Buns, Honey Roasted Steamed Buns, Brown Sugar and Sesame Paste Twisted Rolls, Rice Cakes"
+          },
+          "r242": {
+            "id": 242,
+            "name": "South City Fragrance (Xinjiekou Branch)",
+            "lat": 39.9384894,
+            "lon": 116.3726537,
+            "price": 26.0,
+            "cuisine": "Fast food and casual dining",
+            "opentime": "06:30",
+            "endtime": "21:00",
+            "recommendedfood": "Angus Beef Rice Bowl, Mushroom Wonton Soup, Shrimp Wonton Soup, Pickled Mustard Fish Rice Bowl, Teriyaki Chicken Rice Bowl, Braised Chicken Rice Bowl"
+          },
+          "r218": {
+            "id": 218,
+            "name": "Baohua Zhai Old Beijing Pancake with Meat (Fulin Commercial Building Branch)",
+            "lat": 39.8517924,
+            "lon": 116.3317773,
+            "price": 28.0,
+            "cuisine": "Snacks",
+            "opentime": "06:30",
+            "endtime": "19:30",
+            "recommendedfood": "Baked Sesame Cake with Pork Hock, Tripe Soup, Braised Pork Hock, Offal Soup, Millet Porridge, Fried Tofu Puff Soup"
+          },
+          "r290": {
+            "id": 290,
+            "name": "Beijing China World Hotel · The Sweet Spot Gourmet Shop",
+            "lat": 39.909368,
+            "lon": 116.4582343,
+            "price": 57.0,
+            "cuisine": "Bakery and Desserts",
+            "opentime": "08:00",
+            "endtime": "20:00",
+            "recommendedfood": "Cream Roll, Dirty Chocolate Croissant, Chocolate Hazelnut Cream Roll, Raspberry Cream Roll, Mango Cream Roll, Durian Cream Roll"
+          },
+          "r158": {
+            "id": 158,
+            "name": "Fuhua Zhai Pastry Shop (Huguo Xintiandi Branch)",
+            "lat": 39.9352209,
+            "lon": 116.3755613,
+            "price": 67.0,
+            "cuisine": "Bakery and Desserts",
+            "opentime": "09:00",
+            "endtime": "21:00",
+            "recommendedfood": "Cheese Fruit Ice, Secret Recipe Plum Juice, Five Poison Cakes (2), Three Pure Tea, Rose Osmanthus Chestnut Pastry, Crispy Pastry, Ruyi Kidney Bean Roll, Sun Ni E Fen White Cake, Almond Tofu, Rose Bean Paste Pastry"
+          },
+          "r252": {
+            "id": 252,
+            "name": "Strong Bistro",
+            "lat": 39.950226,
+            "lon": 116.4766587,
+            "price": 260.0,
+            "cuisine": "Bar/Pub",
+            "opentime": "11:00",
+            "endtime": "23:30",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r291": {
+            "id": 291,
+            "name": "Beijing China World Summit Wing Atmosphere",
+            "lat": 39.9125144,
+            "lon": 116.4585548,
+            "price": 409.0,
+            "cuisine": "Bar/Pub",
+            "opentime": "17:00",
+            "endtime": "02:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r201": {
+            "id": 201,
+            "name": "Jingtai Ma's Electric Grilled Skewers",
+            "lat": 39.8650993,
+            "lon": 116.4141651,
+            "price": 36.0,
+            "cuisine": "Barbecue",
+            "opentime": "10:00",
+            "endtime": "21:00",
+            "recommendedfood": "Vegetarian meatballs, lamb shank skewers, sweet baked cakes, lamb skewers, baked flatbread, beef and scallion buns"
+          },
+          "r239": {
+            "id": 239,
+            "name": "Brain Processing Factory (Nanluoguxiang Main Store)",
+            "lat": 39.9401365,
+            "lon": 116.4040115,
+            "price": 86.0,
+            "cuisine": "Barbecue",
+            "opentime": "11:30",
+            "endtime": "24:00",
+            "recommendedfood": "Signature Grilled Pork Brain, Japanese Grilled Beef Tongue, Grilled Marshmallows, Greedy Grilled Chicken Skin, Thick Soup with Rice"
+          },
+          "r30": {
+            "id": 30,
+            "name": "Heyan Roubing Beijing Pie (Xila Hutong Branch)",
+            "lat": 39.9162222,
+            "lon": 116.4085607,
+            "price": 64.0,
+            "cuisine": "Beijing cuisine",
+            "opentime": "10:00",
+            "endtime": "21:00",
+            "recommendedfood": "Kung Pao Chicken Thigh Dices, Beef Patty, Peking Duck Meat Pie, Pork Patty, Traditional Beijing-Style Dough Drop Soup, Sesame Paste Sugar Pancake"
+          },
+          "r157": {
+            "id": 157,
+            "name": "Old Full Dumplings (Andingmen Branch)",
+            "lat": 39.9430922,
+            "lon": 116.4086735,
+            "price": 66.0,
+            "cuisine": "Beijing cuisine",
+            "opentime": "10:30",
+            "endtime": "21:30",
+            "recommendedfood": "Mackerel and Chive Dumplings, Pork and Shrimp Japanese Tofu Dumplings, Fried Sausage Casing, Qianlong-style Chinese Cabbage, Stir-fried Liver, Xian Laoman Mixed Salad"
+          },
+          "r249": {
+            "id": 249,
+            "name": "New Master Brother Cafe - Beef Brisket Hot Pot (Heshenghui Branch)",
+            "lat": 39.894102,
+            "lon": 116.4809186,
+            "price": 65.0,
+            "cuisine": "Cantonese cuisine",
+            "opentime": "10:30",
+            "endtime": "21:30",
+            "recommendedfood": "Thick-cut honey-glazed char siu, creamy shrimp bisque with rice, explosive egg pineapple bun, butter pineapple bun, shrimp roe wonton noodles, fried tofu"
+          },
+          "r230": {
+            "id": 230,
+            "name": "Double Happiness Phoenix Pavilion · Premium Selection (Beijing Universal CityWalk Store)",
+            "lat": 39.8512259,
+            "lon": 116.6768278,
+            "price": 95.0,
+            "cuisine": "Cantonese cuisine",
+            "opentime": "10:00",
+            "endtime": "22:00",
+            "recommendedfood": "Spring Breeze Delight Red Rice Noodle Rolls, Mini One-Bite Shrimp Dumplings, Snow Shadow BBQ Pork Buns, Dry-Fried Beef Chow Fun, Abalone Sauce Chicken Feet, Fresh Shrimp Rice Noodle Rolls"
+          },
+          "r77": {
+            "id": 77,
+            "name": "Platanus",
+            "lat": 39.9735506,
+            "lon": 116.4806196,
+            "price": 218.0,
+            "cuisine": "Creative Cuisine",
+            "opentime": "11:00",
+            "endtime": "22:00",
+            "recommendedfood": "Mango Diced Salmon, Coconut Curry Chicken in Bread, Crispy Skin Young Duck, Salted Duck Liver Pâté with Toasted Bread Slices, Wutong Four-Flavors Roast Duck, Wutong Healthy Fresh Walnuts, Tiramisu, Red Velvet Cake, Chocolate Cake, Cod and Pumpkin Soup"
+          },
+          "r103": {
+            "id": 103,
+            "name": "Roland Lake Restaurant",
+            "lat": 39.9738976,
+            "lon": 116.4794078,
+            "price": 224.0,
+            "cuisine": "Creative Cuisine",
+            "opentime": "11:00",
+            "endtime": "22:00",
+            "recommendedfood": "Chongqing Forest, Conch Thin Noodles, Grilled Pork Belly, Grilled Mackerel, Small Beef Short Ribs, Beef and Octopus Stir-fried Rice Cakes, Seafood Hot Pot"
+          },
+          "r267": {
+            "id": 267,
+            "name": "Vermilion Bird Villa (Hongluo Temple Branch)",
+            "lat": 40.3719689,
+            "lon": 116.6261247,
+            "price": 80.0,
+            "cuisine": "Farmhouse cuisine",
+            "opentime": "09:00",
+            "endtime": "22:00",
+            "recommendedfood": "Grilled Rainbow Trout, Grilled Lamb Chops, Braised Pork with Chestnuts, Pan-Fried Free-Range Eggs, Fried Zanthoxylum Buds, Home-Style Tofu"
+          },
+          "r200": {
+            "id": 200,
+            "name": "Halal Bai Ji Rice Cake (North Entrance of Niujie Store)",
+            "lat": 39.886894,
+            "lon": 116.3632961,
+            "price": 33.0,
+            "cuisine": "Halal cuisine",
+            "opentime": "08:00",
+            "endtime": "20:00",
+            "recommendedfood": "Glutinous Rice Rolls with Sweet Bean Flour, Pea Flour Cake, Purple Rice New Year Cake, Hawthorn Cake, Millet Flour New Year Cake, Ai Wowo (Steamed Rice Balls with Sweet Fillings)"
+          },
+          "r72": {
+            "id": 72,
+            "name": "Ziguang Garden (Xizhimen Branch)",
+            "lat": 39.9392383,
+            "lon": 116.3644053,
+            "price": 80.0,
+            "cuisine": "Halal cuisine",
+            "opentime": "06:00",
+            "endtime": "21:00",
+            "recommendedfood": "Premium Braised Oxtail, Sautéed Tripe with Coriander, Sweet and Sour Mandarin Fish, Roast Duck, Scallion Lamb Stir-fry, Shrimp with Fried Dough Balls"
+          },
+          "r203": {
+            "id": 203,
+            "name": "Yifeng Restaurant (Gulou Branch)",
+            "lat": 39.943777,
+            "lon": 116.3885245,
+            "price": 79.0,
+            "cuisine": "Hot pot",
+            "opentime": "05:30",
+            "endtime": "22:00",
+            "recommendedfood": "Fresh Lamb Skewers, Old Beijing Quick-Fried Tripe, Lamb Noodle Soup, Lamb Offal Soup"
+          },
+          "r293": {
+            "id": 293,
+            "name": "Huluwa Beef Tendon Hot Pot (Gulou Branch)",
+            "lat": 39.9467359,
+            "lon": 116.3896652,
+            "price": 80.0,
+            "cuisine": "Hot pot",
+            "opentime": "10:30",
+            "endtime": "23:00",
+            "recommendedfood": "Beef tendon hot pot, beef, tripe, soaked flatbread, vegetable salad"
+          },
+          "r175": {
+            "id": 175,
+            "name": "Dream Capital Restaurant (Wanfeng Road Branch)",
+            "lat": 39.8741995,
+            "lon": 116.295559,
+            "price": 300.0,
+            "cuisine": "Huizhou cuisine",
+            "opentime": "10:30",
+            "endtime": "22:00",
+            "recommendedfood": "Crispy Roasted Squab, Abalone Dry Pot Stew, Feixi Native Chicken Soup, Mengdu Braised Pork Belly, Wuhu Shrimp Roe Noodles, Purple Sweet Potato Lava Pastry"
+          },
+          "r205": {
+            "id": 205,
+            "name": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "lat": 39.9329306,
+            "lon": 116.4529069,
+            "price": 83.0,
+            "cuisine": "Hunan cuisine",
+            "opentime": "10:30",
+            "endtime": "21:30",
+            "recommendedfood": "Golden Coin Eggs, Hand-Torn Cabbage, Stir-Fried Pork with Chili, Sour and Spicy Chicken Gizzards, Stir-Fried Green Beans and Eggplant, Dry Pot Potato Slices"
+          },
+          "r126": {
+            "id": 126,
+            "name": "Xiang Ai (Workers' Stadium Branch)",
+            "lat": 39.9287768,
+            "lon": 116.4493579,
+            "price": 330.0,
+            "cuisine": "Hunan cuisine",
+            "opentime": "11:00",
+            "endtime": "22:00",
+            "recommendedfood": "Recommended dishes"
+          },
+          "r183": {
+            "id": 183,
+            "name": "Suzuki Dining (Yangmeizhu Branch)",
+            "lat": 39.8960073,
+            "lon": 116.3936653,
+            "price": 97.0,
+            "cuisine": "Japanese cuisine",
+            "opentime": "11:30",
+            "endtime": "21:30",
+            "recommendedfood": "Almond tofu, Tuna salad, Wasabi octopus, Suzuki meat patty, Japanese fried chicken, Pork cutlet rice bowl"
+          },
+          "r132": {
+            "id": 132,
+            "name": "Kobe Akado Japanese BBQ (Jindi Plaza Branch)",
+            "lat": 39.909032,
+            "lon": 116.4746094,
+            "price": 168.0,
+            "cuisine": "Japanese cuisine",
+            "opentime": "11:00",
+            "endtime": "22:00",
+            "recommendedfood": "Recommended dishes"
+          }
+        },
+        "outbound": {
+          "FL006": {
+            "FlightID": "FL006",
+            "From": "Shanghai Pudong International Airport",
+            "To": "Beijing Daxing International Airport",
+            "BeginTime": "02:50",
+            "EndTime": "04:09",
+            "Duration": 1.33,
+            "Cost": 484.8,
+            "_mode": "airplane"
+          },
+          "FL002": {
+            "FlightID": "FL002",
+            "From": "Shanghai Hongqiao International Airport",
+            "To": "Beijing Capital International Airport",
+            "BeginTime": "07:27",
+            "EndTime": "08:46",
+            "Duration": 1.33,
+            "Cost": 489.43,
+            "_mode": "airplane"
+          },
+          "FL009": {
+            "FlightID": "FL009",
+            "From": "Shanghai Pudong International Airport",
+            "To": "Beijing Daxing International Airport",
+            "BeginTime": "01:55",
+            "EndTime": "03:14",
+            "Duration": 1.33,
+            "Cost": 503.24,
+            "_mode": "airplane"
+          },
+          "FL005": {
+            "FlightID": "FL005",
+            "From": "Shanghai Pudong International Airport",
+            "To": "Beijing Daxing International Airport",
+            "BeginTime": "11:19",
+            "EndTime": "12:38",
+            "Duration": 1.33,
+            "Cost": 507.24,
+            "_mode": "airplane"
+          },
+          "FL003": {
+            "FlightID": "FL003",
+            "From": "Shanghai Pudong International Airport",
+            "To": "Beijing Capital International Airport",
+            "BeginTime": "19:32",
+            "EndTime": "20:51",
+            "Duration": 1.33,
+            "Cost": 521.78,
+            "_mode": "airplane"
+          },
+          "FL007": {
+            "FlightID": "FL007",
+            "From": "Shanghai Hongqiao International Airport",
+            "To": "Beijing Capital International Airport",
+            "BeginTime": "07:52",
+            "EndTime": "09:11",
+            "Duration": 1.33,
+            "Cost": 536.6,
+            "_mode": "airplane"
+          },
+          "FL008": {
+            "FlightID": "FL008",
+            "From": "Shanghai Pudong International Airport",
+            "To": "Beijing Daxing International Airport",
+            "BeginTime": "21:04",
+            "EndTime": "22:23",
+            "Duration": 1.33,
+            "Cost": 564.56,
+            "_mode": "airplane"
+          },
+          "FL010": {
+            "FlightID": "FL010",
+            "From": "Shanghai Pudong International Airport",
+            "To": "Beijing Daxing International Airport",
+            "BeginTime": "21:23",
+            "EndTime": "22:42",
+            "Duration": 1.33,
+            "Cost": 578.59,
+            "_mode": "airplane"
+          },
+          "G2": {
+            "TrainID": "G2",
+            "TrainType": "High-speed rail",
+            "From": "Shanghai Station",
+            "To": "Beijing South Railway Station",
+            "BeginTime": "07:00",
+            "EndTime": "11:36",
+            "Duration": 4.6,
+            "Cost": 693.75,
+            "_mode": "train"
+          },
+          "G6": {
+            "TrainID": "G6",
+            "TrainType": "High-speed rail",
+            "From": "Shanghai Hongqiao Station",
+            "To": "Beijing South Railway Station",
+            "BeginTime": "08:00",
+            "EndTime": "12:24",
+            "Duration": 4.4,
+            "Cost": 693.75,
+            "_mode": "train"
+          },
+          "G102": {
+            "TrainID": "G102",
+            "TrainType": "High-speed rail",
+            "From": "Shanghai Hongqiao Station",
+            "To": "Beijing South Railway Station",
+            "BeginTime": "06:37",
+            "EndTime": "12:38",
+            "Duration": 6.02,
+            "Cost": 693.75,
+            "_mode": "train"
+          }
+        },
+        "inbound": {
+          "FL081": {
+            "FlightID": "FL081",
+            "From": "Beijing Capital International Airport",
+            "To": "Shanghai Pudong International Airport",
+            "BeginTime": "01:55",
+            "EndTime": "03:14",
+            "Duration": 1.33,
+            "Cost": 485.15,
+            "_mode": "airplane"
+          },
+          "FL085": {
+            "FlightID": "FL085",
+            "From": "Beijing Capital International Airport",
+            "To": "Shanghai Hongqiao International Airport",
+            "BeginTime": "06:33",
+            "EndTime": "07:52",
+            "Duration": 1.33,
+            "Cost": 486.81,
+            "_mode": "airplane"
+          },
+          "FL087": {
+            "FlightID": "FL087",
+            "From": "Beijing Capital International Airport",
+            "To": "Shanghai Pudong International Airport",
+            "BeginTime": "19:43",
+            "EndTime": "21:02",
+            "Duration": 1.33,
+            "Cost": 521.85,
+            "_mode": "airplane"
+          },
+          "FL086": {
+            "FlightID": "FL086",
+            "From": "Beijing Capital International Airport",
+            "To": "Shanghai Pudong International Airport",
+            "BeginTime": "13:32",
+            "EndTime": "14:51",
+            "Duration": 1.33,
+            "Cost": 524.7,
+            "_mode": "airplane"
+          },
+          "FL084": {
+            "FlightID": "FL084",
+            "From": "Beijing Capital International Airport",
+            "To": "Shanghai Pudong International Airport",
+            "BeginTime": "07:02",
+            "EndTime": "08:21",
+            "Duration": 1.33,
+            "Cost": 550.5,
+            "_mode": "airplane"
+          },
+          "FL088": {
+            "FlightID": "FL088",
+            "From": "Beijing Capital International Airport",
+            "To": "Shanghai Pudong International Airport",
+            "BeginTime": "08:51",
+            "EndTime": "10:10",
+            "Duration": 1.33,
+            "Cost": 570.16,
+            "_mode": "airplane"
+          },
+          "FL083": {
+            "FlightID": "FL083",
+            "From": "Beijing Daxing International Airport",
+            "To": "Shanghai Hongqiao International Airport",
+            "BeginTime": "12:05",
+            "EndTime": "13:24",
+            "Duration": 1.33,
+            "Cost": 577.71,
+            "_mode": "airplane"
+          },
+          "FL090": {
+            "FlightID": "FL090",
+            "From": "Beijing Daxing International Airport",
+            "To": "Shanghai Pudong International Airport",
+            "BeginTime": "06:51",
+            "EndTime": "08:10",
+            "Duration": 1.33,
+            "Cost": 577.84,
+            "_mode": "airplane"
+          },
+          "FL089": {
+            "FlightID": "FL089",
+            "From": "Beijing Capital International Airport",
+            "To": "Shanghai Hongqiao International Airport",
+            "BeginTime": "22:36",
+            "EndTime": "23:55",
+            "Duration": 1.33,
+            "Cost": 578.84,
+            "_mode": "airplane"
+          },
+          "G27": {
+            "TrainID": "G27",
+            "TrainType": "High-speed rail",
+            "From": "Beijing South Railway Station",
+            "To": "Shanghai Station",
+            "BeginTime": "19:00",
+            "EndTime": "23:29",
+            "Duration": 4.48,
+            "Cost": 693.75,
+            "_mode": "train"
+          },
+          "G25": {
+            "TrainID": "G25",
+            "TrainType": "High-speed rail",
+            "From": "Beijing South Railway Station",
+            "To": "Shanghai Hongqiao Station",
+            "BeginTime": "18:04",
+            "EndTime": "22:58",
+            "Duration": 4.9,
+            "Cost": 693.75,
+            "_mode": "train"
+          },
+          "G23": {
+            "TrainID": "G23",
+            "TrainType": "High-speed rail",
+            "From": "Beijing South Railway Station",
+            "To": "Shanghai Station",
+            "BeginTime": "18:00",
+            "EndTime": "22:43",
+            "Duration": 4.72,
+            "Cost": 693.75,
+            "_mode": "train"
+          },
+          "G161": {
+            "TrainID": "G161",
+            "TrainType": "High-speed rail",
+            "From": "Beijing South Railway Station",
+            "To": "Shanghai Hongqiao Station",
+            "BeginTime": "17:33",
+            "EndTime": "23:32",
+            "Duration": 5.98,
+            "Cost": 693.75,
+            "_mode": "train"
+          },
+          "G159": {
+            "TrainID": "G159",
+            "TrainType": "High-speed rail",
+            "From": "Beijing South Railway Station",
+            "To": "Shanghai Hongqiao Station",
+            "BeginTime": "17:19",
+            "EndTime": "23:18",
+            "Duration": 5.98,
+            "Cost": 693.75,
+            "_mode": "train"
+          },
+          "G21": {
+            "TrainID": "G21",
+            "TrainType": "High-speed rail",
+            "From": "Beijing South Railway Station",
+            "To": "Shanghai Hongqiao Station",
+            "BeginTime": "17:00",
+            "EndTime": "21:18",
+            "Duration": 4.3,
+            "Cost": 693.75,
+            "_mode": "train"
+          }
+        }
+      },
+      "components": {
+        "feedback": true,
+        "compiler": true,
+        "shared_context": true
+      },
+      "tool_trace": [
+        {
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "cuisine",
+            "op": "eq",
+            "value": "Hot pot"
+          },
+          "response": {
+            "success": true,
+            "command": "restaurants_select({\"city\": \"Beijing\", \"key\": \"cuisine\", \"op\": \"eq\", \"value\": \"Hot pot\"})",
+            "text": "['id' 'name' 'lat' 'lon' 'price' 'cuisine' 'opentime' 'endtime'\n 'recommendedfood']\n[39 'Manfu Building (Blue Island Branch)' 39.9224463 116.4493604 136.0\n 'Hot pot' '11:00' '22:00'\n 'Fresh Squid Balls, Pan-fried Minced Meat Pancake, Hand-cut Lamb for Hot Pot, Charcoal-grilled Lamb Skewers, Handmade Fresh Shrimp Balls, Clear Broth Hot Pot Base']\n[46 'Jubao Yuan (Niujie Main Store)' 39.886754 116.363296 118.0 'Hot pot'\n '10:30' '22:30'\n 'Napa cabbage, hot pot base, high-calcium lamb, sesame baked flatbread, premium lamb neck, assorted mushroom platter, lamb rib meat, sweet potato and date rolls, sun-shaped meat patties, ribeye beef']\n[48 'Rua do Cunha Macau Hot Pot (China World Mall Branch)' 39.9114616\n 116.4607738 832.0 'Hot pot' '11:00' '23:00'\n 'Seafood Platter, Cheese Beef Balls, Crispy Spring Rolls, Macau Chicken Feet and Pork Bone Hot Pot, Giant Tiger Prawns']\n[95 'Beijing Rosewood Hotel · Red Bowl Hot Pot' 39.9204946 116.4607968\n 502.0 'Hot pot' '17:30' '23:00'\n 'Australian Beef Chuck Eye Roll, Seasonal Vegetable Platter, Deer Meat with Two Peppers, Deer Meat with Mountain Pepper']\n[96 'Xin Jing Xi · Beijing Hot Pot (Sanlitun Yaolai Branch)' 39.9382473\n 116.4495746 260.0 'Hot pot' '11:00' '24:00' 'Recommended dishes']\n[98 \"Halal Ya'er Li Ji Hot Pot (Hepingli Branch)\" 39.9583221 116.418027\n 113.0 'Hot pot' '05:30' '22:00'\n 'Hand-cut fresh lamb, fresh tripe, yuanbao meat (pork belly), frozen-cut beef chuck eye roll, premium fatty beef, grilled lamb skewers']\n[113 'Qianmen Zhangji Hot Pot Restaurant (Qianmen Branch)' 39.8942794\n 116.3944242 127.0 'Hot pot' '10:30' '22:00'\n 'Fresh lamb, cucumber strips, hand-cut lamb, fried pine meat, mashed tofu, inner thigh meat, frozen tofu, shank meat, sesame sauce dipping sauce, Chinese cabbage']\n[123 'Mystic Gate Hot Pot House' 39.9408488 116.4213686 125.0 'Hot pot'\n '11:00' '03:00'\n 'Yuan Yang Hot Pot, Fresh Chili Broth, Qimen Small Rib Rolls, Classic Double-Layer Fatty Beef, Large Knife Hand-Cut Fresh Mutton, Freshly Sliced Flower Beef Shank, Qimen High-Calcium Mutton, Premium Tripe']\n[127 'Beijing Three Brothers Hot Pot (Guijie Branch)' 39.9413839\n 116.4299878 140.0 'Hot pot' '10:00' '03:00'\n 'Freshly sliced lamb, Fresh lamb neck fillet, Red willow lamb skewers, Sesame baked flatbread, Fresh lamb tenderloin strips, Hand-cut lamb tri-tip, Meat skewers, Pea flour cake, Pot-cooked lamb, Dipping sauce']\n[138 \"Mr. Hao's Lamb Spine Hot Pot (Shuangyushu Branch)\" 39.9714389\n 116.3238326 149.0 'Hot pot' '11:00' '22:00'\n \"Lamb Spine Hot Pot, Natural Bean Curd Skin, Beijing-Style Quick-Fried Tripe, Shredded Cabbage with Tofu, White Jade Tofu, Hao Ye's Scallion Pancake\"]\nPage/Total: 1/4",
+            "data": {
+              "type": "dataframe",
+              "columns": [
+                "id",
+                "name",
+                "lat",
+                "lon",
+                "price",
+                "cuisine",
+                "opentime",
+                "endtime",
+                "recommendedfood"
+              ],
+              "rows": [
+                {
+                  "id": 39,
+                  "name": "Manfu Building (Blue Island Branch)",
+                  "lat": 39.9224463,
+                  "lon": 116.4493604,
+                  "price": 136.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:00",
+                  "endtime": "22:00",
+                  "recommendedfood": "Fresh Squid Balls, Pan-fried Minced Meat Pancake, Hand-cut Lamb for Hot Pot, Charcoal-grilled Lamb Skewers, Handmade Fresh Shrimp Balls, Clear Broth Hot Pot Base"
+                },
+                {
+                  "id": 46,
+                  "name": "Jubao Yuan (Niujie Main Store)",
+                  "lat": 39.886754,
+                  "lon": 116.363296,
+                  "price": 118.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "10:30",
+                  "endtime": "22:30",
+                  "recommendedfood": "Napa cabbage, hot pot base, high-calcium lamb, sesame baked flatbread, premium lamb neck, assorted mushroom platter, lamb rib meat, sweet potato and date rolls, sun-shaped meat patties, ribeye beef"
+                },
+                {
+                  "id": 48,
+                  "name": "Rua do Cunha Macau Hot Pot (China World Mall Branch)",
+                  "lat": 39.9114616,
+                  "lon": 116.4607738,
+                  "price": 832.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:00",
+                  "endtime": "23:00",
+                  "recommendedfood": "Seafood Platter, Cheese Beef Balls, Crispy Spring Rolls, Macau Chicken Feet and Pork Bone Hot Pot, Giant Tiger Prawns"
+                },
+                {
+                  "id": 95,
+                  "name": "Beijing Rosewood Hotel · Red Bowl Hot Pot",
+                  "lat": 39.9204946,
+                  "lon": 116.4607968,
+                  "price": 502.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "17:30",
+                  "endtime": "23:00",
+                  "recommendedfood": "Australian Beef Chuck Eye Roll, Seasonal Vegetable Platter, Deer Meat with Two Peppers, Deer Meat with Mountain Pepper"
+                },
+                {
+                  "id": 96,
+                  "name": "Xin Jing Xi · Beijing Hot Pot (Sanlitun Yaolai Branch)",
+                  "lat": 39.9382473,
+                  "lon": 116.4495746,
+                  "price": 260.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:00",
+                  "endtime": "24:00",
+                  "recommendedfood": "Recommended dishes"
+                },
+                {
+                  "id": 98,
+                  "name": "Halal Ya'er Li Ji Hot Pot (Hepingli Branch)",
+                  "lat": 39.9583221,
+                  "lon": 116.418027,
+                  "price": 113.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "05:30",
+                  "endtime": "22:00",
+                  "recommendedfood": "Hand-cut fresh lamb, fresh tripe, yuanbao meat (pork belly), frozen-cut beef chuck eye roll, premium fatty beef, grilled lamb skewers"
+                },
+                {
+                  "id": 113,
+                  "name": "Qianmen Zhangji Hot Pot Restaurant (Qianmen Branch)",
+                  "lat": 39.8942794,
+                  "lon": 116.3944242,
+                  "price": 127.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "10:30",
+                  "endtime": "22:00",
+                  "recommendedfood": "Fresh lamb, cucumber strips, hand-cut lamb, fried pine meat, mashed tofu, inner thigh meat, frozen tofu, shank meat, sesame sauce dipping sauce, Chinese cabbage"
+                },
+                {
+                  "id": 123,
+                  "name": "Mystic Gate Hot Pot House",
+                  "lat": 39.9408488,
+                  "lon": 116.4213686,
+                  "price": 125.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:00",
+                  "endtime": "03:00",
+                  "recommendedfood": "Yuan Yang Hot Pot, Fresh Chili Broth, Qimen Small Rib Rolls, Classic Double-Layer Fatty Beef, Large Knife Hand-Cut Fresh Mutton, Freshly Sliced Flower Beef Shank, Qimen High-Calcium Mutton, Premium Tripe"
+                },
+                {
+                  "id": 127,
+                  "name": "Beijing Three Brothers Hot Pot (Guijie Branch)",
+                  "lat": 39.9413839,
+                  "lon": 116.4299878,
+                  "price": 140.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "10:00",
+                  "endtime": "03:00",
+                  "recommendedfood": "Freshly sliced lamb, Fresh lamb neck fillet, Red willow lamb skewers, Sesame baked flatbread, Fresh lamb tenderloin strips, Hand-cut lamb tri-tip, Meat skewers, Pea flour cake, Pot-cooked lamb, Dipping sauce"
+                },
+                {
+                  "id": 138,
+                  "name": "Mr. Hao's Lamb Spine Hot Pot (Shuangyushu Branch)",
+                  "lat": 39.9714389,
+                  "lon": 116.3238326,
+                  "price": 149.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:00",
+                  "endtime": "22:00",
+                  "recommendedfood": "Lamb Spine Hot Pot, Natural Bean Curd Skin, Beijing-Style Quick-Fried Tripe, Shredded Cabbage with Tofu, White Jade Tofu, Hao Ye's Scallion Pancake"
+                }
+              ],
+              "row_count": 31,
+              "returned_rows": 10,
+              "page": 1,
+              "pages": 4
+            }
+          }
+        },
+        {
+          "name": "next_page",
+          "arguments": {},
+          "response": {
+            "success": true,
+            "command": "next_page({})",
+            "text": "['id' 'name' 'lat' 'lon' 'price' 'cuisine' 'opentime' 'endtime'\n 'recommendedfood']\n[153 'Ritan Shuan Rou (Ritan Park Branch)' 39.914663 116.4463283 161.0\n 'Hot pot' '11:00' '22:30'\n 'Cold Sliced Lamb Neck, Hand-Cut Fresh Lamb, Hand-Cut Tan Lamb Hind Leg, Cold Sliced Diamond Dorper Lamb, Hand-Cut Fresh Beef Sirloin, Bull King, Grilled Lamb Skewers, Ritan Special Baked Pancake, Hand-Cut Fresh Beef Shank, Seafood Platter']\n[165\n 'K Starry Sky Tent Barbecue · Hong Kong-Style Fish Maw Chicken Hot Pot (Baiziwan Branch)'\n 39.900782 116.4748546 204.0 'Hot pot' '11:30' '03:00'\n 'Recommended dishes']\n[168 'Old Doorframe Tripe and Hot Pot (Fangzhuang Branch)' 39.8522375\n 116.4386173 97.0 'Hot pot' '06:00' '03:00'\n 'Hand-cut fresh lamb, thirteen ways of preparing tripe, beef omasum, lamb tripe top, Men Ding meat pie, fried sesame cakes']\n[169 'Lucky Hot Pot (Sanyuanli Branch)' 39.9528248 116.4563185 198.0\n 'Hot pot' '11:00' '22:30' 'Recommended dishes']\n[173 'Joyful Hong Kong Seafood Hot Pot' 39.9778351 116.3672065 336.0\n 'Hot pot' '11:00' '22:00' 'Recommended dishes']\n[176 'Yi Yin Sea Cucumber Restaurant (Wanfeng Road Branch)' 39.8719749\n 116.2954697 542.0 'Hot pot' '11:30' '21:30'\n 'Braised Sea Cucumber with Mixed Grains, Bread Crab Platter, Mushroom Assortment, King Crab Platter']\n[184 'Freshly Cooked Delights (Jinbao Street Branch)' 39.9165558\n 116.4204175 260.0 'Hot pot' '11:30' '23:00' 'Recommended dishes']\n[203 'Yifeng Restaurant (Gulou Branch)' 39.943777 116.3885245 79.0\n 'Hot pot' '05:30' '22:00'\n 'Fresh Lamb Skewers, Old Beijing Quick-Fried Tripe, Lamb Noodle Soup, Lamb Offal Soup']\n[243 'Baiyeju - Old Beijing Hot Pot (Zhaodengyu Road Branch)' 39.9365802\n 116.367955 139.0 'Hot pot' '11:00' '21:30' 'Recommended dishes']\n[251 \"Cousin's Hong Kong Seafood Hot Pot (Xinyuan Street Branch)\"\n 39.9494438 116.4557139 260.0 'Hot pot' '11:00' '22:30'\n 'Recommended dishes']\nPage/Total: 2/4",
+            "data": {
+              "type": "dataframe",
+              "columns": [
+                "id",
+                "name",
+                "lat",
+                "lon",
+                "price",
+                "cuisine",
+                "opentime",
+                "endtime",
+                "recommendedfood"
+              ],
+              "rows": [
+                {
+                  "id": 153,
+                  "name": "Ritan Shuan Rou (Ritan Park Branch)",
+                  "lat": 39.914663,
+                  "lon": 116.4463283,
+                  "price": 161.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:00",
+                  "endtime": "22:30",
+                  "recommendedfood": "Cold Sliced Lamb Neck, Hand-Cut Fresh Lamb, Hand-Cut Tan Lamb Hind Leg, Cold Sliced Diamond Dorper Lamb, Hand-Cut Fresh Beef Sirloin, Bull King, Grilled Lamb Skewers, Ritan Special Baked Pancake, Hand-Cut Fresh Beef Shank, Seafood Platter"
+                },
+                {
+                  "id": 165,
+                  "name": "K Starry Sky Tent Barbecue · Hong Kong-Style Fish Maw Chicken Hot Pot (Baiziwan Branch)",
+                  "lat": 39.900782,
+                  "lon": 116.4748546,
+                  "price": 204.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:30",
+                  "endtime": "03:00",
+                  "recommendedfood": "Recommended dishes"
+                },
+                {
+                  "id": 168,
+                  "name": "Old Doorframe Tripe and Hot Pot (Fangzhuang Branch)",
+                  "lat": 39.8522375,
+                  "lon": 116.4386173,
+                  "price": 97.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "06:00",
+                  "endtime": "03:00",
+                  "recommendedfood": "Hand-cut fresh lamb, thirteen ways of preparing tripe, beef omasum, lamb tripe top, Men Ding meat pie, fried sesame cakes"
+                },
+                {
+                  "id": 169,
+                  "name": "Lucky Hot Pot (Sanyuanli Branch)",
+                  "lat": 39.9528248,
+                  "lon": 116.4563185,
+                  "price": 198.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:00",
+                  "endtime": "22:30",
+                  "recommendedfood": "Recommended dishes"
+                },
+                {
+                  "id": 173,
+                  "name": "Joyful Hong Kong Seafood Hot Pot",
+                  "lat": 39.9778351,
+                  "lon": 116.3672065,
+                  "price": 336.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:00",
+                  "endtime": "22:00",
+                  "recommendedfood": "Recommended dishes"
+                },
+                {
+                  "id": 176,
+                  "name": "Yi Yin Sea Cucumber Restaurant (Wanfeng Road Branch)",
+                  "lat": 39.8719749,
+                  "lon": 116.2954697,
+                  "price": 542.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:30",
+                  "endtime": "21:30",
+                  "recommendedfood": "Braised Sea Cucumber with Mixed Grains, Bread Crab Platter, Mushroom Assortment, King Crab Platter"
+                },
+                {
+                  "id": 184,
+                  "name": "Freshly Cooked Delights (Jinbao Street Branch)",
+                  "lat": 39.9165558,
+                  "lon": 116.4204175,
+                  "price": 260.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:30",
+                  "endtime": "23:00",
+                  "recommendedfood": "Recommended dishes"
+                },
+                {
+                  "id": 203,
+                  "name": "Yifeng Restaurant (Gulou Branch)",
+                  "lat": 39.943777,
+                  "lon": 116.3885245,
+                  "price": 79.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "05:30",
+                  "endtime": "22:00",
+                  "recommendedfood": "Fresh Lamb Skewers, Old Beijing Quick-Fried Tripe, Lamb Noodle Soup, Lamb Offal Soup"
+                },
+                {
+                  "id": 243,
+                  "name": "Baiyeju - Old Beijing Hot Pot (Zhaodengyu Road Branch)",
+                  "lat": 39.9365802,
+                  "lon": 116.367955,
+                  "price": 139.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:00",
+                  "endtime": "21:30",
+                  "recommendedfood": "Recommended dishes"
+                },
+                {
+                  "id": 251,
+                  "name": "Cousin's Hong Kong Seafood Hot Pot (Xinyuan Street Branch)",
+                  "lat": 39.9494438,
+                  "lon": 116.4557139,
+                  "price": 260.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:00",
+                  "endtime": "22:30",
+                  "recommendedfood": "Recommended dishes"
+                }
+              ],
+              "row_count": 31,
+              "returned_rows": 10,
+              "page": 2,
+              "pages": 4
+            }
+          }
+        },
+        {
+          "name": "next_page",
+          "arguments": {},
+          "response": {
+            "success": true,
+            "command": "next_page({})",
+            "text": "['id' 'name' 'lat' 'lon' 'price' 'cuisine' 'opentime' 'endtime'\n 'recommendedfood']\n[256 'Chongba Beef Mansion (Huaxiang Outlets Branch)' 39.8276937\n 116.3243218 105.0 'Hot pot' '11:00' '22:00' 'Recommended dishes']\n[293 'Huluwa Beef Tendon Hot Pot (Gulou Branch)' 39.9467359 116.3896652\n 80.0 'Hot pot' '10:30' '23:00'\n 'Beef tendon hot pot, beef, tripe, soaked flatbread, vegetable salad']\n[296 'Yilan Yishan (Jiaomen Main Store)' 39.8471574 116.3765691 84.0\n 'Hot pot' '11:30' '24:00'\n 'Spicy Baby Potatoes, Braised Pork Brain, Layered Tripe Delight, Shredded Beef in Chili Sauce, Brown Sugar Glutinous Rice Cake, Signature Rabbit Head']\n[344 'Jubao Yuan (Wangjing Branch)' 40.003478 116.4683376 124.0 'Hot pot'\n '10:00' '22:00' 'Recommended dishes']\n[378 'Yudefu Old Beijing Hot Pot (Dongzhimen Inner Street Branch)'\n 39.9408102 116.4182256 149.0 'Hot pot' '11:00' '23:30'\n 'Small Sancha (pork cut), Lamb tendon meat, Crown daisy chrysanthemum greens, Black tripe, Frozen tofu, Fried bean curd skin']\n[390 'Jinsheng Long (Liupukang Branch)' 39.9524272 116.3903135 162.0\n 'Hot pot' '11:30' '21:30'\n 'Lamb tripe kernel, Men Ding meat pie, cucumber strips, lamb omasum, lamb blade, roasted lamb']\n[414 'Wen Ding Fu Seafood Hot Pot (Qianmen Courtyard 23 Branch)' 39.901046\n 116.4014834 1027.0 'Hot pot' '10:00' '22:00' 'Recommended dishes']\n[421 'South Gate Hot Pot (Dongdan Branch)' 39.9074532 116.4217394 128.0\n 'Hot pot' '10:30' '22:00' 'Recommended dishes']\n[425 'Haidilao Hot Pot (Wangfujing Intime in88 Store)' 39.9165786\n 116.4116492 120.0 'Hot pot' '10:00' '07:00' 'Recommended dishes']\n[455 'Dongzhimen Shuan Rou: Modern Beijing Hot Pot' 39.940358 116.4386908\n 194.0 'Hot pot' '11:00' '22:00'\n 'Hand-cut lamb shoulder, Australian M9 beef, fresh tripe, lamb skewers, handmade crispy bean curd rolls, sesame pancake']\nPage/Total: 3/4",
+            "data": {
+              "type": "dataframe",
+              "columns": [
+                "id",
+                "name",
+                "lat",
+                "lon",
+                "price",
+                "cuisine",
+                "opentime",
+                "endtime",
+                "recommendedfood"
+              ],
+              "rows": [
+                {
+                  "id": 256,
+                  "name": "Chongba Beef Mansion (Huaxiang Outlets Branch)",
+                  "lat": 39.8276937,
+                  "lon": 116.3243218,
+                  "price": 105.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:00",
+                  "endtime": "22:00",
+                  "recommendedfood": "Recommended dishes"
+                },
+                {
+                  "id": 293,
+                  "name": "Huluwa Beef Tendon Hot Pot (Gulou Branch)",
+                  "lat": 39.9467359,
+                  "lon": 116.3896652,
+                  "price": 80.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "10:30",
+                  "endtime": "23:00",
+                  "recommendedfood": "Beef tendon hot pot, beef, tripe, soaked flatbread, vegetable salad"
+                },
+                {
+                  "id": 296,
+                  "name": "Yilan Yishan (Jiaomen Main Store)",
+                  "lat": 39.8471574,
+                  "lon": 116.3765691,
+                  "price": 84.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:30",
+                  "endtime": "24:00",
+                  "recommendedfood": "Spicy Baby Potatoes, Braised Pork Brain, Layered Tripe Delight, Shredded Beef in Chili Sauce, Brown Sugar Glutinous Rice Cake, Signature Rabbit Head"
+                },
+                {
+                  "id": 344,
+                  "name": "Jubao Yuan (Wangjing Branch)",
+                  "lat": 40.003478,
+                  "lon": 116.4683376,
+                  "price": 124.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "10:00",
+                  "endtime": "22:00",
+                  "recommendedfood": "Recommended dishes"
+                },
+                {
+                  "id": 378,
+                  "name": "Yudefu Old Beijing Hot Pot (Dongzhimen Inner Street Branch)",
+                  "lat": 39.9408102,
+                  "lon": 116.4182256,
+                  "price": 149.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:00",
+                  "endtime": "23:30",
+                  "recommendedfood": "Small Sancha (pork cut), Lamb tendon meat, Crown daisy chrysanthemum greens, Black tripe, Frozen tofu, Fried bean curd skin"
+                },
+                {
+                  "id": 390,
+                  "name": "Jinsheng Long (Liupukang Branch)",
+                  "lat": 39.9524272,
+                  "lon": 116.3903135,
+                  "price": 162.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:30",
+                  "endtime": "21:30",
+                  "recommendedfood": "Lamb tripe kernel, Men Ding meat pie, cucumber strips, lamb omasum, lamb blade, roasted lamb"
+                },
+                {
+                  "id": 414,
+                  "name": "Wen Ding Fu Seafood Hot Pot (Qianmen Courtyard 23 Branch)",
+                  "lat": 39.901046,
+                  "lon": 116.4014834,
+                  "price": 1027.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "10:00",
+                  "endtime": "22:00",
+                  "recommendedfood": "Recommended dishes"
+                },
+                {
+                  "id": 421,
+                  "name": "South Gate Hot Pot (Dongdan Branch)",
+                  "lat": 39.9074532,
+                  "lon": 116.4217394,
+                  "price": 128.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "10:30",
+                  "endtime": "22:00",
+                  "recommendedfood": "Recommended dishes"
+                },
+                {
+                  "id": 425,
+                  "name": "Haidilao Hot Pot (Wangfujing Intime in88 Store)",
+                  "lat": 39.9165786,
+                  "lon": 116.4116492,
+                  "price": 120.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "10:00",
+                  "endtime": "07:00",
+                  "recommendedfood": "Recommended dishes"
+                },
+                {
+                  "id": 455,
+                  "name": "Dongzhimen Shuan Rou: Modern Beijing Hot Pot",
+                  "lat": 39.940358,
+                  "lon": 116.4386908,
+                  "price": 194.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:00",
+                  "endtime": "22:00",
+                  "recommendedfood": "Hand-cut lamb shoulder, Australian M9 beef, fresh tripe, lamb skewers, handmade crispy bean curd rolls, sesame pancake"
+                }
+              ],
+              "row_count": 31,
+              "returned_rows": 10,
+              "page": 3,
+              "pages": 4
+            }
+          }
+        },
+        {
+          "name": "next_page",
+          "arguments": {},
+          "response": {
+            "success": true,
+            "command": "next_page({})",
+            "text": "['id' 'name' 'lat' 'lon' 'price' 'cuisine' 'opentime' 'endtime'\n 'recommendedfood']\n[458 'CouCou Hot Pot & Bistro (Sanlitun Branch)' 39.93142 116.45501 166.0\n 'Hot pot' '11:00' '24:00'\n 'Da Hong Pao Pearl Milk Tea, Duck Blood Tofu Hot Pot Base, Taiwanese Spicy Hot Pot, Seafood Lollipops, Coucou Fatty Beef, Tomato Beef Knuckle Bone Hot Pot, Chuck Roll Beef, Snowflake Beef Cubes']\nPage/Total: 4/4",
+            "data": {
+              "type": "dataframe",
+              "columns": [
+                "id",
+                "name",
+                "lat",
+                "lon",
+                "price",
+                "cuisine",
+                "opentime",
+                "endtime",
+                "recommendedfood"
+              ],
+              "rows": [
+                {
+                  "id": 458,
+                  "name": "CouCou Hot Pot & Bistro (Sanlitun Branch)",
+                  "lat": 39.93142,
+                  "lon": 116.45501,
+                  "price": 166.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:00",
+                  "endtime": "24:00",
+                  "recommendedfood": "Da Hong Pao Pearl Milk Tea, Duck Blood Tofu Hot Pot Base, Taiwanese Spicy Hot Pot, Seafood Lollipops, Coucou Fatty Beef, Tomato Beef Knuckle Bone Hot Pot, Chuck Roll Beef, Snowflake Beef Cubes"
+                }
+              ],
+              "row_count": 31,
+              "returned_rows": 1,
+              "page": 4,
+              "pages": 4
+            }
+          }
+        },
+        {
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "contains",
+            "value": "日坛涮肉"
+          },
+          "response": {
+            "success": true,
+            "command": "restaurants_select",
+            "resolved_from_language": "zh",
+            "data": {
+              "type": "dataframe",
+              "rows": [
+                {
+                  "id": 153,
+                  "name": "Ritan Shuan Rou (Ritan Park Branch)",
+                  "lat": 39.914663,
+                  "lon": 116.4463283,
+                  "price": 161.0,
+                  "cuisine": "Hot pot",
+                  "opentime": "11:00",
+                  "endtime": "22:30",
+                  "recommendedfood": "Cold Sliced Lamb Neck, Hand-Cut Fresh Lamb, Hand-Cut Tan Lamb Hind Leg, Cold Sliced Diamond Dorper Lamb, Hand-Cut Fresh Beef Sirloin, Bull King, Grilled Lamb Skewers, Ritan Special Baked Pancake, Hand-Cut Fresh Beef Shank, Seafood Platter"
+                }
+              ],
+              "row_count": 1,
+              "returned_rows": 1
+            },
+            "text": "[{'id': 153, 'name': 'Ritan Shuan Rou (Ritan Park Branch)', 'lat': 39.914663, 'lon': 116.4463283, 'price': 161.0, 'cuisine': 'Hot pot', 'opentime': '11:00', 'endtime': '22:30', 'recommendedfood': 'Cold Sliced Lamb Neck, Hand-Cut Fresh Lamb, Hand-Cut Tan Lamb Hind Leg, Cold Sliced Diamond Dorper Lamb, Hand-Cut Fresh Beef Sirloin, Bull King, Grilled Lamb Skewers, Ritan Special Baked Pancake, Hand-Cut Fresh Beef Shank, Seafood Platter'}]"
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beijing Capital International Airport",
+            "end": "Ritan Park",
+            "start_time": "08:46",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Ritan Park\", \"start\": \"Beijing Capital International Airport\", \"start_time\": \"08:46\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Beijing Capital International Airport', 'end': 'Ritan Park', 'mode': 'taxi', 'start_time': '08:46', 'end_time': '09:18', 'cost': 93.52, 'distance': 21.96}]",
+            "data": [
+              {
+                "start": "Beijing Capital International Airport",
+                "end": "Ritan Park",
+                "mode": "taxi",
+                "start_time": "08:46",
+                "end_time": "09:18",
+                "cost": 93.52,
+                "distance": 21.96
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beijing Capital International Airport",
+            "end": "Ritan Park",
+            "start_time": "08:46",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Ritan Park\", \"start\": \"Beijing Capital International Airport\", \"start_time\": \"08:46\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Beijing Capital International Airport', 'end': 'Terminal 2-Metro Station', 'mode': 'walk', 'start_time': '08:46', 'end_time': '08:56', 'cost': 0, 'distance': 0.88}, {'start': 'Terminal 2-Metro Station', 'end': 'Dongdaqiao-Metro Station', 'mode': 'metro', 'start_time': '08:56', 'end_time': '09:38', 'cost': 6, 'distance': 21.13}, {'start': 'Dongdaqiao-Metro Station', 'end': 'Ritan Park', 'mode': 'walk', 'start_time': '09:38', 'end_time': '09:40', 'cost': 0, 'distance': 0.22}]",
+            "data": [
+              {
+                "start": "Beijing Capital International Airport",
+                "end": "Terminal 2-Metro Station",
+                "mode": "walk",
+                "start_time": "08:46",
+                "end_time": "08:56",
+                "cost": 0,
+                "distance": 0.88
+              },
+              {
+                "start": "Terminal 2-Metro Station",
+                "end": "Dongdaqiao-Metro Station",
+                "mode": "metro",
+                "start_time": "08:56",
+                "end_time": "09:38",
+                "cost": 6,
+                "distance": 21.13
+              },
+              {
+                "start": "Dongdaqiao-Metro Station",
+                "end": "Ritan Park",
+                "mode": "walk",
+                "start_time": "09:38",
+                "end_time": "09:40",
+                "cost": 0,
+                "distance": 0.22
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beijing Capital International Airport",
+            "end": "Ritan Park",
+            "start_time": "08:46",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Ritan Park\", \"start\": \"Beijing Capital International Airport\", \"start_time\": \"08:46\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Beijing Capital International Airport', 'end': 'Ritan Park', 'mode': 'walk', 'start_time': '08:46', 'end_time': '13:09', 'cost': 0.0, 'distance': 21.959544909541016}]",
+            "data": [
+              {
+                "start": "Beijing Capital International Airport",
+                "end": "Ritan Park",
+                "mode": "walk",
+                "start_time": "08:46",
+                "end_time": "13:09",
+                "cost": 0.0,
+                "distance": 21.959544909541016
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Ritan Park",
+            "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "start_time": "11:18",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Xiaoxiang Pavilion (Sanlitun SOHO Branch)\", \"start\": \"Ritan Park\", \"start_time\": \"11:18\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Ritan Park', 'end': 'Xiaoxiang Pavilion (Sanlitun SOHO Branch)', 'mode': 'taxi', 'start_time': '11:18', 'end_time': '11:19', 'cost': 11.0, 'distance': 1.3}]",
+            "data": [
+              {
+                "start": "Ritan Park",
+                "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+                "mode": "taxi",
+                "start_time": "11:18",
+                "end_time": "11:19",
+                "cost": 11.0,
+                "distance": 1.3
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Ritan Park",
+            "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "start_time": "11:18",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Xiaoxiang Pavilion (Sanlitun SOHO Branch)\", \"start\": \"Ritan Park\", \"start_time\": \"11:18\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Ritan Park', 'end': 'Dongdaqiao-Metro Station', 'mode': 'walk', 'start_time': '11:18', 'end_time': '11:20', 'cost': 0, 'distance': 0.22}, {'start': 'Dongdaqiao-Metro Station', 'end': \"Workers' Stadium-Metro Station\", 'mode': 'metro', 'start_time': '11:20', 'end_time': '11:22', 'cost': 2, 'distance': 1.24}, {'start': \"Workers' Stadium-Metro Station\", 'end': 'Xiaoxiang Pavilion (Sanlitun SOHO Branch)', 'mode': 'walk', 'start_time': '11:22', 'end_time': '11:25', 'cost': 0, 'distance': 0.25}]",
+            "data": [
+              {
+                "start": "Ritan Park",
+                "end": "Dongdaqiao-Metro Station",
+                "mode": "walk",
+                "start_time": "11:18",
+                "end_time": "11:20",
+                "cost": 0,
+                "distance": 0.22
+              },
+              {
+                "start": "Dongdaqiao-Metro Station",
+                "end": "Workers' Stadium-Metro Station",
+                "mode": "metro",
+                "start_time": "11:20",
+                "end_time": "11:22",
+                "cost": 2,
+                "distance": 1.24
+              },
+              {
+                "start": "Workers' Stadium-Metro Station",
+                "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+                "mode": "walk",
+                "start_time": "11:22",
+                "end_time": "11:25",
+                "cost": 0,
+                "distance": 0.25
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Ritan Park",
+            "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "start_time": "11:18",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Xiaoxiang Pavilion (Sanlitun SOHO Branch)\", \"start\": \"Ritan Park\", \"start_time\": \"11:18\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Ritan Park', 'end': 'Xiaoxiang Pavilion (Sanlitun SOHO Branch)', 'mode': 'walk', 'start_time': '11:18', 'end_time': '11:33', 'cost': 0.0, 'distance': 1.3044338943873766}]",
+            "data": [
+              {
+                "start": "Ritan Park",
+                "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+                "mode": "walk",
+                "start_time": "11:18",
+                "end_time": "11:33",
+                "cost": 0.0,
+                "distance": 1.3044338943873766
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "end": "Chaoyang Park",
+            "start_time": "12:04",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Chaoyang Park\", \"start\": \"Xiaoxiang Pavilion (Sanlitun SOHO Branch)\", \"start_time\": \"12:04\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Xiaoxiang Pavilion (Sanlitun SOHO Branch)', 'end': 'Chaoyang Park', 'mode': 'taxi', 'start_time': '12:04', 'end_time': '12:09', 'cost': 17.4, 'distance': 3.63}]",
+            "data": [
+              {
+                "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+                "end": "Chaoyang Park",
+                "mode": "taxi",
+                "start_time": "12:04",
+                "end_time": "12:09",
+                "cost": 17.4,
+                "distance": 3.63
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "end": "Chaoyang Park",
+            "start_time": "12:04",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Chaoyang Park\", \"start\": \"Xiaoxiang Pavilion (Sanlitun SOHO Branch)\", \"start_time\": \"12:04\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Xiaoxiang Pavilion (Sanlitun SOHO Branch)', 'end': \"Workers' Stadium-Metro Station\", 'mode': 'walk', 'start_time': '12:04', 'end_time': '12:07', 'cost': 0, 'distance': 0.25}, {'start': \"Workers' Stadium-Metro Station\", 'end': 'Dongfeng Beiqiao-Metro Station', 'mode': 'metro', 'start_time': '12:07', 'end_time': '12:15', 'cost': 3, 'distance': 4.05}, {'start': 'Dongfeng Beiqiao-Metro Station', 'end': 'Chaoyang Park', 'mode': 'walk', 'start_time': '12:15', 'end_time': '12:26', 'cost': 0, 'distance': 0.97}]",
+            "data": [
+              {
+                "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+                "end": "Workers' Stadium-Metro Station",
+                "mode": "walk",
+                "start_time": "12:04",
+                "end_time": "12:07",
+                "cost": 0,
+                "distance": 0.25
+              },
+              {
+                "start": "Workers' Stadium-Metro Station",
+                "end": "Dongfeng Beiqiao-Metro Station",
+                "mode": "metro",
+                "start_time": "12:07",
+                "end_time": "12:15",
+                "cost": 3,
+                "distance": 4.05
+              },
+              {
+                "start": "Dongfeng Beiqiao-Metro Station",
+                "end": "Chaoyang Park",
+                "mode": "walk",
+                "start_time": "12:15",
+                "end_time": "12:26",
+                "cost": 0,
+                "distance": 0.97
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "end": "Chaoyang Park",
+            "start_time": "12:04",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Chaoyang Park\", \"start\": \"Xiaoxiang Pavilion (Sanlitun SOHO Branch)\", \"start_time\": \"12:04\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Xiaoxiang Pavilion (Sanlitun SOHO Branch)', 'end': 'Chaoyang Park', 'mode': 'walk', 'start_time': '12:04', 'end_time': '12:47', 'cost': 0.0, 'distance': 3.6288916463081677}]",
+            "data": [
+              {
+                "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+                "end": "Chaoyang Park",
+                "mode": "walk",
+                "start_time": "12:04",
+                "end_time": "12:47",
+                "cost": 0.0,
+                "distance": 3.6288916463081677
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Chaoyang Park",
+            "end": "Yifeng Restaurant (Gulou Branch)",
+            "start_time": "14:39",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Yifeng Restaurant (Gulou Branch)\", \"start\": \"Chaoyang Park\", \"start_time\": \"14:39\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Chaoyang Park', 'end': 'Yifeng Restaurant (Gulou Branch)', 'mode': 'taxi', 'start_time': '14:39', 'end_time': '14:51', 'cost': 34.88, 'distance': 8.62}]",
+            "data": [
+              {
+                "start": "Chaoyang Park",
+                "end": "Yifeng Restaurant (Gulou Branch)",
+                "mode": "taxi",
+                "start_time": "14:39",
+                "end_time": "14:51",
+                "cost": 34.88,
+                "distance": 8.62
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Chaoyang Park",
+            "end": "Yifeng Restaurant (Gulou Branch)",
+            "start_time": "14:39",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Yifeng Restaurant (Gulou Branch)\", \"start\": \"Chaoyang Park\", \"start_time\": \"14:39\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Chaoyang Park', 'end': 'Dongfeng Beiqiao-Metro Station', 'mode': 'walk', 'start_time': '14:39', 'end_time': '14:50', 'cost': 0, 'distance': 0.97}, {'start': 'Dongfeng Beiqiao-Metro Station', 'end': 'Gulou Street-Metro Station', 'mode': 'metro', 'start_time': '14:50', 'end_time': '15:05', 'cost': 3, 'distance': 7.94}, {'start': 'Gulou Street-Metro Station', 'end': 'Yifeng Restaurant (Gulou Branch)', 'mode': 'walk', 'start_time': '15:05', 'end_time': '15:13', 'cost': 0, 'distance': 0.73}]",
+            "data": [
+              {
+                "start": "Chaoyang Park",
+                "end": "Dongfeng Beiqiao-Metro Station",
+                "mode": "walk",
+                "start_time": "14:39",
+                "end_time": "14:50",
+                "cost": 0,
+                "distance": 0.97
+              },
+              {
+                "start": "Dongfeng Beiqiao-Metro Station",
+                "end": "Gulou Street-Metro Station",
+                "mode": "metro",
+                "start_time": "14:50",
+                "end_time": "15:05",
+                "cost": 3,
+                "distance": 7.94
+              },
+              {
+                "start": "Gulou Street-Metro Station",
+                "end": "Yifeng Restaurant (Gulou Branch)",
+                "mode": "walk",
+                "start_time": "15:05",
+                "end_time": "15:13",
+                "cost": 0,
+                "distance": 0.73
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Chaoyang Park",
+            "end": "Yifeng Restaurant (Gulou Branch)",
+            "start_time": "14:39",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Yifeng Restaurant (Gulou Branch)\", \"start\": \"Chaoyang Park\", \"start_time\": \"14:39\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Chaoyang Park', 'end': 'Yifeng Restaurant (Gulou Branch)', 'mode': 'walk', 'start_time': '14:39', 'end_time': '16:22', 'cost': 0.0, 'distance': 8.624118292318983}]",
+            "data": [
+              {
+                "start": "Chaoyang Park",
+                "end": "Yifeng Restaurant (Gulou Branch)",
+                "mode": "walk",
+                "start_time": "14:39",
+                "end_time": "16:22",
+                "cost": 0.0,
+                "distance": 8.624118292318983
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Ritan Park",
+            "end": "Yifeng Restaurant (Gulou Branch)",
+            "start_time": "11:18",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Yifeng Restaurant (Gulou Branch)\", \"start\": \"Ritan Park\", \"start_time\": \"11:18\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Ritan Park', 'end': 'Yifeng Restaurant (Gulou Branch)', 'mode': 'taxi', 'start_time': '11:18', 'end_time': '11:26', 'cost': 25.17, 'distance': 5.85}]",
+            "data": [
+              {
+                "start": "Ritan Park",
+                "end": "Yifeng Restaurant (Gulou Branch)",
+                "mode": "taxi",
+                "start_time": "11:18",
+                "end_time": "11:26",
+                "cost": 25.17,
+                "distance": 5.85
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Ritan Park",
+            "end": "Yifeng Restaurant (Gulou Branch)",
+            "start_time": "11:18",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Yifeng Restaurant (Gulou Branch)\", \"start\": \"Ritan Park\", \"start_time\": \"11:18\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Ritan Park', 'end': 'Dongdaqiao-Metro Station', 'mode': 'walk', 'start_time': '11:18', 'end_time': '11:20', 'cost': 0, 'distance': 0.22}, {'start': 'Dongdaqiao-Metro Station', 'end': 'Gulou Street-Metro Station', 'mode': 'metro', 'start_time': '11:20', 'end_time': '11:31', 'cost': 3, 'distance': 5.72}, {'start': 'Gulou Street-Metro Station', 'end': 'Yifeng Restaurant (Gulou Branch)', 'mode': 'walk', 'start_time': '11:31', 'end_time': '11:39', 'cost': 0, 'distance': 0.73}]",
+            "data": [
+              {
+                "start": "Ritan Park",
+                "end": "Dongdaqiao-Metro Station",
+                "mode": "walk",
+                "start_time": "11:18",
+                "end_time": "11:20",
+                "cost": 0,
+                "distance": 0.22
+              },
+              {
+                "start": "Dongdaqiao-Metro Station",
+                "end": "Gulou Street-Metro Station",
+                "mode": "metro",
+                "start_time": "11:20",
+                "end_time": "11:31",
+                "cost": 3,
+                "distance": 5.72
+              },
+              {
+                "start": "Gulou Street-Metro Station",
+                "end": "Yifeng Restaurant (Gulou Branch)",
+                "mode": "walk",
+                "start_time": "11:31",
+                "end_time": "11:39",
+                "cost": 0,
+                "distance": 0.73
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Ritan Park",
+            "end": "Yifeng Restaurant (Gulou Branch)",
+            "start_time": "11:18",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Yifeng Restaurant (Gulou Branch)\", \"start\": \"Ritan Park\", \"start_time\": \"11:18\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Ritan Park', 'end': 'Yifeng Restaurant (Gulou Branch)', 'mode': 'walk', 'start_time': '11:18', 'end_time': '12:28', 'cost': 0.0, 'distance': 5.849574382445181}]",
+            "data": [
+              {
+                "start": "Ritan Park",
+                "end": "Yifeng Restaurant (Gulou Branch)",
+                "mode": "walk",
+                "start_time": "11:18",
+                "end_time": "12:28",
+                "cost": 0.0,
+                "distance": 5.849574382445181
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Yifeng Restaurant (Gulou Branch)",
+            "end": "Chaoyang Park",
+            "start_time": "12:11",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Chaoyang Park\", \"start\": \"Yifeng Restaurant (Gulou Branch)\", \"start_time\": \"12:11\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Yifeng Restaurant (Gulou Branch)', 'end': 'Chaoyang Park', 'mode': 'taxi', 'start_time': '12:11', 'end_time': '12:23', 'cost': 34.88, 'distance': 8.62}]",
+            "data": [
+              {
+                "start": "Yifeng Restaurant (Gulou Branch)",
+                "end": "Chaoyang Park",
+                "mode": "taxi",
+                "start_time": "12:11",
+                "end_time": "12:23",
+                "cost": 34.88,
+                "distance": 8.62
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Yifeng Restaurant (Gulou Branch)",
+            "end": "Chaoyang Park",
+            "start_time": "12:11",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Chaoyang Park\", \"start\": \"Yifeng Restaurant (Gulou Branch)\", \"start_time\": \"12:11\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Yifeng Restaurant (Gulou Branch)', 'end': 'Gulou Street-Metro Station', 'mode': 'walk', 'start_time': '12:11', 'end_time': '12:19', 'cost': 0, 'distance': 0.73}, {'start': 'Gulou Street-Metro Station', 'end': 'Dongfeng Beiqiao-Metro Station', 'mode': 'metro', 'start_time': '12:19', 'end_time': '12:34', 'cost': 3, 'distance': 7.94}, {'start': 'Dongfeng Beiqiao-Metro Station', 'end': 'Chaoyang Park', 'mode': 'walk', 'start_time': '12:34', 'end_time': '12:45', 'cost': 0, 'distance': 0.97}]",
+            "data": [
+              {
+                "start": "Yifeng Restaurant (Gulou Branch)",
+                "end": "Gulou Street-Metro Station",
+                "mode": "walk",
+                "start_time": "12:11",
+                "end_time": "12:19",
+                "cost": 0,
+                "distance": 0.73
+              },
+              {
+                "start": "Gulou Street-Metro Station",
+                "end": "Dongfeng Beiqiao-Metro Station",
+                "mode": "metro",
+                "start_time": "12:19",
+                "end_time": "12:34",
+                "cost": 3,
+                "distance": 7.94
+              },
+              {
+                "start": "Dongfeng Beiqiao-Metro Station",
+                "end": "Chaoyang Park",
+                "mode": "walk",
+                "start_time": "12:34",
+                "end_time": "12:45",
+                "cost": 0,
+                "distance": 0.97
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Yifeng Restaurant (Gulou Branch)",
+            "end": "Chaoyang Park",
+            "start_time": "12:11",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Chaoyang Park\", \"start\": \"Yifeng Restaurant (Gulou Branch)\", \"start_time\": \"12:11\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Yifeng Restaurant (Gulou Branch)', 'end': 'Chaoyang Park', 'mode': 'walk', 'start_time': '12:11', 'end_time': '13:54', 'cost': 0.0, 'distance': 8.624118292318983}]",
+            "data": [
+              {
+                "start": "Yifeng Restaurant (Gulou Branch)",
+                "end": "Chaoyang Park",
+                "mode": "walk",
+                "start_time": "12:11",
+                "end_time": "13:54",
+                "cost": 0.0,
+                "distance": 8.624118292318983
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Chaoyang Park",
+            "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "start_time": "14:53",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Xiaoxiang Pavilion (Sanlitun SOHO Branch)\", \"start\": \"Chaoyang Park\", \"start_time\": \"14:53\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Chaoyang Park', 'end': 'Xiaoxiang Pavilion (Sanlitun SOHO Branch)', 'mode': 'taxi', 'start_time': '14:53', 'end_time': '14:58', 'cost': 17.4, 'distance': 3.63}]",
+            "data": [
+              {
+                "start": "Chaoyang Park",
+                "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+                "mode": "taxi",
+                "start_time": "14:53",
+                "end_time": "14:58",
+                "cost": 17.4,
+                "distance": 3.63
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Chaoyang Park",
+            "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "start_time": "14:53",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Xiaoxiang Pavilion (Sanlitun SOHO Branch)\", \"start\": \"Chaoyang Park\", \"start_time\": \"14:53\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Chaoyang Park', 'end': 'Dongfeng Beiqiao-Metro Station', 'mode': 'walk', 'start_time': '14:53', 'end_time': '15:04', 'cost': 0, 'distance': 0.97}, {'start': 'Dongfeng Beiqiao-Metro Station', 'end': \"Workers' Stadium-Metro Station\", 'mode': 'metro', 'start_time': '15:04', 'end_time': '15:12', 'cost': 3, 'distance': 4.05}, {'start': \"Workers' Stadium-Metro Station\", 'end': 'Xiaoxiang Pavilion (Sanlitun SOHO Branch)', 'mode': 'walk', 'start_time': '15:12', 'end_time': '15:15', 'cost': 0, 'distance': 0.25}]",
+            "data": [
+              {
+                "start": "Chaoyang Park",
+                "end": "Dongfeng Beiqiao-Metro Station",
+                "mode": "walk",
+                "start_time": "14:53",
+                "end_time": "15:04",
+                "cost": 0,
+                "distance": 0.97
+              },
+              {
+                "start": "Dongfeng Beiqiao-Metro Station",
+                "end": "Workers' Stadium-Metro Station",
+                "mode": "metro",
+                "start_time": "15:04",
+                "end_time": "15:12",
+                "cost": 3,
+                "distance": 4.05
+              },
+              {
+                "start": "Workers' Stadium-Metro Station",
+                "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+                "mode": "walk",
+                "start_time": "15:12",
+                "end_time": "15:15",
+                "cost": 0,
+                "distance": 0.25
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Chaoyang Park",
+            "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "start_time": "14:53",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Xiaoxiang Pavilion (Sanlitun SOHO Branch)\", \"start\": \"Chaoyang Park\", \"start_time\": \"14:53\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Chaoyang Park', 'end': 'Xiaoxiang Pavilion (Sanlitun SOHO Branch)', 'mode': 'walk', 'start_time': '14:53', 'end_time': '15:36', 'cost': 0.0, 'distance': 3.6288916463081677}]",
+            "data": [
+              {
+                "start": "Chaoyang Park",
+                "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+                "mode": "walk",
+                "start_time": "14:53",
+                "end_time": "15:36",
+                "cost": 0.0,
+                "distance": 3.6288916463081677
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "end": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "start_time": "17:45",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)\", \"start\": \"Xiaoxiang Pavilion (Sanlitun SOHO Branch)\", \"start_time\": \"17:45\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Xiaoxiang Pavilion (Sanlitun SOHO Branch)', 'end': 'Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)', 'mode': 'taxi', 'start_time': '17:45', 'end_time': '17:58', 'cost': 36.24, 'distance': 9.01}]",
+            "data": [
+              {
+                "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+                "end": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+                "mode": "taxi",
+                "start_time": "17:45",
+                "end_time": "17:58",
+                "cost": 36.24,
+                "distance": 9.01
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "end": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "start_time": "17:45",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)\", \"start\": \"Xiaoxiang Pavilion (Sanlitun SOHO Branch)\", \"start_time\": \"17:45\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Xiaoxiang Pavilion (Sanlitun SOHO Branch)', 'end': \"Workers' Stadium-Metro Station\", 'mode': 'walk', 'start_time': '17:45', 'end_time': '17:48', 'cost': 0, 'distance': 0.25}, {'start': \"Workers' Stadium-Metro Station\", 'end': 'Dalianpo-Metro Station', 'mode': 'metro', 'start_time': '17:48', 'end_time': '18:07', 'cost': 4, 'distance': 9.77}, {'start': 'Dalianpo-Metro Station', 'end': 'Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)', 'mode': 'walk', 'start_time': '18:07', 'end_time': '18:41', 'cost': 0, 'distance': 2.88}]",
+            "data": [
+              {
+                "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+                "end": "Workers' Stadium-Metro Station",
+                "mode": "walk",
+                "start_time": "17:45",
+                "end_time": "17:48",
+                "cost": 0,
+                "distance": 0.25
+              },
+              {
+                "start": "Workers' Stadium-Metro Station",
+                "end": "Dalianpo-Metro Station",
+                "mode": "metro",
+                "start_time": "17:48",
+                "end_time": "18:07",
+                "cost": 4,
+                "distance": 9.77
+              },
+              {
+                "start": "Dalianpo-Metro Station",
+                "end": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+                "mode": "walk",
+                "start_time": "18:07",
+                "end_time": "18:41",
+                "cost": 0,
+                "distance": 2.88
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "end": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "start_time": "17:45",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)\", \"start\": \"Xiaoxiang Pavilion (Sanlitun SOHO Branch)\", \"start_time\": \"17:45\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Xiaoxiang Pavilion (Sanlitun SOHO Branch)', 'end': 'Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)', 'mode': 'walk', 'start_time': '17:45', 'end_time': '19:33', 'cost': 0.0, 'distance': 9.012153647305727}]",
+            "data": [
+              {
+                "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+                "end": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+                "mode": "walk",
+                "start_time": "17:45",
+                "end_time": "19:33",
+                "cost": 0.0,
+                "distance": 9.012153647305727
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "end": "Beihai Park",
+            "start_time": "08:00",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Beihai Park\", \"start\": \"Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)\", \"start_time\": \"08:00\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)', 'end': 'Beihai Park', 'mode': 'taxi', 'start_time': '08:00', 'end_time': '08:20', 'cost': 57.15, 'distance': 13.88}]",
+            "data": [
+              {
+                "start": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+                "end": "Beihai Park",
+                "mode": "taxi",
+                "start_time": "08:00",
+                "end_time": "08:20",
+                "cost": 57.15,
+                "distance": 13.88
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "end": "Beihai Park",
+            "start_time": "08:00",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Beihai Park\", \"start\": \"Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)\", \"start_time\": \"08:00\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)', 'end': 'Dalianpo-Metro Station', 'mode': 'walk', 'start_time': '08:00', 'end_time': '08:34', 'cost': 0, 'distance': 2.88}, {'start': 'Dalianpo-Metro Station', 'end': 'Shichahai-Metro Station', 'mode': 'metro', 'start_time': '08:34', 'end_time': '09:02', 'cost': 5, 'distance': 14.42}, {'start': 'Shichahai-Metro Station', 'end': 'Beihai Park', 'mode': 'walk', 'start_time': '09:02', 'end_time': '09:06', 'cost': 0, 'distance': 0.39}]",
+            "data": [
+              {
+                "start": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+                "end": "Dalianpo-Metro Station",
+                "mode": "walk",
+                "start_time": "08:00",
+                "end_time": "08:34",
+                "cost": 0,
+                "distance": 2.88
+              },
+              {
+                "start": "Dalianpo-Metro Station",
+                "end": "Shichahai-Metro Station",
+                "mode": "metro",
+                "start_time": "08:34",
+                "end_time": "09:02",
+                "cost": 5,
+                "distance": 14.42
+              },
+              {
+                "start": "Shichahai-Metro Station",
+                "end": "Beihai Park",
+                "mode": "walk",
+                "start_time": "09:02",
+                "end_time": "09:06",
+                "cost": 0,
+                "distance": 0.39
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "end": "Beihai Park",
+            "start_time": "08:00",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Beihai Park\", \"start\": \"Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)\", \"start_time\": \"08:00\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)', 'end': 'Beihai Park', 'mode': 'walk', 'start_time': '08:00', 'end_time': '10:46', 'cost': 0.0, 'distance': 13.877708150660855}]",
+            "data": [
+              {
+                "start": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+                "end": "Beihai Park",
+                "mode": "walk",
+                "start_time": "08:00",
+                "end_time": "10:46",
+                "cost": 0.0,
+                "distance": 13.877708150660855
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beihai Park",
+            "end": "Old Full Dumplings (Andingmen Branch)",
+            "start_time": "10:50",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Old Full Dumplings (Andingmen Branch)\", \"start\": \"Beihai Park\", \"start_time\": \"10:50\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Beihai Park', 'end': 'Old Full Dumplings (Andingmen Branch)', 'mode': 'taxi', 'start_time': '10:50', 'end_time': '10:52', 'cost': 11.0, 'distance': 1.53}]",
+            "data": [
+              {
+                "start": "Beihai Park",
+                "end": "Old Full Dumplings (Andingmen Branch)",
+                "mode": "taxi",
+                "start_time": "10:50",
+                "end_time": "10:52",
+                "cost": 11.0,
+                "distance": 1.53
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beihai Park",
+            "end": "Old Full Dumplings (Andingmen Branch)",
+            "start_time": "10:50",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Old Full Dumplings (Andingmen Branch)\", \"start\": \"Beihai Park\", \"start_time\": \"10:50\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Beihai Park', 'end': 'Shichahai-Metro Station', 'mode': 'walk', 'start_time': '10:50', 'end_time': '10:54', 'cost': 0, 'distance': 0.39}, {'start': 'Shichahai-Metro Station', 'end': 'Andingmen-Metro Station', 'mode': 'metro', 'start_time': '10:54', 'end_time': '10:57', 'cost': 2, 'distance': 1.65}, {'start': 'Andingmen-Metro Station', 'end': 'Old Full Dumplings (Andingmen Branch)', 'mode': 'walk', 'start_time': '10:57', 'end_time': '11:05', 'cost': 0, 'distance': 0.68}]",
+            "data": [
+              {
+                "start": "Beihai Park",
+                "end": "Shichahai-Metro Station",
+                "mode": "walk",
+                "start_time": "10:50",
+                "end_time": "10:54",
+                "cost": 0,
+                "distance": 0.39
+              },
+              {
+                "start": "Shichahai-Metro Station",
+                "end": "Andingmen-Metro Station",
+                "mode": "metro",
+                "start_time": "10:54",
+                "end_time": "10:57",
+                "cost": 2,
+                "distance": 1.65
+              },
+              {
+                "start": "Andingmen-Metro Station",
+                "end": "Old Full Dumplings (Andingmen Branch)",
+                "mode": "walk",
+                "start_time": "10:57",
+                "end_time": "11:05",
+                "cost": 0,
+                "distance": 0.68
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beihai Park",
+            "end": "Old Full Dumplings (Andingmen Branch)",
+            "start_time": "10:50",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Old Full Dumplings (Andingmen Branch)\", \"start\": \"Beihai Park\", \"start_time\": \"10:50\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Beihai Park', 'end': 'Old Full Dumplings (Andingmen Branch)', 'mode': 'walk', 'start_time': '10:50', 'end_time': '11:08', 'cost': 0.0, 'distance': 1.5318881859953728}]",
+            "data": [
+              {
+                "start": "Beihai Park",
+                "end": "Old Full Dumplings (Andingmen Branch)",
+                "mode": "walk",
+                "start_time": "10:50",
+                "end_time": "11:08",
+                "cost": 0.0,
+                "distance": 1.5318881859953728
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Old Full Dumplings (Andingmen Branch)",
+            "end": "Jingshan Park",
+            "start_time": "11:45",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Jingshan Park\", \"start\": \"Old Full Dumplings (Andingmen Branch)\", \"start_time\": \"11:45\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Old Full Dumplings (Andingmen Branch)', 'end': 'Jingshan Park', 'mode': 'taxi', 'start_time': '11:45', 'end_time': '11:46', 'cost': 11.0, 'distance': 1.31}]",
+            "data": [
+              {
+                "start": "Old Full Dumplings (Andingmen Branch)",
+                "end": "Jingshan Park",
+                "mode": "taxi",
+                "start_time": "11:45",
+                "end_time": "11:46",
+                "cost": 11.0,
+                "distance": 1.31
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Old Full Dumplings (Andingmen Branch)",
+            "end": "Jingshan Park",
+            "start_time": "11:45",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Jingshan Park\", \"start\": \"Old Full Dumplings (Andingmen Branch)\", \"start_time\": \"11:45\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Old Full Dumplings (Andingmen Branch)', 'end': 'Andingmen-Metro Station', 'mode': 'walk', 'start_time': '11:45', 'end_time': '11:53', 'cost': 0, 'distance': 0.68}, {'start': 'Andingmen-Metro Station', 'end': 'Nanluoguxiang-Metro Station', 'mode': 'metro', 'start_time': '11:53', 'end_time': '11:56', 'cost': 2, 'distance': 1.74}, {'start': 'Nanluoguxiang-Metro Station', 'end': 'Jingshan Park', 'mode': 'walk', 'start_time': '11:56', 'end_time': '11:58', 'cost': 0, 'distance': 0.22}]",
+            "data": [
+              {
+                "start": "Old Full Dumplings (Andingmen Branch)",
+                "end": "Andingmen-Metro Station",
+                "mode": "walk",
+                "start_time": "11:45",
+                "end_time": "11:53",
+                "cost": 0,
+                "distance": 0.68
+              },
+              {
+                "start": "Andingmen-Metro Station",
+                "end": "Nanluoguxiang-Metro Station",
+                "mode": "metro",
+                "start_time": "11:53",
+                "end_time": "11:56",
+                "cost": 2,
+                "distance": 1.74
+              },
+              {
+                "start": "Nanluoguxiang-Metro Station",
+                "end": "Jingshan Park",
+                "mode": "walk",
+                "start_time": "11:56",
+                "end_time": "11:58",
+                "cost": 0,
+                "distance": 0.22
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Old Full Dumplings (Andingmen Branch)",
+            "end": "Jingshan Park",
+            "start_time": "11:45",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Jingshan Park\", \"start\": \"Old Full Dumplings (Andingmen Branch)\", \"start_time\": \"11:45\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Old Full Dumplings (Andingmen Branch)', 'end': 'Jingshan Park', 'mode': 'walk', 'start_time': '11:45', 'end_time': '12:00', 'cost': 0.0, 'distance': 1.3106716025617982}]",
+            "data": [
+              {
+                "start": "Old Full Dumplings (Andingmen Branch)",
+                "end": "Jingshan Park",
+                "mode": "walk",
+                "start_time": "11:45",
+                "end_time": "12:00",
+                "cost": 0.0,
+                "distance": 1.3106716025617982
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Jingshan Park",
+            "end": "Beijing Capital International Airport",
+            "start_time": "13:46",
+            "transport_type": "taxi"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Beijing Capital International Airport\", \"start\": \"Jingshan Park\", \"start_time\": \"13:46\", \"transport_type\": \"taxi\"})",
+            "text": "[{'start': 'Jingshan Park', 'end': 'Beijing Capital International Airport', 'mode': 'taxi', 'start_time': '13:46', 'end_time': '14:21', 'cost': 101.5, 'distance': 23.73}]",
+            "data": [
+              {
+                "start": "Jingshan Park",
+                "end": "Beijing Capital International Airport",
+                "mode": "taxi",
+                "start_time": "13:46",
+                "end_time": "14:21",
+                "cost": 101.5,
+                "distance": 23.73
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Jingshan Park",
+            "end": "Beijing Capital International Airport",
+            "start_time": "13:46",
+            "transport_type": "metro"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Beijing Capital International Airport\", \"start\": \"Jingshan Park\", \"start_time\": \"13:46\", \"transport_type\": \"metro\"})",
+            "text": "[{'start': 'Jingshan Park', 'end': 'Nanluoguxiang-Metro Station', 'mode': 'walk', 'start_time': '13:46', 'end_time': '13:48', 'cost': 0, 'distance': 0.22}, {'start': 'Nanluoguxiang-Metro Station', 'end': 'Terminal 2-Metro Station', 'mode': 'metro', 'start_time': '13:48', 'end_time': '14:33', 'cost': 6, 'distance': 22.81}, {'start': 'Terminal 2-Metro Station', 'end': 'Beijing Capital International Airport', 'mode': 'walk', 'start_time': '14:33', 'end_time': '14:43', 'cost': 0, 'distance': 0.88}]",
+            "data": [
+              {
+                "start": "Jingshan Park",
+                "end": "Nanluoguxiang-Metro Station",
+                "mode": "walk",
+                "start_time": "13:46",
+                "end_time": "13:48",
+                "cost": 0,
+                "distance": 0.22
+              },
+              {
+                "start": "Nanluoguxiang-Metro Station",
+                "end": "Terminal 2-Metro Station",
+                "mode": "metro",
+                "start_time": "13:48",
+                "end_time": "14:33",
+                "cost": 6,
+                "distance": 22.81
+              },
+              {
+                "start": "Terminal 2-Metro Station",
+                "end": "Beijing Capital International Airport",
+                "mode": "walk",
+                "start_time": "14:33",
+                "end_time": "14:43",
+                "cost": 0,
+                "distance": 0.88
+              }
+            ]
+          }
+        },
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Jingshan Park",
+            "end": "Beijing Capital International Airport",
+            "start_time": "13:46",
+            "transport_type": "walk"
+          },
+          "response": {
+            "success": true,
+            "command": "goto({\"city\": \"Beijing\", \"end\": \"Beijing Capital International Airport\", \"start\": \"Jingshan Park\", \"start_time\": \"13:46\", \"transport_type\": \"walk\"})",
+            "text": "[{'start': 'Jingshan Park', 'end': 'Beijing Capital International Airport', 'mode': 'walk', 'start_time': '13:46', 'end_time': '18:30', 'cost': 0.0, 'distance': 23.73420551016943}]",
+            "data": [
+              {
+                "start": "Jingshan Park",
+                "end": "Beijing Capital International Airport",
+                "mode": "walk",
+                "start_time": "13:46",
+                "end_time": "18:30",
+                "cost": 0.0,
+                "distance": 23.73420551016943
+              }
+            ]
+          }
+        }
+      ],
+      "request_count": 4
+    },
+    "started_at": "",
+    "finished_at": "2026-10-31T13:09:18.108107+00:00",
+    "duration_seconds": 318.1225679999916,
+    "wall_seconds": 318.71631008398253,
+    "resources": {
+      "limits": {
+        "feedback": 4,
+        "model_calls": 16,
+        "tokens": 500000,
+        "tools": 400,
+        "output_tokens_per_call": 10000
+      },
+      "model_calls": 13,
+      "returned_tokens": 219525,
+      "feedback_calls": 4,
+      "tool_calls": 299,
+      "exhausted": "feedback",
+      "tool_receipts": [
+        {
+          "index": 1,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 2,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 3,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 4,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 5,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 6,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 7,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 8,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 9,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 10,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 11,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 12,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 13,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 14,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 15,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 16,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 17,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 18,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 19,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 20,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 21,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 22,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 23,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 24,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 25,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 26,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 27,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 28,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 29,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 30,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 31,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 32,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 33,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 34,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 35,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 36,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 37,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 38,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 39,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 40,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 41,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 42,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 43,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 44,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 45,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 46,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 47,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 48,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 49,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 50,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 51,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 52,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 53,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 54,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 55,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 56,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 57,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 58,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 59,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 60,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 61,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 62,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 63,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 64,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 65,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 66,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 67,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 68,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 69,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 70,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 71,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 72,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 73,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 74,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 75,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 76,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 77,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 78,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 79,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 80,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 81,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 82,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 83,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 84,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 85,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 86,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 87,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 88,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 89,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 90,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 91,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Shanghai",
+            "end_city": "Beijing",
+            "intercity_type": "train",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 92,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 93,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 94,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 95,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 96,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Shanghai",
+            "end_city": "Beijing",
+            "intercity_type": "airplane",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 97,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Beijing",
+            "end_city": "Shanghai",
+            "intercity_type": "train",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 98,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 99,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 100,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 101,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 102,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 103,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Beijing",
+            "end_city": "Shanghai",
+            "intercity_type": "airplane",
+            "earliest_leave_time": "00:00"
+          }
+        },
+        {
+          "index": 104,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "北京",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 105,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 106,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 107,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 108,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 109,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 110,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 111,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 112,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 113,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 114,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 115,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 116,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 117,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 118,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 119,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 120,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 121,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 122,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 123,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 124,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 125,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 126,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 127,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 128,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 129,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 130,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 131,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 132,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 133,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 134,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "北京",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 135,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 136,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 137,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 138,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 139,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 140,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 141,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 142,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 143,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 144,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 145,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 146,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 147,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 148,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 149,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 150,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 151,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 152,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 153,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 154,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 155,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 156,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 157,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 158,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 159,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 160,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 161,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 162,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 163,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 164,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "北京",
+            "key": "name",
+            "op": "contains",
+            "value": ""
+          }
+        },
+        {
+          "index": 165,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 166,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 167,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 168,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 169,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 170,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 171,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 172,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 173,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 174,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 175,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 176,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 177,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 178,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 179,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 180,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 181,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 182,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 183,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 184,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 185,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 186,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 187,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 188,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 189,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 190,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 191,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 192,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 193,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 194,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "cuisine",
+            "op": "eq",
+            "value": "Hot pot"
+          }
+        },
+        {
+          "index": 195,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 196,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 197,
+          "name": "next_page",
+          "arguments": {}
+        },
+        {
+          "index": 198,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "contains",
+            "value": "日坛涮肉"
+          }
+        },
+        {
+          "index": 199,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "北京",
+            "key": "name",
+            "op": "contains",
+            "value": "日坛涮肉"
+          }
+        },
+        {
+          "index": 200,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "id",
+            "op": "eq",
+            "value": 153
+          }
+        },
+        {
+          "index": 201,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beijing Capital International Airport",
+            "end": "Ritan Park",
+            "start_time": "08:46",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 202,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beijing Capital International Airport",
+            "end": "Ritan Park",
+            "start_time": "08:46",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 203,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beijing Capital International Airport",
+            "end": "Ritan Park",
+            "start_time": "08:46",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 204,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Ritan Park",
+            "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "start_time": "11:18",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 205,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Ritan Park",
+            "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "start_time": "11:18",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 206,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Ritan Park",
+            "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "start_time": "11:18",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 207,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "end": "Chaoyang Park",
+            "start_time": "12:04",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 208,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "end": "Chaoyang Park",
+            "start_time": "12:04",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 209,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "end": "Chaoyang Park",
+            "start_time": "12:04",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 210,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Chaoyang Park",
+            "end": "Yifeng Restaurant (Gulou Branch)",
+            "start_time": "14:39",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 211,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Chaoyang Park",
+            "end": "Yifeng Restaurant (Gulou Branch)",
+            "start_time": "14:39",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 212,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Chaoyang Park",
+            "end": "Yifeng Restaurant (Gulou Branch)",
+            "start_time": "14:39",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 213,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Ritan Park",
+            "end": "Yifeng Restaurant (Gulou Branch)",
+            "start_time": "11:18",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 214,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Ritan Park",
+            "end": "Yifeng Restaurant (Gulou Branch)",
+            "start_time": "11:18",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 215,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Ritan Park",
+            "end": "Yifeng Restaurant (Gulou Branch)",
+            "start_time": "11:18",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 216,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Yifeng Restaurant (Gulou Branch)",
+            "end": "Chaoyang Park",
+            "start_time": "12:11",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 217,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Yifeng Restaurant (Gulou Branch)",
+            "end": "Chaoyang Park",
+            "start_time": "12:11",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 218,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Yifeng Restaurant (Gulou Branch)",
+            "end": "Chaoyang Park",
+            "start_time": "12:11",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 219,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Chaoyang Park",
+            "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "start_time": "14:53",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 220,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Chaoyang Park",
+            "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "start_time": "14:53",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 221,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Chaoyang Park",
+            "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "start_time": "14:53",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 222,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "end": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "start_time": "17:45",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 223,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "end": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "start_time": "17:45",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 224,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "end": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "start_time": "17:45",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 225,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "end": "Beihai Park",
+            "start_time": "08:00",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 226,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "end": "Beihai Park",
+            "start_time": "08:00",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 227,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "end": "Beihai Park",
+            "start_time": "08:00",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 228,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beihai Park",
+            "end": "Old Full Dumplings (Andingmen Branch)",
+            "start_time": "10:50",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 229,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beihai Park",
+            "end": "Old Full Dumplings (Andingmen Branch)",
+            "start_time": "10:50",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 230,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beihai Park",
+            "end": "Old Full Dumplings (Andingmen Branch)",
+            "start_time": "10:50",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 231,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Old Full Dumplings (Andingmen Branch)",
+            "end": "Jingshan Park",
+            "start_time": "11:45",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 232,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Old Full Dumplings (Andingmen Branch)",
+            "end": "Jingshan Park",
+            "start_time": "11:45",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 233,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Old Full Dumplings (Andingmen Branch)",
+            "end": "Jingshan Park",
+            "start_time": "11:45",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 234,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Jingshan Park",
+            "end": "Beijing Capital International Airport",
+            "start_time": "13:46",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 235,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Jingshan Park",
+            "end": "Beijing Capital International Airport",
+            "start_time": "13:46",
+            "transport_type": "metro"
+          }
+        },
+        {
+          "index": 236,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Jingshan Park",
+            "end": "Beijing Capital International Airport",
+            "start_time": "13:46",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 237,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Ritan Park"
+          }
+        },
+        {
+          "index": 238,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Yifeng Restaurant (Gulou Branch)"
+          }
+        },
+        {
+          "index": 239,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Chaoyang Park"
+          }
+        },
+        {
+          "index": 240,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)"
+          }
+        },
+        {
+          "index": 241,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)"
+          }
+        },
+        {
+          "index": 242,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Beihai Park"
+          }
+        },
+        {
+          "index": 243,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Old Full Dumplings (Andingmen Branch)"
+          }
+        },
+        {
+          "index": 244,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Jingshan Park"
+          }
+        },
+        {
+          "index": 245,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beijing Capital International Airport",
+            "end": "Ritan Park",
+            "start_time": "08:46",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 246,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Ritan Park",
+            "end": "Yifeng Restaurant (Gulou Branch)",
+            "start_time": "11:18",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 247,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Yifeng Restaurant (Gulou Branch)",
+            "end": "Chaoyang Park",
+            "start_time": "12:11",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 248,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Chaoyang Park",
+            "end": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "start_time": "14:53",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 249,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)",
+            "end": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "start_time": "17:45",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 250,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)",
+            "end": "Beihai Park",
+            "start_time": "08:00",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 251,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beihai Park",
+            "end": "Old Full Dumplings (Andingmen Branch)",
+            "start_time": "10:50",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 252,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Old Full Dumplings (Andingmen Branch)",
+            "end": "Jingshan Park",
+            "start_time": "11:45",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 253,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Jingshan Park",
+            "end": "Beijing Capital International Airport",
+            "start_time": "13:46",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 254,
+          "name": "intercity_validation_rows",
+          "arguments": {
+            "start_city": "Shanghai",
+            "end_city": "Beijing",
+            "type": "airplane"
+          }
+        },
+        {
+          "index": 255,
+          "name": "intercity_validation_rows",
+          "arguments": {
+            "start_city": "Beijing",
+            "end_city": "Shanghai",
+            "type": "airplane"
+          }
+        },
+        {
+          "index": 256,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Ritan Park"
+          }
+        },
+        {
+          "index": 257,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Yifeng Restaurant (Gulou Branch)"
+          }
+        },
+        {
+          "index": 258,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Chaoyang Park"
+          }
+        },
+        {
+          "index": 259,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)"
+          }
+        },
+        {
+          "index": 260,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)"
+          }
+        },
+        {
+          "index": 261,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Beihai Park"
+          }
+        },
+        {
+          "index": 262,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Old Full Dumplings (Andingmen Branch)"
+          }
+        },
+        {
+          "index": 263,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Jingshan Park"
+          }
+        },
+        {
+          "index": 264,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Ritan Park"
+          }
+        },
+        {
+          "index": 265,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Yifeng Restaurant (Gulou Branch)"
+          }
+        },
+        {
+          "index": 266,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Chaoyang Park"
+          }
+        },
+        {
+          "index": 267,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Xiaoxiang Pavilion (Sanlitun SOHO Branch)"
+          }
+        },
+        {
+          "index": 268,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Qiuguo Hotel Smart Choice (Beijing Chaoyang High-speed Railway Station Dongba Middle Road)"
+          }
+        },
+        {
+          "index": 269,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Beihai Park"
+          }
+        },
+        {
+          "index": 270,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Old Full Dumplings (Andingmen Branch)"
+          }
+        },
+        {
+          "index": 271,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "eq",
+            "value": "Jingshan Park"
+          }
+        },
+        {
+          "index": 272,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Shanghai",
+            "end_city": "Beijing",
+            "intercity_type": "train",
+            "earliest_leave_time": "06:00"
+          }
+        },
+        {
+          "index": 273,
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Beijing",
+            "end_city": "Shanghai",
+            "intercity_type": "train",
+            "earliest_leave_time": "16:00"
+          }
+        },
+        {
+          "index": 274,
+          "name": "restaurants_keys",
+          "arguments": {
+            "city": "Beijing"
+          }
+        },
+        {
+          "index": 275,
+          "name": "attractions_keys",
+          "arguments": {
+            "city": "Beijing"
+          }
+        },
+        {
+          "index": 276,
+          "name": "accommodations_keys",
+          "arguments": {
+            "city": "Beijing"
+          }
+        },
+        {
+          "index": 277,
+          "name": "restaurants_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "contains",
+            "value": "Ritan"
+          }
+        },
+        {
+          "index": 278,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "contains",
+            "value": "Ritan"
+          }
+        },
+        {
+          "index": 279,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "contains",
+            "value": "Gugong"
+          }
+        },
+        {
+          "index": 280,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "contains",
+            "value": "Palace"
+          }
+        },
+        {
+          "index": 281,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "contains",
+            "value": "Wall"
+          }
+        },
+        {
+          "index": 282,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "contains",
+            "value": "Summer"
+          }
+        },
+        {
+          "index": 283,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "contains",
+            "value": "Wangfujing"
+          }
+        },
+        {
+          "index": 284,
+          "name": "attractions_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "name",
+            "op": "contains",
+            "value": "Square"
+          }
+        },
+        {
+          "index": 285,
+          "name": "accommodations_select",
+          "arguments": {
+            "city": "Beijing",
+            "key": "price",
+            "op": "lt",
+            "value": 400
+          }
+        },
+        {
+          "index": 286,
+          "name": "restaurants_nearby",
+          "arguments": {
+            "city": "Beijing",
+            "point": "The Palace Museum",
+            "topk": 5
+          }
+        },
+        {
+          "index": 287,
+          "name": "accommodations_nearby",
+          "arguments": {
+            "city": "Beijing",
+            "point": "The Palace Museum",
+            "topk": 5
+          }
+        },
+        {
+          "index": 288,
+          "name": "restaurants_nearby",
+          "arguments": {
+            "city": "Beijing",
+            "point": "Ritan Park",
+            "topk": 5
+          }
+        },
+        {
+          "index": 289,
+          "name": "restaurants_cuisine",
+          "arguments": {
+            "city": "Beijing"
+          }
+        },
+        {
+          "index": 290,
+          "name": "restaurants_nearby",
+          "arguments": {
+            "city": "Beijing",
+            "point": "Guo Ji Yi Yuan Hotel",
+            "topk": 8
+          }
+        },
+        {
+          "index": 291,
+          "name": "restaurants_nearby",
+          "arguments": {
+            "city": "Beijing",
+            "point": "Ritan Shuan Rou (Ritan Park Branch)",
+            "topk": 5
+          }
+        },
+        {
+          "index": 292,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Beijing South Railway Station",
+            "end": "The Palace Museum",
+            "start_time": "11:40",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 293,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "The Palace Museum",
+            "end": "Yuebin Restaurant (Cuihua Hutong Branch)",
+            "start_time": "13:30",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 294,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Yuebin Restaurant (Cuihua Hutong Branch)",
+            "end": "Tiananmen Square",
+            "start_time": "14:30",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 295,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Tiananmen Square",
+            "end": "Four Seasons Minfu Roast Duck Restaurant (Wangfujing Dengshikou Branch)",
+            "start_time": "16:00",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 296,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Four Seasons Minfu Roast Duck Restaurant (Wangfujing Dengshikou Branch)",
+            "end": "Guo Ji Yi Yuan Hotel",
+            "start_time": "18:00",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 297,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Guo Ji Yi Yuan Hotel",
+            "end": "Ritan Park",
+            "start_time": "08:00",
+            "transport_type": "taxi"
+          }
+        },
+        {
+          "index": 298,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Ritan Park",
+            "end": "Ritan Shuan Rou (Ritan Park Branch)",
+            "start_time": "10:30",
+            "transport_type": "walk"
+          }
+        },
+        {
+          "index": 299,
+          "name": "goto",
+          "arguments": {
+            "city": "Beijing",
+            "start": "Ritan Shuan Rou (Ritan Park Branch)",
+            "end": "Beijing South Railway Station",
+            "start_time": "13:30",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "input_accounting": "conservative UTF-8 preflight; actual provider usage recorded; missing remote usage remains unknown"
+    }
+  },
+  "supervision": {
+    "returncode": 0,
+    "hard_timeout": false,
+    "cancelled": false,
+    "wall_seconds": 319.0920111670275
+  },
+  "ledger": {
+    "request_attempts": 13,
+    "completed_attempts": 13,
+    "pending_attempts": 0,
+    "observed_usage": {
+      "prompt_tokens": 194102,
+      "completion_tokens": 25423,
+      "total_tokens": 219525
+    },
+    "unobserved_billing_possible": false,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.1027122,
+      "upper": 0.1027122
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793451840.004213,
+        "attempt_id": "b197bee950024337a8cb632bb696b39f",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793451849.4865391,
+        "attempt_id": "b197bee950024337a8cb632bb696b39f",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 9.481725374993403,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-631dc103-7139-4db2-9c80-9e91ae1515bb",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 368,
+        "completion_tokens": 736,
+        "total_tokens": 1104,
+        "reasoning_tokens": 658
+      },
+      {
+        "kind": "start",
+        "time": 1793451849.674458,
+        "attempt_id": "f0353e978f854e589c15cbf445a4aa68",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793451935.996413,
+        "attempt_id": "f0353e978f854e589c15cbf445a4aa68",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 86.3214975829469,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-d6776007-4520-46b1-bfe1-5e34b51ef6be",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 10381,
+        "completion_tokens": 7098,
+        "total_tokens": 17479,
+        "reasoning_tokens": 6983
+      },
+      {
+        "kind": "start",
+        "time": 1793451936.0707798,
+        "attempt_id": "b8350c2e810b41469bc3345e5273a4d0",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793451976.395094,
+        "attempt_id": "b8350c2e810b41469bc3345e5273a4d0",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 40.32373316702433,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-cd60e42f-d8af-4f39-93e7-17e48cbb95ef",
+        "cached_prompt_tokens": 9216,
+        "prompt_tokens": 10530,
+        "completion_tokens": 3576,
+        "total_tokens": 14106,
+        "reasoning_tokens": 3461
+      },
+      {
+        "kind": "start",
+        "time": 1793451976.471704,
+        "attempt_id": "5d09f6e195bc446abdb09e56939d6258",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793452019.678333,
+        "attempt_id": "5d09f6e195bc446abdb09e56939d6258",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 43.20631741697434,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-e8dad60c-4edf-4ca5-85cf-f294cdeae59a",
+        "cached_prompt_tokens": 9216,
+        "prompt_tokens": 10703,
+        "completion_tokens": 3841,
+        "total_tokens": 14544,
+        "reasoning_tokens": 3726
+      },
+      {
+        "kind": "start",
+        "time": 1793452019.69771,
+        "attempt_id": "5fb85a8365c946b68e3609380674ee74",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793452024.7842581,
+        "attempt_id": "5fb85a8365c946b68e3609380674ee74",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 5.086365375027526,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-704ca3c1-31e0-4a44-9085-879ec9baaf5e",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 4307,
+        "completion_tokens": 377,
+        "total_tokens": 4684,
+        "reasoning_tokens": 136
+      },
+      {
+        "kind": "start",
+        "time": 1793452024.7910788,
+        "attempt_id": "13995984ed4842179d7db2c8ce7d4802",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793452028.653715,
+        "attempt_id": "13995984ed4842179d7db2c8ce7d4802",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 3.862143583013676,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-f0913a65-2258-4fe3-a147-a6611225924e",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 8273,
+        "completion_tokens": 221,
+        "total_tokens": 8494,
+        "reasoning_tokens": 27
+      },
+      {
+        "kind": "start",
+        "time": 1793452028.661689,
+        "attempt_id": "a316a9f091dc480aa20d7e79fada6f40",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793452035.9298692,
+        "attempt_id": "a316a9f091dc480aa20d7e79fada6f40",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 7.269150666019414,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-78f6e10c-9796-4a67-9c47-8d63a686161a",
+        "cached_prompt_tokens": 6912,
+        "prompt_tokens": 9588,
+        "completion_tokens": 356,
+        "total_tokens": 9944,
+        "reasoning_tokens": 34
+      },
+      {
+        "kind": "start",
+        "time": 1793452035.941053,
+        "attempt_id": "44a1e4854da547209f30eed2e09e4b53",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793452046.346035,
+        "attempt_id": "44a1e4854da547209f30eed2e09e4b53",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 10.406823125027586,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-cb41c512-b408-40bf-92a6-a66157efbed1",
+        "cached_prompt_tokens": 8448,
+        "prompt_tokens": 15984,
+        "completion_tokens": 694,
+        "total_tokens": 16678,
+        "reasoning_tokens": 571
+      },
+      {
+        "kind": "start",
+        "time": 1793452046.383596,
+        "attempt_id": "29f60edcd4dd462f97977ac1d1db3c39",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793452070.086626,
+        "attempt_id": "29f60edcd4dd462f97977ac1d1db3c39",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 23.70452779205516,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-fd654e37-a04f-43cb-9bf7-cf284eed5e3e",
+        "cached_prompt_tokens": 14592,
+        "prompt_tokens": 18869,
+        "completion_tokens": 1681,
+        "total_tokens": 20550,
+        "reasoning_tokens": 1538
+      },
+      {
+        "kind": "start",
+        "time": 1793452070.139317,
+        "attempt_id": "869b5ba9b96c4ca385c2d401c5370e2e",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793452082.0551522,
+        "attempt_id": "869b5ba9b96c4ca385c2d401c5370e2e",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 11.915606624970678,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-d1f636e7-8c35-4e2c-a3c0-4616b70aa1a7",
+        "cached_prompt_tokens": 3072,
+        "prompt_tokens": 21841,
+        "completion_tokens": 711,
+        "total_tokens": 22552,
+        "reasoning_tokens": 588
+      },
+      {
+        "kind": "start",
+        "time": 1793452082.1119459,
+        "attempt_id": "136893e0a9234d2d87ce0e0b03e6e1af",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793452105.185305,
+        "attempt_id": "136893e0a9234d2d87ce0e0b03e6e1af",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 23.07308191602351,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-d6bf5ab4-be46-4a67-9615-beb3f26a5fcd",
+        "cached_prompt_tokens": 20736,
+        "prompt_tokens": 25725,
+        "completion_tokens": 1828,
+        "total_tokens": 27553,
+        "reasoning_tokens": 1085
+      },
+      {
+        "kind": "start",
+        "time": 1793452105.191815,
+        "attempt_id": "01f6ea31bcee44338de5aebca3222672",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793452136.048227,
+        "attempt_id": "01f6ea31bcee44338de5aebca3222672",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 30.85594591597328,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-cda03863-36d8-48a3-83cd-a53fe4d0132f",
+        "cached_prompt_tokens": 24576,
+        "prompt_tokens": 28385,
+        "completion_tokens": 2521,
+        "total_tokens": 30906,
+        "reasoning_tokens": 1850
+      },
+      {
+        "kind": "start",
+        "time": 1793452136.053609,
+        "attempt_id": "c78728f3dd5449dca431fc232107f368",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793452158.1072268,
+        "attempt_id": "c78728f3dd5449dca431fc232107f368",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 22.05330866697477,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-62139162-52af-4afa-87f1-4edc7b4753db",
+        "cached_prompt_tokens": 26880,
+        "prompt_tokens": 29148,
+        "completion_tokens": 1783,
+        "total_tokens": 30931,
+        "reasoning_tokens": 1654
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 4,
+    "model_calls": 13,
+    "returned_tokens": 219525,
+    "tool_calls": 299,
+    "exhausted": "feedback"
+  }
+}

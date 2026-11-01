@@ -57,15 +57,46 @@ class LocalWorkspaceTest(unittest.TestCase):
             with self.assertRaises(urllib.error.HTTPError) as failure:self.request('/api/jobs',{'command':'plan'},headers)
             self.assertEqual(failure.exception.code,403)
         self.assertFalse(self.jobs.items)
+    def test_bundled_client_has_a_live_session_and_loadable_script(self):
+        with self.request('/') as response:page=response.read().decode()
+        token=re.search('name="trippilot-session" content="([^"]+)"',page).group(1)
+        self.assertNotEqual(token,'__SESSION_TOKEN__');self.assertGreater(len(token),20)
+        script=re.search(r'src="(/assets/[^"]+\.js)"',page).group(1)
+        with self.request(script) as response:
+            self.assertIn('javascript',response.headers.get('Content-Type'))
+            self.assertGreater(len(response.read()),1000)
+
+    def test_asset_path_cannot_escape_into_application_source(self):
+        for path in ('/assets/%2e%2e/server.py','/assets/%2fetc/passwd','/assets/%00'):
+            with self.assertRaises(urllib.error.HTTPError) as failure:self.request(path)
+            self.assertEqual(failure.exception.code,404)
+
+    def test_foreign_origin_cannot_read_bundled_assets(self):
+        with self.request('/') as response:page=response.read().decode()
+        script=re.search(r'src="(/assets/[^"]+\.js)"',page).group(1)
+        with self.assertRaises(urllib.error.HTTPError) as failure:self.request(script,headers={'Origin':'https://untrusted.example'})
+        self.assertEqual(failure.exception.code,403)
+
+    def test_unrequested_worker_exit_is_not_disguised_as_cancellation(self):
+        with self.request('/') as response:page=response.read().decode()
+        token=re.search('name="trippilot-session" content="([^"]+)"',page).group(1)
+        process=MagicMock();process.poll.return_value=1
+        with patch('trippilot.web.server.subprocess.Popen',return_value=process):
+            with self.request('/api/jobs',{'command':'plan','request':'去公园'},{'X-TripPilot-Session':token}) as response:key=json.load(response)['id']
+            with self.request('/api/jobs/'+key) as response:self.assertEqual(json.load(response)['status'],'worker_error')
+
     def test_valid_session_creates_and_cancels_only_its_job(self):
         with self.request('/') as response:page=response.read().decode()
-        token=re.search("const session='([^']+)'",page).group(1)
+        token=re.search('name="trippilot-session" content="([^"]+)"',page).group(1)
         process=MagicMock();process.poll.return_value=None
         with patch('trippilot.web.server.subprocess.Popen',return_value=process):
             with self.request('/api/jobs',{'command':'plan','request':'去公园'}, {'X-TripPilot-Session':token}) as response:key=json.load(response)['id']
             with self.request('/api/jobs/'+key+'/cancel',{}, {'X-TripPilot-Session':token}) as response:self.assertEqual(json.load(response)['status'],'cancelling')
             process.send_signal.assert_called_once()
             process.poll.return_value=0
+            with self.request('/api/jobs/'+key) as response:self.assertEqual(json.load(response)['status'],'cancelled')
+            restored=type(self.jobs)(self.directory.name)
+            self.assertEqual(restored.get(key)['status'],'cancelled')
 
 
 if __name__=='__main__':unittest.main()

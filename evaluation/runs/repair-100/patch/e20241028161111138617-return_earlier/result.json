@@ -1,0 +1,860 @@
+{
+  "task_uid": "e20241028161111138617",
+  "method": "patch",
+  "model": "qwen3.8-reasoner",
+  "terminal_state": "checked_ok",
+  "plan": {
+    "people_number": 3,
+    "start_city": "Wuhan",
+    "target_city": "Beijing",
+    "itinerary": [
+      {
+        "day": 1,
+        "activities": [
+          {
+            "type": "airplane",
+            "start": "Wuhan Tianhe International Airport",
+            "end": "Beijing Daxing International Airport",
+            "start_time": "03:48",
+            "end_time": "05:07",
+            "price": 504.3,
+            "cost": 1512.9,
+            "tickets": 3,
+            "transports": [],
+            "FlightID": "FL576"
+          },
+          {
+            "type": "attraction",
+            "position": "Old Beijing Hutong Tour",
+            "price": 0.0,
+            "cost": 0.0,
+            "tickets": 3,
+            "start_time": "07:00",
+            "end_time": "08:00",
+            "transports": [
+              {
+                "start": "Beijing Daxing International Airport",
+                "end": "Old Beijing Hutong Tour",
+                "mode": "taxi",
+                "start_time": "05:07",
+                "end_time": "06:19",
+                "cost": 213.13,
+                "distance": 48.54,
+                "price": 213.13,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Shichahai",
+            "price": 0.0,
+            "cost": 0.0,
+            "tickets": 3,
+            "start_time": "08:01",
+            "end_time": "09:31",
+            "transports": [
+              {
+                "start": "Old Beijing Hutong Tour",
+                "end": "Shichahai",
+                "mode": "taxi",
+                "start_time": "08:00",
+                "end_time": "08:01",
+                "cost": 11.0,
+                "distance": 1.0,
+                "price": 11.0,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "position": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)",
+            "price": 16.0,
+            "cost": 48.0,
+            "start_time": "11:00",
+            "end_time": "11:45",
+            "transports": [
+              {
+                "start": "Shichahai",
+                "end": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)",
+                "mode": "taxi",
+                "start_time": "09:31",
+                "end_time": "09:32",
+                "cost": 11.0,
+                "distance": 1.27,
+                "price": 11.0,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Tiananmen Square",
+            "price": 0.0,
+            "cost": 0.0,
+            "tickets": 3,
+            "start_time": "11:50",
+            "end_time": "12:20",
+            "transports": [
+              {
+                "start": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)",
+                "end": "Tiananmen Square",
+                "mode": "taxi",
+                "start_time": "11:45",
+                "end_time": "11:50",
+                "cost": 16.71,
+                "distance": 3.43,
+                "price": 16.71,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "airplane",
+            "start": "Beijing Daxing International Airport",
+            "end": "Wuhan Tianhe International Airport",
+            "start_time": "22:32",
+            "end_time": "23:51",
+            "price": 534.69,
+            "cost": 1604.07,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Tiananmen Square",
+                "end": "Beijing Daxing International Airport",
+                "mode": "taxi",
+                "start_time": "12:20",
+                "end_time": "13:27",
+                "cost": 198.0,
+                "distance": 45.18,
+                "price": 198.0,
+                "cars": 1
+              }
+            ],
+            "FlightID": "FL147"
+          }
+        ]
+      }
+    ]
+  },
+  "steps": [],
+  "usage": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "checker": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours"
+    ]
+  },
+  "error": null,
+  "metadata": {
+    "policy": "patch",
+    "fallback": false,
+    "usage_complete": true,
+    "source_revision": "dcccb2382984cdc6916c019713c34e77bc0e7bc886c3b322828c215409ea6520",
+    "budget_steps": 16,
+    "budget_seconds": 240.0,
+    "tool_trace": [
+      {
+        "name": "intercity_transport_select",
+        "arguments": {
+          "start_city": "Beijing",
+          "end_city": "Wuhan",
+          "intercity_type": "airplane",
+          "earliest_leave_time": "12:20"
+        },
+        "response": {
+          "success": true,
+          "command": "intercity_transport_select({\"earliest_leave_time\": \"12:20\", \"end_city\": \"Wuhan\", \"intercity_type\": \"airplane\", \"start_city\": \"Beijing\"})",
+          "text": "['FlightID' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['FL144' 'Beijing Capital International Airport'\n 'Wuhan Tianhe International Airport' '19:50' '21:09' 1.32 571.63]\n['FL142' 'Beijing Capital International Airport'\n 'Wuhan Tianhe International Airport' '21:18' '22:37' 1.32 568.19]\n['FL149' 'Beijing Daxing International Airport'\n 'Wuhan Tianhe International Airport' '22:15' '23:34' 1.32 563.46]\n['FL147' 'Beijing Daxing International Airport'\n 'Wuhan Tianhe International Airport' '22:32' '23:51' 1.32 534.69]\nPage/Total: 1/1",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "FlightID",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "FlightID": "FL144",
+                "From": "Beijing Capital International Airport",
+                "To": "Wuhan Tianhe International Airport",
+                "BeginTime": "19:50",
+                "EndTime": "21:09",
+                "Duration": 1.32,
+                "Cost": 571.63
+              },
+              {
+                "FlightID": "FL142",
+                "From": "Beijing Capital International Airport",
+                "To": "Wuhan Tianhe International Airport",
+                "BeginTime": "21:18",
+                "EndTime": "22:37",
+                "Duration": 1.32,
+                "Cost": 568.19
+              },
+              {
+                "FlightID": "FL149",
+                "From": "Beijing Daxing International Airport",
+                "To": "Wuhan Tianhe International Airport",
+                "BeginTime": "22:15",
+                "EndTime": "23:34",
+                "Duration": 1.32,
+                "Cost": 563.46
+              },
+              {
+                "FlightID": "FL147",
+                "From": "Beijing Daxing International Airport",
+                "To": "Wuhan Tianhe International Airport",
+                "BeginTime": "22:32",
+                "EndTime": "23:51",
+                "Duration": 1.32,
+                "Cost": 534.69
+              }
+            ],
+            "row_count": 4,
+            "returned_rows": 4,
+            "page": 1,
+            "pages": 1
+          }
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Beijing",
+          "start": "Tiananmen Square",
+          "end": "Beijing Capital International Airport",
+          "start_time": "12:20",
+          "transport_type": "taxi"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Beijing\", \"end\": \"Beijing Capital International Airport\", \"start\": \"Tiananmen Square\", \"start_time\": \"12:20\", \"transport_type\": \"taxi\"})",
+          "text": "[{'start': 'Tiananmen Square', 'end': 'Beijing Capital International Airport', 'mode': 'taxi', 'start_time': '12:20', 'end_time': '12:58', 'cost': 109.14, 'distance': 25.43}]",
+          "data": [
+            {
+              "start": "Tiananmen Square",
+              "end": "Beijing Capital International Airport",
+              "mode": "taxi",
+              "start_time": "12:20",
+              "end_time": "12:58",
+              "cost": 109.14,
+              "distance": 25.43
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Beijing",
+          "start": "Tiananmen Square",
+          "end": "Beijing Daxing International Airport",
+          "start_time": "12:20",
+          "transport_type": "taxi"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Beijing\", \"end\": \"Beijing Daxing International Airport\", \"start\": \"Tiananmen Square\", \"start_time\": \"12:20\", \"transport_type\": \"taxi\"})",
+          "text": "[{'start': 'Tiananmen Square', 'end': 'Beijing Daxing International Airport', 'mode': 'taxi', 'start_time': '12:20', 'end_time': '13:27', 'cost': 198.0, 'distance': 45.18}]",
+          "data": [
+            {
+              "start": "Tiananmen Square",
+              "end": "Beijing Daxing International Airport",
+              "mode": "taxi",
+              "start_time": "12:20",
+              "end_time": "13:27",
+              "cost": 198.0,
+              "distance": 45.18
+            }
+          ]
+        }
+      }
+    ],
+    "candidates": 4,
+    "rejected_proposals": [],
+    "selected_candidate": "c3",
+    "edits": [
+      {
+        "op": "remove",
+        "id": "d1:a6"
+      },
+      {
+        "op": "append",
+        "day": 1,
+        "value": {
+          "type": "airplane",
+          "start": "Beijing Daxing International Airport",
+          "end": "Wuhan Tianhe International Airport",
+          "start_time": "22:32",
+          "end_time": "23:51",
+          "price": 534.69,
+          "cost": 1604.07,
+          "tickets": 3,
+          "transports": [
+            {
+              "start": "Tiananmen Square",
+              "end": "Beijing Daxing International Airport",
+              "mode": "taxi",
+              "start_time": "12:20",
+              "end_time": "13:27",
+              "cost": 198.0,
+              "distance": 45.18,
+              "price": 198.0,
+              "cars": 1
+            }
+          ],
+          "FlightID": "FL147"
+        }
+      }
+    ],
+    "edit_scope": [
+      "d1:a6",
+      "d1:append",
+      "d2:a1",
+      "d2:a2",
+      "d2:a3",
+      "d2:a4",
+      "d2:a5"
+    ],
+    "preservation": {
+      "unchanged": 5,
+      "removed_or_modified": 6,
+      "added_or_modified": 1
+    },
+    "commit_revision": "ea27b522c52ee96a6f70b0cd99f97ebcb64f87cfa5a55167c8ff5bc1d368a92a",
+    "atomic_commit": true,
+    "request_count": 0,
+    "retry_count": 0,
+    "request_latency_seconds": 0
+  },
+  "started_at": "2026-11-01T00:38:40.710437+00:00",
+  "finished_at": "2026-11-01T00:38:41.034602+00:00",
+  "duration_seconds": 0.3241715410258621,
+  "wall_seconds": 0.3244920000433922,
+  "resources": {
+    "limits": {
+      "feedback": 4,
+      "model_calls": 16,
+      "tokens": 500000,
+      "tools": 400,
+      "output_tokens_per_call": 10000
+    },
+    "model_calls": 0,
+    "returned_tokens": 0,
+    "feedback_calls": 0,
+    "tool_calls": 15,
+    "exhausted": "",
+    "tool_receipts": [
+      {
+        "index": 1,
+        "name": "intercity_transport_select",
+        "arguments": {
+          "start_city": "Beijing",
+          "end_city": "Wuhan",
+          "intercity_type": "airplane",
+          "earliest_leave_time": "12:20"
+        }
+      },
+      {
+        "index": 2,
+        "name": "goto",
+        "arguments": {
+          "city": "Beijing",
+          "start": "Tiananmen Square",
+          "end": "Beijing Capital International Airport",
+          "start_time": "12:20",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 3,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Beijing",
+          "key": "name",
+          "op": "eq",
+          "value": "Old Beijing Hutong Tour"
+        }
+      },
+      {
+        "index": 4,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Beijing",
+          "key": "name",
+          "op": "eq",
+          "value": "Shichahai"
+        }
+      },
+      {
+        "index": 5,
+        "name": "restaurants_select",
+        "arguments": {
+          "city": "Beijing",
+          "key": "name",
+          "op": "eq",
+          "value": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)"
+        }
+      },
+      {
+        "index": 6,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Beijing",
+          "key": "name",
+          "op": "eq",
+          "value": "Tiananmen Square"
+        }
+      },
+      {
+        "index": 7,
+        "name": "goto",
+        "arguments": {
+          "city": "Beijing",
+          "start": "Beijing Daxing International Airport",
+          "end": "Old Beijing Hutong Tour",
+          "start_time": "05:07",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 8,
+        "name": "goto",
+        "arguments": {
+          "city": "Beijing",
+          "start": "Old Beijing Hutong Tour",
+          "end": "Shichahai",
+          "start_time": "08:00",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 9,
+        "name": "goto",
+        "arguments": {
+          "city": "Beijing",
+          "start": "Shichahai",
+          "end": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)",
+          "start_time": "09:31",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 10,
+        "name": "goto",
+        "arguments": {
+          "city": "Beijing",
+          "start": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)",
+          "end": "Tiananmen Square",
+          "start_time": "11:45",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 11,
+        "name": "goto",
+        "arguments": {
+          "city": "Beijing",
+          "start": "Tiananmen Square",
+          "end": "Beijing Capital International Airport",
+          "start_time": "12:20",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 12,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Wuhan",
+          "end_city": "Beijing",
+          "type": "airplane"
+        }
+      },
+      {
+        "index": 13,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Beijing",
+          "end_city": "Wuhan",
+          "type": "airplane"
+        }
+      },
+      {
+        "index": 14,
+        "name": "goto",
+        "arguments": {
+          "city": "Beijing",
+          "start": "Tiananmen Square",
+          "end": "Beijing Daxing International Airport",
+          "start_time": "12:20",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 15,
+        "name": "goto",
+        "arguments": {
+          "city": "Beijing",
+          "start": "Tiananmen Square",
+          "end": "Beijing Daxing International Airport",
+          "start_time": "12:20",
+          "transport_type": "taxi"
+        }
+      }
+    ],
+    "input_accounting": "conservative UTF-8 preflight; actual provider usage recorded; missing remote usage remains unknown"
+  },
+  "clarification": {
+    "status": "ready",
+    "base_revision": "dcccb2382984cdc6916c019713c34e77bc0e7bc886c3b322828c215409ea6520",
+    "task": {
+      "uid": "e20241028161111138617",
+      "tag": "medium",
+      "start_city": "武汉",
+      "target_city": "北京",
+      "days": 2,
+      "people_number": 3,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置武汉。我们三个人计划去北京玩两天，预算6100元，想去人文景观景点，开两间双床房。请给我一个旅行规划。\n用户已明确确认：本次一日修订取消住宿、酒店设施、房型和房间数要求，其它需求保持。",
+      "nature_language_en": "Current location: Wuhan. Three of us are planning to visit Beijing for two days with a budget of 6,100 RMB. We want to visit cultural and historical attractions and book two twin rooms. Please provide me with a travel plan.\nUser explicitly confirmed: cancel all lodging, hotel, room-type and room-count requirements for this one-day revision. All non-lodging requirements remain."
+    },
+    "seed_plan": {
+      "people_number": 3,
+      "start_city": "Wuhan",
+      "target_city": "Beijing",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "airplane",
+              "start": "Wuhan Tianhe International Airport",
+              "end": "Beijing Daxing International Airport",
+              "start_time": "03:48",
+              "end_time": "05:07",
+              "price": 504.3,
+              "cost": 1512.9,
+              "tickets": 3,
+              "transports": [],
+              "FlightID": "FL576"
+            },
+            {
+              "type": "attraction",
+              "position": "Old Beijing Hutong Tour",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "07:00",
+              "end_time": "08:00",
+              "transports": [
+                {
+                  "start": "Beijing Daxing International Airport",
+                  "end": "Old Beijing Hutong Tour",
+                  "mode": "taxi",
+                  "start_time": "05:07",
+                  "end_time": "06:19",
+                  "cost": 213.13,
+                  "distance": 48.54,
+                  "price": 213.13,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Shichahai",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "08:01",
+              "end_time": "09:31",
+              "transports": [
+                {
+                  "start": "Old Beijing Hutong Tour",
+                  "end": "Shichahai",
+                  "mode": "taxi",
+                  "start_time": "08:00",
+                  "end_time": "08:01",
+                  "cost": 11.0,
+                  "distance": 1.0,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)",
+              "price": 16.0,
+              "cost": 48.0,
+              "start_time": "11:00",
+              "end_time": "11:45",
+              "transports": [
+                {
+                  "start": "Shichahai",
+                  "end": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)",
+                  "mode": "taxi",
+                  "start_time": "09:31",
+                  "end_time": "09:32",
+                  "cost": 11.0,
+                  "distance": 1.27,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Tiananmen Square",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "11:50",
+              "end_time": "12:20",
+              "transports": [
+                {
+                  "start": "Tianze Xiang Drum Tower Steamed Bun (Drum Tower Branch)",
+                  "end": "Tiananmen Square",
+                  "mode": "taxi",
+                  "start_time": "11:45",
+                  "end_time": "11:50",
+                  "cost": 16.71,
+                  "distance": 3.43,
+                  "price": 16.71,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "Guantong Jianhui Hotel",
+              "price": 428.0,
+              "cost": 856.0,
+              "rooms": 2,
+              "room_type": 2,
+              "start_time": "18:00",
+              "end_time": "23:59",
+              "transports": [
+                {
+                  "start": "Tiananmen Square",
+                  "end": "Guantong Jianhui Hotel",
+                  "mode": "taxi",
+                  "start_time": "12:20",
+                  "end_time": "12:29",
+                  "cost": 25.89,
+                  "distance": 6.05,
+                  "price": 25.89,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "attraction",
+              "position": "Great Hall of the People",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "09:00",
+              "end_time": "09:30",
+              "transports": [
+                {
+                  "start": "Guantong Jianhui Hotel",
+                  "end": "Great Hall of the People",
+                  "mode": "taxi",
+                  "start_time": "08:00",
+                  "end_time": "08:08",
+                  "cost": 25.3,
+                  "distance": 5.89,
+                  "price": 25.3,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "National Centre for the Performing Arts",
+              "price": 27.0,
+              "cost": 81.0,
+              "tickets": 3,
+              "start_time": "09:30",
+              "end_time": "10:30",
+              "transports": [
+                {
+                  "start": "Great Hall of the People",
+                  "end": "National Centre for the Performing Arts",
+                  "mode": "taxi",
+                  "start_time": "09:30",
+                  "end_time": "09:30",
+                  "cost": 11.0,
+                  "distance": 0.34,
+                  "price": 11.0,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Old Full Dumplings (Andingmen Branch)",
+              "price": 66.0,
+              "cost": 198.0,
+              "start_time": "11:00",
+              "end_time": "11:45",
+              "transports": [
+                {
+                  "start": "National Centre for the Performing Arts",
+                  "end": "Old Full Dumplings (Andingmen Branch)",
+                  "mode": "taxi",
+                  "start_time": "10:30",
+                  "end_time": "10:35",
+                  "cost": 17.63,
+                  "distance": 3.69,
+                  "price": 17.63,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Eight Great Lanes",
+              "price": 0.0,
+              "cost": 0.0,
+              "tickets": 3,
+              "start_time": "11:52",
+              "end_time": "13:22",
+              "transports": [
+                {
+                  "start": "Old Full Dumplings (Andingmen Branch)",
+                  "end": "Eight Great Lanes",
+                  "mode": "taxi",
+                  "start_time": "11:45",
+                  "end_time": "11:52",
+                  "cost": 22.12,
+                  "distance": 4.98,
+                  "price": 22.12,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "airplane",
+              "start": "Beijing Capital International Airport",
+              "end": "Wuhan Tianhe International Airport",
+              "start_time": "21:18",
+              "end_time": "22:37",
+              "price": 568.19,
+              "cost": 1704.57,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Eight Great Lanes",
+                  "end": "Beijing Capital International Airport",
+                  "mode": "taxi",
+                  "start_time": "13:22",
+                  "end_time": "14:01",
+                  "cost": 114.65,
+                  "distance": 26.66,
+                  "price": 114.65,
+                  "cars": 1
+                }
+              ],
+              "FlightID": "FL142"
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "kind": "return_earlier",
+      "day": null,
+      "new_days": 1,
+      "new_budget": null,
+      "target": null,
+      "description": ""
+    },
+    "question": "行程改为当天返回后，原来的住宿要求如何处理？",
+    "choices": {
+      "cancel_overnight": "取消住宿要求，继续安排一日行程",
+      "keep_original": "保留原住宿和原行程，暂不执行提前返程"
+    },
+    "answer": "cancel_overnight",
+    "explicit_lodging_waiver": true,
+    "state_revision": "506feefff2a3ea0d614c3d493c7ce0c8c8482102582545f25de08fce233ba8bc"
+  },
+  "event": {
+    "kind": "return_earlier",
+    "new_days": 1,
+    "description": ""
+  },
+  "event_check": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours"
+    ]
+  }
+}

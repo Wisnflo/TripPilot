@@ -17,3 +17,7 @@
 - Changes: original query CSVs are retained; TripPilot derives allowlisted public JSON inputs and separate offline annotation files. Sandbox records retain the source fields; bilingual names are linked through public IDs in TripPilot's adapter.
 
 Dataset provenance appears in `data/manifests/`; the complete published file inventory appears in `evaluation/checksums.json`. Dataset licenses apply independently of the MIT license for TripPilot code. Python dependencies retain their respective licenses.
+
+## Web interface
+
+React and Phosphor Icons use MIT licenses; Noto Sans SC uses the SIL Open Font License. The progress indicator uses React Circular Progressbar under MIT. Retained notices are in [frontend/licenses](frontend/licenses/). The decorative West Lake panorama was generated for TripPilot; it is not a live destination photograph or a source of travel facts.

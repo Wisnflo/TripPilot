@@ -3,6 +3,8 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import json
 import csv
+import mimetypes
+from urllib.parse import unquote,urlsplit
 import os
 import re
 import secrets
@@ -29,6 +31,9 @@ def view(record,before=None,task=None,replay=False):
     plan=result.get('plan') or trajectory.get('plan')
     metadata=trajectory.get('metadata',{})
     ledger=record.get('ledger',{})
+    preferences=(metadata.get('predicted_requirements') or {}).get('unsupported',[])
+    if not isinstance(preferences,list):preferences=[]
+    preferences=list(dict.fromkeys(value.strip() for value in preferences if isinstance(value,str) and value.strip()))
     return {'status':result.get('status') or result.get('terminal_state'),
             'task':result.get('task') or task,'plan':plan,'before':before,'replay':replay,
             'question':result.get('state',{}).get('question'),'choices':result.get('state',{}).get('choices'),
@@ -37,6 +42,7 @@ def view(record,before=None,task=None,replay=False):
             'tokens':ledger.get('observed_usage',{}).get('total_tokens'),
             'billing_unknown':ledger.get('unobserved_billing_possible',False),
             'violations':(trajectory.get('checker') or {}).get('violations',[]),
+            'unverified_preferences':preferences,
             'sources':metadata.get('fact_catalog',{}),'tools':metadata.get('tool_trace',[])[:80],
             'resources':result.get('resources') or record.get('resources',{}),
             'requests':ledger.get('events',[])[-80:]}
@@ -94,7 +100,7 @@ class Jobs:
         self.items={};self.lock=threading.Lock()
         for folder in self.root.iterdir():
             meta=load(folder/'meta.json') if folder.is_dir() else None
-            if meta:self.items[folder.name]={'folder':folder,'process':None,'before':meta.get('before'),'task':meta.get('task'),'started':time.monotonic()}
+            if meta:self.items[folder.name]={'folder':folder,'process':None,'before':meta.get('before'),'task':meta.get('task'),'started':time.monotonic(),'cancel_requested':bool(meta.get('cancel_requested'))}
 
     def create(self,data):
         if not isinstance(data,dict):raise ValueError('请求必须是一个对象')
@@ -132,13 +138,18 @@ class Jobs:
         item=self.items[key];folder=item['folder']/'run';record=load(folder/'record.json')
         if record:return dict(view(record,item['before'],item['task']),id=key)
         running=item['process'] is not None and item['process'].poll() is None
-        return {'id':key,'status':'running' if running else 'worker_error','seconds':time.monotonic()-item['started'],
+        cancelled=bool(item.get('cancel_requested')) and not running
+        return {'id':key,'status':'running' if running else 'cancelled' if cancelled else 'worker_error','seconds':time.monotonic()-item['started'],
                 'resources':read_resources(folder/'resources.jsonl'),'requests':[],
-                'message':None if running else '未生成行程，请检查模型配置或稍后重试。'}
+                'message':None if running else '已取消本次操作。' if cancelled else '未生成行程，请检查模型配置或稍后重试。'}
 
     def cancel(self,key):
         item=self.items.get(key)
-        if item and item['process'] is not None and item['process'].poll() is None:item['process'].send_signal(signal.SIGINT)
+        if item and item['process'] is not None and item['process'].poll() is None:
+            item['cancel_requested']=True
+            metadata=load(item['folder']/'meta.json',{});metadata['cancel_requested']=True
+            temporary=item['folder']/'meta.tmp';temporary.write_text(json.dumps(metadata,ensure_ascii=False));temporary.replace(item['folder']/'meta.json')
+            item['process'].send_signal(signal.SIGINT)
 
     def close(self):
         for key in self.items:self.cancel(key)
@@ -167,6 +178,12 @@ def application(directory):
             if self.path=='/':
                 page=(ROOT/'src/trippilot/web/index.html').read_text().replace('__SESSION_TOKEN__',token)
                 self.reply(200,page.encode(),'text/html');return
+            if self.path.startswith('/assets/'):
+                directory=(ROOT/'src/trippilot/web/assets').resolve()
+                try:path=(directory/unquote(urlsplit(self.path).path.removeprefix('/assets/'))).resolve()
+                except (ValueError,OSError):self.reply(404,{'error':'未找到'});return
+                if not path.is_relative_to(directory) or not path.is_file():self.reply(404,{'error':'未找到'});return
+                self.reply(200,path.read_bytes(),mimetypes.guess_type(path.name)[0] or 'application/octet-stream');return
             if self.path=='/api/examples':self.reply(200,demo);return
             if self.path=='/api/config':self.reply(200,{'model':os.environ.get('CHINATRAVEL_OPENAI_MODEL','qwen3.8-reasoner'),'names':labels,'ready':bool(os.environ.get('CHINATRAVEL_OPENAI_API_KEY') or os.environ.get('OPENAI_API_KEY'))});return
             if self.path=='/api/jobs':self.reply(200,{'jobs':list(jobs.items)});return

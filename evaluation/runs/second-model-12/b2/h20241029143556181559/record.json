@@ -1,0 +1,98 @@
+{
+  "job": {
+    "uid": "h20241029143556181559",
+    "split": "human",
+    "model": "glm-5.3-flash",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "b2",
+    "kind": "static",
+    "task": {
+      "days": 3,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "[当前位置武汉,目标位置成都,旅行人数4,旅行天数3] 我想四个人一块从武汉去成都玩三天，主要想去景色比较好的地方，还想去成都的小酒馆喝酒，住宿尽可能便宜一些",
+      "nature_language_en": "[Current location: Wuhan, Destination: Chengdu, Number of travelers: 4, Number of travel days: 3] I want four people to travel from Wuhan to Chengdu for three days. We mainly want to visit places with beautiful scenery and also go to small pubs in Chengdu for drinks. We would like the accommodation to be as cheap as possible.",
+      "people_number": 4,
+      "start_city": "武汉",
+      "tag": "human",
+      "target_city": "成都",
+      "uid": "h20241029143556181559"
+    }
+  },
+  "result": {
+    "task_uid": "h20241029143556181559",
+    "method": "b2",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.0234295829432
+  },
+  "ledger": {
+    "request_attempts": 2,
+    "completed_attempts": 1,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793501679.8492339,
+        "attempt_id": "e1e79d3ab61e49dea5be2f3ec97af0b3",
+        "model": "glm-5.3-flash",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793501859.896147,
+        "attempt_id": "e1e79d3ab61e49dea5be2f3ec97af0b3",
+        "model": "glm-5.3-flash",
+        "elapsed": 180.04651770798955,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "backoff",
+        "time": 1793501859.898054,
+        "attempt_id": "e1e79d3ab61e49dea5be2f3ec97af0b3",
+        "model": "glm-5.3-flash",
+        "seconds": 2.0,
+        "reason": "transient"
+      },
+      {
+        "kind": "start",
+        "time": 1793501861.8991418,
+        "attempt_id": "8037ee3577c14d35a78a4b8081959c52",
+        "model": "glm-5.3-flash",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 1,
+    "returned_tokens": 0,
+    "tool_calls": 184,
+    "exhausted": ""
+  }
+}

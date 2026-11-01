@@ -1,0 +1,132 @@
+{
+  "job": {
+    "uid": "m20241028164920226613",
+    "split": "easy",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "structured",
+    "kind": "static",
+    "task": {
+      "days": 3,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置深圳。我和朋友两个人想去杭州玩3天，想吃乔村二十八道，钱江世纪城附近，请给我们一个旅行规划。",
+      "nature_language_en": "Current location: Shenzhen. My friend and I want to visit Hangzhou for 3 days. We want to eat at Qiaocun 28 Dao and visit the area near Qianjiang Century City. Please provide us with a travel plan.",
+      "people_number": 2,
+      "start_city": "深圳",
+      "tag": "easy",
+      "target_city": "杭州",
+      "uid": "m20241028164920226613"
+    }
+  },
+  "result": {
+    "task_uid": "m20241028164920226613",
+    "method": "structured",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.03427266696235
+  },
+  "ledger": {
+    "request_attempts": 4,
+    "completed_attempts": 3,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 10299,
+      "completion_tokens": 8583,
+      "total_tokens": 18882
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.018882,
+      "upper": 0.018882
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793438525.980293,
+        "attempt_id": "5aaa4757e61c45f68d0026e5e46bfd11",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793438543.775142,
+        "attempt_id": "5aaa4757e61c45f68d0026e5e46bfd11",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 17.79435616696719,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-a4e7538f-2815-4e43-9b11-7bc1ee4181df",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 464,
+        "completion_tokens": 971,
+        "total_tokens": 1435,
+        "reasoning_tokens": 887
+      },
+      {
+        "kind": "start",
+        "time": 1793438543.954695,
+        "attempt_id": "d8f317b510b6413aaf51878c92d6237d",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793438663.5174248,
+        "attempt_id": "d8f317b510b6413aaf51878c92d6237d",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 119.56037491600728,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-b97dcd6c-dff7-4ddc-acff-455d716ff1c2",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 9835,
+        "completion_tokens": 7612,
+        "total_tokens": 17447,
+        "reasoning_tokens": 7420
+      },
+      {
+        "kind": "start",
+        "time": 1793438663.677492,
+        "attempt_id": "3a592a22f1aa4ff7b06b62744b86a07a",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793438843.750369,
+        "attempt_id": "3a592a22f1aa4ff7b06b62744b86a07a",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 180.07258366700262,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793438845.76136,
+        "attempt_id": "cdda84b4569343f3805cef033e4a64ac",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 1,
+    "model_calls": 3,
+    "returned_tokens": 18882,
+    "tool_calls": 289,
+    "exhausted": ""
+  }
+}

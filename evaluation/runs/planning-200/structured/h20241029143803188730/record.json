@@ -1,0 +1,132 @@
+{
+  "job": {
+    "uid": "h20241029143803188730",
+    "split": "human",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "structured",
+    "kind": "static",
+    "task": {
+      "days": 4,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "[当前位置上海,目标位置重庆,旅行人数2,旅行天数4] 我和1个兄弟计划从上海去重庆玩4天，希望不走马观花、拒绝打卡旅行，除来回的高铁/飞机，在重庆花的钱不超过3400.",
+      "nature_language_en": "[Current location: Shanghai, Destination: Chongqing, Number of travelers: 2, Number of travel days: 4] My brother and I are planning to travel from Shanghai to Chongqing for 4 days. We hope to avoid a rushed, checklist-style trip. Apart from the round-trip high-speed train/flight, we aim to spend no more than 3400 yuan in Chongqing.",
+      "people_number": 2,
+      "start_city": "上海",
+      "tag": "human",
+      "target_city": "重庆",
+      "uid": "h20241029143803188730"
+    }
+  },
+  "result": {
+    "task_uid": "h20241029143803188730",
+    "method": "structured",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.0245122910128
+  },
+  "ledger": {
+    "request_attempts": 4,
+    "completed_attempts": 3,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 10707,
+      "completion_tokens": 8143,
+      "total_tokens": 18850
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0105556,
+      "upper": 0.0105556
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793467393.699488,
+        "attempt_id": "c3ae65106fa24a1c9ca0d40742e01285",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793467408.637103,
+        "attempt_id": "c3ae65106fa24a1c9ca0d40742e01285",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 14.93702283303719,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-558e5338-dccd-4235-81bf-4795a1c6841e",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 507,
+        "completion_tokens": 997,
+        "total_tokens": 1504,
+        "reasoning_tokens": 922
+      },
+      {
+        "kind": "start",
+        "time": 1793467408.642366,
+        "attempt_id": "fc1e3d6206db4370b9669c14d69a3f14",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793467588.673461,
+        "attempt_id": "fc1e3d6206db4370b9669c14d69a3f14",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 180.0306761250249,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793467590.6750479,
+        "attempt_id": "e86a2a94885d413d839b72b7e47765d4",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      },
+      {
+        "kind": "success",
+        "time": 1793467722.0669692,
+        "attempt_id": "e86a2a94885d413d839b72b7e47765d4",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 131.39121562498622,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-a4746369-0f2c-40f5-9e9a-30b4375a7993",
+        "cached_prompt_tokens": 9216,
+        "prompt_tokens": 10200,
+        "completion_tokens": 7146,
+        "total_tokens": 17346,
+        "reasoning_tokens": 6942
+      },
+      {
+        "kind": "start",
+        "time": 1793467722.2056162,
+        "attempt_id": "19959751e31743caa3a6f711f7628a67",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 1,
+    "model_calls": 3,
+    "returned_tokens": 18850,
+    "tool_calls": 294,
+    "exhausted": ""
+  }
+}

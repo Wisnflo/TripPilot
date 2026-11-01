@@ -1,0 +1,5142 @@
+{
+  "task_uid": "e20241028161015707983",
+  "method": "rules",
+  "model": "qwen3.8-reasoner",
+  "terminal_state": "checked_ok",
+  "plan": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "people_number": {
+        "type": "integer"
+      },
+      "start_city": {
+        "type": "string"
+      },
+      "target_city": {
+        "type": "string"
+      },
+      "itinerary": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "activities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "airplane",
+                      "attraction",
+                      "lunch",
+                      "dinner",
+                      "breakfast",
+                      "accommodation",
+                      "train"
+                    ]
+                  },
+                  "start_time": {
+                    "type": "string",
+                    "pattern": "^\\d{2}:\\d{2}$"
+                  },
+                  "end_time": {
+                    "type": "string",
+                    "pattern": "^\\d{2}:\\d{2}$"
+                  },
+                  "cost": {
+                    "type": "number"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "tickets": {
+                    "type": "integer"
+                  },
+                  "position": {
+                    "type": "string"
+                  },
+                  "transports": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "start": {
+                          "type": "string"
+                        },
+                        "end": {
+                          "type": "string"
+                        },
+                        "mode": {
+                          "type": "string",
+                          "enum": [
+                            "walk",
+                            "metro",
+                            "taxi"
+                          ]
+                        },
+                        "start_time": {
+                          "type": "string",
+                          "pattern": "^\\d{2}:\\d{2}$"
+                        },
+                        "end_time": {
+                          "type": "string",
+                          "pattern": "^\\d{2}:\\d{2}$"
+                        },
+                        "cost": {
+                          "type": "number"
+                        },
+                        "price": {
+                          "type": "number"
+                        },
+                        "distance": {
+                          "type": "number"
+                        },
+                        "tickets": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "start",
+                        "end",
+                        "mode",
+                        "start_time",
+                        "end_time",
+                        "price",
+                        "cost",
+                        "distance"
+                      ]
+                    }
+                  },
+                  "room_type": {
+                    "type": "integer"
+                  },
+                  "rooms": {
+                    "type": "integer"
+                  },
+                  "FlightID": {
+                    "type": "string"
+                  },
+                  "TrainID": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "type",
+                  "start_time",
+                  "end_time",
+                  "cost",
+                  "price",
+                  "transports"
+                ],
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "type": {
+                          "enum": [
+                            "airplane",
+                            "train"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "type"
+                      ]
+                    },
+                    "then": {
+                      "required": [
+                        "start",
+                        "end"
+                      ],
+                      "not": {
+                        "required": [
+                          "position"
+                        ]
+                      }
+                    },
+                    "else": {
+                      "required": [
+                        "position"
+                      ],
+                      "not": {
+                        "anyOf": [
+                          {
+                            "required": [
+                              "start"
+                            ]
+                          },
+                          {
+                            "required": [
+                              "end"
+                            ]
+                          },
+                          {
+                            "required": [
+                              "FlightID"
+                            ]
+                          },
+                          {
+                            "required": [
+                              "TrainID"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "if": {
+                      "properties": {
+                        "type": {
+                          "const": "airplane"
+                        }
+                      }
+                    },
+                    "then": {
+                      "required": [
+                        "FlightID"
+                      ]
+                    }
+                  },
+                  {
+                    "if": {
+                      "properties": {
+                        "type": {
+                          "const": "train"
+                        }
+                      }
+                    },
+                    "then": {
+                      "required": [
+                        "TrainID"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "required": [
+            "day",
+            "activities"
+          ]
+        }
+      }
+    },
+    "required": [
+      "people_number",
+      "start_city",
+      "target_city",
+      "itinerary"
+    ],
+    "people_number": 3,
+    "start_city": "上海",
+    "target_city": "苏州",
+    "itinerary": [
+      {
+        "day": 1,
+        "activities": [
+          {
+            "type": "train",
+            "start": "Shanghai Station",
+            "end": "Suzhou Station",
+            "start_time": "08:57",
+            "end_time": "10:00",
+            "price": 33.99,
+            "cost": 101.97,
+            "tickets": 3,
+            "transports": [],
+            "TrainID": "K2186"
+          },
+          {
+            "type": "attraction",
+            "position": "Changmen Gate",
+            "start_time": "10:34",
+            "end_time": "12:45",
+            "price": 0,
+            "cost": 0.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Suzhou Station",
+                "end": "Changmen Gate",
+                "mode": "walk",
+                "start_time": "10:00",
+                "end_time": "10:11",
+                "cost": 0,
+                "distance": 0.9231455428240082,
+                "price": 0.0
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "position": "Willow Lane (Jianxin Alley Branch)",
+            "start_time": "13:15",
+            "end_time": "13:45",
+            "price": 18,
+            "cost": 54.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Changmen Gate",
+                "end": "Willow Lane (Jianxin Alley Branch)",
+                "mode": "walk",
+                "start_time": "12:45",
+                "end_time": "13:12",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 2.3172411729485645,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Pingjiang Road Historic District",
+            "start_time": "14:05",
+            "end_time": "16:15",
+            "price": 0,
+            "cost": 0.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Willow Lane (Jianxin Alley Branch)",
+                "end": "Pingjiang Road Historic District",
+                "mode": "walk",
+                "start_time": "13:45",
+                "end_time": "14:02",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 1.453774262028893,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Suzhou Water Tour",
+            "start_time": "17:00",
+            "end_time": "18:30",
+            "price": 0,
+            "cost": 0.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Pingjiang Road Historic District",
+                "end": "Suzhou Water Tour",
+                "mode": "walk",
+                "start_time": "16:15",
+                "end_time": "16:55",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 3.340866546308282,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "dinner",
+            "position": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+            "start_time": "19:00",
+            "end_time": "19:30",
+            "price": 40,
+            "cost": 120.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Suzhou Water Tour",
+                "end": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+                "mode": "walk",
+                "start_time": "18:30",
+                "end_time": "18:52",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 1.8551809405808195,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Ancient Canal Night Cruise",
+            "start_time": "19:55",
+            "end_time": "20:30",
+            "price": 0,
+            "cost": 0.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+                "end": "Ancient Canal Night Cruise",
+                "mode": "walk",
+                "start_time": "19:30",
+                "end_time": "19:51",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 1.78238327302097,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "accommodation",
+            "position": "Garbo Hotel (Suzhou Guanqian Street Shiquan Street Branch)",
+            "start_time": "21:00",
+            "end_time": "23:59",
+            "price": 277,
+            "cost": 831.0,
+            "tickets": 3,
+            "rooms": 3,
+            "room_type": 1,
+            "transports": [
+              {
+                "start": "Ancient Canal Night Cruise",
+                "end": "Garbo Hotel (Suzhou Guanqian Street Shiquan Street Branch)",
+                "mode": "walk",
+                "start_time": "20:30",
+                "end_time": "20:51",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 1.8060912794907606,
+                "tickets": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "activities": [
+          {
+            "type": "breakfast",
+            "position": "Old Patron's Egg Pancake",
+            "start_time": "07:50",
+            "end_time": "08:30",
+            "price": 11,
+            "cost": 33.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Garbo Hotel (Suzhou Guanqian Street Shiquan Street Branch)",
+                "end": "Old Patron's Egg Pancake",
+                "mode": "walk",
+                "start_time": "07:30",
+                "end_time": "07:48",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 1.5725741378522258,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Arhat Hall",
+            "start_time": "09:30",
+            "end_time": "11:00",
+            "price": 0,
+            "cost": 0.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Old Patron's Egg Pancake",
+                "end": "Arhat Hall",
+                "mode": "walk",
+                "start_time": "08:30",
+                "end_time": "09:21",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 4.280734817424915,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "position": "Catch Fish to Eat (Moye Road Branch)",
+            "start_time": "12:10",
+            "end_time": "13:00",
+            "price": 62,
+            "cost": 186.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Arhat Hall",
+                "end": "Catch Fish to Eat (Moye Road Branch)",
+                "mode": "walk",
+                "start_time": "11:00",
+                "end_time": "12:07",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 5.647881211112495,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+            "start_time": "13:50",
+            "end_time": "14:30",
+            "price": 0,
+            "cost": 0.0,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Catch Fish to Eat (Moye Road Branch)",
+                "end": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+                "mode": "walk",
+                "start_time": "13:00",
+                "end_time": "13:45",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 3.819968033735107,
+                "tickets": 3
+              }
+            ]
+          },
+          {
+            "type": "train",
+            "start": "Suzhou Station",
+            "end": "Shanghai Station",
+            "TrainID": "G3122",
+            "start_time": "15:43",
+            "end_time": "16:16",
+            "price": 55.23,
+            "cost": 165.69,
+            "tickets": 3,
+            "transports": [
+              {
+                "start": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+                "end": "Suzhou Station",
+                "mode": "walk",
+                "start_time": "14:30",
+                "end_time": "14:57",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 2.300708066227201,
+                "tickets": 3
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "steps": [],
+  "usage": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "checker": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours"
+    ]
+  },
+  "error": null,
+  "metadata": {
+    "policy": "rules",
+    "fallback": false,
+    "usage_complete": true,
+    "source_revision": "f221da825ccf4630adb7379199c7ededb3daca7a28fe5fcd2970b73ff18d8e08",
+    "budget_steps": 16,
+    "budget_seconds": 240.0,
+    "tool_trace": [
+      {
+        "name": "intercity_transport_select",
+        "arguments": {
+          "start_city": "Shanghai",
+          "end_city": "Suzhou",
+          "intercity_type": "train",
+          "earliest_leave_time": "00:00"
+        },
+        "response": {
+          "success": true,
+          "command": "intercity_transport_select({\"earliest_leave_time\": \"00:00\", \"end_city\": \"Suzhou\", \"intercity_type\": \"train\", \"start_city\": \"Shanghai\"})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G7032' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '05:46'\n '06:11' 0.42 55.23]\n['G3124' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '06:06'\n '06:38' 0.53 55.23]\n['G3125' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '06:06'\n '06:38' 0.53 55.23]\n['G1971' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '06:10' '06:33' 0.38 55.23]\n['G1970' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '06:10' '06:33' 0.38 55.23]\n['D352' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Station' '06:12' '06:47' 0.58 50.99]\n['D353' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Station' '06:12' '06:47' 0.58 50.99]\n['G1802' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '06:15' '06:38' 0.38 55.23]\n['G7081' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '06:19'\n '06:52' 0.55 55.23]\n['G7080' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '06:19'\n '06:52' 0.55 55.23]\nPage/Total: 1/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G7032",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "05:46",
+                "EndTime": "06:11",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G3124",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "06:06",
+                "EndTime": "06:38",
+                "Duration": 0.53,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G3125",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "06:06",
+                "EndTime": "06:38",
+                "Duration": 0.53,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1971",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "06:10",
+                "EndTime": "06:33",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1970",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "06:10",
+                "EndTime": "06:33",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D352",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "06:12",
+                "EndTime": "06:47",
+                "Duration": 0.58,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "D353",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "06:12",
+                "EndTime": "06:47",
+                "Duration": 0.58,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G1802",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "06:15",
+                "EndTime": "06:38",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7081",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "06:19",
+                "EndTime": "06:52",
+                "Duration": 0.55,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7080",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "06:19",
+                "EndTime": "06:52",
+                "Duration": 0.55,
+                "Cost": 55.23
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 1,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G8252' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '06:32'\n '07:10' 0.63 55.23]\n['D637' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou New District Station' '06:32' '07:09' 0.62 50.99]\n['D636' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou New District Station' '06:32' '07:09' 0.62 50.99]\n['G7002' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '06:48'\n '07:21' 0.55 55.23]\n['D2928' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Park Station' '06:52' '07:23' 0.52 50.99]\n['G2785' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '06:55'\n '07:32' 0.62 55.23]\n['G2784' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '06:55'\n '07:32' 0.62 55.23]\n['D3072' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Station' '07:02' '07:37' 0.58 50.99]\n['D3073' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Station' '07:02' '07:37' 0.58 50.99]\n['G222' 'High-speed rail' 'Shanghai Station' 'Suzhou North Station'\n '07:05' '07:33' 0.47000000000000003 55.23]\nPage/Total: 2/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G8252",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "06:32",
+                "EndTime": "07:10",
+                "Duration": 0.63,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D637",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou New District Station",
+                "BeginTime": "06:32",
+                "EndTime": "07:09",
+                "Duration": 0.62,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "D636",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou New District Station",
+                "BeginTime": "06:32",
+                "EndTime": "07:09",
+                "Duration": 0.62,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G7002",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "06:48",
+                "EndTime": "07:21",
+                "Duration": 0.55,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D2928",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Park Station",
+                "BeginTime": "06:52",
+                "EndTime": "07:23",
+                "Duration": 0.52,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G2785",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "06:55",
+                "EndTime": "07:32",
+                "Duration": 0.62,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G2784",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "06:55",
+                "EndTime": "07:32",
+                "Duration": 0.62,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D3072",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "07:02",
+                "EndTime": "07:37",
+                "Duration": 0.58,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "D3073",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "07:02",
+                "EndTime": "07:37",
+                "Duration": 0.58,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G222",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "07:05",
+                "EndTime": "07:33",
+                "Duration": 0.47000000000000003,
+                "Cost": 55.23
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 2,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G8262' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '07:10'\n '07:49' 0.65 55.23]\n['G1974' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '07:17' '07:41' 0.4 55.23]\n['G1975' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '07:17' '07:41' 0.4 55.23]\n['G1986' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '07:19' '07:54' 0.58 55.23]\n['D3056' 'EMU (Electric Multiple Unit)' 'Shanghai Station'\n 'Suzhou Park Station' '07:23' '07:55' 0.53 50.99]\n['D3057' 'EMU (Electric Multiple Unit)' 'Shanghai Station'\n 'Suzhou Park Station' '07:23' '07:55' 0.53 50.99]\n['G1469' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '07:31'\n '08:10' 0.65 55.23]\n['G1468' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '07:31'\n '08:10' 0.65 55.23]\n['G376' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '07:32' '08:06' 0.5700000000000001 55.23]\n['D2213' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Station' '07:42' '08:20' 0.75 50.99]\nPage/Total: 3/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G8262",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "07:10",
+                "EndTime": "07:49",
+                "Duration": 0.65,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1974",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "07:17",
+                "EndTime": "07:41",
+                "Duration": 0.4,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1975",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "07:17",
+                "EndTime": "07:41",
+                "Duration": 0.4,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1986",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "07:19",
+                "EndTime": "07:54",
+                "Duration": 0.58,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D3056",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Station",
+                "To": "Suzhou Park Station",
+                "BeginTime": "07:23",
+                "EndTime": "07:55",
+                "Duration": 0.53,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "D3057",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Station",
+                "To": "Suzhou Park Station",
+                "BeginTime": "07:23",
+                "EndTime": "07:55",
+                "Duration": 0.53,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G1469",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "07:31",
+                "EndTime": "08:10",
+                "Duration": 0.65,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1468",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "07:31",
+                "EndTime": "08:10",
+                "Duration": 0.65,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G376",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "07:32",
+                "EndTime": "08:06",
+                "Duration": 0.5700000000000001,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D2213",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "07:42",
+                "EndTime": "08:20",
+                "Duration": 0.75,
+                "Cost": 50.99
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 3,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['D2212' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Station' '07:42' '08:20' 0.75 50.99]\n['G2616' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '07:43'\n '08:15' 0.53 55.23]\n['G1229' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '07:47' '08:25' 0.63 55.23]\n['G1232' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '07:47' '08:25' 0.63 55.23]\n['G7004' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '08:00'\n '08:25' 0.42 55.23]\n['G7268' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '08:05'\n '08:37' 0.53 55.23]\n['G112' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '08:05' '08:29' 0.4 55.23]\n['G7036' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '08:10'\n '08:42' 0.53 55.23]\n['G7232' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '08:15'\n '08:47' 0.53 55.23]\n['G8988' 'High-speed rail' 'Shanghai Station' 'Suzhou Park Station'\n '08:25' '08:49' 0.4 55.23]\nPage/Total: 4/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "D2212",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "07:42",
+                "EndTime": "08:20",
+                "Duration": 0.75,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G2616",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "07:43",
+                "EndTime": "08:15",
+                "Duration": 0.53,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1229",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "07:47",
+                "EndTime": "08:25",
+                "Duration": 0.63,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1232",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "07:47",
+                "EndTime": "08:25",
+                "Duration": 0.63,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7004",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "08:00",
+                "EndTime": "08:25",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7268",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "08:05",
+                "EndTime": "08:37",
+                "Duration": 0.53,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G112",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "08:05",
+                "EndTime": "08:29",
+                "Duration": 0.4,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7036",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "08:10",
+                "EndTime": "08:42",
+                "Duration": 0.53,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7232",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "08:15",
+                "EndTime": "08:47",
+                "Duration": 0.53,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G8988",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Park Station",
+                "BeginTime": "08:25",
+                "EndTime": "08:49",
+                "Duration": 0.4,
+                "Cost": 55.23
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 4,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G587' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '08:25' '08:48' 0.38 55.23]\n['G8989' 'High-speed rail' 'Shanghai Station' 'Suzhou Park Station'\n '08:25' '08:49' 0.4 55.23]\n['G586' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '08:25' '08:48' 0.38 55.23]\n['G7180' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '08:30' '08:53' 0.38 55.23]\n['D3022' 'EMU (Electric Multiple Unit)' 'Shanghai South Railway Station'\n 'Suzhou Station' '08:35' '09:44' 1.15 50.99]\n['G7084' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '08:36'\n '09:14' 0.63 55.23]\n['G676' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '08:38' '09:01' 0.38 55.23]\n['D2906' 'EMU (Electric Multiple Unit)' 'Shanghai Station'\n 'Suzhou Station' '08:41' '09:09' 0.47000000000000003 50.99]\n['D2907' 'EMU (Electric Multiple Unit)' 'Shanghai Station'\n 'Suzhou Station' '08:41' '09:09' 0.47000000000000003 50.99]\n['G1866' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '08:46' '09:09' 0.62 55.23]\nPage/Total: 5/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G587",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "08:25",
+                "EndTime": "08:48",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G8989",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Park Station",
+                "BeginTime": "08:25",
+                "EndTime": "08:49",
+                "Duration": 0.4,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G586",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "08:25",
+                "EndTime": "08:48",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7180",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "08:30",
+                "EndTime": "08:53",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D3022",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai South Railway Station",
+                "To": "Suzhou Station",
+                "BeginTime": "08:35",
+                "EndTime": "09:44",
+                "Duration": 1.15,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G7084",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "08:36",
+                "EndTime": "09:14",
+                "Duration": 0.63,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G676",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "08:38",
+                "EndTime": "09:01",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D2906",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "08:41",
+                "EndTime": "09:09",
+                "Duration": 0.47000000000000003,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "D2907",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "08:41",
+                "EndTime": "09:09",
+                "Duration": 0.47000000000000003,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G1866",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "08:46",
+                "EndTime": "09:09",
+                "Duration": 0.62,
+                "Cost": 55.23
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 5,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G8302' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '08:53' '09:19' 0.43 55.23]\n['K2186' 'Express' 'Shanghai Station' 'Suzhou Station' '08:57' '10:00'\n 1.05 33.99]\n['K2187' 'Express' 'Shanghai Station' 'Suzhou Station' '08:57' '10:00'\n 1.05 33.99]\n['G7006' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '09:00'\n '09:25' 0.42 55.23]\n['G1236' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '09:04' '09:27' 0.38 55.23]\n['G8254' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '09:05'\n '09:30' 0.42 55.23]\n['G7492' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '09:11' '09:36' 0.45 55.23]\n['D3060' 'EMU (Electric Multiple Unit)' 'Shanghai South Railway Station'\n 'Suzhou Station' '09:11' '10:20' 1.15 50.99]\n['D3061' 'EMU (Electric Multiple Unit)' 'Shanghai South Railway Station'\n 'Suzhou Station' '09:11' '10:20' 1.15 50.99]\n['G7493' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '09:11' '09:36' 0.45 55.23]\nPage/Total: 6/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G8302",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "08:53",
+                "EndTime": "09:19",
+                "Duration": 0.43,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "K2186",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "08:57",
+                "EndTime": "10:00",
+                "Duration": 1.05,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "K2187",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "08:57",
+                "EndTime": "10:00",
+                "Duration": 1.05,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "G7006",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "09:00",
+                "EndTime": "09:25",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1236",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "09:04",
+                "EndTime": "09:27",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G8254",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "09:05",
+                "EndTime": "09:30",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7492",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "09:11",
+                "EndTime": "09:36",
+                "Duration": 0.45,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D3060",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai South Railway Station",
+                "To": "Suzhou Station",
+                "BeginTime": "09:11",
+                "EndTime": "10:20",
+                "Duration": 1.15,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "D3061",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai South Railway Station",
+                "To": "Suzhou Station",
+                "BeginTime": "09:11",
+                "EndTime": "10:20",
+                "Duration": 1.15,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G7493",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "09:11",
+                "EndTime": "09:36",
+                "Duration": 0.45,
+                "Cost": 55.23
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 6,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G378' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '09:14' '09:47' 0.55 55.23]\n['G8266' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '09:17'\n '09:49' 0.53 55.23]\n['G7372' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou Park Station' '09:26' '09:50' 0.45 55.23]\n['G116' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '09:26' '09:51' 0.42 55.23]\n['D3068' 'EMU (Electric Multiple Unit)' 'Shanghai South Railway Station'\n 'Suzhou Station' '09:27' '10:42' 1.25 50.99]\n['K360' 'Express' 'Shanghai Station' 'Suzhou Station' '09:29' '10:23' 0.9\n 33.99]\n['D956' 'EMU (Electric Multiple Unit)' 'Shanghai Station' 'Suzhou Station'\n '09:30' '09:58' 0.47000000000000003 50.99]\n['G1204' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '09:33' '09:56' 0.38 55.23]\n['G7040' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '09:37'\n '10:13' 0.6000000000000001 55.23]\n['G3164' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '09:38' '10:01' 0.38 55.23]\nPage/Total: 7/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G378",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "09:14",
+                "EndTime": "09:47",
+                "Duration": 0.55,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G8266",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "09:17",
+                "EndTime": "09:49",
+                "Duration": 0.53,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7372",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Park Station",
+                "BeginTime": "09:26",
+                "EndTime": "09:50",
+                "Duration": 0.45,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G116",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "09:26",
+                "EndTime": "09:51",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D3068",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai South Railway Station",
+                "To": "Suzhou Station",
+                "BeginTime": "09:27",
+                "EndTime": "10:42",
+                "Duration": 1.25,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "K360",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "09:29",
+                "EndTime": "10:23",
+                "Duration": 0.9,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "D956",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "09:30",
+                "EndTime": "09:58",
+                "Duration": 0.47000000000000003,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G1204",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "09:33",
+                "EndTime": "09:56",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7040",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "09:37",
+                "EndTime": "10:13",
+                "Duration": 0.6000000000000001,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G3164",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "09:38",
+                "EndTime": "10:01",
+                "Duration": 0.38,
+                "Cost": 55.23
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 7,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G3165' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '09:38' '10:01' 0.38 55.23]\n['K470' 'Express' 'Shanghai South Railway Station' 'Suzhou Station'\n '09:40' '11:28' 2.57 33.99]\n['G7132' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '09:41' '10:08' 0.45 55.23]\n['G7133' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '09:41' '10:08' 0.45 55.23]\n['G118' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '09:43' '10:06' 0.38 55.23]\n['G1476' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '09:51' '10:14' 0.38 55.23]\n['G7008' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '10:00'\n '10:25' 0.42 55.23]\n['G7042' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '10:05'\n '10:37' 0.53 55.23]\n['K1556' 'Express' 'Shanghai Station' 'Suzhou Station' '10:13' '11:17'\n 1.07 33.99]\n['K1557' 'Express' 'Shanghai Station' 'Suzhou Station' '10:13' '11:17'\n 1.07 33.99]\nPage/Total: 8/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G3165",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "09:38",
+                "EndTime": "10:01",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "K470",
+                "TrainType": "Express",
+                "From": "Shanghai South Railway Station",
+                "To": "Suzhou Station",
+                "BeginTime": "09:40",
+                "EndTime": "11:28",
+                "Duration": 2.57,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "G7132",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "09:41",
+                "EndTime": "10:08",
+                "Duration": 0.45,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7133",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "09:41",
+                "EndTime": "10:08",
+                "Duration": 0.45,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G118",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "09:43",
+                "EndTime": "10:06",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1476",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "09:51",
+                "EndTime": "10:14",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7008",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "10:00",
+                "EndTime": "10:25",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7042",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "10:05",
+                "EndTime": "10:37",
+                "Duration": 0.53,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "K1556",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "10:13",
+                "EndTime": "11:17",
+                "Duration": 1.07,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "K1557",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "10:13",
+                "EndTime": "11:17",
+                "Duration": 1.07,
+                "Cost": 33.99
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 8,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G1948' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '10:15' '10:45' 0.5 55.23]\n['D5666' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Station' '10:25' '10:53' 0.47000000000000003 50.99]\n['G7236' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '10:28'\n '10:59' 0.52 55.23]\n['G7765' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '10:39' '11:02' 0.45 55.23]\n['G7764' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '10:39' '11:02' 0.45 55.23]\n['G7060' 'High-speed rail' 'Shanghai Station' 'Suzhou Park Station'\n '10:41' '11:05' 0.4 55.23]\n['G124' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '10:44' '11:07' 0.38 55.23]\n['G8270' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '10:46'\n '11:18' 0.53 55.23]\n['G1426' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '10:48' '11:11' 0.38 55.23]\n['G7241' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '10:54'\n '11:30' 0.6000000000000001 55.23]\nPage/Total: 9/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G1948",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "10:15",
+                "EndTime": "10:45",
+                "Duration": 0.5,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D5666",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "10:25",
+                "EndTime": "10:53",
+                "Duration": 0.47000000000000003,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G7236",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "10:28",
+                "EndTime": "10:59",
+                "Duration": 0.52,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7765",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "10:39",
+                "EndTime": "11:02",
+                "Duration": 0.45,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7764",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "10:39",
+                "EndTime": "11:02",
+                "Duration": 0.45,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7060",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Park Station",
+                "BeginTime": "10:41",
+                "EndTime": "11:05",
+                "Duration": 0.4,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G124",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "10:44",
+                "EndTime": "11:07",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G8270",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "10:46",
+                "EndTime": "11:18",
+                "Duration": 0.53,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1426",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "10:48",
+                "EndTime": "11:11",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7241",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "10:54",
+                "EndTime": "11:30",
+                "Duration": 0.6000000000000001,
+                "Cost": 55.23
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 9,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G7240' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '10:54'\n '11:30' 0.6000000000000001 55.23]\n['K1157' 'Express' 'Shanghai Station' 'Suzhou Station' '10:57' '12:00'\n 1.05 33.99]\n['K1156' 'Express' 'Shanghai Station' 'Suzhou Station' '10:57' '12:00'\n 1.05 33.99]\n['G7010' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '11:00'\n '11:25' 0.42 55.23]\n['G7106' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '11:03' '11:35' 0.53 55.23]\n['G7572' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '11:08' '11:40' 0.58 55.23]\n['G1252' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '11:10' '11:33' 0.38 55.23]\n['K234' 'Express' 'Shanghai Station' 'Suzhou Station' '11:10' '12:17' 1.12\n 33.99]\n['K235' 'Express' 'Shanghai Station' 'Suzhou Station' '11:10' '12:17' 1.12\n 33.99]\n['G128' 'High-speed rail' 'Shanghai Station' 'Suzhou North Station'\n '11:15' '11:43' 0.47000000000000003 55.23]\nPage/Total: 10/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G7240",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "10:54",
+                "EndTime": "11:30",
+                "Duration": 0.6000000000000001,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "K1157",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "10:57",
+                "EndTime": "12:00",
+                "Duration": 1.05,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "K1156",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "10:57",
+                "EndTime": "12:00",
+                "Duration": 1.05,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "G7010",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "11:00",
+                "EndTime": "11:25",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7106",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "11:03",
+                "EndTime": "11:35",
+                "Duration": 0.53,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7572",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "11:08",
+                "EndTime": "11:40",
+                "Duration": 0.58,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1252",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "11:10",
+                "EndTime": "11:33",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "K234",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "11:10",
+                "EndTime": "12:17",
+                "Duration": 1.12,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "K235",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "11:10",
+                "EndTime": "12:17",
+                "Duration": 1.12,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "G128",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "11:15",
+                "EndTime": "11:43",
+                "Duration": 0.47000000000000003,
+                "Cost": 55.23
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 10,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G7264' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '11:20'\n '11:45' 0.42 55.23]\n['G1228' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '11:24' '11:58' 0.8300000000000001 55.23]\n['G7126' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '11:24' '11:50' 0.43 55.23]\n['G7316' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '11:29' '11:55' 0.47000000000000003 55.23]\n['G7282' 'High-speed rail' 'Shanghai Station' 'Suzhou Park Station'\n '11:33' '11:57' 0.4 55.23]\n['G7283' 'High-speed rail' 'Shanghai Station' 'Suzhou Park Station'\n '11:33' '11:57' 0.4 55.23]\n['G3152' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '11:34' '12:08' 0.5700000000000001 55.23]\n['G7108' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '11:38' '12:10' 0.53 55.23]\n['G1725' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '11:40' '12:03' 0.38 55.23]\n['G1724' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '11:40' '12:03' 0.38 55.23]\nPage/Total: 11/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G7264",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "11:20",
+                "EndTime": "11:45",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1228",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "11:24",
+                "EndTime": "11:58",
+                "Duration": 0.8300000000000001,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7126",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "11:24",
+                "EndTime": "11:50",
+                "Duration": 0.43,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7316",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "11:29",
+                "EndTime": "11:55",
+                "Duration": 0.47000000000000003,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7282",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Park Station",
+                "BeginTime": "11:33",
+                "EndTime": "11:57",
+                "Duration": 0.4,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7283",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Park Station",
+                "BeginTime": "11:33",
+                "EndTime": "11:57",
+                "Duration": 0.4,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G3152",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "11:34",
+                "EndTime": "12:08",
+                "Duration": 0.5700000000000001,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7108",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "11:38",
+                "EndTime": "12:10",
+                "Duration": 0.53,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1725",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "11:40",
+                "EndTime": "12:03",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1724",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "11:40",
+                "EndTime": "12:03",
+                "Duration": 0.38,
+                "Cost": 55.23
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 11,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G2662' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '11:45' '12:12' 0.45 55.23]\n['G7586' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '11:47' '12:15' 0.53 55.23]\n['G1716' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '11:51' '12:25' 0.5700000000000001 55.23]\n['G7244' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '11:58'\n '12:25' 0.45 55.23]\n['G1957' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '12:03' '12:33' 0.5 55.23]\n['G1956' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '12:03' '12:33' 0.5 55.23]\n['G7012' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '12:05'\n '12:30' 0.42 55.23]\n['G7769' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '12:10'\n '12:35' 0.42 55.23]\n['G7768' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '12:10'\n '12:35' 0.42 55.23]\n['G7576' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '12:12' '12:40' 0.5 55.23]\nPage/Total: 12/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G2662",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "11:45",
+                "EndTime": "12:12",
+                "Duration": 0.45,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7586",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "11:47",
+                "EndTime": "12:15",
+                "Duration": 0.53,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1716",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "11:51",
+                "EndTime": "12:25",
+                "Duration": 0.5700000000000001,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7244",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "11:58",
+                "EndTime": "12:25",
+                "Duration": 0.45,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1957",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "12:03",
+                "EndTime": "12:33",
+                "Duration": 0.5,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1956",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "12:03",
+                "EndTime": "12:33",
+                "Duration": 0.5,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7012",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "12:05",
+                "EndTime": "12:30",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7769",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "12:10",
+                "EndTime": "12:35",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7768",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "12:10",
+                "EndTime": "12:35",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7576",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "12:12",
+                "EndTime": "12:40",
+                "Duration": 0.5,
+                "Cost": 55.23
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 12,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G7577' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '12:12' '12:40' 0.5 55.23]\n['G7280' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '12:15'\n '13:00' 0.75 55.23]\n['1462' 'Express' 'Shanghai Station' 'Suzhou Station' '12:15' '13:20' 1.08\n nan]\n['G130' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '12:16' '12:39' 0.38 55.23]\n['G132' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '12:21' '12:44' 0.38 55.23]\n['G7508' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '12:29' '13:05' 0.67 55.23]\n['G7296' 'High-speed rail' 'Shanghai Station' 'Suzhou North Station'\n '12:37' '13:05' 0.47000000000000003 55.23]\n['K738' 'Express' 'Shanghai Station' 'Suzhou Station' '12:42' '13:44' 1.03\n 33.99]\n['G7110' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '12:46' '13:11' 0.42 55.23]\n['G136' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '12:47' '13:10' 0.38 55.23]\nPage/Total: 13/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G7577",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "12:12",
+                "EndTime": "12:40",
+                "Duration": 0.5,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7280",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "12:15",
+                "EndTime": "13:00",
+                "Duration": 0.75,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "1462",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "12:15",
+                "EndTime": "13:20",
+                "Duration": 1.08,
+                "Cost": "nan"
+              },
+              {
+                "TrainID": "G130",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "12:16",
+                "EndTime": "12:39",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G132",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "12:21",
+                "EndTime": "12:44",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7508",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "12:29",
+                "EndTime": "13:05",
+                "Duration": 0.67,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7296",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "12:37",
+                "EndTime": "13:05",
+                "Duration": 0.47000000000000003,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "K738",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "12:42",
+                "EndTime": "13:44",
+                "Duration": 1.03,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "G7110",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "12:46",
+                "EndTime": "13:11",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G136",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "12:47",
+                "EndTime": "13:10",
+                "Duration": 0.38,
+                "Cost": 55.23
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 13,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G2789' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '12:50'\n '13:16' 0.43 55.23]\n['G2788' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '12:50'\n '13:16' 0.43 55.23]\n['G1811' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '12:52' '13:25' 0.55 55.23]\n['G1810' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '12:52' '13:25' 0.55 55.23]\n['G16' 'High-speed rail' 'Shanghai Station' 'Suzhou North Station' '12:55'\n '13:20' 0.42 55.23]\n['G7014' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '13:00'\n '13:25' 0.42 55.23]\n['G8286' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '13:09'\n '13:51' 0.7000000000000001 55.23]\n['G7164' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '13:09' '13:34' 0.42 55.23]\n['G7249' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '13:14'\n '13:39' 0.42 55.23]\n['G7248' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '13:14'\n '13:39' 0.42 55.23]\nPage/Total: 14/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G2789",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "12:50",
+                "EndTime": "13:16",
+                "Duration": 0.43,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G2788",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "12:50",
+                "EndTime": "13:16",
+                "Duration": 0.43,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1811",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "12:52",
+                "EndTime": "13:25",
+                "Duration": 0.55,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1810",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "12:52",
+                "EndTime": "13:25",
+                "Duration": 0.55,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G16",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "12:55",
+                "EndTime": "13:20",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7014",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "13:00",
+                "EndTime": "13:25",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G8286",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "13:09",
+                "EndTime": "13:51",
+                "Duration": 0.7000000000000001,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7164",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "13:09",
+                "EndTime": "13:34",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7249",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "13:14",
+                "EndTime": "13:39",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7248",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "13:14",
+                "EndTime": "13:39",
+                "Duration": 0.42,
+                "Cost": 55.23
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 14,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['K809' 'Express' 'Shanghai South Railway Station' 'Suzhou Station'\n '13:20' '14:34' 1.87 33.99]\n['K808' 'Express' 'Shanghai South Railway Station' 'Suzhou Station'\n '13:20' '14:34' 1.87 33.99]\n['D3026' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Park Station' '13:27' '13:52' 0.42 50.99]\n['G7148' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '13:33' '14:06' 0.55 55.23]\n['G1932' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '13:38' '14:01' 0.38 55.23]\n['G1933' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '13:38' '14:01' 0.38 55.23]\n['G7773' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '13:39'\n '14:16' 0.62 55.23]\n['G7772' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '13:39'\n '14:16' 0.62 55.23]\n['K1102' 'Express' 'Shanghai Station' 'Suzhou Station' '13:40' '14:53'\n 1.22 33.99]\n['G3120' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '13:49'\n '14:21' 0.53 55.23]\nPage/Total: 15/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "K809",
+                "TrainType": "Express",
+                "From": "Shanghai South Railway Station",
+                "To": "Suzhou Station",
+                "BeginTime": "13:20",
+                "EndTime": "14:34",
+                "Duration": 1.87,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "K808",
+                "TrainType": "Express",
+                "From": "Shanghai South Railway Station",
+                "To": "Suzhou Station",
+                "BeginTime": "13:20",
+                "EndTime": "14:34",
+                "Duration": 1.87,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "D3026",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Park Station",
+                "BeginTime": "13:27",
+                "EndTime": "13:52",
+                "Duration": 0.42,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G7148",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "13:33",
+                "EndTime": "14:06",
+                "Duration": 0.55,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1932",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "13:38",
+                "EndTime": "14:01",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1933",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "13:38",
+                "EndTime": "14:01",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7773",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "13:39",
+                "EndTime": "14:16",
+                "Duration": 0.62,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7772",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "13:39",
+                "EndTime": "14:16",
+                "Duration": 0.62,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "K1102",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "13:40",
+                "EndTime": "14:53",
+                "Duration": 1.22,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "G3120",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "13:49",
+                "EndTime": "14:21",
+                "Duration": 0.53,
+                "Cost": 55.23
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 15,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['D3006' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Station' '13:53' '14:31' 0.63 50.99]\n['Z377' 'Direct Express' 'Shanghai Station' 'Suzhou Station' '13:55'\n '14:41' 0.77 42.49]\n['Z376' 'Direct Express' 'Shanghai Station' 'Suzhou Station' '13:55'\n '14:41' 0.77 42.49]\n['G7016' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '14:00'\n '14:26' 0.43 55.23]\n['G1464' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '14:03' '14:36' 0.55 55.23]\n['G1465' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '14:03' '14:36' 0.55 55.23]\n['G1584' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '14:10' '14:33' 0.5700000000000001 55.23]\n['D122' 'EMU (Electric Multiple Unit)' 'Shanghai Station' 'Suzhou Station'\n '14:13' '14:59' 0.77 50.99]\n['D123' 'EMU (Electric Multiple Unit)' 'Shanghai Station' 'Suzhou Station'\n '14:13' '14:59' 0.77 50.99]\n['D2924' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Station' '14:16' '14:44' 0.47000000000000003 50.99]\nPage/Total: 16/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "D3006",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "13:53",
+                "EndTime": "14:31",
+                "Duration": 0.63,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "Z377",
+                "TrainType": "Direct Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "13:55",
+                "EndTime": "14:41",
+                "Duration": 0.77,
+                "Cost": 42.49
+              },
+              {
+                "TrainID": "Z376",
+                "TrainType": "Direct Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "13:55",
+                "EndTime": "14:41",
+                "Duration": 0.77,
+                "Cost": 42.49
+              },
+              {
+                "TrainID": "G7016",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "14:00",
+                "EndTime": "14:26",
+                "Duration": 0.43,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1464",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "14:03",
+                "EndTime": "14:36",
+                "Duration": 0.55,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1465",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "14:03",
+                "EndTime": "14:36",
+                "Duration": 0.55,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1584",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "14:10",
+                "EndTime": "14:33",
+                "Duration": 0.5700000000000001,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D122",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "14:13",
+                "EndTime": "14:59",
+                "Duration": 0.77,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "D123",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "14:13",
+                "EndTime": "14:59",
+                "Duration": 0.77,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "D2924",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "14:16",
+                "EndTime": "14:44",
+                "Duration": 0.47000000000000003,
+                "Cost": 50.99
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 16,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G142' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '14:16' '14:39' 0.38 55.23]\n['K1806' 'Express' 'Shanghai South Railway Station' 'Suzhou Station'\n '14:19' '15:48' 2.03 33.99]\n['G7320' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '14:23' '14:49' 0.52 55.23]\n['G380' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '14:28' '14:51' 0.38 55.23]\n['G7050' 'High-speed rail' 'Shanghai Station' 'Suzhou Park Station'\n '14:28' '14:57' 0.48 55.23]\n['G7390' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '14:30' '14:55' 0.45 55.23]\n['G1818' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '14:33' '14:56' 0.38 55.23]\n['D3010' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Station' '14:42' '15:15' 0.55 50.99]\n['G8294' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '14:44'\n '15:20' 0.6000000000000001 55.23]\n['Z269' 'Direct Express' 'Shanghai Station' 'Suzhou Station' '14:49'\n '15:37' 0.8 42.49]\nPage/Total: 17/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G142",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "14:16",
+                "EndTime": "14:39",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "K1806",
+                "TrainType": "Express",
+                "From": "Shanghai South Railway Station",
+                "To": "Suzhou Station",
+                "BeginTime": "14:19",
+                "EndTime": "15:48",
+                "Duration": 2.03,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "G7320",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "14:23",
+                "EndTime": "14:49",
+                "Duration": 0.52,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G380",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "14:28",
+                "EndTime": "14:51",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7050",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Park Station",
+                "BeginTime": "14:28",
+                "EndTime": "14:57",
+                "Duration": 0.48,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7390",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "14:30",
+                "EndTime": "14:55",
+                "Duration": 0.45,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1818",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "14:33",
+                "EndTime": "14:56",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D3010",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "14:42",
+                "EndTime": "15:15",
+                "Duration": 0.55,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G8294",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "14:44",
+                "EndTime": "15:20",
+                "Duration": 0.6000000000000001,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "Z269",
+                "TrainType": "Direct Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "14:49",
+                "EndTime": "15:37",
+                "Duration": 0.8,
+                "Cost": 42.49
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 17,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['Z268' 'Direct Express' 'Shanghai Station' 'Suzhou Station' '14:49'\n '15:37' 0.8 42.49]\n['G7168' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '14:52' '15:25' 0.55 55.23]\n['G8300' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '14:54'\n '15:30' 0.6000000000000001 55.23]\n['K464' 'Express' 'Shanghai Station' 'Suzhou Station' '14:57' '15:54'\n 0.9500000000000001 33.99]\n['G7018' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '15:00'\n '15:25' 0.42 55.23]\n['D2914' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Station' '15:04' '15:35' 0.52 50.99]\n['G264' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '15:07' '15:30' 0.38 55.23]\n['D2922' 'EMU (Electric Multiple Unit)' 'Shanghai Station'\n 'Suzhou Station' '15:10' '15:45' 0.58 50.99]\n['G1776' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '15:14' '15:37' 0.38 55.23]\n['G1777' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '15:14' '15:37' 0.38 55.23]\nPage/Total: 18/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "Z268",
+                "TrainType": "Direct Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "14:49",
+                "EndTime": "15:37",
+                "Duration": 0.8,
+                "Cost": 42.49
+              },
+              {
+                "TrainID": "G7168",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "14:52",
+                "EndTime": "15:25",
+                "Duration": 0.55,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G8300",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "14:54",
+                "EndTime": "15:30",
+                "Duration": 0.6000000000000001,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "K464",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "14:57",
+                "EndTime": "15:54",
+                "Duration": 0.9500000000000001,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "G7018",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "15:00",
+                "EndTime": "15:25",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D2914",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "15:04",
+                "EndTime": "15:35",
+                "Duration": 0.52,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G264",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "15:07",
+                "EndTime": "15:30",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D2922",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "15:10",
+                "EndTime": "15:45",
+                "Duration": 0.58,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G1776",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "15:14",
+                "EndTime": "15:37",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1777",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "15:14",
+                "EndTime": "15:37",
+                "Duration": 0.38,
+                "Cost": 55.23
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 18,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['D3032' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Station' '15:16' '15:50' 0.5700000000000001 50.99]\n['G7219' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '15:28'\n '16:00' 0.53 55.23]\n['G7218' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '15:28'\n '16:00' 0.53 55.23]\n['Z517' 'Direct Express' 'Shanghai Station' 'Suzhou Station' '15:32'\n '16:19' 0.78 42.49]\n['Z516' 'Direct Express' 'Shanghai Station' 'Suzhou Station' '15:32'\n '16:19' 0.78 42.49]\n['G1822' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '15:32' '15:55' 0.38 55.23]\n['G1736' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '15:36' '15:59' 0.38 55.23]\n['G8268' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '15:37'\n '16:05' 0.47000000000000003 55.23]\n['T116' 'Express' 'Shanghai Station' 'Suzhou Station' '15:38' '16:27'\n 0.8200000000000001 42.49]\n['G7152' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '15:43' '16:10' 0.45 55.23]\nPage/Total: 19/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "D3032",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "15:16",
+                "EndTime": "15:50",
+                "Duration": 0.5700000000000001,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G7219",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "15:28",
+                "EndTime": "16:00",
+                "Duration": 0.53,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7218",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "15:28",
+                "EndTime": "16:00",
+                "Duration": 0.53,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "Z517",
+                "TrainType": "Direct Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "15:32",
+                "EndTime": "16:19",
+                "Duration": 0.78,
+                "Cost": 42.49
+              },
+              {
+                "TrainID": "Z516",
+                "TrainType": "Direct Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "15:32",
+                "EndTime": "16:19",
+                "Duration": 0.78,
+                "Cost": 42.49
+              },
+              {
+                "TrainID": "G1822",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "15:32",
+                "EndTime": "15:55",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1736",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "15:36",
+                "EndTime": "15:59",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G8268",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "15:37",
+                "EndTime": "16:05",
+                "Duration": 0.47000000000000003,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "T116",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "15:38",
+                "EndTime": "16:27",
+                "Duration": 0.8200000000000001,
+                "Cost": 42.49
+              },
+              {
+                "TrainID": "G7152",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "15:43",
+                "EndTime": "16:10",
+                "Duration": 0.45,
+                "Cost": 55.23
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 19,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['G7052' 'High-speed rail' 'Shanghai Station' 'Suzhou Park Station'\n '15:47' '16:11' 0.4 55.23]\n['G1769' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '15:51' '16:14' 0.38 55.23]\n['G1768' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '15:51' '16:14' 0.38 55.23]\n['K560' 'Express' 'Shanghai Station' 'Suzhou Station' '15:52' '16:53' 1.02\n 33.99]\n['K557' 'Express' 'Shanghai Station' 'Suzhou Station' '15:52' '16:53' 1.02\n 33.99]\n['G2612' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '15:53' '16:31' 0.63 55.23]\n['G7020' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '16:00'\n '16:25' 0.42 55.23]\n['D3143' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Station' '16:01' '16:36' 0.65 50.99]\n['D3142' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Station' '16:01' '16:36' 0.65 50.99]\n['K1512' 'Express' 'Shanghai South Railway Station' 'Suzhou Station'\n '16:02' '17:30' 1.87 33.99]\nPage/Total: 20/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "G7052",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Park Station",
+                "BeginTime": "15:47",
+                "EndTime": "16:11",
+                "Duration": 0.4,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1769",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "15:51",
+                "EndTime": "16:14",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G1768",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "15:51",
+                "EndTime": "16:14",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "K560",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "15:52",
+                "EndTime": "16:53",
+                "Duration": 1.02,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "K557",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "15:52",
+                "EndTime": "16:53",
+                "Duration": 1.02,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "G2612",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "15:53",
+                "EndTime": "16:31",
+                "Duration": 0.63,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7020",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "16:00",
+                "EndTime": "16:25",
+                "Duration": 0.42,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D3143",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "16:01",
+                "EndTime": "16:36",
+                "Duration": 0.65,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "D3142",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "16:01",
+                "EndTime": "16:36",
+                "Duration": 0.65,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "K1512",
+                "TrainType": "Express",
+                "From": "Shanghai South Railway Station",
+                "To": "Suzhou Station",
+                "BeginTime": "16:02",
+                "EndTime": "17:30",
+                "Duration": 1.87,
+                "Cost": 33.99
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 20,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "next_page",
+        "arguments": {},
+        "response": {
+          "success": true,
+          "command": "next_page({})",
+          "text": "['TrainID' 'TrainType' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\n['K372' 'Express' 'Shanghai Station' 'Suzhou Station' '16:03' '17:04' 1.02\n 33.99]\n['G150' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '16:04' '16:27' 0.38 55.23]\n['D3014' 'EMU (Electric Multiple Unit)' 'Shanghai Hongqiao Station'\n 'Suzhou Station' '16:06' '16:41' 0.58 50.99]\n['G1916' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '16:09' '16:32' 0.38 55.23]\n['G7054' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '16:13'\n '16:46' 0.55 55.23]\n['G7186' 'High-speed rail' 'Shanghai Hongqiao Station'\n 'Suzhou North Station' '16:14' '16:37' 0.38 55.23]\n['G8274' 'High-speed rail' 'Shanghai Station' 'Suzhou Station' '16:18'\n '16:51' 0.55 55.23]\n['G7593' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '16:24' '16:56' 0.58 55.23]\n['G7592' 'High-speed rail' 'Shanghai Hongqiao Station' 'Suzhou Station'\n '16:24' '16:56' 0.58 55.23]\n['K48' 'Express' 'Shanghai South Railway Station' 'Suzhou Station' '16:29'\n '17:54' 1.9000000000000001 33.99]\nPage/Total: 21/32",
+          "data": {
+            "type": "dataframe",
+            "columns": [
+              "TrainID",
+              "TrainType",
+              "From",
+              "To",
+              "BeginTime",
+              "EndTime",
+              "Duration",
+              "Cost"
+            ],
+            "rows": [
+              {
+                "TrainID": "K372",
+                "TrainType": "Express",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "16:03",
+                "EndTime": "17:04",
+                "Duration": 1.02,
+                "Cost": 33.99
+              },
+              {
+                "TrainID": "G150",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "16:04",
+                "EndTime": "16:27",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "D3014",
+                "TrainType": "EMU (Electric Multiple Unit)",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "16:06",
+                "EndTime": "16:41",
+                "Duration": 0.58,
+                "Cost": 50.99
+              },
+              {
+                "TrainID": "G1916",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "16:09",
+                "EndTime": "16:32",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7054",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "16:13",
+                "EndTime": "16:46",
+                "Duration": 0.55,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7186",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou North Station",
+                "BeginTime": "16:14",
+                "EndTime": "16:37",
+                "Duration": 0.38,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G8274",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Station",
+                "To": "Suzhou Station",
+                "BeginTime": "16:18",
+                "EndTime": "16:51",
+                "Duration": 0.55,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7593",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "16:24",
+                "EndTime": "16:56",
+                "Duration": 0.58,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "G7592",
+                "TrainType": "High-speed rail",
+                "From": "Shanghai Hongqiao Station",
+                "To": "Suzhou Station",
+                "BeginTime": "16:24",
+                "EndTime": "16:56",
+                "Duration": 0.58,
+                "Cost": 55.23
+              },
+              {
+                "TrainID": "K48",
+                "TrainType": "Express",
+                "From": "Shanghai South Railway Station",
+                "To": "Suzhou Station",
+                "BeginTime": "16:29",
+                "EndTime": "17:54",
+                "Duration": 1.9000000000000001,
+                "Cost": 33.99
+              }
+            ],
+            "row_count": 316,
+            "returned_rows": 10,
+            "page": 21,
+            "pages": 32
+          }
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "09:58",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou Station\", \"start_time\": \"09:58\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '09:58', 'end_time': '10:09', 'cost': 0.0, 'distance': 0.9231455428240082}]",
+          "data": [
+            {
+              "start": "Suzhou Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "09:58",
+              "end_time": "10:09",
+              "cost": 0.0,
+              "distance": 0.9231455428240082
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:42",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou Station\", \"start_time\": \"10:42\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '10:42', 'end_time': '10:53', 'cost': 0.0, 'distance': 0.9231455428240082}]",
+          "data": [
+            {
+              "start": "Suzhou Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "10:42",
+              "end_time": "10:53",
+              "cost": 0.0,
+              "distance": 0.9231455428240082
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Park Station",
+          "end": "Changmen Gate",
+          "start_time": "09:50",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou Park Station\", \"start_time\": \"09:50\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou Park Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '09:50', 'end_time': '11:44', 'cost': 0.0, 'distance': 9.554195988422343}]",
+          "data": [
+            {
+              "start": "Suzhou Park Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "09:50",
+              "end_time": "11:44",
+              "cost": 0.0,
+              "distance": 9.554195988422343
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou North Station",
+          "end": "Changmen Gate",
+          "start_time": "09:51",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou North Station\", \"start_time\": \"09:51\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou North Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '09:51', 'end_time': '12:09', 'cost': 0.0, 'distance': 11.53385630211296}]",
+          "data": [
+            {
+              "start": "Suzhou North Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "09:51",
+              "end_time": "12:09",
+              "cost": 0.0,
+              "distance": 11.53385630211296
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou North Station",
+          "end": "Changmen Gate",
+          "start_time": "09:56",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou North Station\", \"start_time\": \"09:56\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou North Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '09:56', 'end_time': '12:14', 'cost': 0.0, 'distance': 11.53385630211296}]",
+          "data": [
+            {
+              "start": "Suzhou North Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "09:56",
+              "end_time": "12:14",
+              "cost": 0.0,
+              "distance": 11.53385630211296
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:13",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou Station\", \"start_time\": \"10:13\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '10:13', 'end_time': '10:24', 'cost': 0.0, 'distance': 0.9231455428240082}]",
+          "data": [
+            {
+              "start": "Suzhou Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "10:13",
+              "end_time": "10:24",
+              "cost": 0.0,
+              "distance": 0.9231455428240082
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou North Station",
+          "end": "Changmen Gate",
+          "start_time": "10:01",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou North Station\", \"start_time\": \"10:01\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou North Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '10:01', 'end_time': '12:19', 'cost': 0.0, 'distance': 11.53385630211296}]",
+          "data": [
+            {
+              "start": "Suzhou North Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "10:01",
+              "end_time": "12:19",
+              "cost": 0.0,
+              "distance": 11.53385630211296
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "11:28",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou Station\", \"start_time\": \"11:28\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '11:28', 'end_time': '11:39', 'cost': 0.0, 'distance': 0.9231455428240082}]",
+          "data": [
+            {
+              "start": "Suzhou Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "11:28",
+              "end_time": "11:39",
+              "cost": 0.0,
+              "distance": 0.9231455428240082
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "09:49",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou Station\", \"start_time\": \"09:49\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '09:49', 'end_time': '10:00', 'cost': 0.0, 'distance': 0.9231455428240082}]",
+          "data": [
+            {
+              "start": "Suzhou Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "09:49",
+              "end_time": "10:00",
+              "cost": 0.0,
+              "distance": 0.9231455428240082
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:08",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou Station\", \"start_time\": \"10:08\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '10:08', 'end_time': '10:19', 'cost': 0.0, 'distance': 0.9231455428240082}]",
+          "data": [
+            {
+              "start": "Suzhou Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "10:08",
+              "end_time": "10:19",
+              "cost": 0.0,
+              "distance": 0.9231455428240082
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou North Station",
+          "end": "Changmen Gate",
+          "start_time": "10:06",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou North Station\", \"start_time\": \"10:06\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou North Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '10:06', 'end_time': '12:24', 'cost': 0.0, 'distance': 11.53385630211296}]",
+          "data": [
+            {
+              "start": "Suzhou North Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "10:06",
+              "end_time": "12:24",
+              "cost": 0.0,
+              "distance": 11.53385630211296
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou North Station",
+          "end": "Changmen Gate",
+          "start_time": "09:47",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou North Station\", \"start_time\": \"09:47\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou North Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '09:47', 'end_time': '12:05', 'cost': 0.0, 'distance': 11.53385630211296}]",
+          "data": [
+            {
+              "start": "Suzhou North Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "09:47",
+              "end_time": "12:05",
+              "cost": 0.0,
+              "distance": 11.53385630211296
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:20",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou Station\", \"start_time\": \"10:20\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '10:20', 'end_time': '10:31', 'cost': 0.0, 'distance': 0.9231455428240082}]",
+          "data": [
+            {
+              "start": "Suzhou Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "10:20",
+              "end_time": "10:31",
+              "cost": 0.0,
+              "distance": 0.9231455428240082
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "09:36",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou Station\", \"start_time\": \"09:36\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '09:36', 'end_time': '09:47', 'cost': 0.0, 'distance': 0.9231455428240082}]",
+          "data": [
+            {
+              "start": "Suzhou Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "09:36",
+              "end_time": "09:47",
+              "cost": 0.0,
+              "distance": 0.9231455428240082
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou North Station",
+          "end": "Changmen Gate",
+          "start_time": "10:14",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou North Station\", \"start_time\": \"10:14\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou North Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '10:14', 'end_time': '12:32', 'cost': 0.0, 'distance': 11.53385630211296}]",
+          "data": [
+            {
+              "start": "Suzhou North Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "10:14",
+              "end_time": "12:32",
+              "cost": 0.0,
+              "distance": 11.53385630211296
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "09:30",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou Station\", \"start_time\": \"09:30\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '09:30', 'end_time': '09:41', 'cost': 0.0, 'distance': 0.9231455428240082}]",
+          "data": [
+            {
+              "start": "Suzhou Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "09:30",
+              "end_time": "09:41",
+              "cost": 0.0,
+              "distance": 0.9231455428240082
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou North Station",
+          "end": "Changmen Gate",
+          "start_time": "09:27",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou North Station\", \"start_time\": \"09:27\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou North Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '09:27', 'end_time': '11:45', 'cost': 0.0, 'distance': 11.53385630211296}]",
+          "data": [
+            {
+              "start": "Suzhou North Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "09:27",
+              "end_time": "11:45",
+              "cost": 0.0,
+              "distance": 11.53385630211296
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "09:25",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou Station\", \"start_time\": \"09:25\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '09:25', 'end_time': '09:36', 'cost': 0.0, 'distance': 0.9231455428240082}]",
+          "data": [
+            {
+              "start": "Suzhou Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "09:25",
+              "end_time": "09:36",
+              "cost": 0.0,
+              "distance": 0.9231455428240082
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:25",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou Station\", \"start_time\": \"10:25\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '10:25', 'end_time': '10:36', 'cost': 0.0, 'distance': 0.9231455428240082}]",
+          "data": [
+            {
+              "start": "Suzhou Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "10:25",
+              "end_time": "10:36",
+              "cost": 0.0,
+              "distance": 0.9231455428240082
+            }
+          ]
+        }
+      },
+      {
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:00",
+          "transport_type": "walk"
+        },
+        "response": {
+          "success": true,
+          "command": "goto({\"city\": \"Suzhou\", \"end\": \"Changmen Gate\", \"start\": \"Suzhou Station\", \"start_time\": \"10:00\", \"transport_type\": \"walk\"})",
+          "text": "[{'start': 'Suzhou Station', 'end': 'Changmen Gate', 'mode': 'walk', 'start_time': '10:00', 'end_time': '10:11', 'cost': 0.0, 'distance': 0.9231455428240082}]",
+          "data": [
+            {
+              "start": "Suzhou Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "10:00",
+              "end_time": "10:11",
+              "cost": 0.0,
+              "distance": 0.9231455428240082
+            }
+          ]
+        }
+      }
+    ],
+    "candidates": 12,
+    "rejected_proposals": [],
+    "selected_candidate": "c11",
+    "edits": [
+      {
+        "op": "replace",
+        "id": "d1:a1",
+        "value": {
+          "type": "train",
+          "start": "Shanghai Station",
+          "end": "Suzhou Station",
+          "start_time": "08:57",
+          "end_time": "10:00",
+          "price": 33.99,
+          "cost": 101.97,
+          "tickets": 3,
+          "transports": [],
+          "TrainID": "K2186"
+        }
+      },
+      {
+        "op": "replace",
+        "id": "d1:a2",
+        "value": {
+          "type": "attraction",
+          "position": "Changmen Gate",
+          "start_time": "10:34",
+          "end_time": "12:45",
+          "price": 0,
+          "cost": 0.0,
+          "tickets": 3,
+          "transports": [
+            {
+              "start": "Suzhou Station",
+              "end": "Changmen Gate",
+              "mode": "walk",
+              "start_time": "10:00",
+              "end_time": "10:11",
+              "cost": 0,
+              "distance": 0.9231455428240082,
+              "price": 0.0
+            }
+          ]
+        }
+      }
+    ],
+    "edit_scope": [
+      "d1:a1",
+      "d1:a2"
+    ],
+    "preservation": {
+      "unchanged": 11,
+      "removed_or_modified": 2,
+      "added_or_modified": 2
+    },
+    "commit_revision": "2c2cf1007bdaadbaef061d091f1612bd3e5c200e618d0efd312eae674b118514",
+    "atomic_commit": true,
+    "request_count": 0,
+    "retry_count": 0,
+    "request_latency_seconds": 0
+  },
+  "started_at": "2026-11-01T00:50:30.259798+00:00",
+  "finished_at": "2026-11-01T00:50:30.607141+00:00",
+  "duration_seconds": 0.3473540829727426,
+  "wall_seconds": 0.34765279199928045,
+  "resources": {
+    "limits": {
+      "feedback": 4,
+      "model_calls": 16,
+      "tokens": 500000,
+      "tools": 400,
+      "output_tokens_per_call": 10000
+    },
+    "model_calls": 0,
+    "returned_tokens": 0,
+    "feedback_calls": 0,
+    "tool_calls": 74,
+    "exhausted": "",
+    "tool_receipts": [
+      {
+        "index": 1,
+        "name": "intercity_transport_select",
+        "arguments": {
+          "start_city": "Shanghai",
+          "end_city": "Suzhou",
+          "intercity_type": "train",
+          "earliest_leave_time": "00:00"
+        }
+      },
+      {
+        "index": 2,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 3,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 4,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 5,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 6,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 7,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 8,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 9,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 10,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 11,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 12,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 13,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 14,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 15,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 16,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 17,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 18,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 19,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 20,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 21,
+        "name": "next_page",
+        "arguments": {}
+      },
+      {
+        "index": 22,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "09:58",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 23,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Suzhou",
+          "key": "name",
+          "op": "eq",
+          "value": "Changmen Gate"
+        }
+      },
+      {
+        "index": 24,
+        "name": "restaurants_select",
+        "arguments": {
+          "city": "Suzhou",
+          "key": "name",
+          "op": "eq",
+          "value": "Willow Lane (Jianxin Alley Branch)"
+        }
+      },
+      {
+        "index": 25,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Suzhou",
+          "key": "name",
+          "op": "eq",
+          "value": "Pingjiang Road Historic District"
+        }
+      },
+      {
+        "index": 26,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Suzhou",
+          "key": "name",
+          "op": "eq",
+          "value": "Suzhou Water Tour"
+        }
+      },
+      {
+        "index": 27,
+        "name": "restaurants_select",
+        "arguments": {
+          "city": "Suzhou",
+          "key": "name",
+          "op": "eq",
+          "value": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)"
+        }
+      },
+      {
+        "index": 28,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Suzhou",
+          "key": "name",
+          "op": "eq",
+          "value": "Ancient Canal Night Cruise"
+        }
+      },
+      {
+        "index": 29,
+        "name": "accommodations_select",
+        "arguments": {
+          "city": "Suzhou",
+          "key": "name",
+          "op": "eq",
+          "value": "Garbo Hotel (Suzhou Guanqian Street Shiquan Street Branch)"
+        }
+      },
+      {
+        "index": 30,
+        "name": "restaurants_select",
+        "arguments": {
+          "city": "Suzhou",
+          "key": "name",
+          "op": "eq",
+          "value": "Old Patron's Egg Pancake"
+        }
+      },
+      {
+        "index": 31,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Suzhou",
+          "key": "name",
+          "op": "eq",
+          "value": "Arhat Hall"
+        }
+      },
+      {
+        "index": 32,
+        "name": "restaurants_select",
+        "arguments": {
+          "city": "Suzhou",
+          "key": "name",
+          "op": "eq",
+          "value": "Catch Fish to Eat (Moye Road Branch)"
+        }
+      },
+      {
+        "index": 33,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Suzhou",
+          "key": "name",
+          "op": "eq",
+          "value": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom"
+        }
+      },
+      {
+        "index": 34,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "09:58",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 35,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Changmen Gate",
+          "end": "Willow Lane (Jianxin Alley Branch)",
+          "start_time": "12:45",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 36,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Willow Lane (Jianxin Alley Branch)",
+          "end": "Pingjiang Road Historic District",
+          "start_time": "13:45",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 37,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Pingjiang Road Historic District",
+          "end": "Suzhou Water Tour",
+          "start_time": "16:15",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 38,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Water Tour",
+          "end": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+          "start_time": "18:30",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 39,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+          "end": "Ancient Canal Night Cruise",
+          "start_time": "19:30",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 40,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Ancient Canal Night Cruise",
+          "end": "Garbo Hotel (Suzhou Guanqian Street Shiquan Street Branch)",
+          "start_time": "20:30",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 41,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Garbo Hotel (Suzhou Guanqian Street Shiquan Street Branch)",
+          "end": "Old Patron's Egg Pancake",
+          "start_time": "07:30",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 42,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Old Patron's Egg Pancake",
+          "end": "Arhat Hall",
+          "start_time": "08:30",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 43,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Arhat Hall",
+          "end": "Catch Fish to Eat (Moye Road Branch)",
+          "start_time": "11:00",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 44,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Catch Fish to Eat (Moye Road Branch)",
+          "end": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+          "start_time": "13:00",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 45,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+          "end": "Suzhou Station",
+          "start_time": "14:30",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 46,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Shanghai",
+          "end_city": "Suzhou",
+          "type": "train"
+        }
+      },
+      {
+        "index": 47,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Suzhou",
+          "end_city": "Shanghai",
+          "type": "train"
+        }
+      },
+      {
+        "index": 48,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:42",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 49,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Park Station",
+          "end": "Changmen Gate",
+          "start_time": "09:50",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 50,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou North Station",
+          "end": "Changmen Gate",
+          "start_time": "09:51",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 51,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou North Station",
+          "end": "Changmen Gate",
+          "start_time": "09:56",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 52,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:13",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 53,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:13",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 54,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou North Station",
+          "end": "Changmen Gate",
+          "start_time": "10:01",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 55,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "11:28",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 56,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "09:49",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 57,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "09:49",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 58,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:08",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 59,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:08",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 60,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou North Station",
+          "end": "Changmen Gate",
+          "start_time": "10:06",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 61,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou North Station",
+          "end": "Changmen Gate",
+          "start_time": "09:47",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 62,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:20",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 63,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:20",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 64,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "09:36",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 65,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "09:36",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 66,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou North Station",
+          "end": "Changmen Gate",
+          "start_time": "10:14",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 67,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "09:30",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 68,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "09:30",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 69,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou North Station",
+          "end": "Changmen Gate",
+          "start_time": "09:27",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 70,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "09:25",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 71,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "09:25",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 72,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:25",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 73,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:00",
+          "transport_type": "walk"
+        }
+      },
+      {
+        "index": 74,
+        "name": "goto",
+        "arguments": {
+          "city": "Suzhou",
+          "start": "Suzhou Station",
+          "end": "Changmen Gate",
+          "start_time": "10:00",
+          "transport_type": "walk"
+        }
+      }
+    ],
+    "input_accounting": "conservative UTF-8 preflight; actual provider usage recorded; missing remote usage remains unknown"
+  },
+  "clarification": {
+    "status": "ready",
+    "base_revision": "f221da825ccf4630adb7379199c7ededb3daca7a28fe5fcd2970b73ff18d8e08",
+    "task": {
+      "uid": "e20241028161015707983",
+      "tag": "medium",
+      "start_city": "上海",
+      "target_city": "苏州",
+      "days": 2,
+      "people_number": 3,
+      "limit_rooms": true,
+      "limits_room_type": true,
+      "nature_language": "当前位置上海。我和两位朋友打算去苏州玩两天，选择火车出行，预算2300元，开三间单床房。请给我一个旅行规划。",
+      "nature_language_en": "Current location: Shanghai. My two friends and I are planning to visit Suzhou for two days, and we plan to travel by train. Our budget is 2300 RMB, and we need three single-bed rooms. Could you please provide a travel itinerary for us?"
+    },
+    "seed_plan": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "properties": {
+        "people_number": {
+          "type": "integer"
+        },
+        "start_city": {
+          "type": "string"
+        },
+        "target_city": {
+          "type": "string"
+        },
+        "itinerary": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "day": {
+                "type": "integer"
+              },
+              "activities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "airplane",
+                        "attraction",
+                        "lunch",
+                        "dinner",
+                        "breakfast",
+                        "accommodation",
+                        "train"
+                      ]
+                    },
+                    "start_time": {
+                      "type": "string",
+                      "pattern": "^\\d{2}:\\d{2}$"
+                    },
+                    "end_time": {
+                      "type": "string",
+                      "pattern": "^\\d{2}:\\d{2}$"
+                    },
+                    "cost": {
+                      "type": "number"
+                    },
+                    "price": {
+                      "type": "number"
+                    },
+                    "tickets": {
+                      "type": "integer"
+                    },
+                    "position": {
+                      "type": "string"
+                    },
+                    "transports": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "start": {
+                            "type": "string"
+                          },
+                          "end": {
+                            "type": "string"
+                          },
+                          "mode": {
+                            "type": "string",
+                            "enum": [
+                              "walk",
+                              "metro",
+                              "taxi"
+                            ]
+                          },
+                          "start_time": {
+                            "type": "string",
+                            "pattern": "^\\d{2}:\\d{2}$"
+                          },
+                          "end_time": {
+                            "type": "string",
+                            "pattern": "^\\d{2}:\\d{2}$"
+                          },
+                          "cost": {
+                            "type": "number"
+                          },
+                          "price": {
+                            "type": "number"
+                          },
+                          "distance": {
+                            "type": "number"
+                          },
+                          "tickets": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "start",
+                          "end",
+                          "mode",
+                          "start_time",
+                          "end_time",
+                          "price",
+                          "cost",
+                          "distance"
+                        ]
+                      }
+                    },
+                    "room_type": {
+                      "type": "integer"
+                    },
+                    "rooms": {
+                      "type": "integer"
+                    },
+                    "FlightID": {
+                      "type": "string"
+                    },
+                    "TrainID": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "start_time",
+                    "end_time",
+                    "cost",
+                    "price",
+                    "transports"
+                  ],
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "airplane",
+                              "train"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ]
+                      },
+                      "then": {
+                        "required": [
+                          "start",
+                          "end"
+                        ],
+                        "not": {
+                          "required": [
+                            "position"
+                          ]
+                        }
+                      },
+                      "else": {
+                        "required": [
+                          "position"
+                        ],
+                        "not": {
+                          "anyOf": [
+                            {
+                              "required": [
+                                "start"
+                              ]
+                            },
+                            {
+                              "required": [
+                                "end"
+                              ]
+                            },
+                            {
+                              "required": [
+                                "FlightID"
+                              ]
+                            },
+                            {
+                              "required": [
+                                "TrainID"
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "if": {
+                        "properties": {
+                          "type": {
+                            "const": "airplane"
+                          }
+                        }
+                      },
+                      "then": {
+                        "required": [
+                          "FlightID"
+                        ]
+                      }
+                    },
+                    {
+                      "if": {
+                        "properties": {
+                          "type": {
+                            "const": "train"
+                          }
+                        }
+                      },
+                      "then": {
+                        "required": [
+                          "TrainID"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "day",
+              "activities"
+            ]
+          }
+        }
+      },
+      "required": [
+        "people_number",
+        "start_city",
+        "target_city",
+        "itinerary"
+      ],
+      "people_number": 3,
+      "start_city": "上海",
+      "target_city": "苏州",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "train",
+              "start": "Shanghai Station",
+              "end": "Suzhou Station",
+              "TrainID": "K360",
+              "start_time": "09:29",
+              "end_time": "10:23",
+              "price": 33.99,
+              "cost": 101.97,
+              "tickets": 3,
+              "transports": []
+            },
+            {
+              "type": "attraction",
+              "position": "Changmen Gate",
+              "start_time": "10:34",
+              "end_time": "12:45",
+              "price": 0,
+              "cost": 0.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Suzhou Station",
+                  "end": "Changmen Gate",
+                  "mode": "walk",
+                  "start_time": "10:23",
+                  "end_time": "10:34",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 0.9231455428240082,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Willow Lane (Jianxin Alley Branch)",
+              "start_time": "13:15",
+              "end_time": "13:45",
+              "price": 18,
+              "cost": 54.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Changmen Gate",
+                  "end": "Willow Lane (Jianxin Alley Branch)",
+                  "mode": "walk",
+                  "start_time": "12:45",
+                  "end_time": "13:12",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 2.3172411729485645,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Pingjiang Road Historic District",
+              "start_time": "14:05",
+              "end_time": "16:15",
+              "price": 0,
+              "cost": 0.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Willow Lane (Jianxin Alley Branch)",
+                  "end": "Pingjiang Road Historic District",
+                  "mode": "walk",
+                  "start_time": "13:45",
+                  "end_time": "14:02",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 1.453774262028893,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Suzhou Water Tour",
+              "start_time": "17:00",
+              "end_time": "18:30",
+              "price": 0,
+              "cost": 0.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Pingjiang Road Historic District",
+                  "end": "Suzhou Water Tour",
+                  "mode": "walk",
+                  "start_time": "16:15",
+                  "end_time": "16:55",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 3.340866546308282,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "dinner",
+              "position": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+              "start_time": "19:00",
+              "end_time": "19:30",
+              "price": 40,
+              "cost": 120.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Suzhou Water Tour",
+                  "end": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+                  "mode": "walk",
+                  "start_time": "18:30",
+                  "end_time": "18:52",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 1.8551809405808195,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Ancient Canal Night Cruise",
+              "start_time": "19:55",
+              "end_time": "20:30",
+              "price": 0,
+              "cost": 0.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Hongxin Tower · Exquisite Suzhou Cuisine · Squirrel Mandarin Fish (Guanqian Street Branch)",
+                  "end": "Ancient Canal Night Cruise",
+                  "mode": "walk",
+                  "start_time": "19:30",
+                  "end_time": "19:51",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 1.78238327302097,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "position": "Garbo Hotel (Suzhou Guanqian Street Shiquan Street Branch)",
+              "start_time": "21:00",
+              "end_time": "23:59",
+              "price": 277,
+              "cost": 831.0,
+              "tickets": 3,
+              "rooms": 3,
+              "room_type": 1,
+              "transports": [
+                {
+                  "start": "Ancient Canal Night Cruise",
+                  "end": "Garbo Hotel (Suzhou Guanqian Street Shiquan Street Branch)",
+                  "mode": "walk",
+                  "start_time": "20:30",
+                  "end_time": "20:51",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 1.8060912794907606,
+                  "tickets": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "breakfast",
+              "position": "Old Patron's Egg Pancake",
+              "start_time": "07:50",
+              "end_time": "08:30",
+              "price": 11,
+              "cost": 33.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Garbo Hotel (Suzhou Guanqian Street Shiquan Street Branch)",
+                  "end": "Old Patron's Egg Pancake",
+                  "mode": "walk",
+                  "start_time": "07:30",
+                  "end_time": "07:48",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 1.5725741378522258,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Arhat Hall",
+              "start_time": "09:30",
+              "end_time": "11:00",
+              "price": 0,
+              "cost": 0.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Old Patron's Egg Pancake",
+                  "end": "Arhat Hall",
+                  "mode": "walk",
+                  "start_time": "08:30",
+                  "end_time": "09:21",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 4.280734817424915,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "position": "Catch Fish to Eat (Moye Road Branch)",
+              "start_time": "12:10",
+              "end_time": "13:00",
+              "price": 62,
+              "cost": 186.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Arhat Hall",
+                  "end": "Catch Fish to Eat (Moye Road Branch)",
+                  "mode": "walk",
+                  "start_time": "11:00",
+                  "end_time": "12:07",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 5.647881211112495,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "position": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+              "start_time": "13:50",
+              "end_time": "14:30",
+              "price": 0,
+              "cost": 0.0,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Catch Fish to Eat (Moye Road Branch)",
+                  "end": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+                  "mode": "walk",
+                  "start_time": "13:00",
+                  "end_time": "13:45",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 3.819968033735107,
+                  "tickets": 3
+                }
+              ]
+            },
+            {
+              "type": "train",
+              "start": "Suzhou Station",
+              "end": "Shanghai Station",
+              "TrainID": "G3122",
+              "start_time": "15:43",
+              "end_time": "16:16",
+              "price": 55.23,
+              "cost": 165.69,
+              "tickets": 3,
+              "transports": [
+                {
+                  "start": "Loyal Prince's Mansion of the Taiping Heavenly Kingdom",
+                  "end": "Suzhou Station",
+                  "mode": "walk",
+                  "start_time": "14:30",
+                  "end_time": "14:57",
+                  "price": 0,
+                  "cost": 0.0,
+                  "distance": 2.300708066227201,
+                  "tickets": 3
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "kind": "transport_unavailable",
+      "day": null,
+      "new_days": null,
+      "new_budget": null,
+      "target": "K360",
+      "description": ""
+    },
+    "state_revision": "8e442b50105fe149d94948391287fa11ab52b050b96437b982b639bcfa4a01d4"
+  },
+  "event": {
+    "kind": "transport_unavailable",
+    "target": "K360",
+    "description": ""
+  },
+  "event_check": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours"
+    ]
+  }
+}

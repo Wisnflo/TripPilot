@@ -1,0 +1,119 @@
+{
+  "job": {
+    "uid": "m20241028164938643608",
+    "split": "easy",
+    "model": "glm-5.3-flash",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "structured",
+    "kind": "static",
+    "task": {
+      "days": 3,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置杭州。我一个人想去成都玩3天，想人民公园附近的鹤鸣茶社，请给我一个旅行规划。",
+      "nature_language_en": "Current location: Hangzhou. I want to travel alone to Chengdu for 3 days and visit the Heming Teahouse near People's Park. Please provide me with a travel plan.",
+      "people_number": 1,
+      "start_city": "杭州",
+      "tag": "easy",
+      "target_city": "成都",
+      "uid": "m20241028164938643608"
+    }
+  },
+  "result": {
+    "task_uid": "m20241028164938643608",
+    "method": "structured",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.0460157499183
+  },
+  "ledger": {
+    "request_attempts": 3,
+    "completed_attempts": 2,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 377,
+      "completion_tokens": 2853,
+      "total_tokens": 3230
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.01292,
+      "upper": 0.01292
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793496866.5145931,
+        "attempt_id": "3ce86c0dfc9f46c8885cd57d67425f51",
+        "model": "glm-5.3-flash",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793496997.635872,
+        "attempt_id": "3ce86c0dfc9f46c8885cd57d67425f51",
+        "model": "glm-5.3-flash",
+        "elapsed": 131.12117558298633,
+        "response_model": "glm-5.3-flash",
+        "request_id": "chatcmpl-1d1d0f52-fc87-4b55-99a0-cd1ec43b29be",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 377,
+        "completion_tokens": 2853,
+        "total_tokens": 3230,
+        "reasoning_tokens": null
+      },
+      {
+        "kind": "start",
+        "time": 1793496997.85747,
+        "attempt_id": "87642d331e1b422790c15fca8d59c05b",
+        "model": "glm-5.3-flash",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793497177.882035,
+        "attempt_id": "87642d331e1b422790c15fca8d59c05b",
+        "model": "glm-5.3-flash",
+        "elapsed": 180.02271037502214,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "backoff",
+        "time": 1793497177.88264,
+        "attempt_id": "87642d331e1b422790c15fca8d59c05b",
+        "model": "glm-5.3-flash",
+        "seconds": 2.0,
+        "reason": "transient"
+      },
+      {
+        "kind": "start",
+        "time": 1793497179.888245,
+        "attempt_id": "2edf4569f2e54b34b1ae047ec0d885eb",
+        "model": "glm-5.3-flash",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 2,
+    "returned_tokens": 3230,
+    "tool_calls": 191,
+    "exhausted": ""
+  }
+}

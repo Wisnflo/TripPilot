@@ -1,0 +1,111 @@
+{
+  "job": {
+    "uid": "h20241029143900796443",
+    "split": "human",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "structured",
+    "kind": "static",
+    "task": {
+      "days": 4,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "[当前位置北京,目标位置苏州,旅行人数2,旅行天数4] 我想和女朋友在苏州玩四天，从北京过来，她往返都坐高铁。预算尽量低一些。请问我应当如何规划行程？",
+      "nature_language_en": "[Current location: Beijing, Destination: Suzhou, Number of travelers: 2, Number of travel days: 4] I want to spend four days in Suzhou with my girlfriend, traveling from Beijing. She will take the high-speed train for both trips. I would like to keep the budget as low as possible. How should I plan the itinerary?",
+      "people_number": 2,
+      "start_city": "北京",
+      "tag": "human",
+      "target_city": "苏州",
+      "uid": "h20241029143900796443"
+    }
+  },
+  "result": {
+    "task_uid": "h20241029143900796443",
+    "method": "structured",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.0311834170716
+  },
+  "ledger": {
+    "request_attempts": 3,
+    "completed_attempts": 2,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 464,
+      "completion_tokens": 1020,
+      "total_tokens": 1484
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.001484,
+      "upper": 0.001484
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793470958.1333451,
+        "attempt_id": "140481b6d0e34c29b877488b6590b5d0",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793470982.3337028,
+        "attempt_id": "140481b6d0e34c29b877488b6590b5d0",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 24.199736375012435,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-5bf65e18-6c11-4013-8046-ba8601b3f33e",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 464,
+        "completion_tokens": 1020,
+        "total_tokens": 1484,
+        "reasoning_tokens": 963
+      },
+      {
+        "kind": "start",
+        "time": 1793470982.3390331,
+        "attempt_id": "122c30d3d6b9493b96e2bf2a126f7d1c",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793471162.5123541,
+        "attempt_id": "122c30d3d6b9493b96e2bf2a126f7d1c",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 180.17279445799068,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793471164.520454,
+        "attempt_id": "685f0f54c26747b98182cf4124b0b93f",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 2,
+    "returned_tokens": 1484,
+    "tool_calls": 188,
+    "exhausted": ""
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "job": {
+    "uid": "e20241028161115178119",
+    "split": "medium",
+    "model": "glm-5.3-flash",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "b2",
+    "kind": "static",
+    "task": {
+      "days": 2,
+      "limit_rooms": true,
+      "limits_room_type": false,
+      "nature_language": "当前位置深圳。我一个人计划去杭州玩两天，预算2000元，想吃江浙菜，开一间房。请给我一个旅行规划。",
+      "nature_language_en": "Current location: Shenzhen. I am planning to travel alone to Hangzhou for two days with a budget of 2000 RMB. I want to try Jiangsu and Zhejiang cuisine and book a room. Please provide me with a travel plan.",
+      "people_number": 1,
+      "start_city": "深圳",
+      "tag": "medium",
+      "target_city": "杭州",
+      "uid": "e20241028161115178119"
+    }
+  },
+  "result": {
+    "task_uid": "e20241028161115178119",
+    "method": "b2",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.0390152920736
+  },
+  "ledger": {
+    "request_attempts": 2,
+    "completed_attempts": 1,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793500960.004184,
+        "attempt_id": "7790ad319b5d4221800700857f9adc5b",
+        "model": "glm-5.3-flash",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793501140.088044,
+        "attempt_id": "7790ad319b5d4221800700857f9adc5b",
+        "model": "glm-5.3-flash",
+        "elapsed": 180.08238883398008,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "backoff",
+        "time": 1793501140.090448,
+        "attempt_id": "7790ad319b5d4221800700857f9adc5b",
+        "model": "glm-5.3-flash",
+        "seconds": 2.0,
+        "reason": "transient"
+      },
+      {
+        "kind": "start",
+        "time": 1793501142.095936,
+        "attempt_id": "217c327792214098b551a472989384bd",
+        "model": "glm-5.3-flash",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 1,
+    "returned_tokens": 0,
+    "tool_calls": 188,
+    "exhausted": ""
+  }
+}

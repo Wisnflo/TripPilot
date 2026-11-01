@@ -1,0 +1,119 @@
+{
+  "job": {
+    "uid": "e20241028161327496043",
+    "split": "medium",
+    "model": "glm-5.3-flash",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "structured",
+    "kind": "static",
+    "task": {
+      "days": 3,
+      "limit_rooms": true,
+      "limits_room_type": false,
+      "nature_language": "当前位置广州。我四个人想去南京玩3天，预算10000人民币，住两间房，坐火车去，想去夫子庙这样的景点，请给我一个旅行规划。",
+      "nature_language_en": "Current location: Guangzhou. There are four of us who want to visit Nanjing for 3 days, with a budget of 10,000 RMB. We would like to stay in two rooms, travel by train, and visit attractions like the Confucius Temple. Please provide a travel plan.",
+      "people_number": 4,
+      "start_city": "广州",
+      "tag": "medium",
+      "target_city": "南京",
+      "uid": "e20241028161327496043"
+    }
+  },
+  "result": {
+    "task_uid": "e20241028161327496043",
+    "method": "structured",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.0278300830396
+  },
+  "ledger": {
+    "request_attempts": 3,
+    "completed_attempts": 2,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 469,
+      "completion_tokens": 1765,
+      "total_tokens": 2234
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.008936,
+      "upper": 0.008936
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793497586.7713559,
+        "attempt_id": "7196aa4140bc453db02f1ba34e237a3b",
+        "model": "glm-5.3-flash",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793497674.75981,
+        "attempt_id": "7196aa4140bc453db02f1ba34e237a3b",
+        "model": "glm-5.3-flash",
+        "elapsed": 87.98805049993098,
+        "response_model": "glm-5.3-flash",
+        "request_id": "chatcmpl-c29cbc3d-759a-4dd6-9302-a76a10106272",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 469,
+        "completion_tokens": 1765,
+        "total_tokens": 2234,
+        "reasoning_tokens": null
+      },
+      {
+        "kind": "start",
+        "time": 1793497674.961827,
+        "attempt_id": "cc5df0daf9704b36b38d1b3c9b6beb9c",
+        "model": "glm-5.3-flash",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793497854.987823,
+        "attempt_id": "cc5df0daf9704b36b38d1b3c9b6beb9c",
+        "model": "glm-5.3-flash",
+        "elapsed": 180.02588874998037,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "backoff",
+        "time": 1793497854.989662,
+        "attempt_id": "cc5df0daf9704b36b38d1b3c9b6beb9c",
+        "model": "glm-5.3-flash",
+        "seconds": 2.0,
+        "reason": "transient"
+      },
+      {
+        "kind": "start",
+        "time": 1793497856.998643,
+        "attempt_id": "e2cbef40a18d4bf48b9ea084af593225",
+        "model": "glm-5.3-flash",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 2,
+    "returned_tokens": 2234,
+    "tool_calls": 193,
+    "exhausted": ""
+  }
+}

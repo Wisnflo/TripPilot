@@ -1,0 +1,140 @@
+{
+  "job": {
+    "uid": "e20241028161111138617",
+    "split": "medium",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "direct_plan",
+    "kind": "static",
+    "task": {
+      "days": 2,
+      "limit_rooms": true,
+      "limits_room_type": true,
+      "nature_language": "当前位置武汉。我们三个人计划去北京玩两天，预算6100元，想去人文景观景点，开两间双床房。请给我一个旅行规划。",
+      "nature_language_en": "Current location: Wuhan. Three of us are planning to visit Beijing for two days with a budget of 6,100 RMB. We want to visit cultural and historical attractions and book two twin rooms. Please provide me with a travel plan.",
+      "people_number": 3,
+      "start_city": "武汉",
+      "tag": "medium",
+      "target_city": "北京",
+      "uid": "e20241028161111138617"
+    }
+  },
+  "result": {
+    "task_uid": "e20241028161111138617",
+    "method": "direct_plan",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.04503612499684
+  },
+  "ledger": {
+    "request_attempts": 4,
+    "completed_attempts": 3,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 11374,
+      "completion_tokens": 10692,
+      "total_tokens": 22066
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.022066,
+      "upper": 0.022066
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793503844.940028,
+        "attempt_id": "94084df7bb434026af71d5cc947884f0",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793503852.951757,
+        "attempt_id": "94084df7bb434026af71d5cc947884f0",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 8.011006957967766,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-4b09c44b-552d-4e71-816a-3dd67dbe4b7b",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 426,
+        "completion_tokens": 692,
+        "total_tokens": 1118,
+        "reasoning_tokens": 588
+      },
+      {
+        "kind": "start",
+        "time": 1793503852.964255,
+        "attempt_id": "837a95bb5c67495f9d2c580ea6eb0cba",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793503958.420979,
+        "attempt_id": "837a95bb5c67495f9d2c580ea6eb0cba",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 105.4534568330273,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-43e279d4-3bca-4174-a448-cb5c5b01d190",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 10948,
+        "completion_tokens": 10000,
+        "total_tokens": 20948,
+        "reasoning_tokens": 9976
+      },
+      {
+        "kind": "start",
+        "time": 1793503958.426461,
+        "attempt_id": "5ca22b759c5a40c596ed2624a0376d7f",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793504138.45931,
+        "attempt_id": "5ca22b759c5a40c596ed2624a0376d7f",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 180.03240845899563,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "backoff",
+        "time": 1793504138.4611,
+        "attempt_id": "5ca22b759c5a40c596ed2624a0376d7f",
+        "model": "qwen3.8-reasoner",
+        "seconds": 2.0,
+        "reason": "transient"
+      },
+      {
+        "kind": "start",
+        "time": 1793504140.463546,
+        "attempt_id": "9546794daa36415a87cda83855ac5aee",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 1,
+    "model_calls": 3,
+    "returned_tokens": 22066,
+    "tool_calls": 193,
+    "exhausted": ""
+  }
+}

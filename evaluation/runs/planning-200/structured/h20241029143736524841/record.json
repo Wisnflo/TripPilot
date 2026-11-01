@@ -1,0 +1,132 @@
+{
+  "job": {
+    "uid": "h20241029143736524841",
+    "split": "human",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "structured",
+    "kind": "static",
+    "task": {
+      "days": 4,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "[当前位置南京,目标位置成都,旅行人数5,旅行天数4] 我们一家五口打算去成都看熊猫，打算坐动车往返，顺带在附近的著名景点玩一下。请帮我们规划一下行程，预算不要超过2万。",
+      "nature_language_en": "[Current location: Nanjing, Destination: Chengdu, Number of travelers: 5, Number of travel days: 4] Our family of five plans to visit Chengdu to see the pandas. We intend to travel by high-speed train round trip and also visit some famous nearby attractions. Please help us plan the itinerary, and keep the budget under 20,000 RMB.",
+      "people_number": 5,
+      "start_city": "南京",
+      "tag": "human",
+      "target_city": "成都",
+      "uid": "h20241029143736524841"
+    }
+  },
+  "result": {
+    "task_uid": "h20241029143736524841",
+    "method": "structured",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.0305567920441
+  },
+  "ledger": {
+    "request_attempts": 4,
+    "completed_attempts": 3,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 11275,
+      "completion_tokens": 11324,
+      "total_tokens": 22599
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.022599,
+      "upper": 0.022599
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793470087.223476,
+        "attempt_id": "400a954ece6b4a86b22706456602891c",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793470103.604449,
+        "attempt_id": "400a954ece6b4a86b22706456602891c",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 16.38039312500041,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-82aa16b8-49e9-41fb-ad53-73f5b4a8ceb4",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 499,
+        "completion_tokens": 1324,
+        "total_tokens": 1823,
+        "reasoning_tokens": 1233
+      },
+      {
+        "kind": "start",
+        "time": 1793470103.6097121,
+        "attempt_id": "ef6831d5a5ff4ee1a2e00ebcbafcaaf5",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793470248.582549,
+        "attempt_id": "ef6831d5a5ff4ee1a2e00ebcbafcaaf5",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 144.9724292079918,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-af431ec1-90be-4c0d-8093-5f68fe55e7a0",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 10776,
+        "completion_tokens": 10000,
+        "total_tokens": 20776,
+        "reasoning_tokens": 10000
+      },
+      {
+        "kind": "start",
+        "time": 1793470248.5866282,
+        "attempt_id": "0a54042dd934416589075230640d1504",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793470428.619352,
+        "attempt_id": "0a54042dd934416589075230640d1504",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 180.03229841694701,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793470430.6313229,
+        "attempt_id": "b762592e32484bd49ebea56e8e794d8d",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 1,
+    "model_calls": 3,
+    "returned_tokens": 22599,
+    "tool_calls": 187,
+    "exhausted": ""
+  }
+}

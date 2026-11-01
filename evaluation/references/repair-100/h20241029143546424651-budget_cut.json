@@ -1,0 +1,734 @@
+{
+  "task_uid": "h20241029143546424651",
+  "event": {
+    "kind": "budget_cut",
+    "new_budget": "2062",
+    "description": ""
+  },
+  "plan": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "people_number": {
+        "type": "integer"
+      },
+      "start_city": {
+        "type": "string"
+      },
+      "target_city": {
+        "type": "string"
+      },
+      "itinerary": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "activities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "airplane",
+                      "attraction",
+                      "lunch",
+                      "dinner",
+                      "breakfast",
+                      "accommodation",
+                      "train"
+                    ]
+                  },
+                  "start_time": {
+                    "type": "string"
+                  },
+                  "end_time": {
+                    "type": "string"
+                  },
+                  "cost": {
+                    "type": "number"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "tickets": {
+                    "type": "integer"
+                  },
+                  "position": {
+                    "type": "string"
+                  },
+                  "transports": {
+                    "type": "array"
+                  },
+                  "room_type": {
+                    "type": "integer"
+                  },
+                  "rooms": {
+                    "type": "integer"
+                  },
+                  "FlightID": {
+                    "type": "string"
+                  },
+                  "TrainID": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "people_number",
+        "start_city",
+        "target_city",
+        "itinerary"
+      ]
+    },
+    "people_number": 1,
+    "start_city": "Shenzhen",
+    "target_city": "Nanjing",
+    "itinerary": [
+      {
+        "day": 1,
+        "activities": [
+          {
+            "type": "airplane",
+            "start": "Shenzhen Bao'an International Airport",
+            "end": "Nanjing Lukou International Airport",
+            "start_time": "08:48",
+            "end_time": "10:15",
+            "price": 577.01,
+            "cost": 577.01,
+            "tickets": 1,
+            "FlightID": "FL235",
+            "transports": []
+          },
+          {
+            "type": "attraction",
+            "position": "Linggu Scenic Area",
+            "start_time": "11:30",
+            "end_time": "13:00",
+            "price": 32,
+            "cost": 32.0,
+            "tickets": 1,
+            "transports": [
+              {
+                "start": "Nanjing Lukou International Airport",
+                "end": "Linggu Scenic Area",
+                "mode": "taxi",
+                "start_time": "10:30",
+                "end_time": "11:24",
+                "price": 159.38,
+                "cost": 159.38,
+                "distance": 36.6,
+                "tickets": 1,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "position": "Linggu Vegetarian Noodle House",
+            "start_time": "13:15",
+            "end_time": "14:00",
+            "price": 37,
+            "cost": 37.0,
+            "tickets": 1,
+            "transports": [
+              {
+                "start": "Linggu Scenic Area",
+                "end": "Linggu Vegetarian Noodle House",
+                "mode": "walk",
+                "start_time": "13:00",
+                "end_time": "13:11",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 0.9627442224390537
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Zhongshan Scenic Area",
+            "start_time": "14:05",
+            "end_time": "15:00",
+            "price": 0,
+            "cost": 0.0,
+            "tickets": 1,
+            "transports": [
+              {
+                "start": "Linggu Vegetarian Noodle House",
+                "end": "Zhongshan Scenic Area",
+                "mode": "taxi",
+                "start_time": "14:00",
+                "end_time": "14:02",
+                "price": 11.13,
+                "cost": 11.13,
+                "distance": 1.84,
+                "tickets": 1,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "accommodation",
+            "position": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+            "start_time": "15:08",
+            "end_time": "23:00",
+            "price": 102,
+            "cost": 102.0,
+            "tickets": 1,
+            "rooms": 1,
+            "room_type": 2,
+            "transports": [
+              {
+                "start": "Zhongshan Scenic Area",
+                "end": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+                "mode": "taxi",
+                "start_time": "15:00",
+                "end_time": "15:08",
+                "price": 25.53,
+                "cost": 25.53,
+                "distance": 5.95,
+                "tickets": 1,
+                "cars": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "activities": [
+          {
+            "type": "breakfast",
+            "position": "Taoyuan Village Rice Cake Shop (Zhujiang Road Branch)",
+            "start_time": "08:00",
+            "end_time": "08:30",
+            "price": 30,
+            "cost": 30.0,
+            "tickets": 1,
+            "transports": [
+              {
+                "start": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+                "end": "Taoyuan Village Rice Cake Shop (Zhujiang Road Branch)",
+                "mode": "walk",
+                "start_time": "07:45",
+                "end_time": "07:47",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 0.20863058195754797
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Mufu Mountain",
+            "start_time": "08:45",
+            "end_time": "10:30",
+            "price": 0,
+            "cost": 0.0,
+            "tickets": 1,
+            "transports": [
+              {
+                "start": "Taoyuan Village Rice Cake Shop (Zhujiang Road Branch)",
+                "end": "Mufu Mountain",
+                "mode": "taxi",
+                "start_time": "08:30",
+                "end_time": "08:43",
+                "price": 35.12,
+                "cost": 35.12,
+                "distance": 8.69,
+                "tickets": 1,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "attraction",
+            "position": "Plum Blossom Mountain",
+            "start_time": "10:45",
+            "end_time": "13:30",
+            "price": 0,
+            "cost": 0.0,
+            "tickets": 1,
+            "transports": [
+              {
+                "start": "Mufu Mountain",
+                "end": "Plum Blossom Mountain",
+                "mode": "taxi",
+                "start_time": "10:30",
+                "end_time": "10:44",
+                "price": 37.4,
+                "cost": 37.4,
+                "distance": 9.34,
+                "tickets": 1,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "position": "Tongqinglou (Zhujiang Road Branch)",
+            "start_time": "13:40",
+            "end_time": "15:00",
+            "price": 129,
+            "cost": 129.0,
+            "tickets": 1,
+            "transports": [
+              {
+                "start": "Plum Blossom Mountain",
+                "end": "Tongqinglou (Zhujiang Road Branch)",
+                "mode": "taxi",
+                "start_time": "13:30",
+                "end_time": "13:37",
+                "price": 21.05,
+                "cost": 21.05,
+                "distance": 4.67,
+                "tickets": 1,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "dinner",
+            "position": "Zhao Dapao Barbecue & Craft Brewery (Daxinggong 1912 Branch)",
+            "start_time": "17:00",
+            "end_time": "18:30",
+            "price": 114,
+            "cost": 114.0,
+            "tickets": 1,
+            "transports": [
+              {
+                "start": "Tongqinglou (Zhujiang Road Branch)",
+                "end": "Zhao Dapao Barbecue & Craft Brewery (Daxinggong 1912 Branch)",
+                "mode": "walk",
+                "start_time": "16:45",
+                "end_time": "16:48",
+                "price": 0,
+                "cost": 0.0,
+                "distance": 0.2905050029264307
+              }
+            ]
+          },
+          {
+            "type": "airplane",
+            "start": "Nanjing Lukou International Airport",
+            "end": "Shenzhen Bao'an International Airport",
+            "start_time": "21:38",
+            "end_time": "23:05",
+            "price": 567.18,
+            "cost": 567.18,
+            "tickets": 1,
+            "FlightID": "FL663",
+            "transports": [
+              {
+                "start": "Zhao Dapao Barbecue & Craft Brewery (Daxinggong 1912 Branch)",
+                "end": "Nanjing Lukou International Airport",
+                "mode": "taxi",
+                "start_time": "19:30",
+                "end_time": "20:23",
+                "price": 154.73,
+                "cost": 154.73,
+                "distance": 35.56,
+                "tickets": 1,
+                "cars": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "complete_constraint_check": true,
+  "construction": "independent public-tool constructor and previously valid alternative initial plans; repair methods not executed",
+  "seed_method": "b2",
+  "clarification": {
+    "status": "ready",
+    "base_revision": "3be35506455243f2ad66c58659bb3e59041e6b3ff6c15d17d54175c86cabf924",
+    "task": {
+      "days": 2,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "[当前位置深圳,目标位置南京,旅行人数1,旅行天数2] 我喜欢自然风光，请帮我规划一个南京旅游路线。",
+      "nature_language_en": "[Current location: Shenzhen, Destination: Nanjing, Number of travelers: 1, Number of travel days: 2] I like natural scenery, please help me plan a travel itinerary in Nanjing.",
+      "people_number": 1,
+      "start_city": "深圳",
+      "tag": "human",
+      "target_city": "南京",
+      "uid": "h20241029143546424651"
+    },
+    "seed_plan": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "properties": {
+        "people_number": {
+          "type": "integer"
+        },
+        "start_city": {
+          "type": "string"
+        },
+        "target_city": {
+          "type": "string"
+        },
+        "itinerary": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "day": {
+                "type": "integer"
+              },
+              "activities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "start_time": {
+                      "type": "string"
+                    },
+                    "end_time": {
+                      "type": "string"
+                    },
+                    "cost": {
+                      "type": "number"
+                    },
+                    "price": {
+                      "type": "number"
+                    },
+                    "tickets": {
+                      "type": "integer"
+                    },
+                    "position": {
+                      "type": "string"
+                    },
+                    "transports": {
+                      "type": "array"
+                    },
+                    "room_type": {
+                      "type": "integer"
+                    },
+                    "rooms": {
+                      "type": "integer"
+                    },
+                    "FlightID": {
+                      "type": "string"
+                    },
+                    "TrainID": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "people_number",
+          "start_city",
+          "target_city",
+          "itinerary"
+        ]
+      },
+      "people_number": 1,
+      "start_city": "Shenzhen",
+      "target_city": "Nanjing",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "airplane",
+              "start_time": "08:48",
+              "end_time": "10:15",
+              "cost": 577.01,
+              "price": 577.01,
+              "tickets": 1,
+              "start": "Shenzhen Bao'an International Airport",
+              "end": "Nanjing Lukou International Airport",
+              "FlightID": "FL235",
+              "transports": []
+            },
+            {
+              "type": "attraction",
+              "start_time": "11:30",
+              "end_time": "12:00",
+              "cost": 0.0,
+              "price": 0,
+              "tickets": 1,
+              "position": "Zhongshan Scenic Area",
+              "transports": [
+                {
+                  "start": "Nanjing Lukou International Airport",
+                  "end": "Zhongshan Scenic Area",
+                  "mode": "taxi",
+                  "start_time": "10:30",
+                  "end_time": "11:26",
+                  "cost": 163.34,
+                  "price": 163.34,
+                  "distance": 37.47,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "start_time": "12:15",
+              "end_time": "13:00",
+              "cost": 37.0,
+              "price": 37,
+              "tickets": 1,
+              "position": "Harmony Full House (Fengfu Road Branch)",
+              "transports": [
+                {
+                  "start": "Zhongshan Scenic Area",
+                  "end": "Harmony Full House (Fengfu Road Branch)",
+                  "mode": "taxi",
+                  "start_time": "12:00",
+                  "end_time": "12:12",
+                  "cost": 34.54,
+                  "price": 34.54,
+                  "distance": 8.52,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "start_time": "13:15",
+              "end_time": "15:30",
+              "cost": 0.0,
+              "price": 0,
+              "tickets": 1,
+              "position": "Plum Blossom Mountain",
+              "transports": [
+                {
+                  "start": "Harmony Full House (Fengfu Road Branch)",
+                  "end": "Plum Blossom Mountain",
+                  "mode": "taxi",
+                  "start_time": "13:00",
+                  "end_time": "13:10",
+                  "cost": 28.35,
+                  "price": 28.35,
+                  "distance": 6.76,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "start_time": "16:05",
+              "end_time": "17:30",
+              "cost": 32.0,
+              "price": 32,
+              "tickets": 1,
+              "position": "Linggu Scenic Area",
+              "transports": [
+                {
+                  "start": "Plum Blossom Mountain",
+                  "end": "Linggu Scenic Area",
+                  "mode": "walk",
+                  "start_time": "15:30",
+                  "end_time": "16:02",
+                  "cost": 0.0,
+                  "price": 0,
+                  "distance": 2.7030300459567638,
+                  "tickets": 1
+                }
+              ]
+            },
+            {
+              "type": "dinner",
+              "start_time": "17:45",
+              "end_time": "19:00",
+              "cost": 43.0,
+              "price": 43,
+              "tickets": 1,
+              "position": "Yonghe Garden Restaurant",
+              "transports": [
+                {
+                  "start": "Linggu Scenic Area",
+                  "end": "Yonghe Garden Restaurant",
+                  "mode": "taxi",
+                  "start_time": "17:30",
+                  "end_time": "17:43",
+                  "cost": 36.99,
+                  "price": 36.99,
+                  "distance": 9.23,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "start_time": "19:10",
+              "end_time": "23:00",
+              "cost": 102.0,
+              "price": 102,
+              "tickets": 1,
+              "position": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+              "room_type": 2,
+              "rooms": 1,
+              "transports": [
+                {
+                  "start": "Yonghe Garden Restaurant",
+                  "end": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+                  "mode": "taxi",
+                  "start_time": "19:00",
+                  "end_time": "19:04",
+                  "cost": 15.3,
+                  "price": 15.3,
+                  "distance": 3.03,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "breakfast",
+              "start_time": "07:50",
+              "end_time": "08:00",
+              "cost": 10.0,
+              "price": 10,
+              "tickets": 1,
+              "position": "Zhu Ji Xiao Zheng Crispy Pancake (Laomendong Branch)",
+              "transports": [
+                {
+                  "start": "My Home Hotel (Nanjing East Military District General Courtyard Presidential Palace Branch)",
+                  "end": "Zhu Ji Xiao Zheng Crispy Pancake (Laomendong Branch)",
+                  "mode": "walk",
+                  "start_time": "07:00",
+                  "end_time": "07:49",
+                  "cost": 0.0,
+                  "price": 0,
+                  "distance": 4.149221929144581,
+                  "tickets": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "start_time": "08:40",
+              "end_time": "10:30",
+              "cost": 47.0,
+              "price": 47,
+              "tickets": 1,
+              "position": "Qixia Mountain",
+              "transports": [
+                {
+                  "start": "Zhu Ji Xiao Zheng Crispy Pancake (Laomendong Branch)",
+                  "end": "Qixia Mountain",
+                  "mode": "taxi",
+                  "start_time": "08:00",
+                  "end_time": "08:36",
+                  "cost": 105.34,
+                  "price": 105.34,
+                  "distance": 24.59,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "start_time": "11:10",
+              "end_time": "11:30",
+              "cost": 29.0,
+              "price": 29,
+              "tickets": 1,
+              "position": "Li's Halal Restaurant (Dading Lane Branch)",
+              "transports": [
+                {
+                  "start": "Qixia Mountain",
+                  "end": "Li's Halal Restaurant (Dading Lane Branch)",
+                  "mode": "taxi",
+                  "start_time": "10:30",
+                  "end_time": "11:05",
+                  "cost": 101.89,
+                  "price": 101.89,
+                  "distance": 23.82,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "attraction",
+              "start_time": "11:50",
+              "end_time": "13:00",
+              "cost": 0.0,
+              "price": 0,
+              "tickets": 1,
+              "position": "Mufu Mountain",
+              "transports": [
+                {
+                  "start": "Li's Halal Restaurant (Dading Lane Branch)",
+                  "end": "Mufu Mountain",
+                  "mode": "taxi",
+                  "start_time": "11:30",
+                  "end_time": "11:45",
+                  "cost": 42.67,
+                  "price": 42.67,
+                  "distance": 10.66,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "airplane",
+              "start_time": "18:35",
+              "end_time": "20:02",
+              "cost": 570.83,
+              "price": 570.83,
+              "tickets": 1,
+              "start": "Nanjing Lukou International Airport",
+              "end": "Shenzhen Bao'an International Airport",
+              "FlightID": "FL670",
+              "transports": [
+                {
+                  "start": "Mufu Mountain",
+                  "end": "Nanjing Lukou International Airport",
+                  "mode": "taxi",
+                  "start_time": "13:00",
+                  "end_time": "14:06",
+                  "cost": 194.28,
+                  "price": 194.28,
+                  "distance": 44.35,
+                  "tickets": 1,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "kind": "budget_cut",
+      "day": null,
+      "new_days": null,
+      "new_budget": "2062",
+      "target": null,
+      "description": ""
+    },
+    "state_revision": "088c223f0e729b2a4dcace4ac5900d6f0f62fe93aba8fc780a249ce7d015e3b4"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "job": {
+    "uid": "e20241028160851829629",
+    "split": "medium",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "structured",
+    "kind": "static",
+    "task": {
+      "days": 2,
+      "limit_rooms": true,
+      "limits_room_type": true,
+      "nature_language": "当前位置杭州。我和男朋友打算去南京玩两天，预算1500元，市内主要使用出租车，开一间单床房。请给我一个旅行规划。",
+      "nature_language_en": "Current location: Hangzhou. My boyfriend and I are planning to visit Nanjing for two days with a budget of 1500 RMB. We plan to mainly use taxis within the city and book a single-bed room. Please provide a travel itinerary.",
+      "people_number": 2,
+      "start_city": "杭州",
+      "tag": "medium",
+      "target_city": "南京",
+      "uid": "e20241028160851829629"
+    }
+  },
+  "result": {
+    "task_uid": "e20241028160851829629",
+    "method": "structured",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.02509787498275
+  },
+  "ledger": {
+    "request_attempts": 3,
+    "completed_attempts": 2,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 458,
+      "completion_tokens": 620,
+      "total_tokens": 1078
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.001078,
+      "upper": 0.001078
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793456434.3420548,
+        "attempt_id": "f05b5b68b7864e6b9390eca56fc3e810",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793456450.148413,
+        "attempt_id": "f05b5b68b7864e6b9390eca56fc3e810",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 15.805683458049316,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-b3b7a2af-215e-4937-9650-94a21a88f30c",
+        "cached_prompt_tokens": 0,
+        "prompt_tokens": 458,
+        "completion_tokens": 620,
+        "total_tokens": 1078,
+        "reasoning_tokens": 526
+      },
+      {
+        "kind": "start",
+        "time": 1793456450.154222,
+        "attempt_id": "6cb186a313bd430ebf55de395fa3e44a",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793456630.268616,
+        "attempt_id": "6cb186a313bd430ebf55de395fa3e44a",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 180.11396016698563,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793456632.2743812,
+        "attempt_id": "d014afe18d974805b95d2a7dc7f1281b",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 2,
+    "returned_tokens": 1078,
+    "tool_calls": 219,
+    "exhausted": ""
+  }
+}

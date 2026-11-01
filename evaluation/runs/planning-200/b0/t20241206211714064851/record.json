@@ -1,0 +1,90 @@
+{
+  "job": {
+    "uid": "t20241206211714064851",
+    "split": "easy",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "b0",
+    "kind": "static",
+    "task": {
+      "days": 3,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置北京。我和三个朋友计划去重庆玩三天，选择火车出行，市内交通方式选择打车。请给我一个旅行规划。",
+      "nature_language_en": "Current location: Beijing. My three friends and I are planning to visit Chongqing for three days. We have chosen to travel by train and use taxis for intra-city transportation. Please provide me with a travel itinerary.",
+      "people_number": 4,
+      "start_city": "北京",
+      "tag": "easy",
+      "target_city": "重庆",
+      "uid": "t20241206211714064851"
+    }
+  },
+  "result": {
+    "task_uid": "t20241206211714064851",
+    "method": "b0",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.0286809170502
+  },
+  "ledger": {
+    "request_attempts": 2,
+    "completed_attempts": 1,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0,
+      "upper": 0.0
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793437630.375726,
+        "attempt_id": "a7ca03b10ecc454998439faa1d66393c",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793437810.425718,
+        "attempt_id": "a7ca03b10ecc454998439faa1d66393c",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 180.04683883301914,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793437812.429015,
+        "attempt_id": "255dec91b1b74eecb5bc28c1586b85ca",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 1,
+    "returned_tokens": 0,
+    "tool_calls": 186,
+    "exhausted": ""
+  }
+}

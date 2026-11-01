@@ -1,0 +1,111 @@
+{
+  "job": {
+    "uid": "e20241028160920077469",
+    "split": "medium",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "b2",
+    "kind": "static",
+    "task": {
+      "days": 3,
+      "limit_rooms": true,
+      "limits_room_type": true,
+      "nature_language": "当前位置武汉。我计划去重庆玩三天，预算1800元，想去当地的博物馆，开一间单床房。请给我一个旅行规划。",
+      "nature_language_en": "Current location: Wuhan. I plan to visit Chongqing for three days with a budget of 1800 RMB. I would like to visit local museums and book a single room. Please provide me with a travel plan.",
+      "people_number": 1,
+      "start_city": "武汉",
+      "tag": "medium",
+      "target_city": "重庆",
+      "uid": "e20241028160920077469"
+    }
+  },
+  "result": {
+    "task_uid": "e20241028160920077469",
+    "method": "b2",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.04122233303497
+  },
+  "ledger": {
+    "request_attempts": 3,
+    "completed_attempts": 2,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 15141,
+      "completion_tokens": 9469,
+      "total_tokens": 24610
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0121684,
+      "upper": 0.0121684
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793460311.1506429,
+        "attempt_id": "c2ab2e5a452447bb8534d211a9aecdb5",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793460491.198959,
+        "attempt_id": "c2ab2e5a452447bb8534d211a9aecdb5",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 180.04740987496916,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793460493.201544,
+        "attempt_id": "55c5163dce214d61bb9c8d2f0c72aa2a",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      },
+      {
+        "kind": "success",
+        "time": 1793460648.371849,
+        "attempt_id": "55c5163dce214d61bb9c8d2f0c72aa2a",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 155.1696587500046,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-3bbef294-37ff-4489-b91e-e2c0b22c3887",
+        "cached_prompt_tokens": 13824,
+        "prompt_tokens": 15141,
+        "completion_tokens": 9469,
+        "total_tokens": 24610,
+        "reasoning_tokens": 9005
+      },
+      {
+        "kind": "start",
+        "time": 1793460648.377743,
+        "attempt_id": "0ae3595e9ab2472fad4ffc3ce4ce0f5d",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 2,
+    "returned_tokens": 24610,
+    "tool_calls": 191,
+    "exhausted": ""
+  }
+}

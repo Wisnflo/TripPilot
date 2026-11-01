@@ -1,0 +1,720 @@
+{
+  "task_uid": "m20241028164622142080",
+  "method": "b2",
+  "model": "qwen3.8-reasoner",
+  "terminal_state": "checked_ok",
+  "plan": {
+    "people_number": 3,
+    "start_city": "Chengdu",
+    "target_city": "Shenzhen",
+    "itinerary": [
+      {
+        "day": 1,
+        "activities": [
+          {
+            "type": "airplane",
+            "start_time": "07:30",
+            "end_time": "09:10",
+            "start": "Chengdu Shuangliu International Airport",
+            "end": "Shenzhen Bao'an International Airport",
+            "FlightID": "FL425",
+            "price": 633.07,
+            "tickets": 3,
+            "cost": 1899.21,
+            "transports": []
+          },
+          {
+            "type": "attraction",
+            "start_time": "09:30",
+            "end_time": "12:30",
+            "position": "Hongyuan Temple",
+            "price": 0,
+            "tickets": 3,
+            "cost": 0.0,
+            "transports": [
+              {
+                "start": "Shenzhen Bao'an International Airport",
+                "end": "Hongyuan Temple",
+                "mode": "taxi",
+                "start_time": "09:10",
+                "end_time": "09:27",
+                "price": 46.45,
+                "cost": 46.45,
+                "distance": 11.5,
+                "tickets": 3,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "start_time": "12:36",
+            "end_time": "14:00",
+            "position": "Prosperous Pavilion Fishing Village (Shiyan Branch)",
+            "price": 102.0,
+            "tickets": 3,
+            "cost": 306.0,
+            "transports": [
+              {
+                "start": "Hongyuan Temple",
+                "end": "Prosperous Pavilion Fishing Village (Shiyan Branch)",
+                "mode": "taxi",
+                "start_time": "12:30",
+                "end_time": "12:36",
+                "price": 20.17,
+                "cost": 20.17,
+                "distance": 4.42,
+                "tickets": 3,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "accommodation",
+            "start_time": "14:24",
+            "end_time": "23:00",
+            "position": "Hanhao Hotel Shenzhen Nanshan Daxin Metro Station",
+            "price": 293,
+            "tickets": 3,
+            "cost": 879.0,
+            "rooms": 3,
+            "room_type": 1,
+            "transports": [
+              {
+                "start": "Prosperous Pavilion Fishing Village (Shiyan Branch)",
+                "end": "Hanhao Hotel Shenzhen Nanshan Daxin Metro Station",
+                "mode": "taxi",
+                "start_time": "14:00",
+                "end_time": "14:24",
+                "price": 69.13,
+                "cost": 69.13,
+                "distance": 16.54,
+                "tickets": 3,
+                "cars": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "activities": [
+          {
+            "type": "attraction",
+            "start_time": "08:08",
+            "end_time": "10:30",
+            "position": "Guanlan Ancient Market",
+            "price": 0,
+            "tickets": 3,
+            "cost": 0.0,
+            "transports": [
+              {
+                "start": "Hanhao Hotel Shenzhen Nanshan Daxin Metro Station",
+                "end": "Guanlan Ancient Market",
+                "mode": "taxi",
+                "start_time": "07:30",
+                "end_time": "08:08",
+                "price": 111.3,
+                "cost": 111.3,
+                "distance": 25.91,
+                "tickets": 3,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "lunch",
+            "start_time": "10:32",
+            "end_time": "12:00",
+            "position": "Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)",
+            "price": 87.0,
+            "tickets": 3,
+            "cost": 261.0,
+            "transports": [
+              {
+                "start": "Guanlan Ancient Market",
+                "end": "Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)",
+                "mode": "taxi",
+                "start_time": "10:30",
+                "end_time": "10:32",
+                "price": 11.0,
+                "cost": 11.0,
+                "distance": 1.55,
+                "tickets": 3,
+                "cars": 1
+              }
+            ]
+          },
+          {
+            "type": "airplane",
+            "start_time": "15:12",
+            "end_time": "16:52",
+            "start": "Shenzhen Bao'an International Airport",
+            "end": "Chengdu Shuangliu International Airport",
+            "FlightID": "FL204",
+            "price": 703.89,
+            "tickets": 3,
+            "cost": 2111.67,
+            "transports": [
+              {
+                "start": "Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)",
+                "end": "Shenzhen Bao'an International Airport",
+                "mode": "taxi",
+                "start_time": "12:00",
+                "end_time": "12:41",
+                "price": 118.86,
+                "cost": 118.86,
+                "distance": 27.59,
+                "tickets": 3,
+                "cars": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "steps": [
+    {
+      "step": 1,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "intercity_transport_select",
+          "arguments": {
+            "start_city": "Shenzhen",
+            "end_city": "Chengdu",
+            "intercity_type": "airplane",
+            "earliest_leave_time": "00:00"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "intercity_transport_select",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"intercity_transport_select({\\\"earliest_leave_time\\\": \\\"00:00\\\", \\\"end_city\\\": \\\"Chengdu\\\", \\\"intercity_type\\\": \\\"airplane\\\", \\\"start_city\\\": \\\"Shenzhen\\\"})\", \"text\": \"['FlightID' 'From' 'To' 'BeginTime' 'EndTime' 'Duration' 'Cost']\\n['FL210' \\\"Shenzhen Bao'an International Airport\\\"\\n 'Chengdu Tianfu International Airport' '01:03' '02:43' 1.67 715.22]\\n['FL206' \\\"Shenzhen Bao'an International Airport\\\"\\n 'Chengdu Shuangliu International Airport' '04:42' '06:22' 1.67"
+        }
+      ],
+      "latency_seconds": 2.1737251250306144,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-4114451a-74bc-4db6-848f-7454b6b13494",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 5273,
+      "completion_tokens": 113,
+      "reasoning_tokens": 33,
+      "attempts": 1,
+      "request_latencies": [
+        2.1737251250306144
+      ]
+    },
+    {
+      "step": 2,
+      "content": "\n\n",
+      "tool_calls": [
+        {
+          "name": "goto",
+          "arguments": {
+            "city": "Shenzhen",
+            "start": "Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)",
+            "end": "Shenzhen Bao'an International Airport",
+            "start_time": "12:00",
+            "transport_type": "taxi"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "goto",
+          "success": true,
+          "error": null,
+          "preview": "{\"success\": true, \"command\": \"goto({\\\"city\\\": \\\"Shenzhen\\\", \\\"end\\\": \\\"Shenzhen Bao'an International Airport\\\", \\\"start\\\": \\\"Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)\\\", \\\"start_time\\\": \\\"12:00\\\", \\\"transport_type\\\": \\\"taxi\\\"})\", \"text\": \"[{'start': 'Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)', 'end': \\\"Shenzhen Bao'an International Airport\\\", 'mode': 'taxi', 'start_time': '12:00', 'end_time': '12:41', 'cost': 118.86, 'di"
+        }
+      ],
+      "latency_seconds": 5.205674500088207,
+      "finish_reason": "tool_calls",
+      "request_id": "chatcmpl-0075ac14-7af0-41be-bb9f-9bb38a099dfa",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 6811,
+      "completion_tokens": 373,
+      "reasoning_tokens": 267,
+      "attempts": 1,
+      "request_latencies": [
+        5.205674500088207
+      ]
+    },
+    {
+      "step": 3,
+      "content": "\n\nFL203 is replaced with FL204 (15:12–16:52, same airports). The existing taxi leg from lunch to the airport already ends at 12:41, well before the new departure, so the rest of the plan remains unchanged.\n\n{\"people_number\": 3, \"start_city\": \"Chengdu\", \"target_city\": \"Shenzhen\", \"itinerary\": [{\"day\": 1, \"activities\": [{\"type\": \"airplane\", \"start_time\": \"07:30\", \"end_time\": \"09:10\", \"start\": \"Chengdu Shuangliu International Airport\", \"end\": \"Shenzhen Bao'an International Airport\", \"FlightID\": \"FL425\", \"price\": 633.07, \"tickets\": 3, \"cost\": 1899.21, \"transports\": []}, {\"type\": \"attraction\", \"start_time\": \"09:30\", \"end_time\": \"12:30\", \"position\": \"Hongyuan Temple\", \"price\": 0, \"tickets\": 3, \"cost\": 0.0, \"transports\": [{\"start\": \"Shenzhen Bao'an International Airport\", \"end\": \"Hongyuan Temple\", \"mode\": \"taxi\", \"start_time\": \"09:10\", \"end_time\": \"09:27\", \"price\": 46.45, \"cost\": 46.45, \"distance\": 11.5, \"tickets\": 3, \"cars\": 1}]}, {\"type\": \"lunch\", \"start_time\": \"12:36\", \"end_time\": \"14:00\", \"position\": \"Prosperous Pavilion Fishing Village (Shiyan Branch)\", \"price\": 102.0, \"tickets\": 3, \"cost\": 306.0, \"transports\": [{\"start\": \"Hongyuan Temple\", \"end\": \"Prosperous Pavilion Fishing Village (Shiyan Branch)\", \"mode\": \"taxi\", \"start_time\": \"12:30\", \"end_time\": \"12:36\", \"price\": 20.17, \"cost\": 20.17, \"distance\": 4.42, \"tickets\": 3, \"cars\": 1}]}, {\"type\": \"accommodation\", \"start_time\": \"14:24\", \"end_time\": \"23:00\", \"position\": \"Hanhao Hotel Shenzhen Nanshan Daxin Metro Station\", \"price\": 293, \"tickets\": 3, \"cost\": 879.0, \"rooms\": 3, \"room_type\": 1, \"transports\": [{\"start\": \"Prosperous Pavilion Fishing Village (Shiyan Branch)\", \"end\": \"Hanhao Hotel Shenzhen Nanshan Daxin Metro Station\", \"mode\": \"taxi\", \"start_time\": \"14:00\", \"end_time\": \"14:24\", \"price\": 69.13, \"cost\": 69.13, \"distance\": 16.54, \"tickets\": 3, \"cars\": 1}]}]}, {\"day\": 2, \"activities\": [{\"type\": \"attraction\", \"start_time\": \"08:08\", \"end_time\": \"10:30\", \"position\": \"Guanlan Ancient Market\", \"price\": 0, \"tickets\": 3, \"cost\": 0.0, \"transports\": [{\"start\": \"Hanhao Hotel Shenzhen Nanshan Daxin Metro Station\", \"end\": \"Guanlan Ancient Market\", \"mode\": \"taxi\", \"start_time\": \"07:30\", \"end_time\": \"08:08\", \"price\": 111.3, \"cost\": 111.3, \"distance\": 25.91, \"tickets\": 3, \"cars\": 1}]}, {\"type\": \"lunch\", \"start_time\": \"10:32\", \"end_time\": \"12:00\", \"position\": \"Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)\", \"price\": 87.0, \"tickets\": 3, \"cost\": 261.0, \"transports\": [{\"start\": \"Guanlan Ancient Market\", \"end\": \"Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)\", \"mode\": \"taxi\", \"start_time\": \"10:30\", \"end_time\": \"10:32\", \"price\": 11.0, \"cost\": 11.0, \"distance\": 1.55, \"tickets\": 3, \"cars\": 1}]}, {\"type\": \"airplane\", \"start_time\": \"15:12\", \"end_time\": \"16:52\", \"start\": \"Shenzhen Bao'an International Airport\", \"end\": \"Chengdu Shuangliu International Airport\", \"FlightID\": \"FL204\", \"price\": 703.89, \"tickets\": 3, \"cost\": 2111.67, \"transports\": [{\"start\": \"Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)\", \"end\": \"Shenzhen Bao'an International Airport\", \"mode\": \"taxi\", \"start_time\": \"12:00\", \"end_time\": \"12:41\", \"price\": 118.86, \"cost\": 118.86, \"distance\": 27.59, \"tickets\": 3, \"cars\": 1}]}]}]}",
+      "tool_calls": [],
+      "tool_results": [],
+      "latency_seconds": 14.121264833956957,
+      "finish_reason": "stop",
+      "request_id": "chatcmpl-a33f27d8-2121-44f5-9cce-86742dbf4217",
+      "response_model": "qwen3.8-reasoner",
+      "prompt_tokens": 7188,
+      "completion_tokens": 1384,
+      "reasoning_tokens": 96,
+      "attempts": 1,
+      "request_latencies": [
+        14.121264833956957
+      ]
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 19272,
+    "completion_tokens": 1870,
+    "total_tokens": 21142,
+    "reasoning_tokens": 396
+  },
+  "checker": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours",
+      "budget_not_found_in_text"
+    ]
+  },
+  "error": null,
+  "metadata": {
+    "event_text": "This transport is no longer available: FL203. Replace it and keep the rest feasible.",
+    "usage_complete": true,
+    "request_count": 3,
+    "retry_count": 0,
+    "request_latency_seconds": 21.50066445907578
+  },
+  "started_at": "2026-11-01T00:29:23.133209+00:00",
+  "finished_at": "2026-11-01T00:29:45.013305+00:00",
+  "duration_seconds": 21.8801664999919,
+  "wall_seconds": 21.880530250025913,
+  "resources": {
+    "limits": {
+      "feedback": 4,
+      "model_calls": 16,
+      "tokens": 500000,
+      "tools": 400,
+      "output_tokens_per_call": 10000
+    },
+    "model_calls": 3,
+    "returned_tokens": 21142,
+    "feedback_calls": 0,
+    "tool_calls": 15,
+    "exhausted": "",
+    "tool_receipts": [
+      {
+        "index": 1,
+        "name": "intercity_transport_select",
+        "arguments": {
+          "start_city": "Shenzhen",
+          "end_city": "Chengdu",
+          "intercity_type": "airplane",
+          "earliest_leave_time": "00:00"
+        }
+      },
+      {
+        "index": 2,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)",
+          "end": "Shenzhen Bao'an International Airport",
+          "start_time": "12:00",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 3,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Shenzhen",
+          "key": "name",
+          "op": "eq",
+          "value": "Hongyuan Temple"
+        }
+      },
+      {
+        "index": 4,
+        "name": "restaurants_select",
+        "arguments": {
+          "city": "Shenzhen",
+          "key": "name",
+          "op": "eq",
+          "value": "Prosperous Pavilion Fishing Village (Shiyan Branch)"
+        }
+      },
+      {
+        "index": 5,
+        "name": "accommodations_select",
+        "arguments": {
+          "city": "Shenzhen",
+          "key": "name",
+          "op": "eq",
+          "value": "Hanhao Hotel Shenzhen Nanshan Daxin Metro Station"
+        }
+      },
+      {
+        "index": 6,
+        "name": "attractions_select",
+        "arguments": {
+          "city": "Shenzhen",
+          "key": "name",
+          "op": "eq",
+          "value": "Guanlan Ancient Market"
+        }
+      },
+      {
+        "index": 7,
+        "name": "restaurants_select",
+        "arguments": {
+          "city": "Shenzhen",
+          "key": "name",
+          "op": "eq",
+          "value": "Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)"
+        }
+      },
+      {
+        "index": 8,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Shenzhen Bao'an International Airport",
+          "end": "Hongyuan Temple",
+          "start_time": "09:10",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 9,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Hongyuan Temple",
+          "end": "Prosperous Pavilion Fishing Village (Shiyan Branch)",
+          "start_time": "12:30",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 10,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Prosperous Pavilion Fishing Village (Shiyan Branch)",
+          "end": "Hanhao Hotel Shenzhen Nanshan Daxin Metro Station",
+          "start_time": "14:00",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 11,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Hanhao Hotel Shenzhen Nanshan Daxin Metro Station",
+          "end": "Guanlan Ancient Market",
+          "start_time": "07:30",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 12,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Guanlan Ancient Market",
+          "end": "Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)",
+          "start_time": "10:30",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 13,
+        "name": "goto",
+        "arguments": {
+          "city": "Shenzhen",
+          "start": "Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)",
+          "end": "Shenzhen Bao'an International Airport",
+          "start_time": "12:00",
+          "transport_type": "taxi"
+        }
+      },
+      {
+        "index": 14,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Chengdu",
+          "end_city": "Shenzhen",
+          "type": "airplane"
+        }
+      },
+      {
+        "index": 15,
+        "name": "intercity_validation_rows",
+        "arguments": {
+          "start_city": "Shenzhen",
+          "end_city": "Chengdu",
+          "type": "airplane"
+        }
+      }
+    ],
+    "input_accounting": "conservative UTF-8 preflight; actual provider usage recorded; missing remote usage remains unknown"
+  },
+  "clarification": {
+    "status": "ready",
+    "base_revision": "a041ebf900a7c5e965865121f19f4669b3f2138c0b67aac97597bbd885be988f",
+    "task": {
+      "uid": "m20241028164622142080",
+      "tag": "easy",
+      "start_city": "成都",
+      "target_city": "深圳",
+      "days": 2,
+      "people_number": 3,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "当前位置成都。我们三个人想去深圳玩2天，想去历史感比较重的景点，请给我们一个旅行规划。",
+      "nature_language_en": "Current location: Chengdu. The three of us want to visit Shenzhen for 2 days and are interested in historical sites. Could you please provide us with a travel itinerary?"
+    },
+    "seed_plan": {
+      "people_number": 3,
+      "start_city": "Chengdu",
+      "target_city": "Shenzhen",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            {
+              "type": "airplane",
+              "start_time": "07:30",
+              "end_time": "09:10",
+              "start": "Chengdu Shuangliu International Airport",
+              "end": "Shenzhen Bao'an International Airport",
+              "FlightID": "FL425",
+              "price": 633.07,
+              "tickets": 3,
+              "cost": 1899.21,
+              "transports": []
+            },
+            {
+              "type": "attraction",
+              "start_time": "09:30",
+              "end_time": "12:30",
+              "position": "Hongyuan Temple",
+              "price": 0,
+              "tickets": 3,
+              "cost": 0.0,
+              "transports": [
+                {
+                  "start": "Shenzhen Bao'an International Airport",
+                  "end": "Hongyuan Temple",
+                  "mode": "taxi",
+                  "start_time": "09:10",
+                  "end_time": "09:27",
+                  "price": 46.45,
+                  "cost": 46.45,
+                  "distance": 11.5,
+                  "tickets": 3,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "start_time": "12:36",
+              "end_time": "14:00",
+              "position": "Prosperous Pavilion Fishing Village (Shiyan Branch)",
+              "price": 102.0,
+              "tickets": 3,
+              "cost": 306.0,
+              "transports": [
+                {
+                  "start": "Hongyuan Temple",
+                  "end": "Prosperous Pavilion Fishing Village (Shiyan Branch)",
+                  "mode": "taxi",
+                  "start_time": "12:30",
+                  "end_time": "12:36",
+                  "price": 20.17,
+                  "cost": 20.17,
+                  "distance": 4.42,
+                  "tickets": 3,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "accommodation",
+              "start_time": "14:24",
+              "end_time": "23:00",
+              "position": "Hanhao Hotel Shenzhen Nanshan Daxin Metro Station",
+              "price": 293,
+              "tickets": 3,
+              "cost": 879.0,
+              "rooms": 3,
+              "room_type": 1,
+              "transports": [
+                {
+                  "start": "Prosperous Pavilion Fishing Village (Shiyan Branch)",
+                  "end": "Hanhao Hotel Shenzhen Nanshan Daxin Metro Station",
+                  "mode": "taxi",
+                  "start_time": "14:00",
+                  "end_time": "14:24",
+                  "price": 69.13,
+                  "cost": 69.13,
+                  "distance": 16.54,
+                  "tickets": 3,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            {
+              "type": "attraction",
+              "start_time": "08:08",
+              "end_time": "10:30",
+              "position": "Guanlan Ancient Market",
+              "price": 0,
+              "tickets": 3,
+              "cost": 0.0,
+              "transports": [
+                {
+                  "start": "Hanhao Hotel Shenzhen Nanshan Daxin Metro Station",
+                  "end": "Guanlan Ancient Market",
+                  "mode": "taxi",
+                  "start_time": "07:30",
+                  "end_time": "08:08",
+                  "price": 111.3,
+                  "cost": 111.3,
+                  "distance": 25.91,
+                  "tickets": 3,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "lunch",
+              "start_time": "10:32",
+              "end_time": "12:00",
+              "position": "Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)",
+              "price": 87.0,
+              "tickets": 3,
+              "cost": 261.0,
+              "transports": [
+                {
+                  "start": "Guanlan Ancient Market",
+                  "end": "Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)",
+                  "mode": "taxi",
+                  "start_time": "10:30",
+                  "end_time": "10:32",
+                  "price": 11.0,
+                  "cost": 11.0,
+                  "distance": 1.55,
+                  "tickets": 3,
+                  "cars": 1
+                }
+              ]
+            },
+            {
+              "type": "airplane",
+              "start_time": "15:10",
+              "end_time": "16:50",
+              "start": "Shenzhen Bao'an International Airport",
+              "end": "Chengdu Tianfu International Airport",
+              "FlightID": "FL203",
+              "price": 631.32,
+              "tickets": 3,
+              "cost": 1893.96,
+              "transports": [
+                {
+                  "start": "Qinghui Garden · Kung Fu Roast and Shunde Cuisine (Mission Hills MHmall Branch)",
+                  "end": "Shenzhen Bao'an International Airport",
+                  "mode": "taxi",
+                  "start_time": "12:00",
+                  "end_time": "12:41",
+                  "price": 118.86,
+                  "cost": 118.86,
+                  "distance": 27.59,
+                  "tickets": 3,
+                  "cars": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "event": {
+      "kind": "transport_unavailable",
+      "day": null,
+      "new_days": null,
+      "new_budget": null,
+      "target": "FL203",
+      "description": ""
+    },
+    "state_revision": "70ee12a4bb388b7c5f57e0126dd83a5d10884e22fa1bc35cd9ffbde10f8b6923"
+  },
+  "event": {
+    "kind": "transport_unavailable",
+    "target": "FL203",
+    "description": ""
+  },
+  "event_check": {
+    "ok": true,
+    "violations": [],
+    "supported": [
+      "schema",
+      "day_count",
+      "people_number",
+      "start_target_city",
+      "activity_time_order",
+      "transport_time_order",
+      "transport_structure",
+      "activity_cost_rules",
+      "meal_time_windows",
+      "space_chain",
+      "accommodation_nights",
+      "intercity_transport_presence",
+      "ticket_fields",
+      "budget_if_in_text",
+      "entity_grounding",
+      "opening_hours",
+      "duplicate_activities",
+      "meal_type_once",
+      "transport_matches_goto",
+      "intercity_transport_values",
+      "explicit_dynamic_event"
+    ],
+    "unsupported": [
+      "room_rules",
+      "overnight_hours",
+      "budget_not_found_in_text"
+    ]
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "job": {
+    "uid": "h20241029143526214076",
+    "split": "human",
+    "model": "qwen3.8-reasoner",
+    "steps": 16,
+    "seconds": 360.0,
+    "request_timeout": 180.0,
+    "attempts": 2,
+    "tokens": 500000,
+    "tool_limit": 400,
+    "output_tokens": 10000,
+    "shared_context": true,
+    "method": "b1",
+    "kind": "static",
+    "task": {
+      "days": 3,
+      "limit_rooms": false,
+      "limits_room_type": false,
+      "nature_language": "[当前位置北京,目标位置苏州,旅行人数3,旅行天数3] 我和两个同学想从北京出发去苏州旅行，3天左右，想要多去一些当地著名的景点，并且品尝特色美食，不知道有哪些地方可以去",
+      "nature_language_en": "[Current location: Beijing, Destination: Suzhou, Number of travelers: 3, Duration of travel: 3 days] My two classmates and I want to travel from Beijing to Suzhou for about 3 days. We would like to visit many famous local attractions and taste the local specialties. We are not sure which places we should visit.",
+      "people_number": 3,
+      "start_city": "北京",
+      "tag": "human",
+      "target_city": "苏州",
+      "uid": "h20241029143526214076"
+    }
+  },
+  "result": {
+    "task_uid": "h20241029143526214076",
+    "method": "b1",
+    "terminal_state": "hard_timeout",
+    "plan": null
+  },
+  "supervision": {
+    "returncode": -15,
+    "hard_timeout": true,
+    "cancelled": false,
+    "wall_seconds": 360.0288405830506
+  },
+  "ledger": {
+    "request_attempts": 4,
+    "completed_attempts": 3,
+    "pending_attempts": 1,
+    "observed_usage": {
+      "prompt_tokens": 30780,
+      "completion_tokens": 13296,
+      "total_tokens": 44076
+    },
+    "unobserved_billing_possible": true,
+    "cache_usage_complete": true,
+    "observed_usage_cost_CNY": {
+      "lower": 0.0185016,
+      "upper": 0.0185016
+    },
+    "invoice_total_CNY": null,
+    "events": [
+      {
+        "kind": "start",
+        "time": 1793488181.4918442,
+        "attempt_id": "53a7799a849146f1ba7e8e9704cce2e0",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "success",
+        "time": 1793488281.535131,
+        "attempt_id": "53a7799a849146f1ba7e8e9704cce2e0",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 100.04292300005909,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-b070ac87-29c9-44ca-a71a-da099dfb214f",
+        "cached_prompt_tokens": 13824,
+        "prompt_tokens": 15075,
+        "completion_tokens": 8352,
+        "total_tokens": 23427,
+        "reasoning_tokens": 8289
+      },
+      {
+        "kind": "start",
+        "time": 1793488281.539399,
+        "attempt_id": "86fa18c7cf7e4fd99d05ab6af8841e13",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      },
+      {
+        "kind": "error",
+        "time": 1793488461.5779688,
+        "attempt_id": "86fa18c7cf7e4fd99d05ab6af8841e13",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 180.03836733405478,
+        "error_type": "APITimeoutError",
+        "status_code": null
+      },
+      {
+        "kind": "start",
+        "time": 1793488463.58911,
+        "attempt_id": "716480a482fc41b1bc3d91d0ccdffade",
+        "model": "qwen3.8-reasoner",
+        "attempt": 2
+      },
+      {
+        "kind": "success",
+        "time": 1793488527.669962,
+        "attempt_id": "716480a482fc41b1bc3d91d0ccdffade",
+        "model": "qwen3.8-reasoner",
+        "elapsed": 64.08401766594034,
+        "response_model": "qwen3.8-reasoner",
+        "request_id": "chatcmpl-a77714b4-8e34-4311-a285-e1af548dfab6",
+        "cached_prompt_tokens": 14592,
+        "prompt_tokens": 15705,
+        "completion_tokens": 4944,
+        "total_tokens": 20649,
+        "reasoning_tokens": 3486
+      },
+      {
+        "kind": "start",
+        "time": 1793488527.6786938,
+        "attempt_id": "2eaad18ce38c49689b72ac492feeff1e",
+        "model": "qwen3.8-reasoner",
+        "attempt": 1
+      }
+    ]
+  },
+  "resources": {
+    "feedback_calls": 0,
+    "model_calls": 3,
+    "returned_tokens": 44076,
+    "tool_calls": 205,
+    "exhausted": ""
+  }
+}
