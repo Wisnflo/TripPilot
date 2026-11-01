@@ -1,6 +1,10 @@
 """Minimal parameterized OpenAI-compatible chat adapter."""
 
 import time
+import re
+import math
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 import uuid
 from ..execution.ledger import emit
 from ..execution.budget import current
@@ -64,6 +68,34 @@ def build_client(config: ModelConfig) -> OpenAI:
 RETRYABLE = (APITimeoutError, APIConnectionError, RateLimitError, InternalServerError, APIStatusError)
 
 
+def _safe_error_text(error, config):
+    value=str(error)
+    if config.api_key:value=value.replace(config.api_key,'[REDACTED]')
+    value=re.sub(r'sk-[A-Za-z0-9_-]+','[REDACTED]',value)
+    return re.sub(r'(?i)(api[_ -]?key\s*[:=]\s*)[^\s,;]+',r'\1[REDACTED]',value)
+
+
+def _retry_wait(error, config, attempt):
+    wait=max(0.0,config.retry_backoff_seconds*(2**(attempt-1)))
+    hints=[]
+    headers=getattr(getattr(error,'response',None),'headers',{})
+    retry_after=headers.get('retry-after')
+    if retry_after:
+        try:hints.append(float(retry_after))
+        except ValueError:
+            try:hints.append(parsedate_to_datetime(retry_after).timestamp()-time.time())
+            except (ValueError,TypeError,OverflowError):pass
+    # This provider exposes the reset in its structured error message rather
+    # than a Retry-After header. Interpret its explicitly stated UTC time.
+    match=re.search(r'Limit resets at:\s*(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}) UTC',str(error))
+    if match:
+        try:hints.append(datetime.strptime(match.group(1),'%Y-%m-%d %H:%M:%S').replace(tzinfo=timezone.utc).timestamp()-time.time())
+        except ValueError:pass
+    for hint in hints:
+        if math.isfinite(hint):wait=max(wait,hint+1.0)
+    return wait
+
+
 def _call_with_retries(config: ModelConfig, client: OpenAI, kwargs: Dict[str, Any], deadline=None):
     budget = current()
     if budget is not None:
@@ -101,12 +133,15 @@ def _call_with_retries(config: ModelConfig, client: OpenAI, kwargs: Dict[str, An
                 break  # authentication/model-blocked/bad requests are not transient
             if attempt >= config.max_attempts:
                 break
-            backoff = config.retry_backoff_seconds * (2 ** (attempt - 1))
+            backoff = _retry_wait(exc, config, attempt)
             if deadline is not None and time.monotonic() + backoff >= deadline:
                 break
+            if deadline is None and backoff > config.request_timeout_seconds:
+                break
+            emit("backoff",attempt_id=attempt_id,model=config.model,seconds=backoff,reason="rate_limit" if status==429 else "transient")
             time.sleep(backoff)
     raise ModelRequestError(
-        "model request failed after %d attempts: %s" % (len(latencies), last_error),
+        "model request failed after %d attempts: %s" % (len(latencies), _safe_error_text(last_error,config)),
         attempts=len(latencies),
         request_latencies=latencies,
         last_error=last_error,

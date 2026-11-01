@@ -24,6 +24,10 @@ def save(path,value):
     temporary=path.with_suffix('.tmp');temporary.write_text(json.dumps(value,ensure_ascii=False,indent=2));temporary.replace(path)
 
 
+def service_requires_stop(statuses, terminal):
+    return any(v in (401,403) for v in statuses) or (terminal=='request_error' and 429 in statuses)
+
+
 def main():
     p=argparse.ArgumentParser();p.add_argument('--manifest',default='config/v3-tasks.json')
     p.add_argument('--partition',choices=['dev','test','dynamic','repeat','components','second_model'],required=True)
@@ -101,7 +105,7 @@ def main():
         print('END',key,method,result['terminal_state'],round(supervision['wall_seconds'],2) if supervision.get('wall_seconds') is not None else None,record['ledger']['observed_usage']['total_tokens'],flush=True)
         statuses=[e.get('status_code') for e in record['ledger']['events'] if e['kind']=='error']
         with health_lock:
-            if any(v in (401,403,429) for v in statuses):stop.set()
+            if service_requires_stop(statuses,result.get('terminal_state')):stop.set()
             if result.get('terminal_state') in ('request_error','worker_error','hard_timeout') and record['ledger']['observed_usage']['total_tokens']==0:health['empty_failures']+=1
             else:health['empty_failures']=0
             if health['empty_failures']>=3:stop.set()

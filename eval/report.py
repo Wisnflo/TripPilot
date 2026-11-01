@@ -27,15 +27,17 @@ def table(report):
     return '\n'.join(lines)
 
 
-def render(root,prefix):
+def render(root,prefix,initial_prefix=None):
     root=Path(root);pipeline=root/'experiments/v3'/(prefix+'-pipeline')
     state=json.loads((pipeline/'state.json').read_text()) if (pipeline/'state.json').exists() else {}
     reports={}
     for stage in ('static','components','repeat-1','repeat-2','dynamic','second-model'):
-        path=root/'experiments/v3'/(prefix+'-'+stage)/'analysis.json'
+        stage_prefix=initial_prefix if initial_prefix and stage in ('static','components','repeat-1','repeat-2') else prefix
+        path=root/'experiments/v3'/(stage_prefix+'-'+stage)/'analysis.json'
         if path.exists():reports[stage]=json.loads(path.read_text())
     lines=['# TripPilot 综合评测报告','',f"评测标识：`{prefix}`。已产生分析的阶段：{len(reports)}/6。",'',
            '## 结论','']
+    if initial_prefix:lines+=['先前已完成的首次规划、组件和重复结果来自 `'+initial_prefix+'`；动态与第二模型使用当前执行记录。修复限流等待后，完整动态任务按新执行协议统一重测，旧限流记录保留，两个执行条件分别说明。','']
     initial=reports.get('static');dynamic=reports.get('dynamic')
     if initial and {'structured','b2'}<=initial['summary'].keys():
         left=initial['summary']['structured'];right=initial['summary']['b2'];delta=left['success']-right['success']
@@ -108,17 +110,18 @@ def render(root,prefix):
             row=next((r for r in report['rows'] if r['method']==method and not r['success']),None)
             if row:lines.append(f"| {stage} | {LABELS.get(method,method)} | {row['key']} | {row['terminal']} | {row['schema']} / {row['commonsense']} / {row['hard']} |")
     lines+=['','## 证据与适用范围','',
-            '逐任务结果、请求尝试及执行协议保存在对应运行目录。所有阶段由相同运行协议驱动；中断请求保留原始记录，恢复不会自动购买一次新尝试。代码、任务或工具数据变化后，必须使用新的运行标识。',
+            '逐任务结果、请求尝试及执行协议保存在对应运行目录。各对照阶段使用其记录的共同运行协议；中断请求保留原始记录，恢复不会自动购买一次新尝试。代码、任务或工具数据变化后，必须使用新的运行标识。',
             '', '数据来自 ChinaTravel 配套旅行环境，覆盖有限城市，不代表实时服务。候选搜索有界；失败不等于证明无解。动态事件通过独立构造器证明至少存在一个可行计划，但其构造分布也限制了结论的推广范围。',
             '', '最终执行状态以流水线 `state.json` 与各阶段记录共同确认。','']
     return '\n'.join(lines)
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--prefix',required=True);p.add_argument('--output');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--prefix',required=True);p.add_argument('--output');p.add_argument('--initial-prefix');a=p.parse_args()
     if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]{0,60}',a.prefix):p.error('invalid prefix')
+    if a.initial_prefix and not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]{0,60}',a.initial_prefix):p.error('invalid initial prefix')
     output=Path(a.output) if a.output else ROOT/'experiments/v3'/(a.prefix+'-pipeline')/'report.md'
-    output.parent.mkdir(parents=True,exist_ok=True);output.write_text(render(ROOT,a.prefix))
+    output.parent.mkdir(parents=True,exist_ok=True);output.write_text(render(ROOT,a.prefix,a.initial_prefix))
     print('REPORT_WRITTEN',output)
 
 
